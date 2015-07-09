@@ -7,25 +7,27 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		B7AB0ED41B4CE82E00AB6A3E /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = B7AB0ED31B4CE82E00AB6A3E /* main.m */; };
-		B7AB0ED71B4CE82E00AB6A3E /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = B7AB0ED61B4CE82E00AB6A3E /* AppDelegate.m */; };
-		B7AB0EDA1B4CE82E00AB6A3E /* Profit_Protector.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = B7AB0ED81B4CE82E00AB6A3E /* Profit_Protector.xcdatamodeld */; };
-		B7AB0EDD1B4CE82E00AB6A3E /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B7AB0EDC1B4CE82E00AB6A3E /* ViewController.m */; };
-		B7AB0EE21B4CE82E00AB6A3E /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B7AB0EE11B4CE82E00AB6A3E /* Images.xcassets */; };
-		B7AB0EE51B4CE82E00AB6A3E /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = B7AB0EE31B4CE82E00AB6A3E /* LaunchScreen.xib */; };
+		B7A58F241B4DFC3800C408D8 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = B7A58F181B4DFC3800C408D8 /* AppDelegate.m */; };
+		B7A58F251B4DFC3800C408D8 /* SplashViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B7A58F1A1B4DFC3800C408D8 /* SplashViewController.m */; };
+		B7A58F261B4DFC3800C408D8 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B7A58F1C1B4DFC3800C408D8 /* Images.xcassets */; };
+		B7A58F271B4DFC3800C408D8 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = B7A58F1D1B4DFC3800C408D8 /* LaunchScreen.xib */; };
+		B7A58F281B4DFC3800C408D8 /* logo@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B7A58F1E1B4DFC3800C408D8 /* logo@2x.png */; };
+		B7A58F2A1B4DFC3800C408D8 /* Profit_Protector.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = B7A58F211B4DFC3800C408D8 /* Profit_Protector.xcdatamodeld */; };
+		B7A58F2B1B4DFC3800C408D8 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = B7A58F231B4DFC3800C408D8 /* main.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		B7A58F171B4DFC3800C408D8 /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		B7A58F181B4DFC3800C408D8 /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		B7A58F191B4DFC3800C408D8 /* SplashViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SplashViewController.h; sourceTree = "<group>"; };
+		B7A58F1A1B4DFC3800C408D8 /* SplashViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SplashViewController.m; sourceTree = "<group>"; };
+		B7A58F1C1B4DFC3800C408D8 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		B7A58F1D1B4DFC3800C408D8 /* LaunchScreen.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LaunchScreen.xib; sourceTree = "<group>"; };
+		B7A58F1E1B4DFC3800C408D8 /* logo@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "logo@2x.png"; sourceTree = "<group>"; };
+		B7A58F201B4DFC3800C408D8 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		B7A58F221B4DFC3800C408D8 /* Profit_Protector.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Profit_Protector.xcdatamodel; sourceTree = "<group>"; };
+		B7A58F231B4DFC3800C408D8 /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		B7AB0ECE1B4CE82E00AB6A3E /* Profit Protector.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Profit Protector.app"; sourceTree = BUILT_PRODUCTS_DIR; };
-		B7AB0ED21B4CE82E00AB6A3E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		B7AB0ED31B4CE82E00AB6A3E /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		B7AB0ED51B4CE82E00AB6A3E /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
-		B7AB0ED61B4CE82E00AB6A3E /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		B7AB0ED91B4CE82E00AB6A3E /* Profit_Protector.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Profit_Protector.xcdatamodel; sourceTree = "<group>"; };
-		B7AB0EDB1B4CE82E00AB6A3E /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		B7AB0EDC1B4CE82E00AB6A3E /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
-		B7AB0EE11B4CE82E00AB6A3E /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
-		B7AB0EE41B4CE82E00AB6A3E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -39,10 +41,46 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		B7A58F161B4DFC3800C408D8 /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				B7A58F171B4DFC3800C408D8 /* AppDelegate.h */,
+				B7A58F181B4DFC3800C408D8 /* AppDelegate.m */,
+				B7A58F191B4DFC3800C408D8 /* SplashViewController.h */,
+				B7A58F1A1B4DFC3800C408D8 /* SplashViewController.m */,
+			);
+			name = Classes;
+			path = "Profit Protector/Classes";
+			sourceTree = "<group>";
+		};
+		B7A58F1B1B4DFC3800C408D8 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				B7A58F1C1B4DFC3800C408D8 /* Images.xcassets */,
+				B7A58F1D1B4DFC3800C408D8 /* LaunchScreen.xib */,
+				B7A58F1E1B4DFC3800C408D8 /* logo@2x.png */,
+			);
+			name = Resources;
+			path = "Profit Protector/Resources";
+			sourceTree = "<group>";
+		};
+		B7A58F1F1B4DFC3800C408D8 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				B7A58F201B4DFC3800C408D8 /* Info.plist */,
+				B7A58F211B4DFC3800C408D8 /* Profit_Protector.xcdatamodeld */,
+				B7A58F231B4DFC3800C408D8 /* main.m */,
+			);
+			name = "Supporting Files";
+			path = "Profit Protector/Supporting Files";
+			sourceTree = "<group>";
+		};
 		B7AB0EC51B4CE82E00AB6A3E = {
 			isa = PBXGroup;
 			children = (
-				B7AB0ED01B4CE82E00AB6A3E /* Profit Protector */,
+				B7A58F161B4DFC3800C408D8 /* Classes */,
+				B7A58F1B1B4DFC3800C408D8 /* Resources */,
+				B7A58F1F1B4DFC3800C408D8 /* Supporting Files */,
 				B7AB0ECF1B4CE82E00AB6A3E /* Products */,
 			);
 			sourceTree = "<group>";
@@ -55,30 +93,6 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		B7AB0ED01B4CE82E00AB6A3E /* Profit Protector */ = {
-			isa = PBXGroup;
-			children = (
-				B7AB0ED51B4CE82E00AB6A3E /* AppDelegate.h */,
-				B7AB0ED61B4CE82E00AB6A3E /* AppDelegate.m */,
-				B7AB0EDB1B4CE82E00AB6A3E /* ViewController.h */,
-				B7AB0EDC1B4CE82E00AB6A3E /* ViewController.m */,
-				B7AB0EE11B4CE82E00AB6A3E /* Images.xcassets */,
-				B7AB0EE31B4CE82E00AB6A3E /* LaunchScreen.xib */,
-				B7AB0ED81B4CE82E00AB6A3E /* Profit_Protector.xcdatamodeld */,
-				B7AB0ED11B4CE82E00AB6A3E /* Supporting Files */,
-			);
-			path = "Profit Protector";
-			sourceTree = "<group>";
-		};
-		B7AB0ED11B4CE82E00AB6A3E /* Supporting Files */ = {
-			isa = PBXGroup;
-			children = (
-				B7AB0ED21B4CE82E00AB6A3E /* Info.plist */,
-				B7AB0ED31B4CE82E00AB6A3E /* main.m */,
-			);
-			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -89,6 +103,7 @@
 				B7AB0ECA1B4CE82E00AB6A3E /* Sources */,
 				B7AB0ECB1B4CE82E00AB6A3E /* Frameworks */,
 				B7AB0ECC1B4CE82E00AB6A3E /* Resources */,
+				B7A58F2C1B4DFC6C00C408D8 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -136,37 +151,43 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B7AB0EE51B4CE82E00AB6A3E /* LaunchScreen.xib in Resources */,
-				B7AB0EE21B4CE82E00AB6A3E /* Images.xcassets in Resources */,
+				B7A58F271B4DFC3800C408D8 /* LaunchScreen.xib in Resources */,
+				B7A58F281B4DFC3800C408D8 /* logo@2x.png in Resources */,
+				B7A58F261B4DFC3800C408D8 /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		B7A58F2C1B4DFC6C00C408D8 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 8;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 1;
+			shellPath = /bin/sh;
+			shellScript = "VERSIONNUM=$(/usr/libexec/PlistBuddy -c \"Print CFBundleVersion\" \"${PROJECT_DIR}/${INFOPLIST_FILE}\")\nNEWSUBVERSION=`echo $VERSIONNUM | awk -F \".\" '{print $3}'`\nNEWSUBVERSION=$(($NEWSUBVERSION + 1))\nNEWVERSIONSTRING=`echo $VERSIONNUM | awk -F \".\" '{print $1 \".\" $2 \".'$NEWSUBVERSION'\" }'`\n/usr/libexec/PlistBuddy -c \"Set :CFBundleVersion $NEWVERSIONSTRING\" \"${PROJECT_DIR}/${INFOPLIST_FILE}\"";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		B7AB0ECA1B4CE82E00AB6A3E /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B7AB0ED71B4CE82E00AB6A3E /* AppDelegate.m in Sources */,
-				B7AB0ED41B4CE82E00AB6A3E /* main.m in Sources */,
-				B7AB0EDD1B4CE82E00AB6A3E /* ViewController.m in Sources */,
-				B7AB0EDA1B4CE82E00AB6A3E /* Profit_Protector.xcdatamodeld in Sources */,
+				B7A58F241B4DFC3800C408D8 /* AppDelegate.m in Sources */,
+				B7A58F251B4DFC3800C408D8 /* SplashViewController.m in Sources */,
+				B7A58F2B1B4DFC3800C408D8 /* main.m in Sources */,
+				B7A58F2A1B4DFC3800C408D8 /* Profit_Protector.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXVariantGroup section */
-		B7AB0EE31B4CE82E00AB6A3E /* LaunchScreen.xib */ = {
-			isa = PBXVariantGroup;
-			children = (
-				B7AB0EE41B4CE82E00AB6A3E /* Base */,
-			);
-			name = LaunchScreen.xib;
-			sourceTree = "<group>";
-		};
-/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		B7AB0EF21B4CE82E00AB6A3E /* Debug */ = {
@@ -255,9 +276,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				INFOPLIST_FILE = "Profit Protector/Info.plist";
+				INFOPLIST_FILE = "Profit Protector/Supporting Files/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
 		};
@@ -265,9 +287,12 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				INFOPLIST_FILE = "Profit Protector/Info.plist";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: CLEANBRANDS LLC (WQQK8SCDZ4)";
+				INFOPLIST_FILE = "Profit Protector/Supporting Files/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "d6aeea82-3e49-4c1e-9c9e-46c29bea9710";
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Distribution;
 		};
@@ -295,12 +320,12 @@
 /* End XCConfigurationList section */
 
 /* Begin XCVersionGroup section */
-		B7AB0ED81B4CE82E00AB6A3E /* Profit_Protector.xcdatamodeld */ = {
+		B7A58F211B4DFC3800C408D8 /* Profit_Protector.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
-				B7AB0ED91B4CE82E00AB6A3E /* Profit_Protector.xcdatamodel */,
+				B7A58F221B4DFC3800C408D8 /* Profit_Protector.xcdatamodel */,
 			);
-			currentVersion = B7AB0ED91B4CE82E00AB6A3E /* Profit_Protector.xcdatamodel */;
+			currentVersion = B7A58F221B4DFC3800C408D8 /* Profit_Protector.xcdatamodel */;
 			path = Profit_Protector.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;
