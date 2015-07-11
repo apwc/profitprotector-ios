@@ -3,7 +3,9 @@
 
 @interface TutorialViewController ()
 {
-  UIButton *next_;
+  UIPageControl *uipc_;
+  
+  UIButton      *next_;
 }
 @end
 
@@ -23,6 +25,15 @@
                                                                       CGRectGetWidth(self.view.bounds),
                                                                       CGRectGetHeight(self.view.bounds) - buttonHeight - 20.0f)];
   [self.view addSubview:uisv];
+  
+  uipc_ = [[UIPageControl alloc] initWithFrame:CGRectMake(0.0f,
+                                                          40.0f,
+                                                          CGRectGetWidth(self.view.bounds),
+                                                          32.0f)];
+  uipc_.pageIndicatorTintColor = [UIColor colorWithWhite:0.7f alpha:1.0f];
+  uipc_.currentPageIndicatorTintColor = [UIColor colorWithRed:0 green:0.68 blue:0.95 alpha:1];
+  uipc_.numberOfPages = 4;
+  [self.view addSubview:uipc_];
   
   // signup
   next_ = [[UIButton alloc] initWithFrame:CGRectMake(0.0f,

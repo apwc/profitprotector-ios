@@ -22,6 +22,7 @@
 		B768D82B1B50E54B00D2FEF7 /* PKLog.m in Sources */ = {isa = PBXBuildFile; fileRef = B768D81F1B50E54B00D2FEF7 /* PKLog.m */; };
 		B768D82C1B50E54B00D2FEF7 /* PKRevealController.m in Sources */ = {isa = PBXBuildFile; fileRef = B768D8211B50E54B00D2FEF7 /* PKRevealController.m */; };
 		B768D82F1B50E5BB00D2FEF7 /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B768D82E1B50E5BB00D2FEF7 /* MainViewController.m */; };
+		B768D8321B50EFA100D2FEF7 /* LeftTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B768D8311B50EFA100D2FEF7 /* LeftTableViewController.m */; };
 		B7A58F241B4DFC3800C408D8 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = B7A58F181B4DFC3800C408D8 /* AppDelegate.m */; };
 		B7A58F251B4DFC3800C408D8 /* SplashViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B7A58F1A1B4DFC3800C408D8 /* SplashViewController.m */; };
 		B7A58F261B4DFC3800C408D8 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B7A58F1C1B4DFC3800C408D8 /* Images.xcassets */; };
@@ -63,6 +64,8 @@
 		B768D8211B50E54B00D2FEF7 /* PKRevealController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PKRevealController.m; sourceTree = "<group>"; };
 		B768D82D1B50E5BB00D2FEF7 /* MainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainViewController.h; sourceTree = "<group>"; };
 		B768D82E1B50E5BB00D2FEF7 /* MainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainViewController.m; sourceTree = "<group>"; };
+		B768D8301B50EFA100D2FEF7 /* LeftTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LeftTableViewController.h; sourceTree = "<group>"; };
+		B768D8311B50EFA100D2FEF7 /* LeftTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LeftTableViewController.m; sourceTree = "<group>"; };
 		B7A58F171B4DFC3800C408D8 /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		B7A58F181B4DFC3800C408D8 /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		B7A58F191B4DFC3800C408D8 /* SplashViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SplashViewController.h; sourceTree = "<group>"; };
@@ -173,6 +176,8 @@
 				B768D82E1B50E5BB00D2FEF7 /* MainViewController.m */,
 				B768D8041B50E54B00D2FEF7 /* MBProgressHUD */,
 				B768D8071B50E54B00D2FEF7 /* PKRevealController */,
+				B768D8301B50EFA100D2FEF7 /* LeftTableViewController.h */,
+				B768D8311B50EFA100D2FEF7 /* LeftTableViewController.m */,
 				B768D7FD1B50C44200D2FEF7 /* SignupViewController.h */,
 				B768D7FE1B50C44200D2FEF7 /* SignupViewController.m */,
 				B7A58F191B4DFC3800C408D8 /* SplashViewController.h */,
@@ -311,6 +316,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B768D8321B50EFA100D2FEF7 /* LeftTableViewController.m in Sources */,
 				B768D8021B50D36D00D2FEF7 /* TutorialViewController.m in Sources */,
 				B768D7FF1B50C44200D2FEF7 /* SignupViewController.m in Sources */,
 				B7A58F241B4DFC3800C408D8 /* AppDelegate.m in Sources */,
