@@ -10,8 +10,6 @@
   [super viewDidLoad];
   
   // UI customizations
-  self.view.backgroundColor = [UIColor redColor];
-
   self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAction
                                                                                         target:self
                                                                                         action:@selector(showLeftViewController:)];
@@ -76,6 +74,12 @@
 }
 
 #pragma mark - UITableView delegate methods implementation
+
+- (CGFloat)tableView:(UITableView *)tableView
+  heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+  return indexPath.section == 0 ? 280.0f : 44.0f;
+}
 
 - (void)tableView:(UITableView *)tableView
   didSelectRowAtIndexPath:(NSIndexPath *)indexPath
