@@ -8,6 +8,10 @@
 - (void)viewDidLoad
 {
   [super viewDidLoad];
+  
+  // UI customizations
+  self.view.backgroundColor = [UIColor colorWithRed:0 green:0.68 blue:0.95 alpha:1];
+  self.tableView.backgroundColor = [UIColor colorWithRed:0 green:0.68 blue:0.95 alpha:1];
 }
 
 #pragma mark - Table view data source
@@ -36,7 +40,10 @@
                                   reuseIdentifier:cellReusableIdentifier];
   
   if (indexPath.row == 0)
+  {
+    cell.textLabel.textColor = [UIColor blackColor];
     cell.textLabel.text = @"user name";
+  }
 
   if (indexPath.row == 1)
     cell.textLabel.text = @"Settings";

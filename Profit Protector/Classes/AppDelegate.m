@@ -2,6 +2,8 @@
 #import "Constants.h"
 #import "SplashViewController.h"
 #import "MainViewController.h"
+#import "FrontViewController.h"
+#import "LeftTableViewController.h"
 
 @interface AppDelegate ()
 @end
@@ -44,8 +46,12 @@ didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 
 - (void)displayMainViewController:(NSNotification *)notification
 {
-  UINavigationController *uinc = [[UINavigationController alloc] initWithRootViewController:[[MainViewController alloc] initWithNibName:nil
-                                                                                                                                 bundle:nil]];
+  MainViewController *mvc = [MainViewController revealControllerWithFrontViewController:[[FrontViewController alloc] initWithNibName:nil
+                                                                                                                              bundle:nil]
+                                                                     leftViewController:[[LeftTableViewController alloc] initWithNibName:nil
+                                                                                                                                  bundle:nil]];
+  
+  UINavigationController *uinc = [[UINavigationController alloc] initWithRootViewController:mvc];
   
   self.window.rootViewController = uinc;
 }
