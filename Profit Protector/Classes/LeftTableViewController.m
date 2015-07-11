@@ -15,7 +15,7 @@
   self.tableView.separatorColor = [UIColor clearColor];
 }
 
-#pragma mark - Table view data source
+#pragma mark - UITableView datasource methods implementation
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
@@ -59,7 +59,7 @@
   return cell;
 }
 
-#pragma mark - 
+#pragma mark - UITableView delegate methods implementation
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {

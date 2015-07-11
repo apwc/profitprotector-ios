@@ -2,7 +2,7 @@
 #import "Constants.h"
 #import "SplashViewController.h"
 #import "MainViewController.h"
-#import "FrontViewController.h"
+#import "FrontTableViewController.h"
 #import "LeftTableViewController.h"
 
 @interface AppDelegate ()
@@ -11,7 +11,7 @@
 @implementation AppDelegate
 
 - (BOOL)application:(UIApplication *)application
-didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
+  didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
   self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
   [self.window makeKeyAndVisible];
@@ -46,11 +46,9 @@ didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 
 - (void)displayMainViewController:(NSNotification *)notification
 {
-  MainViewController *mvc = [MainViewController revealControllerWithFrontViewController:[[UINavigationController alloc] initWithRootViewController:[[FrontViewController alloc] initWithNibName:nil
-                                                                                                                                                                                         bundle:nil]]
-                                                                     leftViewController:[[LeftTableViewController alloc] initWithNibName:nil
-                                                                                                                                  bundle:nil]];
-
+  MainViewController *mvc = [MainViewController revealControllerWithFrontViewController:[[UINavigationController alloc] initWithRootViewController:[[FrontTableViewController alloc] initWithStyle:UITableViewStylePlain]]
+                                                                     leftViewController:[[LeftTableViewController alloc] initWithStyle:UITableViewStylePlain]];
+  
   self.window.rootViewController = mvc;
 }
 
