@@ -7,23 +7,27 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B768D7FC1B50B41D00D2FEF7 /* SuperViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B768D7FB1B50B41D00D2FEF7 /* SuperViewController.m */; };
+		B768D7FF1B50C44200D2FEF7 /* SignupViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B768D7FE1B50C44200D2FEF7 /* SignupViewController.m */; };
 		B7A58F241B4DFC3800C408D8 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = B7A58F181B4DFC3800C408D8 /* AppDelegate.m */; };
 		B7A58F251B4DFC3800C408D8 /* SplashViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B7A58F1A1B4DFC3800C408D8 /* SplashViewController.m */; };
 		B7A58F261B4DFC3800C408D8 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B7A58F1C1B4DFC3800C408D8 /* Images.xcassets */; };
 		B7A58F271B4DFC3800C408D8 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = B7A58F1D1B4DFC3800C408D8 /* LaunchScreen.xib */; };
-		B7A58F281B4DFC3800C408D8 /* logo@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B7A58F1E1B4DFC3800C408D8 /* logo@2x.png */; };
 		B7A58F2A1B4DFC3800C408D8 /* Profit_Protector.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = B7A58F211B4DFC3800C408D8 /* Profit_Protector.xcdatamodeld */; };
 		B7A58F2B1B4DFC3800C408D8 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = B7A58F231B4DFC3800C408D8 /* main.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		B768D7FA1B50B41D00D2FEF7 /* SuperViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SuperViewController.h; sourceTree = "<group>"; };
+		B768D7FB1B50B41D00D2FEF7 /* SuperViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SuperViewController.m; sourceTree = "<group>"; };
+		B768D7FD1B50C44200D2FEF7 /* SignupViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SignupViewController.h; sourceTree = "<group>"; };
+		B768D7FE1B50C44200D2FEF7 /* SignupViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SignupViewController.m; sourceTree = "<group>"; };
 		B7A58F171B4DFC3800C408D8 /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		B7A58F181B4DFC3800C408D8 /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		B7A58F191B4DFC3800C408D8 /* SplashViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SplashViewController.h; sourceTree = "<group>"; };
 		B7A58F1A1B4DFC3800C408D8 /* SplashViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SplashViewController.m; sourceTree = "<group>"; };
 		B7A58F1C1B4DFC3800C408D8 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		B7A58F1D1B4DFC3800C408D8 /* LaunchScreen.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LaunchScreen.xib; sourceTree = "<group>"; };
-		B7A58F1E1B4DFC3800C408D8 /* logo@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "logo@2x.png"; sourceTree = "<group>"; };
 		B7A58F201B4DFC3800C408D8 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B7A58F221B4DFC3800C408D8 /* Profit_Protector.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Profit_Protector.xcdatamodel; sourceTree = "<group>"; };
 		B7A58F231B4DFC3800C408D8 /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -46,8 +50,12 @@
 			children = (
 				B7A58F171B4DFC3800C408D8 /* AppDelegate.h */,
 				B7A58F181B4DFC3800C408D8 /* AppDelegate.m */,
+				B768D7FD1B50C44200D2FEF7 /* SignupViewController.h */,
+				B768D7FE1B50C44200D2FEF7 /* SignupViewController.m */,
 				B7A58F191B4DFC3800C408D8 /* SplashViewController.h */,
 				B7A58F1A1B4DFC3800C408D8 /* SplashViewController.m */,
+				B768D7FA1B50B41D00D2FEF7 /* SuperViewController.h */,
+				B768D7FB1B50B41D00D2FEF7 /* SuperViewController.m */,
 			);
 			name = Classes;
 			path = "Profit Protector/Classes";
@@ -58,7 +66,6 @@
 			children = (
 				B7A58F1C1B4DFC3800C408D8 /* Images.xcassets */,
 				B7A58F1D1B4DFC3800C408D8 /* LaunchScreen.xib */,
-				B7A58F1E1B4DFC3800C408D8 /* logo@2x.png */,
 			);
 			name = Resources;
 			path = "Profit Protector/Resources";
@@ -152,7 +159,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				B7A58F271B4DFC3800C408D8 /* LaunchScreen.xib in Resources */,
-				B7A58F281B4DFC3800C408D8 /* logo@2x.png in Resources */,
 				B7A58F261B4DFC3800C408D8 /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -180,8 +186,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B768D7FF1B50C44200D2FEF7 /* SignupViewController.m in Sources */,
 				B7A58F241B4DFC3800C408D8 /* AppDelegate.m in Sources */,
 				B7A58F251B4DFC3800C408D8 /* SplashViewController.m in Sources */,
+				B768D7FC1B50B41D00D2FEF7 /* SuperViewController.m in Sources */,
 				B7A58F2B1B4DFC3800C408D8 /* main.m in Sources */,
 				B7A58F2A1B4DFC3800C408D8 /* Profit_Protector.xcdatamodeld in Sources */,
 			);
@@ -279,7 +287,7 @@
 				INFOPLIST_FILE = "Profit Protector/Supporting Files/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -292,7 +300,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "d6aeea82-3e49-4c1e-9c9e-46c29bea9710";
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Distribution;
 		};

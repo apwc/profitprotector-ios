@@ -1,4 +1,4 @@
-@import UIKit;
+#import "SuperViewController.h"
 
-@interface SplashViewController : UIViewController
+@interface SplashViewController : SuperViewController
 @end
