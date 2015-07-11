@@ -46,14 +46,12 @@ didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 
 - (void)displayMainViewController:(NSNotification *)notification
 {
-  MainViewController *mvc = [MainViewController revealControllerWithFrontViewController:[[FrontViewController alloc] initWithNibName:nil
-                                                                                                                              bundle:nil]
+  MainViewController *mvc = [MainViewController revealControllerWithFrontViewController:[[UINavigationController alloc] initWithRootViewController:[[FrontViewController alloc] initWithNibName:nil
+                                                                                                                                                                                         bundle:nil]]
                                                                      leftViewController:[[LeftTableViewController alloc] initWithNibName:nil
                                                                                                                                   bundle:nil]];
-  
-  UINavigationController *uinc = [[UINavigationController alloc] initWithRootViewController:mvc];
-  
-  self.window.rootViewController = uinc;
+
+  self.window.rootViewController = mvc;
 }
 
 @end

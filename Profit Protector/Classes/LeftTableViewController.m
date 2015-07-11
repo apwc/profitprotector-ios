@@ -10,8 +10,9 @@
   [super viewDidLoad];
   
   // UI customizations
-  self.view.backgroundColor = [UIColor colorWithRed:0 green:0.68 blue:0.95 alpha:1];
   self.tableView.backgroundColor = [UIColor colorWithRed:0 green:0.68 blue:0.95 alpha:1];
+  self.tableView.contentInset = UIEdgeInsetsMake(60.0f, 0.0f, 0.0f, 0.0f);
+  self.tableView.separatorColor = [UIColor clearColor];
 }
 
 #pragma mark - Table view data source
@@ -40,10 +41,7 @@
                                   reuseIdentifier:cellReusableIdentifier];
   
   if (indexPath.row == 0)
-  {
-    cell.textLabel.textColor = [UIColor blackColor];
-    cell.textLabel.text = @"user name";
-  }
+    cell.textLabel.text = @"User Name";
 
   if (indexPath.row == 1)
     cell.textLabel.text = @"Settings";
@@ -51,7 +49,21 @@
   if (indexPath.row == 2)
     cell.textLabel.text = @"Log Out";
   
+  if (indexPath.row == 0)
+    cell.textLabel.textColor = [UIColor blackColor];
+  else
+    cell.textLabel.textColor = [UIColor whiteColor];
+  
+  cell.backgroundColor = [UIColor colorWithRed:0 green:0.68 blue:0.95 alpha:1];
+  
   return cell;
+}
+
+#pragma mark - 
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+  [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 
 @end

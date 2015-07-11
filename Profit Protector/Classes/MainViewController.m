@@ -11,6 +11,8 @@
   
   // UI customizations
   self.view.backgroundColor = [UIColor whiteColor];
+  
+  self.recognizesPanningOnFrontView = YES;
 }
 
 @end
