@@ -1,5 +1,6 @@
 #import "SplashViewController.h"
 #import "SignupViewController.h"
+#import "TutorialViewController.h"
 
 @interface SplashViewController () <UITextFieldDelegate>
 @end
@@ -119,6 +120,9 @@
 
 - (void)signin:(UIButton *)uib
 {
+  TutorialViewController *tvc = [[TutorialViewController alloc] initWithNibName:nil
+                                                                         bundle:nil];
+  [self.navigationController pushViewController:tvc animated:YES];
 }
 
 - (void)signup:(UIButton *)uib
