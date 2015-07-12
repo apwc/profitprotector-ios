@@ -24,6 +24,8 @@
 		B768D82F1B50E5BB00D2FEF7 /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B768D82E1B50E5BB00D2FEF7 /* MainViewController.m */; };
 		B768D8321B50EFA100D2FEF7 /* LeftTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B768D8311B50EFA100D2FEF7 /* LeftTableViewController.m */; };
 		B768D8351B50F22F00D2FEF7 /* FrontTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B768D8341B50F22F00D2FEF7 /* FrontTableViewController.m */; };
+		B79F99571B52086E00BF945F /* ProfitProtectorStyleKit.m in Sources */ = {isa = PBXBuildFile; fileRef = B79F99561B52086E00BF945F /* ProfitProtectorStyleKit.m */; };
+		B79F995A1B52206500BF945F /* HotelDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B79F99591B52206500BF945F /* HotelDetailsViewController.m */; };
 		B7A58F241B4DFC3800C408D8 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = B7A58F181B4DFC3800C408D8 /* AppDelegate.m */; };
 		B7A58F251B4DFC3800C408D8 /* SplashViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B7A58F1A1B4DFC3800C408D8 /* SplashViewController.m */; };
 		B7A58F261B4DFC3800C408D8 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B7A58F1C1B4DFC3800C408D8 /* Images.xcassets */; };
@@ -69,6 +71,10 @@
 		B768D8311B50EFA100D2FEF7 /* LeftTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LeftTableViewController.m; sourceTree = "<group>"; };
 		B768D8331B50F22F00D2FEF7 /* FrontTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FrontTableViewController.h; sourceTree = "<group>"; };
 		B768D8341B50F22F00D2FEF7 /* FrontTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FrontTableViewController.m; sourceTree = "<group>"; };
+		B79F99551B52086E00BF945F /* ProfitProtectorStyleKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProfitProtectorStyleKit.h; sourceTree = "<group>"; };
+		B79F99561B52086E00BF945F /* ProfitProtectorStyleKit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProfitProtectorStyleKit.m; sourceTree = "<group>"; };
+		B79F99581B52206500BF945F /* HotelDetailsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HotelDetailsViewController.h; sourceTree = "<group>"; };
+		B79F99591B52206500BF945F /* HotelDetailsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HotelDetailsViewController.m; sourceTree = "<group>"; };
 		B7A58F171B4DFC3800C408D8 /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		B7A58F181B4DFC3800C408D8 /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		B7A58F191B4DFC3800C408D8 /* SplashViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SplashViewController.h; sourceTree = "<group>"; };
@@ -175,14 +181,18 @@
 				B7A58F171B4DFC3800C408D8 /* AppDelegate.h */,
 				B7A58F181B4DFC3800C408D8 /* AppDelegate.m */,
 				B768D8031B50E29C00D2FEF7 /* Constants.h */,
+				B768D8331B50F22F00D2FEF7 /* FrontTableViewController.h */,
+				B768D8341B50F22F00D2FEF7 /* FrontTableViewController.m */,
+				B79F99581B52206500BF945F /* HotelDetailsViewController.h */,
+				B79F99591B52206500BF945F /* HotelDetailsViewController.m */,
+				B768D8301B50EFA100D2FEF7 /* LeftTableViewController.h */,
+				B768D8311B50EFA100D2FEF7 /* LeftTableViewController.m */,
 				B768D82D1B50E5BB00D2FEF7 /* MainViewController.h */,
 				B768D82E1B50E5BB00D2FEF7 /* MainViewController.m */,
 				B768D8041B50E54B00D2FEF7 /* MBProgressHUD */,
 				B768D8071B50E54B00D2FEF7 /* PKRevealController */,
-				B768D8301B50EFA100D2FEF7 /* LeftTableViewController.h */,
-				B768D8311B50EFA100D2FEF7 /* LeftTableViewController.m */,
-				B768D8331B50F22F00D2FEF7 /* FrontTableViewController.h */,
-				B768D8341B50F22F00D2FEF7 /* FrontTableViewController.m */,
+				B79F99551B52086E00BF945F /* ProfitProtectorStyleKit.h */,
+				B79F99561B52086E00BF945F /* ProfitProtectorStyleKit.m */,
 				B768D7FD1B50C44200D2FEF7 /* SignupViewController.h */,
 				B768D7FE1B50C44200D2FEF7 /* SignupViewController.m */,
 				B7A58F191B4DFC3800C408D8 /* SplashViewController.h */,
@@ -342,6 +352,8 @@
 				B768D8351B50F22F00D2FEF7 /* FrontTableViewController.m in Sources */,
 				B768D82B1B50E54B00D2FEF7 /* PKLog.m in Sources */,
 				B768D8221B50E54B00D2FEF7 /* MBProgressHUD.m in Sources */,
+				B79F99571B52086E00BF945F /* ProfitProtectorStyleKit.m in Sources */,
+				B79F995A1B52206500BF945F /* HotelDetailsViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
