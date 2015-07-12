@@ -1,6 +1,7 @@
 #import "FrontTableViewController.h"
 #import "MainViewController.h"
 #import "ProfitProtectorStyleKit.h"
+#import "HotelDetailsViewController.h"
 
 @interface FrontTableViewController ()
 @end
@@ -148,6 +149,10 @@
   didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
   [tableView deselectRowAtIndexPath:indexPath animated:YES];
+  
+  HotelDetailsViewController *hdvc = [[HotelDetailsViewController alloc] initWithNibName:nil
+                                                                                  bundle:nil];
+  [self.navigationController pushViewController:hdvc animated:YES];
 }
 
 @end
