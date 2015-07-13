@@ -1,4 +1,5 @@
 #import "HotelDetailsViewController.h"
+#import "ProfitProtectorStyleKit.h"
 
 @interface HotelDetailsViewController () <UITableViewDataSource,
                                           UITableViewDelegate>
@@ -88,19 +89,64 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView
          cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-  static NSString *cellReusableReportIdentifier = @"cellReusableIdentifier";
-  static NSString *cellReusableProfileIdentifier = @"cellReusableIdentifier";
+  NSString *cellIdentifier =[NSString stringWithFormat:@"cellReusableIdentifier%ld%ld%d",
+                             indexPath.section,
+                             indexPath.row,
+                             isProfileSelected_];
   
   UITableViewCell *cell;
   
   if (isProfileSelected_)
   {
-    cell = [tableView dequeueReusableCellWithIdentifier:cellReusableProfileIdentifier];
+    cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
     
     
     if (!cell)
+    {
       cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault
-                                    reuseIdentifier:cellReusableProfileIdentifier];
+                                    reuseIdentifier:cellIdentifier];
+      
+      UILabel *details = [[UILabel alloc] initWithFrame:CGRectMake(CGRectGetWidth(cell.bounds) - 170.0f - 10.0f,
+                                                                   0.0f,
+                                                                   170.0f,
+                                                                   CGRectGetHeight(cell.bounds))];
+      details.font = [UIFont fontWithName:@"HelveticaNeue-Light" size:14.0f];
+      details.textColor = [UIColor blueColor];
+      details.autoresizingMask = (UIViewAutoresizingFlexibleTopMargin |
+                                  UIViewAutoresizingFlexibleBottomMargin |
+                                  UIViewAutoresizingFlexibleHeight);
+      [cell.contentView addSubview:details];
+      
+      if (indexPath.row == 0)
+      {
+        details.text = @"Full Service";
+      }
+      
+      if (indexPath.row == 1)
+      {
+        details.text = @"600 Rooms";
+      }
+      
+      if (indexPath.row == 2)
+      {
+        details.text = @"$37,468.000";
+      }
+      
+      if (indexPath.row == 3)
+      {
+        details.text = @"$110,022.000";
+      }
+      
+      if (indexPath.row == 4)
+      {
+        details.text = @"5%";
+      }
+      
+      if (indexPath.row == 5)
+      {
+        details.text = @"34 Cases";
+      }
+    }
     
     if (indexPath.row == 0)
       cell.textLabel.text = @"Property Type";
@@ -122,12 +168,73 @@
   }
   else
   {
-    cell = [tableView dequeueReusableCellWithIdentifier:cellReusableReportIdentifier];
-    
+    cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
     
     if (!cell)
+    {
       cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault
-                                    reuseIdentifier:cellReusableReportIdentifier];
+                                    reuseIdentifier:cellIdentifier];
+      
+      if (indexPath.section == 0)
+      {
+        if (indexPath.row == 0)
+        {
+          UIImageView *newProperty = [[UIImageView alloc] initWithImage:[ProfitProtectorStyleKit imageOfBadgeWithSize:CGSizeMake(130.0f, 37.0f)
+                                                                                                            fillColor:[UIColor whiteColor]
+                                                                                                         cornerRadius:7.0f
+                                                                                                          strokeColor:[UIColor redColor]
+                                                                                                          strokeWidth:1.0f
+                                                                                                                 text:@"$27,000.00"
+                                                                                                            textColor:[UIColor redColor]
+                                                                                                             textFont:[UIFont fontWithName:@"HelveticaNeue" size:16.0f]]];
+          [newProperty sizeToFit];
+          newProperty.center = CGPointMake(CGRectGetWidth(cell.bounds) - (CGRectGetWidth(newProperty.bounds) / 2.0f) - 10.f,
+                                           CGRectGetHeight(cell.bounds) / 2.0f);
+          newProperty.autoresizingMask = (UIViewAutoresizingFlexibleTopMargin |
+                                          UIViewAutoresizingFlexibleBottomMargin);
+          [cell.contentView addSubview:newProperty];
+        }
+        
+        if (indexPath.row == 1)
+        {
+          UIImageView *newProperty = [[UIImageView alloc] initWithImage:[ProfitProtectorStyleKit imageOfBadgeWithSize:CGSizeMake(130.0f, 37.0f)
+                                                                                                            fillColor:[UIColor whiteColor]
+                                                                                                         cornerRadius:7.0f
+                                                                                                          strokeColor:[UIColor orangeColor]
+                                                                                                          strokeWidth:1.0f
+                                                                                                                 text:@"$27,000.00"
+                                                                                                            textColor:[UIColor orangeColor]
+                                                                                                             textFont:[UIFont fontWithName:@"HelveticaNeue" size:16.0f]]];
+          [newProperty sizeToFit];
+          newProperty.center = CGPointMake(CGRectGetWidth(cell.bounds) - (CGRectGetWidth(newProperty.bounds) / 2.0f) - 10.f,
+                                           CGRectGetHeight(cell.bounds) / 2.0f);
+          newProperty.autoresizingMask = (UIViewAutoresizingFlexibleTopMargin |
+                                          UIViewAutoresizingFlexibleBottomMargin);
+          [cell.contentView addSubview:newProperty];
+        }
+      }
+      
+      if (indexPath.section == 1)
+      {
+        if (indexPath.row == 0)
+        {
+          UIImageView *newProperty = [[UIImageView alloc] initWithImage:[ProfitProtectorStyleKit imageOfBadgeWithSize:CGSizeMake(130.0f, 37.0f)
+                                                                                                            fillColor:[UIColor whiteColor]
+                                                                                                         cornerRadius:7.0f
+                                                                                                          strokeColor:[UIColor greenColor]
+                                                                                                          strokeWidth:1.0f
+                                                                                                                 text:@"$27,000.00"
+                                                                                                            textColor:[UIColor greenColor]
+                                                                                                             textFont:[UIFont fontWithName:@"HelveticaNeue" size:16.0f]]];
+          [newProperty sizeToFit];
+          newProperty.center = CGPointMake(CGRectGetWidth(cell.bounds) - (CGRectGetWidth(newProperty.bounds) / 2.0f) - 10.f,
+                                           CGRectGetHeight(cell.bounds) / 2.0f);
+          newProperty.autoresizingMask = (UIViewAutoresizingFlexibleTopMargin |
+                                          UIViewAutoresizingFlexibleBottomMargin);
+          [cell.contentView addSubview:newProperty];
+        }
+      }
+    }
     
     if (indexPath.section == 0)
     {
@@ -135,20 +242,30 @@
         cell.textLabel.text = @"Without Encasements";
       
       if (indexPath.row == 1)
-        cell.textLabel.text = @"With Preemptive Encasements";
+        cell.textLabel.text = @"With Preemptive\nEncasements";
     }
     
     if (indexPath.section == 1)
     {
       if (indexPath.row == 0)
-        cell.textLabel.text = @"Preemptive Encasements Savings";
+        cell.textLabel.text = @"Preemptive Encasements\nSavings";
     }
   }
+  
+  cell.textLabel.numberOfLines = 2;
+  cell.textLabel.font = [UIFont fontWithName:@"HelveticaNeue-Light" size:14.0f];
   
   return cell;
 }
 
 #pragma mark - UITableView delegate methods implementation
+
+- (CGFloat)tableView:(UITableView *)tableView
+  heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+  return 70.0f;
+}
+
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
 {
