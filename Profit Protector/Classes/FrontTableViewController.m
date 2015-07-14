@@ -1,6 +1,7 @@
 #import "FrontTableViewController.h"
 #import "MainViewController.h"
 #import "ProfitProtectorStyleKit.h"
+#import "NewPropertyViewController.h"
 #import "HotelDetailsViewController.h"
 
 @interface FrontTableViewController ()
@@ -150,9 +151,18 @@
 {
   [tableView deselectRowAtIndexPath:indexPath animated:YES];
   
-  HotelDetailsViewController *hdvc = [[HotelDetailsViewController alloc] initWithNibName:nil
+  if (indexPath.section == 0)
+  {
+    NewPropertyViewController *npvc = [[NewPropertyViewController alloc] initWithNibName:nil
                                                                                   bundle:nil];
-  [self.navigationController pushViewController:hdvc animated:YES];
+    [self presentViewController:npvc animated:YES completion:nil];
+  }
+  else
+  {
+    HotelDetailsViewController *hdvc = [[HotelDetailsViewController alloc] initWithNibName:nil
+                                                                                    bundle:nil];
+    [self.navigationController pushViewController:hdvc animated:YES];
+  }
 }
 
 @end

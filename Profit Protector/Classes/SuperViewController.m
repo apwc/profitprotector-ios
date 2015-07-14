@@ -9,6 +9,8 @@
 {
   [super viewDidLoad];
   
+  self.view.clipsToBounds = YES;
+  
   // UI customizations
   UIImageView *background = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"bkg"]];
   background.contentMode = UIViewContentModeScaleAspectFill;
