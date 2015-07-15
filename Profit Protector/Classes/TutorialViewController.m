@@ -1,5 +1,9 @@
 #import "TutorialViewController.h"
 #import "Constants.h"
+#import "TutorialPage1ViewController.h"
+#import "TutorialPage2ViewController.h"
+#import "TutorialPage3ViewController.h"
+#import "TutorialPage4ViewController.h"
 
 @interface TutorialViewController ()
 {
@@ -24,7 +28,27 @@
                                                                       20.0f,
                                                                       CGRectGetWidth(self.view.bounds),
                                                                       CGRectGetHeight(self.view.bounds) - buttonHeight - 20.0f)];
+  uisv.pagingEnabled = YES;
   [self.view addSubview:uisv];
+  
+  for (int i = 0; i<4; i++)
+  {
+    NSString *class = [NSString stringWithFormat:@"TutorialPage%dViewController", i + 1];
+    
+    id abstract = NSClassFromString(class);
+    
+    id vc = [[abstract alloc] initWithNibName:nil bundle:nil];
+    
+    [[vc view] setFrame:CGRectMake(CGRectGetWidth(uisv.bounds) * i,
+                                   0.0f,
+                                   CGRectGetWidth(uisv.bounds),
+                                   CGRectGetHeight(uisv.bounds))];
+    
+    [uisv addSubview:[vc view]];
+  }
+  
+  uisv.contentSize = CGSizeMake(CGRectGetWidth(uisv.bounds) * 4.0f,
+                                1.0f);
   
   uipc_ = [[UIPageControl alloc] initWithFrame:CGRectMake(0.0f,
                                                           40.0f,

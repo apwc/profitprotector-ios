@@ -25,6 +25,11 @@
 		B768D8321B50EFA100D2FEF7 /* LeftTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B768D8311B50EFA100D2FEF7 /* LeftTableViewController.m */; };
 		B768D8351B50F22F00D2FEF7 /* FrontTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B768D8341B50F22F00D2FEF7 /* FrontTableViewController.m */; };
 		B773680B1B5481A200D8140E /* NewPropertyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B773680A1B5481A200D8140E /* NewPropertyViewController.m */; };
+		B791E3A71B55D97200C697F1 /* TutorialPage1ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B791E3A61B55D97200C697F1 /* TutorialPage1ViewController.m */; };
+		B791E3AA1B55D98500C697F1 /* TutorialPage2ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B791E3A91B55D98500C697F1 /* TutorialPage2ViewController.m */; };
+		B791E3AD1B55D98E00C697F1 /* TutorialPage3ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B791E3AC1B55D98E00C697F1 /* TutorialPage3ViewController.m */; };
+		B791E3B01B55D99B00C697F1 /* TutorialPage4ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B791E3AF1B55D99B00C697F1 /* TutorialPage4ViewController.m */; };
+		B791E3B31B55E15D00C697F1 /* StepperComponentView.m in Sources */ = {isa = PBXBuildFile; fileRef = B791E3B21B55E15D00C697F1 /* StepperComponentView.m */; };
 		B79F99571B52086E00BF945F /* ProfitProtectorStyleKit.m in Sources */ = {isa = PBXBuildFile; fileRef = B79F99561B52086E00BF945F /* ProfitProtectorStyleKit.m */; };
 		B79F995A1B52206500BF945F /* HotelDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B79F99591B52206500BF945F /* HotelDetailsViewController.m */; };
 		B7A58F241B4DFC3800C408D8 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = B7A58F181B4DFC3800C408D8 /* AppDelegate.m */; };
@@ -81,6 +86,16 @@
 		B768D8341B50F22F00D2FEF7 /* FrontTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FrontTableViewController.m; sourceTree = "<group>"; };
 		B77368091B5481A200D8140E /* NewPropertyViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewPropertyViewController.h; sourceTree = "<group>"; };
 		B773680A1B5481A200D8140E /* NewPropertyViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewPropertyViewController.m; sourceTree = "<group>"; };
+		B791E3A51B55D97200C697F1 /* TutorialPage1ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TutorialPage1ViewController.h; sourceTree = "<group>"; };
+		B791E3A61B55D97200C697F1 /* TutorialPage1ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TutorialPage1ViewController.m; sourceTree = "<group>"; };
+		B791E3A81B55D98500C697F1 /* TutorialPage2ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TutorialPage2ViewController.h; sourceTree = "<group>"; };
+		B791E3A91B55D98500C697F1 /* TutorialPage2ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TutorialPage2ViewController.m; sourceTree = "<group>"; };
+		B791E3AB1B55D98E00C697F1 /* TutorialPage3ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TutorialPage3ViewController.h; sourceTree = "<group>"; };
+		B791E3AC1B55D98E00C697F1 /* TutorialPage3ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TutorialPage3ViewController.m; sourceTree = "<group>"; };
+		B791E3AE1B55D99B00C697F1 /* TutorialPage4ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TutorialPage4ViewController.h; sourceTree = "<group>"; };
+		B791E3AF1B55D99B00C697F1 /* TutorialPage4ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TutorialPage4ViewController.m; sourceTree = "<group>"; };
+		B791E3B11B55E15D00C697F1 /* StepperComponentView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StepperComponentView.h; sourceTree = "<group>"; };
+		B791E3B21B55E15D00C697F1 /* StepperComponentView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StepperComponentView.m; sourceTree = "<group>"; };
 		B79F99551B52086E00BF945F /* ProfitProtectorStyleKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProfitProtectorStyleKit.h; sourceTree = "<group>"; };
 		B79F99561B52086E00BF945F /* ProfitProtectorStyleKit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProfitProtectorStyleKit.m; sourceTree = "<group>"; };
 		B79F99581B52206500BF945F /* HotelDetailsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HotelDetailsViewController.h; sourceTree = "<group>"; };
@@ -230,6 +245,8 @@
 				B7FEF8C81B548CC10018CB7D /* NewPropertyFormSuperViewController.m */,
 				B77368091B5481A200D8140E /* NewPropertyViewController.h */,
 				B773680A1B5481A200D8140E /* NewPropertyViewController.m */,
+				B791E3B11B55E15D00C697F1 /* StepperComponentView.h */,
+				B791E3B21B55E15D00C697F1 /* StepperComponentView.m */,
 				B768D8071B50E54B00D2FEF7 /* PKRevealController */,
 				B79F99551B52086E00BF945F /* ProfitProtectorStyleKit.h */,
 				B79F99561B52086E00BF945F /* ProfitProtectorStyleKit.m */,
@@ -239,6 +256,14 @@
 				B7A58F1A1B4DFC3800C408D8 /* SplashViewController.m */,
 				B768D7FA1B50B41D00D2FEF7 /* SuperViewController.h */,
 				B768D7FB1B50B41D00D2FEF7 /* SuperViewController.m */,
+				B791E3A51B55D97200C697F1 /* TutorialPage1ViewController.h */,
+				B791E3A61B55D97200C697F1 /* TutorialPage1ViewController.m */,
+				B791E3A81B55D98500C697F1 /* TutorialPage2ViewController.h */,
+				B791E3A91B55D98500C697F1 /* TutorialPage2ViewController.m */,
+				B791E3AB1B55D98E00C697F1 /* TutorialPage3ViewController.h */,
+				B791E3AC1B55D98E00C697F1 /* TutorialPage3ViewController.m */,
+				B791E3AE1B55D99B00C697F1 /* TutorialPage4ViewController.h */,
+				B791E3AF1B55D99B00C697F1 /* TutorialPage4ViewController.m */,
 				B768D8001B50D36D00D2FEF7 /* TutorialViewController.h */,
 				B768D8011B50D36D00D2FEF7 /* TutorialViewController.m */,
 			);
@@ -373,6 +398,7 @@
 			files = (
 				B7FEF8DB1B548DC00018CB7D /* NewPropertyForm6ViewController.m in Sources */,
 				B768D8321B50EFA100D2FEF7 /* LeftTableViewController.m in Sources */,
+				B791E3B31B55E15D00C697F1 /* StepperComponentView.m in Sources */,
 				B768D8021B50D36D00D2FEF7 /* TutorialViewController.m in Sources */,
 				B768D7FF1B50C44200D2FEF7 /* SignupViewController.m in Sources */,
 				B7A58F241B4DFC3800C408D8 /* AppDelegate.m in Sources */,
@@ -390,17 +416,21 @@
 				B773680B1B5481A200D8140E /* NewPropertyViewController.m in Sources */,
 				B7FEF8DA1B548DC00018CB7D /* NewPropertyForm5ViewController.m in Sources */,
 				B7A58F2B1B4DFC3800C408D8 /* main.m in Sources */,
+				B791E3AD1B55D98E00C697F1 /* TutorialPage3ViewController.m in Sources */,
 				B768D8241B50E54B00D2FEF7 /* CALayer+PKConvenienceAnimations.m in Sources */,
 				B7A58F2A1B4DFC3800C408D8 /* Profit_Protector.xcdatamodeld in Sources */,
 				B768D8281B50E54B00D2FEF7 /* PKAnimation.m in Sources */,
 				B768D8291B50E54B00D2FEF7 /* PKLayerAnimator.m in Sources */,
 				B768D8261B50E54B00D2FEF7 /* UIViewController+PKRevealController.m in Sources */,
 				B768D8351B50F22F00D2FEF7 /* FrontTableViewController.m in Sources */,
+				B791E3A71B55D97200C697F1 /* TutorialPage1ViewController.m in Sources */,
 				B768D82B1B50E54B00D2FEF7 /* PKLog.m in Sources */,
 				B768D8221B50E54B00D2FEF7 /* MBProgressHUD.m in Sources */,
 				B79F99571B52086E00BF945F /* ProfitProtectorStyleKit.m in Sources */,
 				B7FEF8D71B548DC00018CB7D /* NewPropertyForm2ViewController.m in Sources */,
+				B791E3AA1B55D98500C697F1 /* TutorialPage2ViewController.m in Sources */,
 				B7FEF8CC1B548D4E0018CB7D /* NewPropertyForm1ViewController.m in Sources */,
+				B791E3B01B55D99B00C697F1 /* TutorialPage4ViewController.m in Sources */,
 				B79F995A1B52206500BF945F /* HotelDetailsViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

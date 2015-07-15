@@ -64,7 +64,7 @@
   }
   
   uisv.contentSize = CGSizeMake(CGRectGetWidth(uisv.bounds) * 6.0f,
-                                CGRectGetHeight(uisv.bounds));
+                                1.0f);
   
   //
   UIView *bottomBand = [[UIView alloc] initWithFrame:CGRectMake(0.0f,
