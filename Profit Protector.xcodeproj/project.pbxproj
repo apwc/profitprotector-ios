@@ -48,6 +48,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		B71F34211B572B54000C7A1D /* TypeDefEnumerators.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TypeDefEnumerators.h; sourceTree = "<group>"; };
 		B768D7FA1B50B41D00D2FEF7 /* SuperViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SuperViewController.h; sourceTree = "<group>"; };
 		B768D7FB1B50B41D00D2FEF7 /* SuperViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SuperViewController.m; sourceTree = "<group>"; };
 		B768D7FD1B50C44200D2FEF7 /* SignupViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SignupViewController.h; sourceTree = "<group>"; };
@@ -245,8 +246,6 @@
 				B7FEF8C81B548CC10018CB7D /* NewPropertyFormSuperViewController.m */,
 				B77368091B5481A200D8140E /* NewPropertyViewController.h */,
 				B773680A1B5481A200D8140E /* NewPropertyViewController.m */,
-				B791E3B11B55E15D00C697F1 /* StepperComponentView.h */,
-				B791E3B21B55E15D00C697F1 /* StepperComponentView.m */,
 				B768D8071B50E54B00D2FEF7 /* PKRevealController */,
 				B79F99551B52086E00BF945F /* ProfitProtectorStyleKit.h */,
 				B79F99561B52086E00BF945F /* ProfitProtectorStyleKit.m */,
@@ -254,6 +253,8 @@
 				B768D7FE1B50C44200D2FEF7 /* SignupViewController.m */,
 				B7A58F191B4DFC3800C408D8 /* SplashViewController.h */,
 				B7A58F1A1B4DFC3800C408D8 /* SplashViewController.m */,
+				B791E3B11B55E15D00C697F1 /* StepperComponentView.h */,
+				B791E3B21B55E15D00C697F1 /* StepperComponentView.m */,
 				B768D7FA1B50B41D00D2FEF7 /* SuperViewController.h */,
 				B768D7FB1B50B41D00D2FEF7 /* SuperViewController.m */,
 				B791E3A51B55D97200C697F1 /* TutorialPage1ViewController.h */,
@@ -266,6 +267,7 @@
 				B791E3AF1B55D99B00C697F1 /* TutorialPage4ViewController.m */,
 				B768D8001B50D36D00D2FEF7 /* TutorialViewController.h */,
 				B768D8011B50D36D00D2FEF7 /* TutorialViewController.m */,
+				B71F34211B572B54000C7A1D /* TypeDefEnumerators.h */,
 			);
 			name = Classes;
 			path = "Profit Protector/Classes";

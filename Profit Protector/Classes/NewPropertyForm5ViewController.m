@@ -1,13 +1,19 @@
 #import "NewPropertyForm5ViewController.h"
 
-@interface NewPropertyForm5ViewController ()
-@end
-
 @implementation NewPropertyForm5ViewController
 
 - (void)viewDidLoad
 {
   [super viewDidLoad];
+  
+  //
+  StepperComponentView *scvA = [[StepperComponentView alloc] initWithFrame:CGRectMake(20.0f,
+                                                                                      20.0f,
+                                                                                      CGRectGetWidth(self.view.frame) - 40.0f,
+                                                                                      100.0f)];
+  scvA.numericType = Percentage;
+  scvA.title = @"What percentage of mattresses do\nyour replace each year due to spoilage?";
+  [self.view addSubview:scvA];
 }
 
 @end

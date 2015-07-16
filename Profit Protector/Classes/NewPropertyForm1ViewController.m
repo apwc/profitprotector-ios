@@ -1,7 +1,9 @@
 #import "NewPropertyForm1ViewController.h"
-#import "StepperComponentView.h"
 
-@interface NewPropertyForm1ViewController ()
+@interface NewPropertyForm1ViewController () <UITextFieldDelegate>
+{
+  UITextField *textField_;
+}
 @end
 
 @implementation NewPropertyForm1ViewController
@@ -10,12 +12,45 @@
 {
   [super viewDidLoad];
   
-  StepperComponentView *scv = [[StepperComponentView alloc] initWithFrame:CGRectMake(20.0f,
-                                                                                     20.0f,
-                                                                                     CGRectGetWidth(self.view.frame) - 40.0f,
-                                                                                     100.0f)];
-  scv.title = @"How many rooms do you have\nin your property?";
-  [self.view addSubview:scv];
+  //
+  UILabel *title = [[UILabel alloc] initWithFrame:CGRectMake(0.0f,
+                                                             0.0f,
+                                                             CGRectGetWidth(self.view.frame),
+                                                             48.0f)];
+  title.font = [UIFont fontWithName:@"HelveticaNeue" size:14.0f];
+  title.textColor = [UIColor colorWithRed:0 green:0.68 blue:0.95 alpha:1];
+  title.textAlignment = NSTextAlignmentCenter;
+  title.text = @"Property name";
+  [self.view addSubview:title];
+  
+  //
+  textField_ = [[UITextField alloc] initWithFrame:CGRectMake(40.0f,
+                                                             CGRectGetMaxY(title.frame),
+                                                             CGRectGetWidth(self.view.frame) - 80.0f,
+                                                             38.0f)];
+  //textField_.delegate = self;
+  textField_.textAlignment = NSTextAlignmentCenter;
+  textField_.font = [UIFont fontWithName:@"HelveticaNeue" size:16.0f];
+  textField_.textColor = [UIColor darkGrayColor];
+  textField_.backgroundColor = [UIColor whiteColor];
+  textField_.clearsOnBeginEditing = YES;
+  textField_.layer.cornerRadius = 0.0f;
+  textField_.layer.masksToBounds = YES;
+  textField_.layer.borderWidth = 1.0f;
+  textField_.layer.borderColor = [[UIColor colorWithRed:0 green:0.68 blue:0.95 alpha:1] CGColor];
+  [self.view addSubview:textField_];
+}
+
+#pragma mark - UITextField delegate methods implementation
+
+- (BOOL)textFieldShouldEndEditing:(UITextField *)textField
+{
+  return YES;
+}
+
+- (BOOL)textFieldShouldReturn:(UITextField *)textField
+{
+  return YES;
 }
 
 @end

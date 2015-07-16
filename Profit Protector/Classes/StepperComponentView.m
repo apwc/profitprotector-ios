@@ -2,8 +2,10 @@
 
 @interface StepperComponentView () <UITextFieldDelegate>
 {
-  UILabel     *title_;
-  UITextField *textField_;
+  UILabel           *title_;
+  UITextField       *textField_;
+  
+  NSNumberFormatter *formatter_;
 }
 @end
 
@@ -14,12 +16,16 @@
   self = [super initWithFrame:frame];
   if (self)
   {
+    // Create formatter
+    formatter_ = [[NSNumberFormatter alloc] init];
+    self.stepByValue = 1;
+    
     //
     title_ = [[UILabel alloc] initWithFrame:CGRectMake(0.0f,
                                                        0.0f,
                                                        CGRectGetWidth(self.frame),
                                                        48.0f)];
-    title_.font = [UIFont fontWithName:@"HelveticaNeue" size:16.0f];
+    title_.font = [UIFont fontWithName:@"HelveticaNeue" size:14.0f];
     title_.textColor = [UIColor colorWithRed:0 green:0.68 blue:0.95 alpha:1];
     title_.textAlignment = NSTextAlignmentCenter;
     title_.numberOfLines = 0;
@@ -39,6 +45,7 @@
                                              0.0f,
                                              0.0f);
     [minus setTitle:@"-" forState:UIControlStateNormal];
+    [minus addTarget:self action:@selector(minus:) forControlEvents:UIControlEventTouchUpInside];
     [self addSubview:minus];
     
     //
@@ -55,8 +62,9 @@
                                             0.0f,
                                             0.0f);
     [plus setTitle:@"+" forState:UIControlStateNormal];
+    [plus addTarget:self action:@selector(plus:) forControlEvents:UIControlEventTouchUpInside];
     [self addSubview:plus];
-
+    
     //
     UIView *topLine = [[UIView alloc] initWithFrame:CGRectMake(0.0f,
                                                                CGRectGetHeight(self.frame) - 40.0f,
@@ -83,6 +91,7 @@
     textField_.font = [UIFont fontWithName:@"HelveticaNeue" size:16.0f];
     textField_.textColor = [UIColor darkGrayColor];
     textField_.backgroundColor = [UIColor whiteColor];
+    textField_.clearsOnBeginEditing = YES;
     [self addSubview:textField_];
   }
   return self;
@@ -94,6 +103,34 @@
   title_.text = title;
 }
 
+- (void)setNumericType:(NumericType)numericType
+{
+  _numericType = numericType;
+
+  if (numericType == Numeric)
+    [formatter_ setNumberStyle:NSNumberFormatterDecimalStyle];
+  
+  if (numericType == Currency)
+    [formatter_ setNumberStyle:NSNumberFormatterCurrencyStyle];
+  
+  if (numericType == Percentage)
+    [formatter_ setNumberStyle:NSNumberFormatterPercentStyle];
+}
+
+- (void)minus:(UIButton *)uib
+{
+  NSNumber *number = [formatter_ numberFromString:textField_.text];
+
+  textField_.text = [formatter_ stringFromNumber:@([number floatValue] - self.stepByValue)];
+}
+
+- (void)plus:(UIButton *)uib
+{
+  NSNumber *number = [formatter_ numberFromString:textField_.text];
+  
+  textField_.text = [formatter_ stringFromNumber:@([number floatValue] + self.stepByValue)];
+}
+
 #pragma mark - UITextField delegate methods implementation
 
 - (BOOL)textFieldShouldEndEditing:(UITextField *)textField
@@ -103,6 +140,8 @@
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField
 {
+  textField.text = [formatter_ stringFromNumber:@([textField.text floatValue])];
+
   [textField resignFirstResponder];
   
   return YES;
