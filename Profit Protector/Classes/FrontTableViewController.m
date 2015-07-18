@@ -3,8 +3,12 @@
 #import "ProfitProtectorStyleKit.h"
 #import "NewPropertyViewController.h"
 #import "HotelDetailsViewController.h"
+#import "CoreDataRetrieving.h"
 
 @interface FrontTableViewController ()
+{
+  NSArray *properties_;
+}
 @end
 
 @implementation FrontTableViewController
@@ -18,6 +22,15 @@
                                                                            style:UIBarButtonItemStylePlain
                                                                           target:self
                                                                           action:@selector(showLeftViewController:)];
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+  [super viewWillAppear:animated];
+  
+  properties_ = [CoreDataRetrieving properties];
+  
+  [self.tableView reloadData];
 }
 
 - (void)showLeftViewController:(UIBarButtonItem *)uibbi
@@ -42,7 +55,7 @@
     rows = 1;
   
   if (section == 1)
-    rows = 3;
+    rows = [properties_ count];
   
   return rows;
 }
@@ -58,7 +71,7 @@
   
   if (!cell)
   {
-    cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle
+    cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault
                                   reuseIdentifier:cellReusableIdentifier];
     
     if (indexPath.section == 0)
@@ -106,9 +119,12 @@
   
   if (indexPath.section == 1)
   {
-    cell.textLabel.text = @"second";
-    cell.detailTextLabel.text = @"subtitle";
-    cell.imageView.image = [UIImage imageNamed:@"fav"];
+    NSManagedObject *property = properties_[indexPath.row];
+    
+    cell.textLabel.text = [property valueForKey:@"name"];
+    
+    if ([[property valueForKey:@"favorite"] boolValue])
+      cell.imageView.image = [UIImage imageNamed:@"fav"];
   }
   
   return cell;
@@ -135,6 +151,12 @@
   UITableViewRowAction *fav = [UITableViewRowAction rowActionWithStyle:UITableViewRowActionStyleNormal
                                                                  title:@"FAV"
                                                                handler:^(UITableViewRowAction *action, NSIndexPath *indexPath) {
+                                                                 NSManagedObject *property = properties_[indexPath.row];
+                                                                 [property setValue:@(YES) forKey:@"favorite"];
+                                                                 
+                                                                 properties_ = [CoreDataRetrieving properties];
+                                                                 
+                                                                 [self.tableView reloadData];
                                                                }];
   fav.backgroundColor = [UIColor colorWithRed:0.89 green:0.88 blue:0.13 alpha:1];
   
@@ -147,6 +169,12 @@
   UITableViewRowAction *trsh = [UITableViewRowAction rowActionWithStyle:UITableViewRowActionStyleNormal
                                                                   title:@"TRSH"
                                                                 handler:^(UITableViewRowAction *action, NSIndexPath *indexPath) {
+                                                                  CoreDataManager *cdm = [CoreDataManager singleton];
+                                                                  [cdm deleteObject:properties_[indexPath.row]];
+                                                                  
+                                                                  properties_ = [CoreDataRetrieving properties];
+                                                                  
+                                                                  [self.tableView reloadData];
                                                                 }];
   
   return @[trsh, frwrd, fav];

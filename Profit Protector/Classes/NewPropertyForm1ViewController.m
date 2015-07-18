@@ -1,9 +1,6 @@
 #import "NewPropertyForm1ViewController.h"
 
 @interface NewPropertyForm1ViewController () <UITextFieldDelegate>
-{
-  UITextField *textField_;
-}
 @end
 
 @implementation NewPropertyForm1ViewController
@@ -24,25 +21,25 @@
   [self.uisv addSubview:title];
   
   //
-  textField_ = [[UITextField alloc] initWithFrame:CGRectMake(40.0f,
-                                                             CGRectGetMaxY(title.frame),
-                                                             CGRectGetWidth(self.view.frame) - 80.0f,
-                                                             38.0f)];
-  textField_.delegate = self;
-  textField_.textAlignment = NSTextAlignmentCenter;
-  textField_.font = [UIFont fontWithName:@"HelveticaNeue" size:16.0f];
-  textField_.textColor = [UIColor darkGrayColor];
-  textField_.backgroundColor = [UIColor whiteColor];
-  textField_.clearsOnBeginEditing = YES;
-  textField_.layer.cornerRadius = 0.0f;
-  textField_.layer.masksToBounds = YES;
-  textField_.layer.borderWidth = 1.0f;
-  textField_.layer.borderColor = [[UIColor colorWithRed:0 green:0.68 blue:0.95 alpha:1] CGColor];
-  textField_.autocorrectionType = UITextAutocorrectionTypeNo;
-  [self.uisv addSubview:textField_];
+  self.textField = [[UITextField alloc] initWithFrame:CGRectMake(40.0f,
+                                                                 CGRectGetMaxY(title.frame),
+                                                                 CGRectGetWidth(self.view.frame) - 80.0f,
+                                                                 38.0f)];
+  self.textField.delegate = self;
+  self.textField.textAlignment = NSTextAlignmentCenter;
+  self.textField.font = [UIFont fontWithName:@"HelveticaNeue" size:16.0f];
+  self.textField.textColor = [UIColor darkGrayColor];
+  self.textField.backgroundColor = [UIColor whiteColor];
+  self.textField.clearsOnBeginEditing = YES;
+  self.textField.layer.cornerRadius = 0.0f;
+  self.textField.layer.masksToBounds = YES;
+  self.textField.layer.borderWidth = 1.0f;
+  self.textField.layer.borderColor = [[UIColor colorWithRed:0 green:0.68 blue:0.95 alpha:1] CGColor];
+  self.textField.autocorrectionType = UITextAutocorrectionTypeNo;
+  [self.uisv addSubview:self.textField];
   
   self.uisv.contentSize = CGSizeMake(CGRectGetWidth(self.view.frame),
-                                     CGRectGetMaxY(textField_.frame));
+                                     CGRectGetMaxY(self.textField.frame));
 }
 
 #pragma mark - UITextField delegate methods implementation

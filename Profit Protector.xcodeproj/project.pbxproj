@@ -39,6 +39,10 @@
 		B7A58F271B4DFC3800C408D8 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = B7A58F1D1B4DFC3800C408D8 /* LaunchScreen.xib */; };
 		B7A58F2A1B4DFC3800C408D8 /* Profit_Protector.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = B7A58F211B4DFC3800C408D8 /* Profit_Protector.xcdatamodeld */; };
 		B7A58F2B1B4DFC3800C408D8 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = B7A58F231B4DFC3800C408D8 /* main.m */; };
+		B7D8ACC81B5A3F3C00041ED1 /* CoreDataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = B7D8ACC31B5A3F3C00041ED1 /* CoreDataManager.m */; };
+		B7D8ACC91B5A3F3C00041ED1 /* CoreDataRetrieving.m in Sources */ = {isa = PBXBuildFile; fileRef = B7D8ACC51B5A3F3C00041ED1 /* CoreDataRetrieving.m */; };
+		B7D8ACCA1B5A3F3C00041ED1 /* CoreDataStoring.m in Sources */ = {isa = PBXBuildFile; fileRef = B7D8ACC71B5A3F3C00041ED1 /* CoreDataStoring.m */; };
+		B7D8ACCD1B5A3F5200041ED1 /* Singleton.m in Sources */ = {isa = PBXBuildFile; fileRef = B7D8ACCC1B5A3F5200041ED1 /* Singleton.m */; };
 		B7FEF8C91B548CC10018CB7D /* NewPropertyFormSuperViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B7FEF8C81B548CC10018CB7D /* NewPropertyFormSuperViewController.m */; };
 		B7FEF8CC1B548D4E0018CB7D /* NewPropertyForm1ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B7FEF8CB1B548D4E0018CB7D /* NewPropertyForm1ViewController.m */; };
 		B7FEF8D71B548DC00018CB7D /* NewPropertyForm2ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B7FEF8CE1B548DC00018CB7D /* NewPropertyForm2ViewController.m */; };
@@ -114,6 +118,14 @@
 		B7A58F221B4DFC3800C408D8 /* Profit_Protector.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Profit_Protector.xcdatamodel; sourceTree = "<group>"; };
 		B7A58F231B4DFC3800C408D8 /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		B7AB0ECE1B4CE82E00AB6A3E /* Profit Protector.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Profit Protector.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		B7D8ACC21B5A3F3C00041ED1 /* CoreDataManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CoreDataManager.h; sourceTree = "<group>"; };
+		B7D8ACC31B5A3F3C00041ED1 /* CoreDataManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CoreDataManager.m; sourceTree = "<group>"; };
+		B7D8ACC41B5A3F3C00041ED1 /* CoreDataRetrieving.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CoreDataRetrieving.h; sourceTree = "<group>"; };
+		B7D8ACC51B5A3F3C00041ED1 /* CoreDataRetrieving.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CoreDataRetrieving.m; sourceTree = "<group>"; };
+		B7D8ACC61B5A3F3C00041ED1 /* CoreDataStoring.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CoreDataStoring.h; sourceTree = "<group>"; };
+		B7D8ACC71B5A3F3C00041ED1 /* CoreDataStoring.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CoreDataStoring.m; sourceTree = "<group>"; };
+		B7D8ACCB1B5A3F5200041ED1 /* Singleton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Singleton.h; sourceTree = "<group>"; };
+		B7D8ACCC1B5A3F5200041ED1 /* Singleton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Singleton.m; sourceTree = "<group>"; };
 		B7FEF8C71B548CC10018CB7D /* NewPropertyFormSuperViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewPropertyFormSuperViewController.h; sourceTree = "<group>"; };
 		B7FEF8C81B548CC10018CB7D /* NewPropertyFormSuperViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewPropertyFormSuperViewController.m; sourceTree = "<group>"; };
 		B7FEF8CA1B548D4E0018CB7D /* NewPropertyForm1ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewPropertyForm1ViewController.h; sourceTree = "<group>"; };
@@ -224,6 +236,7 @@
 				B7A58F171B4DFC3800C408D8 /* AppDelegate.h */,
 				B7A58F181B4DFC3800C408D8 /* AppDelegate.m */,
 				B768D8031B50E29C00D2FEF7 /* Constants.h */,
+				B7D8ACC11B5A3F3C00041ED1 /* Core Data Manager */,
 				B768D8331B50F22F00D2FEF7 /* FrontTableViewController.h */,
 				B768D8341B50F22F00D2FEF7 /* FrontTableViewController.m */,
 				B79F99581B52206500BF945F /* HotelDetailsViewController.h */,
@@ -256,6 +269,8 @@
 				B79248A11B59ED6200F3E7BD /* SettingsViewController.m */,
 				B768D7FD1B50C44200D2FEF7 /* SignupViewController.h */,
 				B768D7FE1B50C44200D2FEF7 /* SignupViewController.m */,
+				B7D8ACCB1B5A3F5200041ED1 /* Singleton.h */,
+				B7D8ACCC1B5A3F5200041ED1 /* Singleton.m */,
 				B7A58F191B4DFC3800C408D8 /* SplashViewController.h */,
 				B7A58F1A1B4DFC3800C408D8 /* SplashViewController.m */,
 				B791E3B11B55E15D00C697F1 /* StepperComponentView.h */,
@@ -315,6 +330,19 @@
 				B7AB0ECE1B4CE82E00AB6A3E /* Profit Protector.app */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		B7D8ACC11B5A3F3C00041ED1 /* Core Data Manager */ = {
+			isa = PBXGroup;
+			children = (
+				B7D8ACC21B5A3F3C00041ED1 /* CoreDataManager.h */,
+				B7D8ACC31B5A3F3C00041ED1 /* CoreDataManager.m */,
+				B7D8ACC41B5A3F3C00041ED1 /* CoreDataRetrieving.h */,
+				B7D8ACC51B5A3F3C00041ED1 /* CoreDataRetrieving.m */,
+				B7D8ACC61B5A3F3C00041ED1 /* CoreDataStoring.h */,
+				B7D8ACC71B5A3F3C00041ED1 /* CoreDataStoring.m */,
+			);
+			path = "Core Data Manager";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -403,6 +431,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B7D8ACC81B5A3F3C00041ED1 /* CoreDataManager.m in Sources */,
 				B7FEF8DB1B548DC00018CB7D /* NewPropertyForm6ViewController.m in Sources */,
 				B768D8321B50EFA100D2FEF7 /* LeftTableViewController.m in Sources */,
 				B791E3B31B55E15D00C697F1 /* StepperComponentView.m in Sources */,
@@ -415,6 +444,7 @@
 				B768D8271B50E54B00D2FEF7 /* PKRevealControllerView.m in Sources */,
 				B768D8231B50E54B00D2FEF7 /* CAAnimation+PKIdentifier.m in Sources */,
 				B768D82F1B50E5BB00D2FEF7 /* MainViewController.m in Sources */,
+				B7D8ACCA1B5A3F3C00041ED1 /* CoreDataStoring.m in Sources */,
 				B768D8251B50E54B00D2FEF7 /* NSObject+PKBlocks.m in Sources */,
 				B7FEF8D91B548DC00018CB7D /* NewPropertyForm4ViewController.m in Sources */,
 				B7A58F251B4DFC3800C408D8 /* SplashViewController.m in Sources */,
@@ -427,6 +457,7 @@
 				B791E3AD1B55D98E00C697F1 /* TutorialPage3ViewController.m in Sources */,
 				B768D8241B50E54B00D2FEF7 /* CALayer+PKConvenienceAnimations.m in Sources */,
 				B7A58F2A1B4DFC3800C408D8 /* Profit_Protector.xcdatamodeld in Sources */,
+				B7D8ACC91B5A3F3C00041ED1 /* CoreDataRetrieving.m in Sources */,
 				B768D8281B50E54B00D2FEF7 /* PKAnimation.m in Sources */,
 				B768D8291B50E54B00D2FEF7 /* PKLayerAnimator.m in Sources */,
 				B768D8261B50E54B00D2FEF7 /* UIViewController+PKRevealController.m in Sources */,
@@ -434,6 +465,7 @@
 				B791E3A71B55D97200C697F1 /* TutorialPage1ViewController.m in Sources */,
 				B768D82B1B50E54B00D2FEF7 /* PKLog.m in Sources */,
 				B768D8221B50E54B00D2FEF7 /* MBProgressHUD.m in Sources */,
+				B7D8ACCD1B5A3F5200041ED1 /* Singleton.m in Sources */,
 				B79F99571B52086E00BF945F /* ProfitProtectorStyleKit.m in Sources */,
 				B7FEF8D71B548DC00018CB7D /* NewPropertyForm2ViewController.m in Sources */,
 				B791E3AA1B55D98500C697F1 /* TutorialPage2ViewController.m in Sources */,

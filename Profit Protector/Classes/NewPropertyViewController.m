@@ -1,4 +1,5 @@
 #import "NewPropertyViewController.h"
+#import "CoreDataStoring.h"
 #import "NewPropertyForm1ViewController.h"
 #import "NewPropertyForm2ViewController.h"
 #import "NewPropertyForm3ViewController.h"
@@ -44,7 +45,7 @@
                 [[UIBarButtonItem alloc] initWithTitle:@"Save"
                                                  style:UIBarButtonItemStylePlain
                                                 target:self
-                                                action:@selector(close:)]];
+                                                action:@selector(save:)]];
   [self.view addSubview:uit];
   
   // ivars
@@ -159,6 +160,28 @@
 - (void)close:(UIBarButtonItem *)uibbi
 {
   [self dismissViewControllerAnimated:YES completion:nil];
+}
+
+- (void)save:(UIBarButtonItem *)uibbi
+{
+  [CoreDataStoring storeProperty:@{@"name": npf1vc_.textField.text,
+                                   
+                                   npf2vc_.scvA.key: npf2vc_.scvA.value,
+                                   npf2vc_.scvB.key: npf2vc_.scvB.value,
+                                   
+                                   npf3vc_.scvA.key: npf3vc_.scvA.value,
+                                   npf3vc_.scvB.key: npf3vc_.scvB.value,
+                                   npf3vc_.scvC.key: npf3vc_.scvC.value,
+                                   
+                                   npf4vc_.scvA.key: npf4vc_.scvA.value,
+                                   npf4vc_.scvB.key: npf4vc_.scvB.value,
+                                   
+                                   npf5vc_.scvA.key: npf5vc_.scvA.value,
+                                   
+                                   npf6vc_.scvA.key: npf6vc_.scvA.value,
+                                   npf6vc_.scvB.key: npf6vc_.scvB.value,
+                                   npf6vc_.scvC.key: npf6vc_.scvC.value,
+                                   npf6vc_.scvD.key: npf6vc_.scvD.value}];
 }
 
 - (void)back:(UIButton *)uib

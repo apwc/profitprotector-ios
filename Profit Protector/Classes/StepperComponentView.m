@@ -16,6 +16,8 @@
   self = [super initWithFrame:frame];
   if (self)
   {
+    self.value = @(0);
+    
     // Create formatter
     formatter_ = [[NSNumberFormatter alloc] init];
     self.stepByValue = 1;
@@ -121,15 +123,44 @@
 - (void)minus:(UIButton *)uib
 {
   NSNumber *number = [formatter_ numberFromString:textField_.text];
-
   textField_.text = [formatter_ stringFromNumber:@([number floatValue] - self.stepByValue)];
+  
+  /*if (formatter_.numberStyle == NSNumberFormatterPercentStyle)
+  {
+    NSNumber *number = [formatter_ numberFromString:textField_.text];
+    NSLog(@"%@", number);
+   // number = @([number integerValue] * 100);
+
+    textField_.text = [formatter_ stringFromNumber:@([number floatValue] - self.stepByValue)];
+  }
+  else
+  {
+    NSNumber *number = [formatter_ numberFromString:textField_.text];
+    //textField_.text = [formatter_ stringFromNumber:@([number floatValue] - self.stepByValue)];
+  }*/
+  
+  self.value = [formatter_ numberFromString:textField_.text];
 }
 
 - (void)plus:(UIButton *)uib
 {
   NSNumber *number = [formatter_ numberFromString:textField_.text];
-  
   textField_.text = [formatter_ stringFromNumber:@([number floatValue] + self.stepByValue)];
+  
+  /*if (formatter_.numberStyle == NSNumberFormatterPercentStyle)
+  {
+    NSNumber *number = [formatter_ numberFromString:textField_.text];
+    NSLog(@"%@", number);
+   // number = @([number integerValue] * 100);
+    textField_.text = [formatter_ stringFromNumber:@([number floatValue] + self.stepByValue)];
+    //textField_.text = [formatter_ stringFromNumber:@(([number floatValue] + self.stepByValue) / 100.0f)];
+  }
+  else
+  {
+    //textField_.text = [formatter_ stringFromNumber:@([number floatValue] + self.stepByValue)];
+  }*/
+  
+  self.value = [formatter_ numberFromString:textField_.text];
 }
 
 #pragma mark - UITextField delegate methods implementation
@@ -142,8 +173,20 @@
 - (BOOL)textFieldShouldReturn:(UITextField *)textField
 {
   if (![textField.text isEqualToString:@""])
-    textField.text = [formatter_ stringFromNumber:@([textField.text floatValue])];
+  {
+    if (formatter_.numberStyle == NSNumberFormatterPercentStyle)
+    {
+      textField.text = [NSString stringWithFormat:@"%2.0f%%",
+                        [textField.text floatValue]];
+    }
+    else
+    {
+      textField.text = [formatter_ stringFromNumber:@([textField.text floatValue])];
+    }
+  }
 
+  self.value = [formatter_ numberFromString:textField.text];
+  
   [textField resignFirstResponder];
   
   return YES;

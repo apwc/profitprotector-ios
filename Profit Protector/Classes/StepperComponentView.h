@@ -8,5 +8,7 @@
 @property (nonatomic, strong) NSString    *suffix;
 @property                     NSInteger   stepByValue;
 @property (nonatomic)         NumericType numericType;
+@property (nonatomic, strong) NSString    *key;
+@property (nonatomic, strong) NSNumber    *value;
 
 @end
