@@ -13,7 +13,7 @@
                                                                                       100.0f)];
   scvA.numericType = Numeric;
   scvA.title = @"How many times per year do you\nclean bedding encasements?";
-  [self.view addSubview:scvA];
+  [self.uisv addSubview:scvA];
   
   //
   StepperComponentView *scvB = [[StepperComponentView alloc] initWithFrame:CGRectMake(20.0f,
@@ -22,7 +22,7 @@
                                                                                       100.0f)];
   scvB.numericType = Currency;
   scvB.title = @"How much does it cost to clean and\nreinstall encasements?";
-  [self.view addSubview:scvB];
+  [self.uisv addSubview:scvB];
   
   //
   StepperComponentView *scvC = [[StepperComponentView alloc] initWithFrame:CGRectMake(20.0f,
@@ -31,7 +31,7 @@
                                                                                       100.0f)];
   scvA.numericType = Numeric;
   scvC.title = @"How many bed bugs incidents did you\nhave this year?";
-  [self.view addSubview:scvC];
+  [self.uisv addSubview:scvC];
   
   //
   StepperComponentView *scvD = [[StepperComponentView alloc] initWithFrame:CGRectMake(20.0f,
@@ -40,7 +40,10 @@
                                                                                       100.0f)];
   scvD.numericType = Currency;
   scvD.title = @"What is your customer greviance costs\nper infestation?";
-  [self.view addSubview:scvD];
+  [self.uisv addSubview:scvD];
+  
+  self.uisv.contentSize = CGSizeMake(CGRectGetWidth(self.view.frame),
+                                     CGRectGetMaxY(scvD.frame) + 20.0f);
 }
 
 @end

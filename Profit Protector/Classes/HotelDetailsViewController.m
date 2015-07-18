@@ -112,7 +112,9 @@
                                                                    CGRectGetHeight(cell.bounds))];
       details.font = [UIFont fontWithName:@"HelveticaNeue-Light" size:14.0f];
       details.textColor = [UIColor blueColor];
-      details.autoresizingMask = (UIViewAutoresizingFlexibleTopMargin |
+      details.textAlignment = NSTextAlignmentRight;
+      details.autoresizingMask = (UIViewAutoresizingFlexibleLeftMargin |
+                                  UIViewAutoresizingFlexibleTopMargin |
                                   UIViewAutoresizingFlexibleBottomMargin |
                                   UIViewAutoresizingFlexibleHeight);
       [cell.contentView addSubview:details];
@@ -190,7 +192,8 @@
           [newProperty sizeToFit];
           newProperty.center = CGPointMake(CGRectGetWidth(cell.bounds) - (CGRectGetWidth(newProperty.bounds) / 2.0f) - 10.f,
                                            CGRectGetHeight(cell.bounds) / 2.0f);
-          newProperty.autoresizingMask = (UIViewAutoresizingFlexibleTopMargin |
+          newProperty.autoresizingMask = (UIViewAutoresizingFlexibleLeftMargin |
+                                          UIViewAutoresizingFlexibleTopMargin |
                                           UIViewAutoresizingFlexibleBottomMargin);
           [cell.contentView addSubview:newProperty];
         }
@@ -208,7 +211,8 @@
           [newProperty sizeToFit];
           newProperty.center = CGPointMake(CGRectGetWidth(cell.bounds) - (CGRectGetWidth(newProperty.bounds) / 2.0f) - 10.f,
                                            CGRectGetHeight(cell.bounds) / 2.0f);
-          newProperty.autoresizingMask = (UIViewAutoresizingFlexibleTopMargin |
+          newProperty.autoresizingMask = (UIViewAutoresizingFlexibleLeftMargin |
+                                          UIViewAutoresizingFlexibleTopMargin |
                                           UIViewAutoresizingFlexibleBottomMargin);
           [cell.contentView addSubview:newProperty];
         }
@@ -229,7 +233,8 @@
           [newProperty sizeToFit];
           newProperty.center = CGPointMake(CGRectGetWidth(cell.bounds) - (CGRectGetWidth(newProperty.bounds) / 2.0f) - 10.f,
                                            CGRectGetHeight(cell.bounds) / 2.0f);
-          newProperty.autoresizingMask = (UIViewAutoresizingFlexibleTopMargin |
+          newProperty.autoresizingMask = (UIViewAutoresizingFlexibleLeftMargin |
+                                          UIViewAutoresizingFlexibleTopMargin |
                                           UIViewAutoresizingFlexibleBottomMargin);
           [cell.contentView addSubview:newProperty];
         }

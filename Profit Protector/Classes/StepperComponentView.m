@@ -92,6 +92,7 @@
     textField_.textColor = [UIColor darkGrayColor];
     textField_.backgroundColor = [UIColor whiteColor];
     textField_.clearsOnBeginEditing = YES;
+    textField_.autocorrectionType = UITextAutocorrectionTypeNo;
     [self addSubview:textField_];
   }
   return self;
@@ -140,7 +141,8 @@
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField
 {
-  textField.text = [formatter_ stringFromNumber:@([textField.text floatValue])];
+  if (![textField.text isEqualToString:@""])
+    textField.text = [formatter_ stringFromNumber:@([textField.text floatValue])];
 
   [textField resignFirstResponder];
   

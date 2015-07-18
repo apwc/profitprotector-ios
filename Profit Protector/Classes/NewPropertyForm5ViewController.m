@@ -13,7 +13,10 @@
                                                                                       100.0f)];
   scvA.numericType = Percentage;
   scvA.title = @"What percentage of mattresses do\nyour replace each year due to spoilage?";
-  [self.view addSubview:scvA];
+  [self.uisv addSubview:scvA];
+  
+  self.uisv.contentSize = CGSizeMake(CGRectGetWidth(self.view.frame),
+                                     CGRectGetMaxY(scvA.frame) + 20.0f);
 }
 
 @end

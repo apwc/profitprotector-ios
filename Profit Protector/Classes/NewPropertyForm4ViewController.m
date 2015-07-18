@@ -13,7 +13,7 @@
                                                                                       100.0f)];
   scvA.numericType = Currency;
   scvA.title = @"What does your typical mattress and\nbox spring cost to replace?";
-  [self.view addSubview:scvA];
+  [self.uisv addSubview:scvA];
   
   //
   StepperComponentView *scvB = [[StepperComponentView alloc] initWithFrame:CGRectMake(20.0f,
@@ -22,7 +22,10 @@
                                                                                       100.0f)];
   scvB.numericType = Currency;
   scvB.title = @"What does your typical cost to replace other\nfurnishings after a bed bug infestation?";
-  [self.view addSubview:scvB];
+  [self.uisv addSubview:scvB];
+  
+  self.uisv.contentSize = CGSizeMake(CGRectGetWidth(self.view.frame),
+                                     CGRectGetMaxY(scvB.frame) + 20.0f);
 }
 
 @end

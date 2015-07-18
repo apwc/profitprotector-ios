@@ -13,7 +13,7 @@
                                                                                       100.0f)];
   scvA.numericType = Numeric;
   scvA.title = @"How many rooms do you have\nin your property?";
-  [self.view addSubview:scvA];
+  [self.uisv addSubview:scvA];
   
   //
   StepperComponentView *scvB = [[StepperComponentView alloc] initWithFrame:CGRectMake(20.0f,
@@ -22,7 +22,10 @@
                                                                                       100.0f)];
   scvB.numericType = Numeric;
   scvB.title = @"How many beds do you have\nin your property?";
-  [self.view addSubview:scvB];
+  [self.uisv addSubview:scvB];
+  
+  self.uisv.contentSize = CGSizeMake(CGRectGetWidth(self.view.frame),
+                                     CGRectGetMaxY(scvB.frame) + 20.0f);
 }
 
 @end

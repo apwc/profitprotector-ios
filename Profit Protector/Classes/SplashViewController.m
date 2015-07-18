@@ -12,11 +12,14 @@
   [super viewDidLoad];
   
   UIImageView *logo = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"logo"]];
-  logo.center = CGPointMake(CGRectGetWidth(self.view.bounds) / 2.0f, 150.0f);
+  logo.frame = CGRectMake((CGRectGetWidth(self.view.bounds) - logo.image.size.width / 2.0f) / 2.0f,
+                          60.0f,
+                          logo.image.size.width / 2.0f,
+                          logo.image.size.height / 2.0f);
   [self.view addSubview:logo];
   
   UILabel *copy = [[UILabel alloc] initWithFrame:CGRectMake(20.0f,
-                                                            240.0f,
+                                                            CGRectGetMaxY(logo.frame) + 10.0f,
                                                             CGRectGetWidth(self.view.bounds) - 40.0f,
                                                             26.0f)];
   copy.text = @"Profit Protector";
@@ -31,7 +34,7 @@
   
   // username
   UITextField *username = [[UITextField alloc] initWithFrame:CGRectMake(60.0f,
-                                                                        290.0f,
+                                                                        CGRectGetMaxY(copy.frame) + 20.0f,
                                                                         CGRectGetWidth(self.view.bounds) - 60.0f,
                                                                         textFieldHeight)];
   username.delegate = self;
@@ -44,15 +47,15 @@
   
   // division line
   UIView *divisionLine1 = [[UIView alloc] initWithFrame:CGRectMake(0.0f,
-                                                               290.0f + textFieldHeight,
-                                                               CGRectGetWidth(self.view.bounds),
-                                                               1.0f)];
+                                                                   CGRectGetMaxY(username.frame),
+                                                                   CGRectGetWidth(self.view.bounds),
+                                                                   1.0f)];
   divisionLine1.backgroundColor = [UIColor colorWithWhite:0.7f alpha:1.0f];
   [self.view addSubview:divisionLine1];
   
   // username
   UITextField *password = [[UITextField alloc] initWithFrame:CGRectMake(60.0f,
-                                                                        330.0f,
+                                                                        CGRectGetMaxY(username.frame),
                                                                         CGRectGetWidth(self.view.bounds) - 60.0f,
                                                                         textFieldHeight)];
   password.delegate = self;
@@ -66,15 +69,15 @@
   
   // division line
   UIView *divisionLine2 = [[UIView alloc] initWithFrame:CGRectMake(0.0f,
-                                                               330.0f + textFieldHeight,
-                                                               CGRectGetWidth(self.view.bounds),
-                                                               1.0f)];
+                                                                   CGRectGetMaxY(password.frame),
+                                                                   CGRectGetWidth(self.view.bounds),
+                                                                   1.0f)];
   divisionLine2.backgroundColor = [UIColor colorWithWhite:0.7f alpha:1.0f];
   [self.view addSubview:divisionLine2];
   
   // signup
   UIButton *forgotPassword = [[UIButton alloc] initWithFrame:CGRectMake(CGRectGetWidth(self.view.bounds) / 2.0f,
-                                                                        370.0f,
+                                                                        CGRectGetMaxY(password.frame),
                                                                         CGRectGetWidth(self.view.bounds) / 2.0f,
                                                                         buttonHeight / 2.0f)];
   forgotPassword.showsTouchWhenHighlighted = YES;
@@ -88,7 +91,7 @@
   
   // signup
   UIButton *signin = [[UIButton alloc] initWithFrame:CGRectMake(0.0f,
-                                                                CGRectGetHeight(self.view.bounds) - (buttonHeight * 2.0f) - 10.0f,
+                                                                CGRectGetHeight(self.view.bounds) - (buttonHeight * 2.0f),
                                                                 CGRectGetWidth(self.view.bounds),
                                                                 buttonHeight)];
   signin.backgroundColor = [UIColor colorWithRed:0 green:0.68 blue:0.95 alpha:1];

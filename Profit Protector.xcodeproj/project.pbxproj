@@ -30,6 +30,7 @@
 		B791E3AD1B55D98E00C697F1 /* TutorialPage3ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B791E3AC1B55D98E00C697F1 /* TutorialPage3ViewController.m */; };
 		B791E3B01B55D99B00C697F1 /* TutorialPage4ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B791E3AF1B55D99B00C697F1 /* TutorialPage4ViewController.m */; };
 		B791E3B31B55E15D00C697F1 /* StepperComponentView.m in Sources */ = {isa = PBXBuildFile; fileRef = B791E3B21B55E15D00C697F1 /* StepperComponentView.m */; };
+		B79248A21B59ED6200F3E7BD /* SettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B79248A11B59ED6200F3E7BD /* SettingsViewController.m */; };
 		B79F99571B52086E00BF945F /* ProfitProtectorStyleKit.m in Sources */ = {isa = PBXBuildFile; fileRef = B79F99561B52086E00BF945F /* ProfitProtectorStyleKit.m */; };
 		B79F995A1B52206500BF945F /* HotelDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B79F99591B52206500BF945F /* HotelDetailsViewController.m */; };
 		B7A58F241B4DFC3800C408D8 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = B7A58F181B4DFC3800C408D8 /* AppDelegate.m */; };
@@ -97,6 +98,8 @@
 		B791E3AF1B55D99B00C697F1 /* TutorialPage4ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TutorialPage4ViewController.m; sourceTree = "<group>"; };
 		B791E3B11B55E15D00C697F1 /* StepperComponentView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StepperComponentView.h; sourceTree = "<group>"; };
 		B791E3B21B55E15D00C697F1 /* StepperComponentView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StepperComponentView.m; sourceTree = "<group>"; };
+		B79248A01B59ED6200F3E7BD /* SettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsViewController.h; sourceTree = "<group>"; };
+		B79248A11B59ED6200F3E7BD /* SettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsViewController.m; sourceTree = "<group>"; };
 		B79F99551B52086E00BF945F /* ProfitProtectorStyleKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProfitProtectorStyleKit.h; sourceTree = "<group>"; };
 		B79F99561B52086E00BF945F /* ProfitProtectorStyleKit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProfitProtectorStyleKit.m; sourceTree = "<group>"; };
 		B79F99581B52206500BF945F /* HotelDetailsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HotelDetailsViewController.h; sourceTree = "<group>"; };
@@ -249,6 +252,8 @@
 				B768D8071B50E54B00D2FEF7 /* PKRevealController */,
 				B79F99551B52086E00BF945F /* ProfitProtectorStyleKit.h */,
 				B79F99561B52086E00BF945F /* ProfitProtectorStyleKit.m */,
+				B79248A01B59ED6200F3E7BD /* SettingsViewController.h */,
+				B79248A11B59ED6200F3E7BD /* SettingsViewController.m */,
 				B768D7FD1B50C44200D2FEF7 /* SignupViewController.h */,
 				B768D7FE1B50C44200D2FEF7 /* SignupViewController.m */,
 				B7A58F191B4DFC3800C408D8 /* SplashViewController.h */,
@@ -401,6 +406,7 @@
 				B7FEF8DB1B548DC00018CB7D /* NewPropertyForm6ViewController.m in Sources */,
 				B768D8321B50EFA100D2FEF7 /* LeftTableViewController.m in Sources */,
 				B791E3B31B55E15D00C697F1 /* StepperComponentView.m in Sources */,
+				B79248A21B59ED6200F3E7BD /* SettingsViewController.m in Sources */,
 				B768D8021B50D36D00D2FEF7 /* TutorialViewController.m in Sources */,
 				B768D7FF1B50C44200D2FEF7 /* SignupViewController.m in Sources */,
 				B7A58F241B4DFC3800C408D8 /* AppDelegate.m in Sources */,

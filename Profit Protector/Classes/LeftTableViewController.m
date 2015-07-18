@@ -1,7 +1,6 @@
 #import "LeftTableViewController.h"
-
-@interface LeftTableViewController ()
-@end
+#import "SettingsViewController.h"
+#import "Constants.h"
 
 @implementation LeftTableViewController
 
@@ -64,6 +63,12 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
   [tableView deselectRowAtIndexPath:indexPath animated:YES];
+  
+  if (indexPath.row == 2)
+  {
+    [[NSNotificationCenter defaultCenter] postNotificationName:userDidLogoutNotification
+                                                        object:nil];
+  }
 }
 
 @end

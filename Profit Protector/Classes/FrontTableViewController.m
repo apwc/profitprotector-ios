@@ -64,7 +64,10 @@
     if (indexPath.section == 0)
     {
       UIImageView *newProperty = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"newProperty"]];
-      newProperty.contentMode = UIViewContentModeScaleAspectFit;
+      newProperty.frame = CGRectMake(0.0f, 0.0f, CGRectGetWidth(cell.bounds), CGRectGetHeight(cell.bounds));
+      newProperty.contentMode = UIViewContentModeScaleAspectFill;
+      newProperty.autoresizingMask = (UIViewAutoresizingFlexibleWidth |
+                                      UIViewAutoresizingFlexibleHeight);
       [cell.contentView addSubview:newProperty];
       
       UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0.0f,
@@ -75,12 +78,15 @@
       label.font = [UIFont fontWithName:@"HelveticaNeue" size:26.0f];
       label.textColor = [UIColor darkGrayColor];
       label.textAlignment = NSTextAlignmentCenter;
-      [self.view addSubview:label];
+      label.autoresizingMask = UIViewAutoresizingFlexibleWidth;
+      [cell.contentView addSubview:label];
+      
+      cell.clipsToBounds = YES;
     }
     
     if (indexPath.section == 1)
     {
-      UIImageView *newProperty = [[UIImageView alloc] initWithImage:[ProfitProtectorStyleKit imageOfBadgeWithSize:CGSizeMake(150.0f, 37.0f)
+      UIImageView *newProperty = [[UIImageView alloc] initWithImage:[ProfitProtectorStyleKit imageOfBadgeWithSize:CGSizeMake(130.0f, 37.0f)
                                                                                                         fillColor:[UIColor whiteColor]
                                                                                                      cornerRadius:7.0f
                                                                                                       strokeColor:[UIColor colorWithRed:0 green:0.68 blue:0.94 alpha:1]
@@ -91,7 +97,8 @@
       [newProperty sizeToFit];
       newProperty.center = CGPointMake(CGRectGetWidth(cell.bounds) - (CGRectGetWidth(newProperty.bounds) / 2.0f) - 10.f,
                                        CGRectGetHeight(cell.bounds) / 2.0f);
-      newProperty.autoresizingMask = (UIViewAutoresizingFlexibleTopMargin |
+      newProperty.autoresizingMask = (UIViewAutoresizingFlexibleLeftMargin |
+                                      UIViewAutoresizingFlexibleTopMargin |
                                       UIViewAutoresizingFlexibleBottomMargin);
       [cell.contentView addSubview:newProperty];
     }
@@ -107,6 +114,12 @@
   return cell;
 }
 
+- (BOOL)tableView:(UITableView *)tableView
+  canEditRowAtIndexPath:(NSIndexPath *)indexPath
+{
+  return indexPath.section == 0 ? NO : YES;
+}
+
 - (void)tableView:(UITableView *)tableView
   commitEditingStyle:(UITableViewCellEditingStyle)editingStyle
   forRowAtIndexPath:(NSIndexPath *)indexPath
@@ -116,17 +129,20 @@
 - (NSArray *)tableView:(UITableView *)tableView
   editActionsForRowAtIndexPath:(NSIndexPath *)indexPath
 {
+  if (indexPath.section == 0)
+    return nil;
+  
   UITableViewRowAction *fav = [UITableViewRowAction rowActionWithStyle:UITableViewRowActionStyleNormal
                                                                  title:@"FAV"
                                                                handler:^(UITableViewRowAction *action, NSIndexPath *indexPath) {
                                                                }];
-  fav.backgroundColor = [UIColor yellowColor];
+  fav.backgroundColor = [UIColor colorWithRed:0.89 green:0.88 blue:0.13 alpha:1];
   
   UITableViewRowAction *frwrd = [UITableViewRowAction rowActionWithStyle:UITableViewRowActionStyleNormal
                                                                    title:@"FRWRD"
                                                                  handler:^(UITableViewRowAction *action, NSIndexPath *indexPath) {
                                                                  }];
-  frwrd.backgroundColor = [UIColor greenColor];
+  frwrd.backgroundColor = [UIColor colorWithRed:0 green:0.83 blue:0 alpha:1];
   
   UITableViewRowAction *trsh = [UITableViewRowAction rowActionWithStyle:UITableViewRowActionStyleNormal
                                                                   title:@"TRSH"
@@ -141,7 +157,7 @@
 - (CGFloat)tableView:(UITableView *)tableView
   heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-  return indexPath.section == 0 ? 232.0f : 70.0f;
+  return indexPath.section == 0 ? 200.0f : 70.0f;
 }
 
 

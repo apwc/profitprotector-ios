@@ -5,7 +5,7 @@
 #import "TutorialPage3ViewController.h"
 #import "TutorialPage4ViewController.h"
 
-@interface TutorialViewController ()
+@interface TutorialViewController () <UIScrollViewDelegate>
 {
   UIPageControl *uipc_;
   
@@ -28,6 +28,7 @@
                                                                       20.0f,
                                                                       CGRectGetWidth(self.view.bounds),
                                                                       CGRectGetHeight(self.view.bounds) - buttonHeight - 20.0f)];
+  uisv.delegate = self;
   uisv.pagingEnabled = YES;
   [self.view addSubview:uisv];
   
@@ -77,6 +78,13 @@
 {
   [[NSNotificationCenter defaultCenter] postNotificationName:displayMainViewControllerNotification
                                                       object:nil];
+}
+
+#pragma mark - UIScrollView delegate methods implementation
+
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView
+{
+  uipc_.currentPage = scrollView.contentOffset.x / CGRectGetWidth(self.view.bounds);
 }
 
 @end

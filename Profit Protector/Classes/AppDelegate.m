@@ -30,6 +30,11 @@
                                                name:displayMainViewControllerNotification
                                              object:nil];
   
+  [[NSNotificationCenter defaultCenter] addObserver:self
+                                           selector:@selector(userDidLogout:)
+                                               name:userDidLogoutNotification
+                                             object:nil];
+  
   return YES;
 }
 
@@ -50,6 +55,15 @@
                                                                      leftViewController:[[LeftTableViewController alloc] initWithStyle:UITableViewStylePlain]];
   
   self.window.rootViewController = mvc;
+}
+
+- (void)userDidLogout:(NSNotification *)notification
+{
+  UINavigationController *uinc = [[UINavigationController alloc] initWithRootViewController:[[SplashViewController alloc] initWithNibName:nil
+                                                                                                                                   bundle:nil]];
+  [uinc setNavigationBarHidden:YES animated:NO];
+  
+  self.window.rootViewController = uinc;
 }
 
 @end

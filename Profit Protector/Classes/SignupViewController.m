@@ -13,13 +13,13 @@
                                                                0.0f,
                                                                CGRectGetWidth(self.view.frame),
                                                                64.0f)];
-  uit.items = @[[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace
-                                                              target:nil
-                                                              action:nil],
-                [[UIBarButtonItem alloc] initWithTitle:@"Close"
+  uit.items = @[[[UIBarButtonItem alloc] initWithTitle:@"Close"
                                                  style:UIBarButtonItemStylePlain
                                                 target:self
-                                                action:@selector(close:)]];
+                                                action:@selector(close:)],
+                [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace
+                                                              target:nil
+                                                              action:nil]];
   [self.view addSubview:uit];
   
   
