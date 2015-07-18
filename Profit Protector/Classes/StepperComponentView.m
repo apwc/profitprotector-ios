@@ -163,30 +163,24 @@
   self.value = [formatter_ numberFromString:textField_.text];
 }
 
+- (void)formatTextField
+{
+  textField_.text = [formatter_ stringFromNumber:@([textField_.text floatValue])];
+
+  self.value = [formatter_ numberFromString:textField_.text];
+}
+
 #pragma mark - UITextField delegate methods implementation
 
 - (BOOL)textFieldShouldEndEditing:(UITextField *)textField
 {
+  [self formatTextField];
+  
   return YES;
 }
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField
 {
-  if (![textField.text isEqualToString:@""])
-  {
-    if (formatter_.numberStyle == NSNumberFormatterPercentStyle)
-    {
-      textField.text = [NSString stringWithFormat:@"%2.0f%%",
-                        [textField.text floatValue]];
-    }
-    else
-    {
-      textField.text = [formatter_ stringFromNumber:@([textField.text floatValue])];
-    }
-  }
-
-  self.value = [formatter_ numberFromString:textField.text];
-  
   [textField resignFirstResponder];
   
   return YES;

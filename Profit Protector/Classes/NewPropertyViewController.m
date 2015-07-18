@@ -182,6 +182,8 @@
                                    npf6vc_.scvB.key: npf6vc_.scvB.value,
                                    npf6vc_.scvC.key: npf6vc_.scvC.value,
                                    npf6vc_.scvD.key: npf6vc_.scvD.value}];
+  
+  [self close:nil];
 }
 
 - (void)back:(UIButton *)uib
