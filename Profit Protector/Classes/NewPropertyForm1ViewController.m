@@ -38,6 +38,22 @@
   self.textField.autocorrectionType = UITextAutocorrectionTypeNo;
   [self.uisv addSubview:self.textField];
   
+  
+  self.propertyType = [UIButton buttonWithType:UIButtonTypeCustom];
+  self.propertyType.frame = CGRectMake(40.0f,
+                                       CGRectGetMaxY(self.textField.frame) + 20.0f,
+                                       CGRectGetWidth(self.view.frame) - 80.0f,
+                                       38.0f);
+  self.propertyType.showsTouchWhenHighlighted = YES;
+  self.propertyType.backgroundColor = [UIColor whiteColor];
+  self.propertyType.layer.cornerRadius = 0.0f;
+  self.propertyType.layer.masksToBounds = YES;
+  self.propertyType.layer.borderWidth = 1.0f;
+  self.propertyType.layer.borderColor = [[UIColor colorWithRed:0 green:0.68 blue:0.95 alpha:1] CGColor];
+  [self.propertyType setTitle:@"Property Type" forState:UIControlStateNormal];
+  [self.propertyType setTitleColor:[UIColor darkGrayColor] forState:UIControlStateNormal];
+  [self.view addSubview:self.propertyType];
+  
   self.uisv.contentSize = CGSizeMake(CGRectGetWidth(self.view.frame),
                                      CGRectGetMaxY(self.textField.frame));
 }

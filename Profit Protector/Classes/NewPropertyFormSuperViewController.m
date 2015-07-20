@@ -10,11 +10,6 @@
   self.uisv.autoresizingMask = (UIViewAutoresizingFlexibleWidth |
                                 UIViewAutoresizingFlexibleHeight);
   [self.view addSubview:self.uisv];
-}
-
-- (void)viewWillAppear:(BOOL)animated
-{
-  [super viewWillAppear:animated];
   
   // register the UIKeyboard notifications
   [[NSNotificationCenter defaultCenter] addObserver:self
@@ -26,6 +21,7 @@
                                            selector:@selector(keyboardWillHide:)
                                                name:UIKeyboardWillHideNotification
                                              object:nil];
+  
 }
 
 - (void)viewWillDisappear:(BOOL)animated
@@ -52,7 +48,7 @@
   
   self.uisv.contentInset = UIEdgeInsetsMake(0.0f,
                                             0.0f,
-                                            keyboardSize.height - 64.0f,
+                                            keyboardSize.height - 60.0f,
                                             0.0f);
 }
 

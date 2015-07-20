@@ -1,13 +1,16 @@
 #import "NewPropertyViewController.h"
 #import "CoreDataStoring.h"
+#import "PropertyTypeTableViewController.h"
 #import "NewPropertyForm1ViewController.h"
 #import "NewPropertyForm2ViewController.h"
 #import "NewPropertyForm3ViewController.h"
 #import "NewPropertyForm4ViewController.h"
 #import "NewPropertyForm5ViewController.h"
 #import "NewPropertyForm6ViewController.h"
+#import "NewPropertyForm7ViewController.h"
 
-@interface NewPropertyViewController () <UIScrollViewDelegate>
+@interface NewPropertyViewController () <PropertyTypeDelegate,
+                                         UIScrollViewDelegate>
 {
   UIScrollView  *uisv_;
   UIPageControl *uipc_;
@@ -18,6 +21,7 @@
   NewPropertyForm4ViewController *npf4vc_;
   NewPropertyForm5ViewController *npf5vc_;
   NewPropertyForm6ViewController *npf6vc_;
+  NewPropertyForm7ViewController *npf7vc_;
 }
 @end
 
@@ -30,23 +34,10 @@
   // UI customizations
   self.view.backgroundColor = [UIColor whiteColor];
   
-  //
-  UIToolbar *uit = [[UIToolbar alloc] initWithFrame:CGRectMake(0.0f,
-                                                               0.0f,
-                                                               CGRectGetWidth(self.view.frame),
-                                                               64.0f)];
-  uit.items = @[[[UIBarButtonItem alloc] initWithTitle:@"Close"
-                                                 style:UIBarButtonItemStylePlain
-                                                target:self
-                                                action:@selector(close:)],
-                [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace
-                                                              target:nil
-                                                              action:nil],
-                [[UIBarButtonItem alloc] initWithTitle:@"Save"
-                                                 style:UIBarButtonItemStylePlain
-                                                target:self
-                                                action:@selector(save:)]];
-  [self.view addSubview:uit];
+  self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Save"
+                                                                            style:UIBarButtonItemStylePlain
+                                                                           target:self
+                                                                           action:@selector(save:)];
   
   // ivars
   CGFloat buttonWidth = 90.0f;
@@ -54,9 +45,9 @@
   
   //
   uisv_ = [[UIScrollView alloc] initWithFrame:CGRectMake(0.0,
-                                                         CGRectGetMaxY(uit.frame),
+                                                         0.0f,
                                                          CGRectGetWidth(self.view.bounds),
-                                                         CGRectGetHeight(self.view.bounds) - buttonHeight - CGRectGetMaxY(uit.frame))];
+                                                         CGRectGetHeight(self.view.bounds) - buttonHeight)];
   uisv_.delegate = self;
   uisv_.pagingEnabled = YES;
   [self.view addSubview:uisv_];
@@ -67,7 +58,8 @@
   npf1vc_.view.frame = CGRectMake(CGRectGetWidth(uisv_.bounds) * 0,
                                   0.0f,
                                   CGRectGetWidth(uisv_.bounds),
-                                  CGRectGetHeight(uisv_.bounds));
+                                  CGRectGetHeight(uisv_.bounds) - buttonHeight);
+  [npf1vc_.propertyType addTarget:self action:@selector(propertyType:) forControlEvents:UIControlEventTouchUpInside];
   [uisv_ addSubview:npf1vc_.view];
   
   //
@@ -76,7 +68,7 @@
   npf2vc_.view.frame = CGRectMake(CGRectGetWidth(uisv_.bounds) * 1.0f,
                                   0.0f,
                                   CGRectGetWidth(uisv_.bounds),
-                                  CGRectGetHeight(uisv_.bounds));
+                                  CGRectGetHeight(uisv_.bounds) - buttonHeight);
   [uisv_ addSubview:npf2vc_.view];
   
   //
@@ -85,7 +77,7 @@
   npf3vc_.view.frame = CGRectMake(CGRectGetWidth(uisv_.bounds) * 2.0f,
                                   0.0f,
                                   CGRectGetWidth(uisv_.bounds),
-                                  CGRectGetHeight(uisv_.bounds));
+                                  CGRectGetHeight(uisv_.bounds) - buttonHeight);
   [uisv_ addSubview:npf3vc_.view];
   
   //
@@ -94,7 +86,7 @@
   npf4vc_.view.frame = CGRectMake(CGRectGetWidth(uisv_.bounds) * 3.0f,
                                   0.0f,
                                   CGRectGetWidth(uisv_.bounds),
-                                  CGRectGetHeight(uisv_.bounds));
+                                  CGRectGetHeight(uisv_.bounds) - buttonHeight);
   [uisv_ addSubview:npf4vc_.view];
   
   //
@@ -103,7 +95,7 @@
   npf5vc_.view.frame = CGRectMake(CGRectGetWidth(uisv_.bounds) * 4.0f,
                                   0.0f,
                                   CGRectGetWidth(uisv_.bounds),
-                                  CGRectGetHeight(uisv_.bounds));
+                                  CGRectGetHeight(uisv_.bounds) - buttonHeight);
   [uisv_ addSubview:npf5vc_.view];
   
   //
@@ -112,10 +104,19 @@
   npf6vc_.view.frame = CGRectMake(CGRectGetWidth(uisv_.bounds) * 5.0f,
                                   0.0f,
                                   CGRectGetWidth(uisv_.bounds),
-                                  CGRectGetHeight(uisv_.bounds));
+                                  CGRectGetHeight(uisv_.bounds) - buttonHeight);
   [uisv_ addSubview:npf6vc_.view];
   
-  uisv_.contentSize = CGSizeMake(CGRectGetWidth(uisv_.bounds) * 6.0f,
+  //
+  npf7vc_ = [[NewPropertyForm7ViewController alloc] initWithNibName:nil
+                                                             bundle:nil];
+  npf7vc_.view.frame = CGRectMake(CGRectGetWidth(uisv_.bounds) * 6.0f,
+                                  0.0f,
+                                  CGRectGetWidth(uisv_.bounds),
+                                  CGRectGetHeight(uisv_.bounds) - buttonHeight);
+  [uisv_ addSubview:npf7vc_.view];
+  
+  uisv_.contentSize = CGSizeMake(CGRectGetWidth(uisv_.bounds) * 7.0f,
                                  1.0f);
   
   //
@@ -153,18 +154,14 @@
                                                           CGRectGetHeight(bottomBand.frame))];
   uipc_.pageIndicatorTintColor = [UIColor colorWithWhite:0.0f alpha:0.3f];
   uipc_.currentPageIndicatorTintColor = [UIColor whiteColor];
-  uipc_.numberOfPages = 6;
+  uipc_.numberOfPages = 7;
   [bottomBand addSubview:uipc_];
-}
-
-- (void)close:(UIBarButtonItem *)uibbi
-{
-  [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 - (void)save:(UIBarButtonItem *)uibbi
 {
   [CoreDataStoring storeProperty:@{@"name": npf1vc_.textField.text,
+                                   @"propertyType": npf1vc_.propertyType.titleLabel.text,
                                    
                                    npf2vc_.scvA.key: npf2vc_.scvA.value,
                                    npf2vc_.scvB.key: npf2vc_.scvB.value,
@@ -181,9 +178,11 @@
                                    npf6vc_.scvA.key: npf6vc_.scvA.value,
                                    npf6vc_.scvB.key: npf6vc_.scvB.value,
                                    npf6vc_.scvC.key: npf6vc_.scvC.value,
-                                   npf6vc_.scvD.key: npf6vc_.scvD.value}];
+                                   npf6vc_.scvD.key: npf6vc_.scvD.value,
+                                   
+                                   npf7vc_.scvA.key: npf7vc_.scvA.value,}];
   
-  [self close:nil];
+  [self.navigationController popToRootViewControllerAnimated:YES];
 }
 
 - (void)back:(UIButton *)uib
@@ -202,6 +201,21 @@
                                         CGRectGetWidth(self.view.bounds),
                                         1.0f)
                     animated:YES];
+}
+
+- (void)propertyType:(UIButton *)uib
+{
+  PropertyTypeTableViewController *ptvc = [[PropertyTypeTableViewController alloc] initWithStyle:UITableViewStylePlain];
+  ptvc.delegate = self;
+  
+  [self.navigationController pushViewController:ptvc animated:YES];
+}
+
+#pragma mark - PropertyTypeDelegate delegate methods implementation
+
+- (void)propertyTypeDidSelect:(NSString *)propertyType
+{
+  [npf1vc_.propertyType setTitle:propertyType forState:UIControlStateNormal];
 }
 
 #pragma mark - UIScrollView delegate methods implementation

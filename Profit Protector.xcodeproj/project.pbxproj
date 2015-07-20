@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B753ECE81B5B304200EFBD57 /* NewPropertyForm7ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B753ECE71B5B304200EFBD57 /* NewPropertyForm7ViewController.m */; };
+		B753ECEB1B5B410600EFBD57 /* PropertyTypeTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B753ECEA1B5B410600EFBD57 /* PropertyTypeTableViewController.m */; };
 		B768D7FC1B50B41D00D2FEF7 /* SuperViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B768D7FB1B50B41D00D2FEF7 /* SuperViewController.m */; };
 		B768D7FF1B50C44200D2FEF7 /* SignupViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B768D7FE1B50C44200D2FEF7 /* SignupViewController.m */; };
 		B768D8021B50D36D00D2FEF7 /* TutorialViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B768D8011B50D36D00D2FEF7 /* TutorialViewController.m */; };
@@ -54,6 +56,10 @@
 
 /* Begin PBXFileReference section */
 		B71F34211B572B54000C7A1D /* TypeDefEnumerators.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TypeDefEnumerators.h; sourceTree = "<group>"; };
+		B753ECE61B5B304200EFBD57 /* NewPropertyForm7ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewPropertyForm7ViewController.h; sourceTree = "<group>"; };
+		B753ECE71B5B304200EFBD57 /* NewPropertyForm7ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewPropertyForm7ViewController.m; sourceTree = "<group>"; };
+		B753ECE91B5B410600EFBD57 /* PropertyTypeTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PropertyTypeTableViewController.h; sourceTree = "<group>"; };
+		B753ECEA1B5B410600EFBD57 /* PropertyTypeTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PropertyTypeTableViewController.m; sourceTree = "<group>"; };
 		B768D7FA1B50B41D00D2FEF7 /* SuperViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SuperViewController.h; sourceTree = "<group>"; };
 		B768D7FB1B50B41D00D2FEF7 /* SuperViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SuperViewController.m; sourceTree = "<group>"; };
 		B768D7FD1B50C44200D2FEF7 /* SignupViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SignupViewController.h; sourceTree = "<group>"; };
@@ -258,6 +264,8 @@
 				B7FEF8D41B548DC00018CB7D /* NewPropertyForm5ViewController.m */,
 				B7FEF8D51B548DC00018CB7D /* NewPropertyForm6ViewController.h */,
 				B7FEF8D61B548DC00018CB7D /* NewPropertyForm6ViewController.m */,
+				B753ECE61B5B304200EFBD57 /* NewPropertyForm7ViewController.h */,
+				B753ECE71B5B304200EFBD57 /* NewPropertyForm7ViewController.m */,
 				B7FEF8C71B548CC10018CB7D /* NewPropertyFormSuperViewController.h */,
 				B7FEF8C81B548CC10018CB7D /* NewPropertyFormSuperViewController.m */,
 				B77368091B5481A200D8140E /* NewPropertyViewController.h */,
@@ -265,6 +273,8 @@
 				B768D8071B50E54B00D2FEF7 /* PKRevealController */,
 				B79F99551B52086E00BF945F /* ProfitProtectorStyleKit.h */,
 				B79F99561B52086E00BF945F /* ProfitProtectorStyleKit.m */,
+				B753ECE91B5B410600EFBD57 /* PropertyTypeTableViewController.h */,
+				B753ECEA1B5B410600EFBD57 /* PropertyTypeTableViewController.m */,
 				B79248A01B59ED6200F3E7BD /* SettingsViewController.h */,
 				B79248A11B59ED6200F3E7BD /* SettingsViewController.m */,
 				B768D7FD1B50C44200D2FEF7 /* SignupViewController.h */,
@@ -442,6 +452,7 @@
 				B7FEF8D81B548DC00018CB7D /* NewPropertyForm3ViewController.m in Sources */,
 				B768D82C1B50E54B00D2FEF7 /* PKRevealController.m in Sources */,
 				B768D8271B50E54B00D2FEF7 /* PKRevealControllerView.m in Sources */,
+				B753ECEB1B5B410600EFBD57 /* PropertyTypeTableViewController.m in Sources */,
 				B768D8231B50E54B00D2FEF7 /* CAAnimation+PKIdentifier.m in Sources */,
 				B768D82F1B50E5BB00D2FEF7 /* MainViewController.m in Sources */,
 				B7D8ACCA1B5A3F3C00041ED1 /* CoreDataStoring.m in Sources */,
@@ -467,6 +478,7 @@
 				B768D8221B50E54B00D2FEF7 /* MBProgressHUD.m in Sources */,
 				B7D8ACCD1B5A3F5200041ED1 /* Singleton.m in Sources */,
 				B79F99571B52086E00BF945F /* ProfitProtectorStyleKit.m in Sources */,
+				B753ECE81B5B304200EFBD57 /* NewPropertyForm7ViewController.m in Sources */,
 				B7FEF8D71B548DC00018CB7D /* NewPropertyForm2ViewController.m in Sources */,
 				B791E3AA1B55D98500C697F1 /* TutorialPage2ViewController.m in Sources */,
 				B7FEF8CC1B548D4E0018CB7D /* NewPropertyForm1ViewController.m in Sources */,

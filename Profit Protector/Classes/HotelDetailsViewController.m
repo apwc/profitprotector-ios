@@ -21,15 +21,39 @@
   // UI customizations
   self.view.backgroundColor = [UIColor whiteColor];
   
+  // math calculations
+  NSInteger ancillariesRevenuePerRoomPerNight = [[self.property valueForKey:@"bedsNumber"] integerValue];
+  NSInteger bedBugIncidents = [[self.property valueForKey:@"bedBugIncidents"] integerValue];
+  NSInteger bedsNumber = [[self.property valueForKey:@"bedsNumber"] integerValue];
+  NSInteger bugInspectionAndPestControlFees = [[self.property valueForKey:@"bugInspectionAndPestControlFees"] integerValue];
+  NSInteger costOfReplaceFurnishings = [[self.property valueForKey:@"costOfReplaceFurnishings"] integerValue];
+  NSInteger costOfReplaceMattressesAndBoxSpring = [[self.property valueForKey:@"costOfReplaceMattressesAndBoxSpring"] integerValue];
+  NSInteger costToCleanAndReinstallEncasements = [[self.property valueForKey:@"costToCleanAndReinstallEncasements"] integerValue];
+  NSInteger foodBeverageSalesPerRoomPerNight = [[self.property valueForKey:@"foodBeverageSalesPerRoomPerNight"] integerValue];
+  NSInteger grevianceCostsPerInfestation = [[self.property valueForKey:@"grevianceCostsPerInfestation"] integerValue];
+  NSInteger percentageOfMattressesReplaceEachYear = [[self.property valueForKey:@"percentageOfMattressesReplaceEachYear"] integerValue];
+  NSInteger roomRevenuePerNight = [[self.property valueForKey:@"roomRevenuePerNight"] integerValue];
+  NSInteger roomsNumber = [[self.property valueForKey:@"roomsNumber"] integerValue];
+  NSInteger timesPerYearBedClean = [[self.property valueForKey:@"roomsNumber"] integerValue];
+  
+//  NSInteger remediationCosts =
+//  NSInteger totalLossesPerBedBugInfestationIncident =
+  
+  
+//  NSInteger totalInvestmentToEncaseAllBeds = [[self.property valueForKey:@"bedsNumber"] integerValue] * [[self.property valueForKey:@"costOfReplaceMattressesAndBoxSpring"] integerValue];
+//  NSInteger totalAnnualBedBugInfestationLosses = () * [[self.property valueForKey:@"roomsNumber"] integerValue] * [[self.property valueForKey:@"roomsNumber"] integerValue];
+  //NSInteger preemptiveEncasementSavings = ;
+  //NSInteger withoutEncasements =
+  //NSInteger roi = totalInvestmentToEncaseAllBeds;
+  
+  //
   UISegmentedControl *uisc = [[UISegmentedControl alloc] initWithItems:@[@"Report", @"Profile"]];
   uisc.selectedSegmentIndex = 0;
   uisc.frame = CGRectMake((CGRectGetWidth(self.view.bounds) - (CGRectGetWidth(self.view.bounds) - 20.0f)) / 2.0f,
                           74.0,
                           CGRectGetWidth(self.view.bounds) - 20.0f,
                           33.0f);
-  [uisc addTarget:self
-           action:@selector(segmentedControlEventChanged:)
- forControlEvents:UIControlEventValueChanged];
+  [uisc addTarget:self action:@selector(segmentedControlEventChanged:) forControlEvents:UIControlEventValueChanged];
   [self.view addSubview:uisc];
   
   // Lifetime ROI
@@ -121,12 +145,13 @@
       
       if (indexPath.row == 0)
       {
-        details.text = @"Full Service";
+        details.text = [self.property valueForKey:@"propertyType"];
       }
       
       if (indexPath.row == 1)
       {
-        details.text = @"600 Rooms";
+        details.text = [NSString stringWithFormat:@"%ld Rooms",
+                        [[self.property valueForKey:@"roomsNumber"] integerValue]];
       }
       
       if (indexPath.row == 2)
@@ -141,12 +166,14 @@
       
       if (indexPath.row == 4)
       {
-        details.text = @"5%";
+        details.text = [NSString stringWithFormat:@"%ld%%",
+                        [[self.property valueForKey:@"percentageOfMattressesReplaceEachYear"] integerValue]];
       }
       
       if (indexPath.row == 5)
       {
-        details.text = @"34 Cases";
+        details.text = [NSString stringWithFormat:@"%ld Cases",
+                        [[self.property valueForKey:@"bedsNumber"] integerValue]];
       }
     }
     

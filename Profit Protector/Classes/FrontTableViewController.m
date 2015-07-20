@@ -99,6 +99,8 @@
     
     if (indexPath.section == 1)
     {
+      cell.textLabel.font = [UIFont fontWithName:@"HelveticaNeue" size:14.0f];
+      
       UIImageView *newProperty = [[UIImageView alloc] initWithImage:[ProfitProtectorStyleKit imageOfBadgeWithSize:CGSizeMake(130.0f, 37.0f)
                                                                                                         fillColor:[UIColor whiteColor]
                                                                                                      cornerRadius:7.0f
@@ -154,6 +156,9 @@
                                                                  NSManagedObject *property = properties_[indexPath.row];
                                                                  [property setValue:@(YES) forKey:@"favorite"];
                                                                  
+                                                                 CoreDataManager *cdm = [CoreDataManager singleton];
+                                                                 [cdm saveData];
+                                                                 
                                                                  properties_ = [CoreDataRetrieving properties];
                                                                  
                                                                  [self.tableView reloadData];
@@ -188,8 +193,6 @@
   return indexPath.section == 0 ? 200.0f : 70.0f;
 }
 
-
-
 - (void)tableView:(UITableView *)tableView
   didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -199,12 +202,13 @@
   {
     NewPropertyViewController *npvc = [[NewPropertyViewController alloc] initWithNibName:nil
                                                                                   bundle:nil];
-    [self presentViewController:npvc animated:YES completion:nil];
+    [self.navigationController pushViewController:npvc animated:YES];
   }
   else
   {
     HotelDetailsViewController *hdvc = [[HotelDetailsViewController alloc] initWithNibName:nil
                                                                                     bundle:nil];
+    hdvc.property = properties_[indexPath.row];
     [self.navigationController pushViewController:hdvc animated:YES];
   }
 }
