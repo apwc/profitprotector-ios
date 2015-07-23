@@ -27,7 +27,7 @@
                                                        0.0f,
                                                        CGRectGetWidth(self.frame),
                                                        48.0f)];
-    title_.font = [UIFont fontWithName:@"HelveticaNeue" size:14.0f];
+    title_.font = [UIFont fontWithName:@"HelveticaNeue" size:13.0f];
     title_.textColor = [UIColor colorWithRed:0 green:0.68 blue:0.95 alpha:1];
     title_.textAlignment = NSTextAlignmentCenter;
     title_.numberOfLines = 0;

@@ -180,7 +180,8 @@
                                    npf6vc_.scvC.key: npf6vc_.scvC.value,
                                    npf6vc_.scvD.key: npf6vc_.scvD.value,
                                    
-                                   npf7vc_.scvA.key: npf7vc_.scvA.value,}];
+                                   npf7vc_.scvA.key: npf7vc_.scvA.value,
+                                   npf7vc_.scvB.key: npf7vc_.scvB.value}];
   
   [self.navigationController popToRootViewControllerAnimated:YES];
 }

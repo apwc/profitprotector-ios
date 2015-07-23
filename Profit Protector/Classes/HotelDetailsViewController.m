@@ -9,6 +9,12 @@
   UITableView *uitv_;
   
   BOOL        isProfileSelected_;
+  
+  NSInteger   totalAnnualCostsLossesWithout_,
+              totalAnnualCostsLossesWith_,
+              totalAnnualCostsLossesPreemptive_;
+  
+  NSNumberFormatter *formatter_;
 }
 @end
 
@@ -18,33 +24,80 @@
 {
   [super viewDidLoad];
   
+  formatter_ = [[NSNumberFormatter alloc] init];
+  [formatter_ setNumberStyle:NSNumberFormatterCurrencyStyle];
+  
   // UI customizations
   self.view.backgroundColor = [UIColor whiteColor];
   
   // math calculations
-  NSInteger ancillariesRevenuePerRoomPerNight = [[self.property valueForKey:@"bedsNumber"] integerValue];
-  NSInteger bedBugIncidents = [[self.property valueForKey:@"bedBugIncidents"] integerValue];
-  NSInteger bedsNumber = [[self.property valueForKey:@"bedsNumber"] integerValue];
-  NSInteger bugInspectionAndPestControlFees = [[self.property valueForKey:@"bugInspectionAndPestControlFees"] integerValue];
-  NSInteger costOfReplaceFurnishings = [[self.property valueForKey:@"costOfReplaceFurnishings"] integerValue];
-  NSInteger costOfReplaceMattressesAndBoxSpring = [[self.property valueForKey:@"costOfReplaceMattressesAndBoxSpring"] integerValue];
-  NSInteger costToCleanAndReinstallEncasements = [[self.property valueForKey:@"costToCleanAndReinstallEncasements"] integerValue];
-  NSInteger foodBeverageSalesPerRoomPerNight = [[self.property valueForKey:@"foodBeverageSalesPerRoomPerNight"] integerValue];
-  NSInteger grevianceCostsPerInfestation = [[self.property valueForKey:@"grevianceCostsPerInfestation"] integerValue];
-  NSInteger percentageOfMattressesReplaceEachYear = [[self.property valueForKey:@"percentageOfMattressesReplaceEachYear"] integerValue];
-  NSInteger roomRevenuePerNight = [[self.property valueForKey:@"roomRevenuePerNight"] integerValue];
-  NSInteger roomsNumber = [[self.property valueForKey:@"roomsNumber"] integerValue];
-  NSInteger timesPerYearBedClean = [[self.property valueForKey:@"roomsNumber"] integerValue];
+  // values form the database input fields
+  double ancillariesRevenuePerRoomPerNight = [[self.property valueForKey:@"bedsNumber"] doubleValue];
+  double bedBugIncidents = [[self.property valueForKey:@"bedBugIncidents"] doubleValue];
+  double bedsNumber = [[self.property valueForKey:@"bedsNumber"] doubleValue];
+  double bugInspectionAndPestControlFees = [[self.property valueForKey:@"bugInspectionAndPestControlFees"] doubleValue];
+  double costOfReplaceFurnishings = [[self.property valueForKey:@"costOfReplaceFurnishings"] doubleValue];
+  double costOfReplaceMattressesAndBoxSpring = [[self.property valueForKey:@"costOfReplaceMattressesAndBoxSpring"] doubleValue];
+  double costToCleanAndReinstallEncasements = [[self.property valueForKey:@"costToCleanAndReinstallEncasements"] doubleValue];
+  double foodBeverageSalesPerRoomPerNight = [[self.property valueForKey:@"foodBeverageSalesPerRoomPerNight"] doubleValue];
+  double grevianceCostsPerInfestation = [[self.property valueForKey:@"grevianceCostsPerInfestation"] doubleValue];
+  double percentageOfMattressesReplaceEachYear = [[self.property valueForKey:@"percentageOfMattressesReplaceEachYear"] doubleValue];
+  double roomRevenuePerNight = [[self.property valueForKey:@"roomRevenuePerNight"] doubleValue];
+  double roomsNumber = [[self.property valueForKey:@"roomsNumber"] doubleValue];
+  double timesPerYearBedClean = [[self.property valueForKey:@"roomsNumber"] doubleValue];
+  double futureBookingDaysLost = [[self.property valueForKey:@"futureBookingDaysLost"] doubleValue];
   
-//  NSInteger remediationCosts =
-//  NSInteger totalLossesPerBedBugInfestationIncident =
+  // constants
+  double encasementCommercialWarrantyLifeSavingsPeriod = 8;
+  double costOfCleanRestProQueenMattressAndBoxSpringEncasements = 80;
   
+  double roomsTreatedPerInfestationWithout = 3.75f;
+  double roomsTreatedPerInfestationWith = 1.0f;
   
-//  NSInteger totalInvestmentToEncaseAllBeds = [[self.property valueForKey:@"bedsNumber"] integerValue] * [[self.property valueForKey:@"costOfReplaceMattressesAndBoxSpring"] integerValue];
-//  NSInteger totalAnnualBedBugInfestationLosses = () * [[self.property valueForKey:@"roomsNumber"] integerValue] * [[self.property valueForKey:@"roomsNumber"] integerValue];
-  //NSInteger preemptiveEncasementSavings = ;
-  //NSInteger withoutEncasements =
-  //NSInteger roi = totalInvestmentToEncaseAllBeds;
+  double typicalRemediationCostPerRoomWithout = 750;
+  double typicalRemediationCostPerRoomWith = 500;
+  double daysLostToRemediationTreatmentWithout = 5;
+  double daysLostToRemediationTreatmentWith = 5;
+  
+  double percentageOfRoomsExperiencePropertyDamageFromInfestationWithout = 25;
+  double percentageOfRoomsExperiencePropertyDamageFromInfestationWith = 0;
+  
+  // sums
+  double remediationCostsWithout = roomsTreatedPerInfestationWithout * typicalRemediationCostPerRoomWithout;
+  double remediationCostsWith = roomsTreatedPerInfestationWith * typicalRemediationCostPerRoomWith;
+  
+  double lostRevenueWithout = daysLostToRemediationTreatmentWithout * (roomRevenuePerNight + foodBeverageSalesPerRoomPerNight + ancillariesRevenuePerRoomPerNight) * roomsTreatedPerInfestationWithout * 16;
+  double lostRevenueWith = daysLostToRemediationTreatmentWith * (roomRevenuePerNight + foodBeverageSalesPerRoomPerNight + ancillariesRevenuePerRoomPerNight) * roomsTreatedPerInfestationWith * 16;
+  
+  double propertyDamageWithout = (roomsTreatedPerInfestationWithout * percentageOfRoomsExperiencePropertyDamageFromInfestationWithout) * (bedsNumber / roomsNumber) * (costOfReplaceMattressesAndBoxSpring + costOfReplaceFurnishings);
+  double propertyDamageWith = (roomsTreatedPerInfestationWith * percentageOfRoomsExperiencePropertyDamageFromInfestationWith) * (bedsNumber / roomsNumber) * (costOfReplaceMattressesAndBoxSpring + costOfReplaceFurnishings);
+  
+  double customerGrievanceCostsWithout =  bugInspectionAndPestControlFees;
+  
+  double brandDamageWithout = futureBookingDaysLost * (roomRevenuePerNight + foodBeverageSalesPerRoomPerNight + ancillariesRevenuePerRoomPerNight);
+  
+  double totalLossesPerBedBugInfestationIncidentWithout = remediationCostsWithout + lostRevenueWithout + propertyDamageWithout + customerGrievanceCostsWithout + brandDamageWithout;
+  double totalLossesPerBedBugInfestationIncidentWith = remediationCostsWith + lostRevenueWith + propertyDamageWith + customerGrievanceCostsWithout + brandDamageWithout;
+  
+  double timesIncidentsPerYear = roomsNumber * 2.8f;
+  
+  double totalAnnualBedBugInfestationLossesWithout = totalLossesPerBedBugInfestationIncidentWithout * 2.8f * roomsNumber;
+  double totalAnnualBedBugInfestationLossesWith = totalLossesPerBedBugInfestationIncidentWith * 2.8f * roomsNumber;
+  
+  double mattressSpoilageCostsPerYear = bedsNumber * percentageOfMattressesReplaceEachYear * costOfReplaceMattressesAndBoxSpring;
+  
+  double preemptiveEncasementLaunderingCostsWithout = timesPerYearBedClean * costToCleanAndReinstallEncasements * bedsNumber;
+  
+  totalAnnualCostsLossesWithout_ = totalAnnualBedBugInfestationLossesWithout + mattressSpoilageCostsPerYear;
+  totalAnnualCostsLossesWith_ = totalAnnualBedBugInfestationLossesWith + preemptiveEncasementLaunderingCostsWithout;
+
+  totalAnnualCostsLossesPreemptive_ = totalAnnualCostsLossesWithout_ + totalAnnualCostsLossesWith_;
+  
+  double totalLifetimeSavingsFromEncasingWithCleanRestPro = totalAnnualCostsLossesPreemptive_ * encasementCommercialWarrantyLifeSavingsPeriod;
+  
+  double totalInvestmentToEncaseAllBeds = costOfCleanRestProQueenMattressAndBoxSpringEncasements * bedsNumber;
+  
+  double roi = totalLifetimeSavingsFromEncasingWithCleanRestPro - totalInvestmentToEncaseAllBeds;
   
   //
   UISegmentedControl *uisc = [[UISegmentedControl alloc] initWithItems:@[@"Report", @"Profile"]];
@@ -75,7 +128,7 @@
   lifetimeROI_.textColor = [UIColor whiteColor];
   lifetimeROI_.font = [UIFont fontWithName:@"HelveticaNeue" size:26.0f];
   lifetimeROI_.textAlignment = NSTextAlignmentCenter;
-  lifetimeROI_.text = @"$606,204.00";
+  lifetimeROI_.text = [formatter_ stringFromNumber:@(roi)];
   [self.view addSubview:lifetimeROI_];
   
   uitv_ = [[UITableView alloc] initWithFrame:CGRectMake(0.0f,
@@ -213,7 +266,7 @@
                                                                                                          cornerRadius:7.0f
                                                                                                           strokeColor:[UIColor redColor]
                                                                                                           strokeWidth:1.0f
-                                                                                                                 text:@"$27,000.00"
+                                                                                                                 text:[formatter_ stringFromNumber:@(totalAnnualCostsLossesWithout_)]
                                                                                                             textColor:[UIColor redColor]
                                                                                                              textFont:[UIFont fontWithName:@"HelveticaNeue" size:16.0f]]];
           [newProperty sizeToFit];
@@ -232,7 +285,7 @@
                                                                                                          cornerRadius:7.0f
                                                                                                           strokeColor:[UIColor orangeColor]
                                                                                                           strokeWidth:1.0f
-                                                                                                                 text:@"$27,000.00"
+                                                                                                                 text:[formatter_ stringFromNumber:@(totalAnnualCostsLossesWith_)]
                                                                                                             textColor:[UIColor orangeColor]
                                                                                                              textFont:[UIFont fontWithName:@"HelveticaNeue" size:16.0f]]];
           [newProperty sizeToFit];
@@ -254,7 +307,7 @@
                                                                                                          cornerRadius:7.0f
                                                                                                           strokeColor:[UIColor greenColor]
                                                                                                           strokeWidth:1.0f
-                                                                                                                 text:@"$27,000.00"
+                                                                                                                 text:[formatter_ stringFromNumber:@(totalAnnualCostsLossesPreemptive_)]
                                                                                                             textColor:[UIColor greenColor]
                                                                                                              textFont:[UIFont fontWithName:@"HelveticaNeue" size:16.0f]]];
           [newProperty sizeToFit];

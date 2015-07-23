@@ -10,6 +10,7 @@
         <attribute name="costToCleanAndReinstallEncasements" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
         <attribute name="favorite" optional="YES" attributeType="Boolean" syncable="YES"/>
         <attribute name="foodBeverageSalesPerRoomPerNight" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
+        <attribute name="futureBookingDaysLost" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
         <attribute name="grevianceCostsPerInfestation" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="percentageOfMattressesReplaceEachYear" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
@@ -19,6 +20,6 @@
         <attribute name="timesPerYearBedClean" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
     </entity>
     <elements>
-        <element name="Property" positionX="-63" positionY="-18" width="128" height="285"/>
+        <element name="Property" positionX="-63" positionY="-18" width="128" height="300"/>
     </elements>
 </model>
