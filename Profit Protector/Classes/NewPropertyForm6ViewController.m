@@ -44,7 +44,7 @@
   self.scvD.numericType = Currency;
   self.scvD.key = @"grevianceCostsPerInfestation";
   self.scvD.title = @"What is your customer greviance costs\nper infestation?";
-  [self.uisv addSubview:self.scvD];
+  //[self.uisv addSubview:self.scvD];
   
   self.uisv.contentSize = CGSizeMake(CGRectGetWidth(self.view.frame),
                                      CGRectGetMaxY(self.scvD.frame) + 20.0f);

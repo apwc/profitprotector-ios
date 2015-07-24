@@ -30,74 +30,80 @@
   // UI customizations
   self.view.backgroundColor = [UIColor whiteColor];
   
+  NSLog(@"%@", self.property);
+  
   // math calculations
   // values form the database input fields
-  double ancillariesRevenuePerRoomPerNight = [[self.property valueForKey:@"bedsNumber"] doubleValue];
-  double bedBugIncidents = [[self.property valueForKey:@"bedBugIncidents"] doubleValue];
-  double bedsNumber = [[self.property valueForKey:@"bedsNumber"] doubleValue];
-  double bugInspectionAndPestControlFees = [[self.property valueForKey:@"bugInspectionAndPestControlFees"] doubleValue];
-  double costOfReplaceFurnishings = [[self.property valueForKey:@"costOfReplaceFurnishings"] doubleValue];
-  double costOfReplaceMattressesAndBoxSpring = [[self.property valueForKey:@"costOfReplaceMattressesAndBoxSpring"] doubleValue];
-  double costToCleanAndReinstallEncasements = [[self.property valueForKey:@"costToCleanAndReinstallEncasements"] doubleValue];
-  double foodBeverageSalesPerRoomPerNight = [[self.property valueForKey:@"foodBeverageSalesPerRoomPerNight"] doubleValue];
-  double grevianceCostsPerInfestation = [[self.property valueForKey:@"grevianceCostsPerInfestation"] doubleValue];
-  double percentageOfMattressesReplaceEachYear = [[self.property valueForKey:@"percentageOfMattressesReplaceEachYear"] doubleValue];
-  double roomRevenuePerNight = [[self.property valueForKey:@"roomRevenuePerNight"] doubleValue];
-  double roomsNumber = [[self.property valueForKey:@"roomsNumber"] doubleValue];
-  double timesPerYearBedClean = [[self.property valueForKey:@"roomsNumber"] doubleValue];
-  double futureBookingDaysLost = [[self.property valueForKey:@"futureBookingDaysLost"] doubleValue];
+  float ancillariesRevenuePerRoomPerNight = [[self.property valueForKey:@"ancillariesRevenuePerRoomPerNight"] floatValue];
+  float bedBugIncidents = [[self.property valueForKey:@"bedBugIncidents"] floatValue];
+  float bedsNumber = [[self.property valueForKey:@"bedsNumber"] doubleValue];
+  float bugInspectionAndPestControlFees = [[self.property valueForKey:@"bugInspectionAndPestControlFees"] floatValue];
+  float costOfReplaceFurnishings = [[self.property valueForKey:@"costOfReplaceFurnishings"] floatValue];
+  float costOfReplaceMattressesAndBoxSpring = [[self.property valueForKey:@"costOfReplaceMattressesAndBoxSpring"] floatValue];
+  float costToCleanAndReinstallEncasements = [[self.property valueForKey:@"costToCleanAndReinstallEncasements"] floatValue];
+  float foodBeverageSalesPerRoomPerNight = [[self.property valueForKey:@"foodBeverageSalesPerRoomPerNight"] floatValue];
+//  double grevianceCostsPerInfestation = [[self.property valueForKey:@"grevianceCostsPerInfestation"] doubleValue];
+  float percentageOfMattressesReplaceEachYear = [[self.property valueForKey:@"percentageOfMattressesReplaceEachYear"] floatValue] / 100.0f;
+  float roomRevenuePerNight = [[self.property valueForKey:@"roomRevenuePerNight"] floatValue];
+  float roomsNumber = [[self.property valueForKey:@"roomsNumber"] floatValue];
+  float timesPerYearBedClean = [[self.property valueForKey:@"timesPerYearBedClean"] floatValue];
+  float futureBookingDaysLost = [[self.property valueForKey:@"futureBookingDaysLost"] floatValue];
   
   // constants
-  double encasementCommercialWarrantyLifeSavingsPeriod = 8;
-  double costOfCleanRestProQueenMattressAndBoxSpringEncasements = 80;
+  float encasementCommercialWarrantyLifeSavingsPeriod = 8.0f;
+  float costOfCleanRestProQueenMattressAndBoxSpringEncasements = 80.0f;
   
-  double roomsTreatedPerInfestationWithout = 3.75f;
-  double roomsTreatedPerInfestationWith = 1.0f;
+  float roomsTreatedPerInfestationWithout = 3.75f;
+  float roomsTreatedPerInfestationWith = 1.0f;
   
-  double typicalRemediationCostPerRoomWithout = 750;
-  double typicalRemediationCostPerRoomWith = 500;
-  double daysLostToRemediationTreatmentWithout = 5;
-  double daysLostToRemediationTreatmentWith = 5;
+  float typicalRemediationCostPerRoomWithout = 750.0f;
+  float typicalRemediationCostPerRoomWith = 500.0f;
+  float daysLostToRemediationTreatmentWithout = 5.0f;
+  float daysLostToRemediationTreatmentWith = 3.0f;
   
-  double percentageOfRoomsExperiencePropertyDamageFromInfestationWithout = 25;
-  double percentageOfRoomsExperiencePropertyDamageFromInfestationWith = 0;
+  float percentageOfRoomsExperiencePropertyDamageFromInfestationWithout = 0.25f;
+  float percentageOfRoomsExperiencePropertyDamageFromInfestationWith = 0.0f;
+  
+  float revenueLossRateFromRoomClosures = 0.16f;
+  
+  float yourBedBugIncidentRate = bedBugIncidents / roomsNumber;
   
   // sums
-  double remediationCostsWithout = roomsTreatedPerInfestationWithout * typicalRemediationCostPerRoomWithout;
-  double remediationCostsWith = roomsTreatedPerInfestationWith * typicalRemediationCostPerRoomWith;
+  float remediationCostsWithout = roomsTreatedPerInfestationWithout * typicalRemediationCostPerRoomWithout;
+  float remediationCostsWith = roomsTreatedPerInfestationWith * typicalRemediationCostPerRoomWith;
   
-  double lostRevenueWithout = daysLostToRemediationTreatmentWithout * (roomRevenuePerNight + foodBeverageSalesPerRoomPerNight + ancillariesRevenuePerRoomPerNight) * roomsTreatedPerInfestationWithout * 16;
-  double lostRevenueWith = daysLostToRemediationTreatmentWith * (roomRevenuePerNight + foodBeverageSalesPerRoomPerNight + ancillariesRevenuePerRoomPerNight) * roomsTreatedPerInfestationWith * 16;
+  float lostRevenueWithout = daysLostToRemediationTreatmentWithout * (roomRevenuePerNight + foodBeverageSalesPerRoomPerNight + ancillariesRevenuePerRoomPerNight) * roomsTreatedPerInfestationWithout * revenueLossRateFromRoomClosures;
+  float lostRevenueWith = daysLostToRemediationTreatmentWith * (roomRevenuePerNight + foodBeverageSalesPerRoomPerNight + ancillariesRevenuePerRoomPerNight) * roomsTreatedPerInfestationWith * revenueLossRateFromRoomClosures;
   
-  double propertyDamageWithout = (roomsTreatedPerInfestationWithout * percentageOfRoomsExperiencePropertyDamageFromInfestationWithout) * (bedsNumber / roomsNumber) * (costOfReplaceMattressesAndBoxSpring + costOfReplaceFurnishings);
-  double propertyDamageWith = (roomsTreatedPerInfestationWith * percentageOfRoomsExperiencePropertyDamageFromInfestationWith) * (bedsNumber / roomsNumber) * (costOfReplaceMattressesAndBoxSpring + costOfReplaceFurnishings);
+  float propertyDamageWithout = (roomsTreatedPerInfestationWithout * percentageOfRoomsExperiencePropertyDamageFromInfestationWithout) * ((bedsNumber / roomsNumber) * costOfReplaceMattressesAndBoxSpring + costOfReplaceFurnishings);
+  float propertyDamageWith = (roomsTreatedPerInfestationWith * percentageOfRoomsExperiencePropertyDamageFromInfestationWith) * (bedsNumber / roomsNumber) * (costOfReplaceMattressesAndBoxSpring + costOfReplaceFurnishings);
   
-  double customerGrievanceCostsWithout =  bugInspectionAndPestControlFees;
+  float customerGrievanceCostsWithout =  bugInspectionAndPestControlFees;
   
-  double brandDamageWithout = futureBookingDaysLost * (roomRevenuePerNight + foodBeverageSalesPerRoomPerNight + ancillariesRevenuePerRoomPerNight);
+  float brandDamageWithout = futureBookingDaysLost * (roomRevenuePerNight + foodBeverageSalesPerRoomPerNight + ancillariesRevenuePerRoomPerNight);
   
-  double totalLossesPerBedBugInfestationIncidentWithout = remediationCostsWithout + lostRevenueWithout + propertyDamageWithout + customerGrievanceCostsWithout + brandDamageWithout;
-  double totalLossesPerBedBugInfestationIncidentWith = remediationCostsWith + lostRevenueWith + propertyDamageWith + customerGrievanceCostsWithout + brandDamageWithout;
+  float totalLossesPerBedBugInfestationIncidentWithout = remediationCostsWithout + lostRevenueWithout + propertyDamageWithout + customerGrievanceCostsWithout + brandDamageWithout;
+  float totalLossesPerBedBugInfestationIncidentWith = remediationCostsWith + lostRevenueWith + propertyDamageWith;
   
-  double timesIncidentsPerYear = roomsNumber * 2.8f;
+//  double timesIncidentsPerYear = roomsNumber * 2.8f;
   
-  double totalAnnualBedBugInfestationLossesWithout = totalLossesPerBedBugInfestationIncidentWithout * 2.8f * roomsNumber;
-  double totalAnnualBedBugInfestationLossesWith = totalLossesPerBedBugInfestationIncidentWith * 2.8f * roomsNumber;
+  float totalAnnualBedBugInfestationLossesWithout = totalLossesPerBedBugInfestationIncidentWithout * yourBedBugIncidentRate * roomsNumber;
+  float totalAnnualBedBugInfestationLossesWith = totalLossesPerBedBugInfestationIncidentWith * yourBedBugIncidentRate * roomsNumber;
   
-  double mattressSpoilageCostsPerYear = bedsNumber * percentageOfMattressesReplaceEachYear * costOfReplaceMattressesAndBoxSpring;
+  float mattressSpoilageCostsPerYear = bedsNumber * percentageOfMattressesReplaceEachYear * costOfReplaceMattressesAndBoxSpring;
   
-  double preemptiveEncasementLaunderingCostsWithout = timesPerYearBedClean * costToCleanAndReinstallEncasements * bedsNumber;
-  
-  totalAnnualCostsLossesWithout_ = totalAnnualBedBugInfestationLossesWithout + mattressSpoilageCostsPerYear;
-  totalAnnualCostsLossesWith_ = totalAnnualBedBugInfestationLossesWith + preemptiveEncasementLaunderingCostsWithout;
+  float preemptiveEncasementLaunderingCostsWith = timesPerYearBedClean * costToCleanAndReinstallEncasements * bedsNumber;
 
-  totalAnnualCostsLossesPreemptive_ = totalAnnualCostsLossesWithout_ + totalAnnualCostsLossesWith_;
+  totalAnnualCostsLossesWithout_ = totalAnnualBedBugInfestationLossesWithout + mattressSpoilageCostsPerYear;
+  totalAnnualCostsLossesWith_ = totalAnnualBedBugInfestationLossesWith + preemptiveEncasementLaunderingCostsWith;
+
+  totalAnnualCostsLossesPreemptive_ = totalAnnualCostsLossesWithout_ - totalAnnualCostsLossesWith_;
   
-  double totalLifetimeSavingsFromEncasingWithCleanRestPro = totalAnnualCostsLossesPreemptive_ * encasementCommercialWarrantyLifeSavingsPeriod;
+  float totalLifetimeSavingsFromEncasingWithCleanRestPro = totalAnnualCostsLossesPreemptive_ * encasementCommercialWarrantyLifeSavingsPeriod;
   
-  double totalInvestmentToEncaseAllBeds = costOfCleanRestProQueenMattressAndBoxSpringEncasements * bedsNumber;
+  float totalInvestmentToEncaseAllBeds = costOfCleanRestProQueenMattressAndBoxSpringEncasements * bedsNumber;
   
-  double roi = totalLifetimeSavingsFromEncasingWithCleanRestPro - totalInvestmentToEncaseAllBeds;
+  float roi = totalLifetimeSavingsFromEncasingWithCleanRestPro - totalInvestmentToEncaseAllBeds;
   
   //
   UISegmentedControl *uisc = [[UISegmentedControl alloc] initWithItems:@[@"Report", @"Profile"]];
