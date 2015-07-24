@@ -72,7 +72,7 @@
     CGContextClipToRect(context, textRect);
     
     [text drawInRect:CGRectMake(CGRectGetMinX(rect),
-                                CGRectGetMinY(rect) + ((CGRectGetHeight(textRect) - textHeight) / 2) + 1.0f,
+                                CGRectGetMinY(rect) + ((CGRectGetHeight(textRect) - textHeight) / 2),
                                 CGRectGetWidth(textRect),
                                 textHeight)
       withAttributes:textFontAttributes];

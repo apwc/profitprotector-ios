@@ -101,14 +101,91 @@
     {
       cell.textLabel.font = [UIFont fontWithName:@"HelveticaNeue" size:14.0f];
       
+      NSNumberFormatter *formatter_ = [[NSNumberFormatter alloc] init];
+      [formatter_ setNumberStyle:NSNumberFormatterCurrencyStyle];
+      
+      NSManagedObject *property = properties_[indexPath.row];
+
+      // math calculations
+      // values form the database input fields
+      float ancillariesRevenuePerRoomPerNight = [[property valueForKey:@"ancillariesRevenuePerRoomPerNight"] floatValue];
+      float bedBugIncidents = [[property valueForKey:@"bedBugIncidents"] floatValue];
+      float bedsNumber = [[property valueForKey:@"bedsNumber"] doubleValue];
+      float bugInspectionAndPestControlFees = [[property valueForKey:@"bugInspectionAndPestControlFees"] floatValue];
+      float costOfReplaceFurnishings = [[property valueForKey:@"costOfReplaceFurnishings"] floatValue];
+      float costOfReplaceMattressesAndBoxSpring = [[property valueForKey:@"costOfReplaceMattressesAndBoxSpring"] floatValue];
+      float costToCleanAndReinstallEncasements = [[property valueForKey:@"costToCleanAndReinstallEncasements"] floatValue];
+      float foodBeverageSalesPerRoomPerNight = [[property valueForKey:@"foodBeverageSalesPerRoomPerNight"] floatValue];
+      float percentageOfMattressesReplaceEachYear = [[property valueForKey:@"percentageOfMattressesReplaceEachYear"] floatValue] / 100.0f;
+      float roomRevenuePerNight = [[property valueForKey:@"roomRevenuePerNight"] floatValue];
+      float roomsNumber = [[property valueForKey:@"roomsNumber"] floatValue];
+      float timesPerYearBedClean = [[property valueForKey:@"timesPerYearBedClean"] floatValue];
+      float futureBookingDaysLost = [[property valueForKey:@"futureBookingDaysLost"] floatValue];
+      
+      // constants
+      float encasementCommercialWarrantyLifeSavingsPeriod = 8.0f;
+      float costOfCleanRestProQueenMattressAndBoxSpringEncasements = 80.0f;
+      
+      float roomsTreatedPerInfestationWithout = 3.75f;
+      float roomsTreatedPerInfestationWith = 1.0f;
+      
+      float typicalRemediationCostPerRoomWithout = 750.0f;
+      float typicalRemediationCostPerRoomWith = 500.0f;
+      float daysLostToRemediationTreatmentWithout = 5.0f;
+      float daysLostToRemediationTreatmentWith = 3.0f;
+      
+      float percentageOfRoomsExperiencePropertyDamageFromInfestationWithout = 0.25f;
+      float percentageOfRoomsExperiencePropertyDamageFromInfestationWith = 0.0f;
+      
+      float revenueLossRateFromRoomClosures = 0.16f;
+      
+      float yourBedBugIncidentRate = bedBugIncidents / roomsNumber;
+      
+      // sums
+      float remediationCostsWithout = roomsTreatedPerInfestationWithout * typicalRemediationCostPerRoomWithout;
+      float remediationCostsWith = roomsTreatedPerInfestationWith * typicalRemediationCostPerRoomWith;
+      
+      float lostRevenueWithout = daysLostToRemediationTreatmentWithout * (roomRevenuePerNight + foodBeverageSalesPerRoomPerNight + ancillariesRevenuePerRoomPerNight) * roomsTreatedPerInfestationWithout * revenueLossRateFromRoomClosures;
+      float lostRevenueWith = daysLostToRemediationTreatmentWith * (roomRevenuePerNight + foodBeverageSalesPerRoomPerNight + ancillariesRevenuePerRoomPerNight) * roomsTreatedPerInfestationWith * revenueLossRateFromRoomClosures;
+      
+      float propertyDamageWithout = (roomsTreatedPerInfestationWithout * percentageOfRoomsExperiencePropertyDamageFromInfestationWithout) * ((bedsNumber / roomsNumber) * costOfReplaceMattressesAndBoxSpring + costOfReplaceFurnishings);
+      float propertyDamageWith = (roomsTreatedPerInfestationWith * percentageOfRoomsExperiencePropertyDamageFromInfestationWith) * (bedsNumber / roomsNumber) * (costOfReplaceMattressesAndBoxSpring + costOfReplaceFurnishings);
+      
+      float customerGrievanceCostsWithout =  bugInspectionAndPestControlFees;
+      
+      float brandDamageWithout = futureBookingDaysLost * (roomRevenuePerNight + foodBeverageSalesPerRoomPerNight + ancillariesRevenuePerRoomPerNight);
+      
+      float totalLossesPerBedBugInfestationIncidentWithout = remediationCostsWithout + lostRevenueWithout + propertyDamageWithout + customerGrievanceCostsWithout + brandDamageWithout;
+      float totalLossesPerBedBugInfestationIncidentWith = remediationCostsWith + lostRevenueWith + propertyDamageWith;
+      
+      //  double timesIncidentsPerYear = roomsNumber * 2.8f;
+      
+      float totalAnnualBedBugInfestationLossesWithout = totalLossesPerBedBugInfestationIncidentWithout * yourBedBugIncidentRate * roomsNumber;
+      float totalAnnualBedBugInfestationLossesWith = totalLossesPerBedBugInfestationIncidentWith * yourBedBugIncidentRate * roomsNumber;
+      
+      float mattressSpoilageCostsPerYear = bedsNumber * percentageOfMattressesReplaceEachYear * costOfReplaceMattressesAndBoxSpring;
+      
+      float preemptiveEncasementLaunderingCostsWith = timesPerYearBedClean * costToCleanAndReinstallEncasements * bedsNumber;
+      
+      float totalAnnualCostsLossesWithout = totalAnnualBedBugInfestationLossesWithout + mattressSpoilageCostsPerYear;
+      float totalAnnualCostsLossesWith = totalAnnualBedBugInfestationLossesWith + preemptiveEncasementLaunderingCostsWith;
+      
+      float totalAnnualCostsLossesPreemptive = totalAnnualCostsLossesWithout - totalAnnualCostsLossesWith;
+      
+      float totalLifetimeSavingsFromEncasingWithCleanRestPro = totalAnnualCostsLossesPreemptive * encasementCommercialWarrantyLifeSavingsPeriod;
+      
+      float totalInvestmentToEncaseAllBeds = costOfCleanRestProQueenMattressAndBoxSpringEncasements * bedsNumber;
+      
+      float roi = totalLifetimeSavingsFromEncasingWithCleanRestPro - totalInvestmentToEncaseAllBeds;
+
       UIImageView *newProperty = [[UIImageView alloc] initWithImage:[ProfitProtectorStyleKit imageOfBadgeWithSize:CGSizeMake(130.0f, 37.0f)
                                                                                                         fillColor:[UIColor whiteColor]
                                                                                                      cornerRadius:7.0f
                                                                                                       strokeColor:[UIColor colorWithRed:0 green:0.68 blue:0.94 alpha:1]
                                                                                                       strokeWidth:1.0f
-                                                                                                             text:@"$27,000.00"
+                                                                                                             text:[formatter_ stringFromNumber:@(roi)]
                                                                                                         textColor:[UIColor colorWithRed:0 green:0.68 blue:0.94 alpha:1]
-                                                                                                         textFont:[UIFont fontWithName:@"HelveticaNeue" size:16.0f]]];
+                                                                                                         textFont:[UIFont fontWithName:@"HelveticaNeue" size:14.0f]]];
       [newProperty sizeToFit];
       newProperty.center = CGPointMake(CGRectGetWidth(cell.bounds) - (CGRectGetWidth(newProperty.bounds) / 2.0f) - 10.f,
                                        CGRectGetHeight(cell.bounds) / 2.0f);

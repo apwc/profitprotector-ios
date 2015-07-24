@@ -10,7 +10,7 @@
   
   BOOL        isProfileSelected_;
   
-  NSInteger   totalAnnualCostsLossesWithout_,
+  float       totalAnnualCostsLossesWithout_,
               totalAnnualCostsLossesWith_,
               totalAnnualCostsLossesPreemptive_;
   
@@ -29,8 +29,6 @@
   
   // UI customizations
   self.view.backgroundColor = [UIColor whiteColor];
-  
-  NSLog(@"%@", self.property);
   
   // math calculations
   // values form the database input fields
@@ -209,18 +207,27 @@
       
       if (indexPath.row == 1)
       {
-        details.text = [NSString stringWithFormat:@"%ld Rooms",
-                        [[self.property valueForKey:@"roomsNumber"] integerValue]];
+        
+        details.text = [NSString stringWithFormat:@"%ld",
+                        [[self.property valueForKey:@"roomsNumber"] integerValue] + [[self.property valueForKey:@"bedsNumber"] integerValue]];
       }
       
       if (indexPath.row == 2)
       {
-        details.text = @"$37,468.000";
+        float ancillariesRevenuePerRoomPerNight = [[self.property valueForKey:@"ancillariesRevenuePerRoomPerNight"] floatValue];
+        float foodBeverageSalesPerRoomPerNight = [[self.property valueForKey:@"foodBeverageSalesPerRoomPerNight"] floatValue];
+        float roomRevenuePerNight = [[self.property valueForKey:@"roomRevenuePerNight"] floatValue];
+       
+        details.text = [formatter_ stringFromNumber:@(ancillariesRevenuePerRoomPerNight + roomRevenuePerNight + foodBeverageSalesPerRoomPerNight)];
       }
       
       if (indexPath.row == 3)
       {
-        details.text = @"$110,022.000";
+        float costOfReplaceFurnishings = [[self.property valueForKey:@"costOfReplaceFurnishings"] floatValue];
+        float costOfReplaceMattressesAndBoxSpring = [[self.property valueForKey:@"costOfReplaceMattressesAndBoxSpring"] floatValue];
+        float costToCleanAndReinstallEncasements = [[self.property valueForKey:@"costToCleanAndReinstallEncasements"] floatValue];
+        
+        details.text = [formatter_ stringFromNumber:@(costOfReplaceFurnishings + costOfReplaceMattressesAndBoxSpring + costToCleanAndReinstallEncasements)];
       }
       
       if (indexPath.row == 4)
@@ -231,8 +238,8 @@
       
       if (indexPath.row == 5)
       {
-        details.text = [NSString stringWithFormat:@"%ld Cases",
-                        [[self.property valueForKey:@"bedsNumber"] integerValue]];
+        details.text = [NSString stringWithFormat:@"%ld",
+                        [[self.property valueForKey:@"bedBugIncidents"] integerValue]];
       }
     }
     
@@ -274,7 +281,7 @@
                                                                                                           strokeWidth:1.0f
                                                                                                                  text:[formatter_ stringFromNumber:@(totalAnnualCostsLossesWithout_)]
                                                                                                             textColor:[UIColor redColor]
-                                                                                                             textFont:[UIFont fontWithName:@"HelveticaNeue" size:16.0f]]];
+                                                                                                             textFont:[UIFont fontWithName:@"HelveticaNeue" size:14.0f]]];
           [newProperty sizeToFit];
           newProperty.center = CGPointMake(CGRectGetWidth(cell.bounds) - (CGRectGetWidth(newProperty.bounds) / 2.0f) - 10.f,
                                            CGRectGetHeight(cell.bounds) / 2.0f);
@@ -293,7 +300,7 @@
                                                                                                           strokeWidth:1.0f
                                                                                                                  text:[formatter_ stringFromNumber:@(totalAnnualCostsLossesWith_)]
                                                                                                             textColor:[UIColor orangeColor]
-                                                                                                             textFont:[UIFont fontWithName:@"HelveticaNeue" size:16.0f]]];
+                                                                                                             textFont:[UIFont fontWithName:@"HelveticaNeue" size:14.0f]]];
           [newProperty sizeToFit];
           newProperty.center = CGPointMake(CGRectGetWidth(cell.bounds) - (CGRectGetWidth(newProperty.bounds) / 2.0f) - 10.f,
                                            CGRectGetHeight(cell.bounds) / 2.0f);
@@ -315,7 +322,7 @@
                                                                                                           strokeWidth:1.0f
                                                                                                                  text:[formatter_ stringFromNumber:@(totalAnnualCostsLossesPreemptive_)]
                                                                                                             textColor:[UIColor greenColor]
-                                                                                                             textFont:[UIFont fontWithName:@"HelveticaNeue" size:16.0f]]];
+                                                                                                             textFont:[UIFont fontWithName:@"HelveticaNeue" size:14.0f]]];
           [newProperty sizeToFit];
           newProperty.center = CGPointMake(CGRectGetWidth(cell.bounds) - (CGRectGetWidth(newProperty.bounds) / 2.0f) - 10.f,
                                            CGRectGetHeight(cell.bounds) / 2.0f);
