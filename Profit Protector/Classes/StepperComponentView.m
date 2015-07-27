@@ -1,4 +1,5 @@
 #import "StepperComponentView.h"
+#import "GlobalData.h"
 
 @interface StepperComponentView () <UITextFieldDelegate>
 {
@@ -140,6 +141,27 @@
   }*/
   
   self.value = [formatter_ numberFromString:textField_.text];
+  
+  if ([self.key isEqualToString:@"bedsNumber"])
+  {
+    GlobalData *gb = [GlobalData singleton];
+    gb.numberOfBeds = [self.value floatValue];
+  }
+  
+  if ([self.key isEqualToString:@"bedsNumber"])
+  {
+    GlobalData *gb = [GlobalData singleton];
+    gb.numberOfBeds = [self.value floatValue];
+  }
+  
+  if ([self.key isEqualToString:@"costOfReplaceMattressesAndBoxSpring"])
+  {
+    GlobalData *gb = [GlobalData singleton];
+    gb.percentage = [self.value floatValue];
+  }
+  
+  [[NSNotificationCenter defaultCenter] postNotificationName:self.key
+                                                      object:self.value];
 }
 
 - (void)plus:(UIButton *)uib
@@ -161,6 +183,9 @@
   }*/
   
   self.value = [formatter_ numberFromString:textField_.text];
+  
+  [[NSNotificationCenter defaultCenter] postNotificationName:self.key
+                                                      object:self.value];
 }
 
 - (void)formatTextField

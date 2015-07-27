@@ -47,7 +47,7 @@
   //[self.uisv addSubview:self.scvD];
   
   self.uisv.contentSize = CGSizeMake(CGRectGetWidth(self.view.frame),
-                                     CGRectGetMaxY(self.scvD.frame) + 20.0f);
+                                     CGRectGetMaxY(self.scvC.frame) + 20.0f);
 }
 
 @end

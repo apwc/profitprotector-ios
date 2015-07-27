@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		B72789141B65A831000AB281 /* GlobalMethods.m in Sources */ = {isa = PBXBuildFile; fileRef = B72789131B65A831000AB281 /* GlobalMethods.m */; };
+		B72789171B65B991000AB281 /* GlobalData.m in Sources */ = {isa = PBXBuildFile; fileRef = B72789161B65B991000AB281 /* GlobalData.m */; };
 		B753ECE81B5B304200EFBD57 /* NewPropertyForm7ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B753ECE71B5B304200EFBD57 /* NewPropertyForm7ViewController.m */; };
 		B753ECEB1B5B410600EFBD57 /* PropertyTypeTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B753ECEA1B5B410600EFBD57 /* PropertyTypeTableViewController.m */; };
 		B768D7FC1B50B41D00D2FEF7 /* SuperViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B768D7FB1B50B41D00D2FEF7 /* SuperViewController.m */; };
@@ -59,6 +60,8 @@
 		B71F34211B572B54000C7A1D /* TypeDefEnumerators.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TypeDefEnumerators.h; sourceTree = "<group>"; };
 		B72789121B65A831000AB281 /* GlobalMethods.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GlobalMethods.h; sourceTree = "<group>"; };
 		B72789131B65A831000AB281 /* GlobalMethods.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GlobalMethods.m; sourceTree = "<group>"; };
+		B72789151B65B991000AB281 /* GlobalData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GlobalData.h; sourceTree = "<group>"; };
+		B72789161B65B991000AB281 /* GlobalData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GlobalData.m; sourceTree = "<group>"; };
 		B753ECE61B5B304200EFBD57 /* NewPropertyForm7ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewPropertyForm7ViewController.h; sourceTree = "<group>"; };
 		B753ECE71B5B304200EFBD57 /* NewPropertyForm7ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewPropertyForm7ViewController.m; sourceTree = "<group>"; };
 		B753ECE91B5B410600EFBD57 /* PropertyTypeTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PropertyTypeTableViewController.h; sourceTree = "<group>"; };
@@ -248,6 +251,8 @@
 				B7D8ACC11B5A3F3C00041ED1 /* Core Data Manager */,
 				B768D8331B50F22F00D2FEF7 /* FrontTableViewController.h */,
 				B768D8341B50F22F00D2FEF7 /* FrontTableViewController.m */,
+				B72789151B65B991000AB281 /* GlobalData.h */,
+				B72789161B65B991000AB281 /* GlobalData.m */,
 				B72789121B65A831000AB281 /* GlobalMethods.h */,
 				B72789131B65A831000AB281 /* GlobalMethods.m */,
 				B79F99581B52206500BF945F /* HotelDetailsViewController.h */,
@@ -449,6 +454,7 @@
 				B7D8ACC81B5A3F3C00041ED1 /* CoreDataManager.m in Sources */,
 				B7FEF8DB1B548DC00018CB7D /* NewPropertyForm6ViewController.m in Sources */,
 				B768D8321B50EFA100D2FEF7 /* LeftTableViewController.m in Sources */,
+				B72789171B65B991000AB281 /* GlobalData.m in Sources */,
 				B791E3B31B55E15D00C697F1 /* StepperComponentView.m in Sources */,
 				B79248A21B59ED6200F3E7BD /* SettingsViewController.m in Sources */,
 				B768D8021B50D36D00D2FEF7 /* TutorialViewController.m in Sources */,

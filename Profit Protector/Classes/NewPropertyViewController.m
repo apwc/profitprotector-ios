@@ -8,6 +8,7 @@
 #import "NewPropertyForm5ViewController.h"
 #import "NewPropertyForm6ViewController.h"
 #import "NewPropertyForm7ViewController.h"
+#import "GlobalData.h"
 
 @interface NewPropertyViewController () <PropertyTypeDelegate,
                                          UIScrollViewDelegate>
@@ -160,6 +161,11 @@
 
 - (void)save:(UIBarButtonItem *)uibbi
 {
+  GlobalData *gb = [GlobalData singleton];
+  gb.numberOfBeds = -1.0f;
+  gb.percentage = -1.0f;
+  gb.costPerBed = -1.0f;
+  
   [CoreDataStoring storeProperty:@{@"name": npf1vc_.textField.text,
                                    @"propertyType": npf1vc_.propertyType.titleLabel.text,
                                    
