@@ -4,10 +4,12 @@
 #import "NewPropertyViewController.h"
 #import "HotelDetailsViewController.h"
 #import "CoreDataRetrieving.h"
+#import "GlobalMethods.h"
 
 @interface FrontTableViewController ()
 {
   NSArray *properties_;
+  UILabel *name_;
 }
 @end
 
@@ -69,6 +71,8 @@
   
   UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellReusableIdentifier];
   
+  NSManagedObject *property = properties_[indexPath.row];
+  
   if (!cell)
   {
     cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault
@@ -99,92 +103,19 @@
     
     if (indexPath.section == 1)
     {
-      cell.textLabel.font = [UIFont fontWithName:@"HelveticaNeue" size:14.0f];
-      
       NSNumberFormatter *formatter_ = [[NSNumberFormatter alloc] init];
       [formatter_ setNumberStyle:NSNumberFormatterCurrencyStyle];
       
-      NSManagedObject *property = properties_[indexPath.row];
-
-      // math calculations
-      // values form the database input fields
-      float ancillariesRevenuePerRoomPerNight = [[property valueForKey:@"ancillariesRevenuePerRoomPerNight"] floatValue];
-      float bedBugIncidents = [[property valueForKey:@"bedBugIncidents"] floatValue];
-      float bedsNumber = [[property valueForKey:@"bedsNumber"] doubleValue];
-      float bugInspectionAndPestControlFees = [[property valueForKey:@"bugInspectionAndPestControlFees"] floatValue];
-      float costOfReplaceFurnishings = [[property valueForKey:@"costOfReplaceFurnishings"] floatValue];
-      float costOfReplaceMattressesAndBoxSpring = [[property valueForKey:@"costOfReplaceMattressesAndBoxSpring"] floatValue];
-      float costToCleanAndReinstallEncasements = [[property valueForKey:@"costToCleanAndReinstallEncasements"] floatValue];
-      float foodBeverageSalesPerRoomPerNight = [[property valueForKey:@"foodBeverageSalesPerRoomPerNight"] floatValue];
-      float percentageOfMattressesReplaceEachYear = [[property valueForKey:@"percentageOfMattressesReplaceEachYear"] floatValue] / 100.0f;
-      float roomRevenuePerNight = [[property valueForKey:@"roomRevenuePerNight"] floatValue];
-      float roomsNumber = [[property valueForKey:@"roomsNumber"] floatValue];
-      float timesPerYearBedClean = [[property valueForKey:@"timesPerYearBedClean"] floatValue];
-      float futureBookingDaysLost = [[property valueForKey:@"futureBookingDaysLost"] floatValue];
+      // get the math results
+      NSDictionary *math = [GlobalMethods math:property];
       
-      // constants
-      float encasementCommercialWarrantyLifeSavingsPeriod = 8.0f;
-      float costOfCleanRestProQueenMattressAndBoxSpringEncasements = 80.0f;
-      
-      float roomsTreatedPerInfestationWithout = 3.75f;
-      float roomsTreatedPerInfestationWith = 1.0f;
-      
-      float typicalRemediationCostPerRoomWithout = 750.0f;
-      float typicalRemediationCostPerRoomWith = 500.0f;
-      float daysLostToRemediationTreatmentWithout = 5.0f;
-      float daysLostToRemediationTreatmentWith = 3.0f;
-      
-      float percentageOfRoomsExperiencePropertyDamageFromInfestationWithout = 0.25f;
-      float percentageOfRoomsExperiencePropertyDamageFromInfestationWith = 0.0f;
-      
-      float revenueLossRateFromRoomClosures = 0.16f;
-      
-      float yourBedBugIncidentRate = bedBugIncidents / roomsNumber;
-      
-      // sums
-      float remediationCostsWithout = roomsTreatedPerInfestationWithout * typicalRemediationCostPerRoomWithout;
-      float remediationCostsWith = roomsTreatedPerInfestationWith * typicalRemediationCostPerRoomWith;
-      
-      float lostRevenueWithout = daysLostToRemediationTreatmentWithout * (roomRevenuePerNight + foodBeverageSalesPerRoomPerNight + ancillariesRevenuePerRoomPerNight) * roomsTreatedPerInfestationWithout * revenueLossRateFromRoomClosures;
-      float lostRevenueWith = daysLostToRemediationTreatmentWith * (roomRevenuePerNight + foodBeverageSalesPerRoomPerNight + ancillariesRevenuePerRoomPerNight) * roomsTreatedPerInfestationWith * revenueLossRateFromRoomClosures;
-      
-      float propertyDamageWithout = (roomsTreatedPerInfestationWithout * percentageOfRoomsExperiencePropertyDamageFromInfestationWithout) * ((bedsNumber / roomsNumber) * costOfReplaceMattressesAndBoxSpring + costOfReplaceFurnishings);
-      float propertyDamageWith = (roomsTreatedPerInfestationWith * percentageOfRoomsExperiencePropertyDamageFromInfestationWith) * (bedsNumber / roomsNumber) * (costOfReplaceMattressesAndBoxSpring + costOfReplaceFurnishings);
-      
-      float customerGrievanceCostsWithout =  bugInspectionAndPestControlFees;
-      
-      float brandDamageWithout = futureBookingDaysLost * (roomRevenuePerNight + foodBeverageSalesPerRoomPerNight + ancillariesRevenuePerRoomPerNight);
-      
-      float totalLossesPerBedBugInfestationIncidentWithout = remediationCostsWithout + lostRevenueWithout + propertyDamageWithout + customerGrievanceCostsWithout + brandDamageWithout;
-      float totalLossesPerBedBugInfestationIncidentWith = remediationCostsWith + lostRevenueWith + propertyDamageWith;
-      
-      //  double timesIncidentsPerYear = roomsNumber * 2.8f;
-      
-      float totalAnnualBedBugInfestationLossesWithout = totalLossesPerBedBugInfestationIncidentWithout * yourBedBugIncidentRate * roomsNumber;
-      float totalAnnualBedBugInfestationLossesWith = totalLossesPerBedBugInfestationIncidentWith * yourBedBugIncidentRate * roomsNumber;
-      
-      float mattressSpoilageCostsPerYear = bedsNumber * percentageOfMattressesReplaceEachYear * costOfReplaceMattressesAndBoxSpring;
-      
-      float preemptiveEncasementLaunderingCostsWith = timesPerYearBedClean * costToCleanAndReinstallEncasements * bedsNumber;
-      
-      float totalAnnualCostsLossesWithout = totalAnnualBedBugInfestationLossesWithout + mattressSpoilageCostsPerYear;
-      float totalAnnualCostsLossesWith = totalAnnualBedBugInfestationLossesWith + preemptiveEncasementLaunderingCostsWith;
-      
-      float totalAnnualCostsLossesPreemptive = totalAnnualCostsLossesWithout - totalAnnualCostsLossesWith;
-      
-      float totalLifetimeSavingsFromEncasingWithCleanRestPro = totalAnnualCostsLossesPreemptive * encasementCommercialWarrantyLifeSavingsPeriod;
-      
-      float totalInvestmentToEncaseAllBeds = costOfCleanRestProQueenMattressAndBoxSpringEncasements * bedsNumber;
-      
-      float roi = totalLifetimeSavingsFromEncasingWithCleanRestPro - totalInvestmentToEncaseAllBeds;
-
       UIImageView *newProperty = [[UIImageView alloc] initWithImage:[ProfitProtectorStyleKit imageOfBadgeWithSize:CGSizeMake(130.0f, 37.0f)
                                                                                                         fillColor:[UIColor whiteColor]
                                                                                                      cornerRadius:7.0f
-                                                                                                      strokeColor:[UIColor colorWithRed:0 green:0.68 blue:0.94 alpha:1]
+                                                                                                      strokeColor:[UIColor colorWithRed:0.0f green:0.68f blue:0.94f alpha:1.0f]
                                                                                                       strokeWidth:1.0f
-                                                                                                             text:[formatter_ stringFromNumber:@(roi)]
-                                                                                                        textColor:[UIColor colorWithRed:0 green:0.68 blue:0.94 alpha:1]
+                                                                                                             text:[formatter_ stringFromNumber:math[@"roi"]]
+                                                                                                        textColor:[UIColor colorWithRed:0.0f green:0.68f blue:0.94f alpha:1.0f]
                                                                                                          textFont:[UIFont fontWithName:@"HelveticaNeue" size:14.0f]]];
       [newProperty sizeToFit];
       newProperty.center = CGPointMake(CGRectGetWidth(cell.bounds) - (CGRectGetWidth(newProperty.bounds) / 2.0f) - 10.f,
@@ -193,17 +124,38 @@
                                       UIViewAutoresizingFlexibleTopMargin |
                                       UIViewAutoresizingFlexibleBottomMargin);
       [cell.contentView addSubview:newProperty];
+      
+      //
+      name_ = [[UILabel alloc] initWithFrame:CGRectZero];
+      name_.font = [UIFont fontWithName:@"HelveticaNeue" size:16.0f];
+      name_.numberOfLines = 2;
+      name_.autoresizingMask = UIViewAutoresizingFlexibleHeight;
+      [cell.contentView addSubview:name_];
     }
   }
   
   if (indexPath.section == 1)
   {
-    NSManagedObject *property = properties_[indexPath.row];
-    
-    cell.textLabel.text = [property valueForKey:@"name"];
+    name_.text = [property valueForKey:@"name"];
     
     if ([[property valueForKey:@"favorite"] boolValue])
+    {
       cell.imageView.image = [UIImage imageNamed:@"fav"];
+      
+      name_.frame = CGRectMake(40.0f,
+                               0.0f,
+                               CGRectGetWidth(cell.bounds) - 150.0f - 10.0f - (cell.imageView.image.size.width + 10.0f),
+                               CGRectGetHeight(cell.bounds));
+    }
+    else
+    {
+      cell.imageView.image = nil;
+      
+      name_.frame =  CGRectMake(10.0f,
+                                0.0f,
+                                CGRectGetWidth(cell.bounds) - 135.0f - 10.0f - (cell.imageView.image.size.width + 10.0f),
+                                CGRectGetHeight(cell.bounds));
+    }
   }
   
   return cell;
@@ -227,11 +179,18 @@
   if (indexPath.section == 0)
     return nil;
   
+  __block NSManagedObject *property = properties_[indexPath.row];
+  
+  BOOL isFavorited = [[property valueForKey:@"favorite"] boolValue];
+  
   UITableViewRowAction *fav = [UITableViewRowAction rowActionWithStyle:UITableViewRowActionStyleNormal
-                                                                 title:@"FAV"
+                                                                 title:isFavorited ? @"UNFAV" : @"FAV"
                                                                handler:^(UITableViewRowAction *action, NSIndexPath *indexPath) {
-                                                                 NSManagedObject *property = properties_[indexPath.row];
-                                                                 [property setValue:@(YES) forKey:@"favorite"];
+                                                                 
+                                                                 if (isFavorited)
+                                                                   [property setValue:@(NO) forKey:@"favorite"];
+                                                                 else
+                                                                   [property setValue:@(YES) forKey:@"favorite"];
                                                                  
                                                                  CoreDataManager *cdm = [CoreDataManager singleton];
                                                                  [cdm saveData];

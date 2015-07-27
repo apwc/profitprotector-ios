@@ -178,7 +178,7 @@
                                    npf6vc_.scvA.key: npf6vc_.scvA.value,
                                    npf6vc_.scvB.key: npf6vc_.scvB.value,
                                    npf6vc_.scvC.key: npf6vc_.scvC.value,
-                                   //npf6vc_.scvD.key: npf6vc_.scvD.value,
+                                   npf6vc_.scvD.key: npf6vc_.scvD.value,
                                    
                                    npf7vc_.scvA.key: npf7vc_.scvA.value,
                                    npf7vc_.scvB.key: npf7vc_.scvB.value}];

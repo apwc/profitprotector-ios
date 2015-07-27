@@ -1,18 +1,21 @@
 #import "HotelDetailsViewController.h"
 #import "ProfitProtectorStyleKit.h"
+#import "GlobalMethods.h"
 
 @interface HotelDetailsViewController () <UITableViewDataSource,
                                           UITableViewDelegate>
 {
-  UILabel     *lifetimeROI_;
+  NSDictionary  *math_;
   
-  UITableView *uitv_;
+  UILabel       *lifetimeROI_;
   
-  BOOL        isProfileSelected_;
+  UITableView   *uitv_;
   
-  float       totalAnnualCostsLossesWithout_,
-              totalAnnualCostsLossesWith_,
-              totalAnnualCostsLossesPreemptive_;
+  BOOL          isProfileSelected_;
+  
+  float         totalAnnualCostsLossesWithout_,
+                totalAnnualCostsLossesWith_,
+                totalAnnualCostsLossesPreemptive_;
   
   NSNumberFormatter *formatter_;
 }
@@ -30,78 +33,8 @@
   // UI customizations
   self.view.backgroundColor = [UIColor whiteColor];
   
-  // math calculations
-  // values form the database input fields
-  float ancillariesRevenuePerRoomPerNight = [[self.property valueForKey:@"ancillariesRevenuePerRoomPerNight"] floatValue];
-  float bedBugIncidents = [[self.property valueForKey:@"bedBugIncidents"] floatValue];
-  float bedsNumber = [[self.property valueForKey:@"bedsNumber"] doubleValue];
-  float bugInspectionAndPestControlFees = [[self.property valueForKey:@"bugInspectionAndPestControlFees"] floatValue];
-  float costOfReplaceFurnishings = [[self.property valueForKey:@"costOfReplaceFurnishings"] floatValue];
-  float costOfReplaceMattressesAndBoxSpring = [[self.property valueForKey:@"costOfReplaceMattressesAndBoxSpring"] floatValue];
-  float costToCleanAndReinstallEncasements = [[self.property valueForKey:@"costToCleanAndReinstallEncasements"] floatValue];
-  float foodBeverageSalesPerRoomPerNight = [[self.property valueForKey:@"foodBeverageSalesPerRoomPerNight"] floatValue];
-//  double grevianceCostsPerInfestation = [[self.property valueForKey:@"grevianceCostsPerInfestation"] doubleValue];
-  float percentageOfMattressesReplaceEachYear = [[self.property valueForKey:@"percentageOfMattressesReplaceEachYear"] floatValue] / 100.0f;
-  float roomRevenuePerNight = [[self.property valueForKey:@"roomRevenuePerNight"] floatValue];
-  float roomsNumber = [[self.property valueForKey:@"roomsNumber"] floatValue];
-  float timesPerYearBedClean = [[self.property valueForKey:@"timesPerYearBedClean"] floatValue];
-  float futureBookingDaysLost = [[self.property valueForKey:@"futureBookingDaysLost"] floatValue];
-  
-  // constants
-  float encasementCommercialWarrantyLifeSavingsPeriod = 8.0f;
-  float costOfCleanRestProQueenMattressAndBoxSpringEncasements = 80.0f;
-  
-  float roomsTreatedPerInfestationWithout = 3.75f;
-  float roomsTreatedPerInfestationWith = 1.0f;
-  
-  float typicalRemediationCostPerRoomWithout = 750.0f;
-  float typicalRemediationCostPerRoomWith = 500.0f;
-  float daysLostToRemediationTreatmentWithout = 5.0f;
-  float daysLostToRemediationTreatmentWith = 3.0f;
-  
-  float percentageOfRoomsExperiencePropertyDamageFromInfestationWithout = 0.25f;
-  float percentageOfRoomsExperiencePropertyDamageFromInfestationWith = 0.0f;
-  
-  float revenueLossRateFromRoomClosures = 0.16f;
-  
-  float yourBedBugIncidentRate = bedBugIncidents / roomsNumber;
-  
-  // sums
-  float remediationCostsWithout = roomsTreatedPerInfestationWithout * typicalRemediationCostPerRoomWithout;
-  float remediationCostsWith = roomsTreatedPerInfestationWith * typicalRemediationCostPerRoomWith;
-  
-  float lostRevenueWithout = daysLostToRemediationTreatmentWithout * (roomRevenuePerNight + foodBeverageSalesPerRoomPerNight + ancillariesRevenuePerRoomPerNight) * roomsTreatedPerInfestationWithout * revenueLossRateFromRoomClosures;
-  float lostRevenueWith = daysLostToRemediationTreatmentWith * (roomRevenuePerNight + foodBeverageSalesPerRoomPerNight + ancillariesRevenuePerRoomPerNight) * roomsTreatedPerInfestationWith * revenueLossRateFromRoomClosures;
-  
-  float propertyDamageWithout = (roomsTreatedPerInfestationWithout * percentageOfRoomsExperiencePropertyDamageFromInfestationWithout) * ((bedsNumber / roomsNumber) * costOfReplaceMattressesAndBoxSpring + costOfReplaceFurnishings);
-  float propertyDamageWith = (roomsTreatedPerInfestationWith * percentageOfRoomsExperiencePropertyDamageFromInfestationWith) * (bedsNumber / roomsNumber) * (costOfReplaceMattressesAndBoxSpring + costOfReplaceFurnishings);
-  
-  float customerGrievanceCostsWithout =  bugInspectionAndPestControlFees;
-  
-  float brandDamageWithout = futureBookingDaysLost * (roomRevenuePerNight + foodBeverageSalesPerRoomPerNight + ancillariesRevenuePerRoomPerNight);
-  
-  float totalLossesPerBedBugInfestationIncidentWithout = remediationCostsWithout + lostRevenueWithout + propertyDamageWithout + customerGrievanceCostsWithout + brandDamageWithout;
-  float totalLossesPerBedBugInfestationIncidentWith = remediationCostsWith + lostRevenueWith + propertyDamageWith;
-  
-//  double timesIncidentsPerYear = roomsNumber * 2.8f;
-  
-  float totalAnnualBedBugInfestationLossesWithout = totalLossesPerBedBugInfestationIncidentWithout * yourBedBugIncidentRate * roomsNumber;
-  float totalAnnualBedBugInfestationLossesWith = totalLossesPerBedBugInfestationIncidentWith * yourBedBugIncidentRate * roomsNumber;
-  
-  float mattressSpoilageCostsPerYear = bedsNumber * percentageOfMattressesReplaceEachYear * costOfReplaceMattressesAndBoxSpring;
-  
-  float preemptiveEncasementLaunderingCostsWith = timesPerYearBedClean * costToCleanAndReinstallEncasements * bedsNumber;
-
-  totalAnnualCostsLossesWithout_ = totalAnnualBedBugInfestationLossesWithout + mattressSpoilageCostsPerYear;
-  totalAnnualCostsLossesWith_ = totalAnnualBedBugInfestationLossesWith + preemptiveEncasementLaunderingCostsWith;
-
-  totalAnnualCostsLossesPreemptive_ = totalAnnualCostsLossesWithout_ - totalAnnualCostsLossesWith_;
-  
-  float totalLifetimeSavingsFromEncasingWithCleanRestPro = totalAnnualCostsLossesPreemptive_ * encasementCommercialWarrantyLifeSavingsPeriod;
-  
-  float totalInvestmentToEncaseAllBeds = costOfCleanRestProQueenMattressAndBoxSpringEncasements * bedsNumber;
-  
-  float roi = totalLifetimeSavingsFromEncasingWithCleanRestPro - totalInvestmentToEncaseAllBeds;
+  // get the math results
+  math_ = [GlobalMethods math:self.property];
   
   //
   UISegmentedControl *uisc = [[UISegmentedControl alloc] initWithItems:@[@"Report", @"Profile"]];
@@ -132,7 +65,7 @@
   lifetimeROI_.textColor = [UIColor whiteColor];
   lifetimeROI_.font = [UIFont fontWithName:@"HelveticaNeue" size:26.0f];
   lifetimeROI_.textAlignment = NSTextAlignmentCenter;
-  lifetimeROI_.text = [formatter_ stringFromNumber:@(roi)];
+  lifetimeROI_.text = [formatter_ stringFromNumber:math_[@"roi"]];
   [self.view addSubview:lifetimeROI_];
   
   uitv_ = [[UITableView alloc] initWithFrame:CGRectMake(0.0f,
@@ -279,7 +212,7 @@
                                                                                                          cornerRadius:7.0f
                                                                                                           strokeColor:[UIColor redColor]
                                                                                                           strokeWidth:1.0f
-                                                                                                                 text:[formatter_ stringFromNumber:@(totalAnnualCostsLossesWithout_)]
+                                                                                                                 text:[formatter_ stringFromNumber:math_[@"totalAnnualCostsLossesWithout"]]
                                                                                                             textColor:[UIColor redColor]
                                                                                                              textFont:[UIFont fontWithName:@"HelveticaNeue" size:14.0f]]];
           [newProperty sizeToFit];
@@ -298,7 +231,7 @@
                                                                                                          cornerRadius:7.0f
                                                                                                           strokeColor:[UIColor orangeColor]
                                                                                                           strokeWidth:1.0f
-                                                                                                                 text:[formatter_ stringFromNumber:@(totalAnnualCostsLossesWith_)]
+                                                                                                                 text:[formatter_ stringFromNumber:math_[@"totalAnnualCostsLossesWith"]]
                                                                                                             textColor:[UIColor orangeColor]
                                                                                                              textFont:[UIFont fontWithName:@"HelveticaNeue" size:14.0f]]];
           [newProperty sizeToFit];
@@ -320,7 +253,7 @@
                                                                                                          cornerRadius:7.0f
                                                                                                           strokeColor:[UIColor greenColor]
                                                                                                           strokeWidth:1.0f
-                                                                                                                 text:[formatter_ stringFromNumber:@(totalAnnualCostsLossesPreemptive_)]
+                                                                                                                 text:[formatter_ stringFromNumber:math_[@"totalAnnualCostsLossesPreemptive"]]
                                                                                                             textColor:[UIColor greenColor]
                                                                                                              textFont:[UIFont fontWithName:@"HelveticaNeue" size:14.0f]]];
           [newProperty sizeToFit];
