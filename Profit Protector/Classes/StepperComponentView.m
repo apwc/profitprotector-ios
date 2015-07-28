@@ -17,7 +17,7 @@
   self = [super initWithFrame:frame];
   if (self)
   {
-    self.value = @(0);
+    self.value = @(-1);
     
     // Create formatter
     formatter_ = [[NSNumberFormatter alloc] init];
@@ -94,7 +94,7 @@
     textField_.font = [UIFont fontWithName:@"HelveticaNeue" size:16.0f];
     textField_.textColor = [UIColor darkGrayColor];
     textField_.backgroundColor = [UIColor whiteColor];
-    textField_.clearsOnBeginEditing = YES;
+    //textField_.clearsOnBeginEditing = YES;
     textField_.autocorrectionType = UITextAutocorrectionTypeNo;
     [self addSubview:textField_];
   }
@@ -126,28 +126,32 @@
   NSNumber *number = [formatter_ numberFromString:textField_.text];
   textField_.text = [formatter_ stringFromNumber:@([number floatValue] - self.stepByValue)];
   
-  /*if (formatter_.numberStyle == NSNumberFormatterPercentStyle)
-  {
-    NSNumber *number = [formatter_ numberFromString:textField_.text];
-    NSLog(@"%@", number);
-   // number = @([number integerValue] * 100);
+  self.value = [formatter_ numberFromString:textField_.text];
+  
+  [self updateGlobalValues];
+}
 
-    textField_.text = [formatter_ stringFromNumber:@([number floatValue] - self.stepByValue)];
-  }
-  else
-  {
-    NSNumber *number = [formatter_ numberFromString:textField_.text];
-    //textField_.text = [formatter_ stringFromNumber:@([number floatValue] - self.stepByValue)];
-  }*/
+- (void)plus:(UIButton *)uib
+{
+  NSNumber *number = [formatter_ numberFromString:textField_.text];
+  textField_.text = [formatter_ stringFromNumber:@([number floatValue] + self.stepByValue)];
   
   self.value = [formatter_ numberFromString:textField_.text];
   
-  if ([self.key isEqualToString:@"bedsNumber"])
-  {
-    GlobalData *gb = [GlobalData singleton];
-    gb.numberOfBeds = [self.value floatValue];
-  }
+  [self updateGlobalValues];
+}
+
+- (void)formatTextField
+{
+  textField_.text = [formatter_ stringFromNumber:@([textField_.text floatValue])];
+
+  self.value = [formatter_ numberFromString:textField_.text];
   
+  [self updateGlobalValues];
+}
+
+- (void)updateGlobalValues
+{
   if ([self.key isEqualToString:@"bedsNumber"])
   {
     GlobalData *gb = [GlobalData singleton];
@@ -157,42 +161,17 @@
   if ([self.key isEqualToString:@"costOfReplaceMattressesAndBoxSpring"])
   {
     GlobalData *gb = [GlobalData singleton];
+    gb.costPerBed = [self.value floatValue];
+  }
+  
+  if ([self.key isEqualToString:@"percentageOfMattressesReplaceEachYear"])
+  {
+    GlobalData *gb = [GlobalData singleton];
     gb.percentage = [self.value floatValue];
   }
   
   [[NSNotificationCenter defaultCenter] postNotificationName:self.key
                                                       object:self.value];
-}
-
-- (void)plus:(UIButton *)uib
-{
-  NSNumber *number = [formatter_ numberFromString:textField_.text];
-  textField_.text = [formatter_ stringFromNumber:@([number floatValue] + self.stepByValue)];
-  
-  /*if (formatter_.numberStyle == NSNumberFormatterPercentStyle)
-  {
-    NSNumber *number = [formatter_ numberFromString:textField_.text];
-    NSLog(@"%@", number);
-   // number = @([number integerValue] * 100);
-    textField_.text = [formatter_ stringFromNumber:@([number floatValue] + self.stepByValue)];
-    //textField_.text = [formatter_ stringFromNumber:@(([number floatValue] + self.stepByValue) / 100.0f)];
-  }
-  else
-  {
-    //textField_.text = [formatter_ stringFromNumber:@([number floatValue] + self.stepByValue)];
-  }*/
-  
-  self.value = [formatter_ numberFromString:textField_.text];
-  
-  [[NSNotificationCenter defaultCenter] postNotificationName:self.key
-                                                      object:self.value];
-}
-
-- (void)formatTextField
-{
-  textField_.text = [formatter_ stringFromNumber:@([textField_.text floatValue])];
-
-  self.value = [formatter_ numberFromString:textField_.text];
 }
 
 #pragma mark - UITextField delegate methods implementation

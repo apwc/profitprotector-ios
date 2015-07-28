@@ -25,7 +25,7 @@
                                                                      20.0f,
                                                                      CGRectGetWidth(self.view.frame) - 40.0f,
                                                                      100.0f)];
-  self.scvA.numericType = Percentage;
+  self.scvA.numericType = Numeric;
   self.scvA.key = @"percentageOfMattressesReplaceEachYear";
   self.scvA.title = @"What percentage of mattresses do\nyour replace each year due to spoilage?";
   [self.uisv addSubview:self.scvA];
@@ -55,7 +55,7 @@
   GlobalData *gb = [GlobalData singleton];
   
   if (gb.numberOfBeds != -1.0f && gb.percentage!= -1.0f && gb.costPerBed != -1.0f)
-    label_.text = [NSString stringWithFormat:@"Total savings from spoilage alone: %.2f",
+    label_.text = [NSString stringWithFormat:@"Total savings from spoilage alone: $%.2f",
                    gb.numberOfBeds * gb.percentage * gb.costPerBed * 8.0f];
 }
 

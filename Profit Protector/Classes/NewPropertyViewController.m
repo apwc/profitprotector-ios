@@ -161,33 +161,71 @@
 
 - (void)save:(UIBarButtonItem *)uibbi
 {
+  UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Profit Protector"
+                                                                 message:@"You cannot save because some fields are missing"
+                                                          preferredStyle:UIAlertControllerStyleAlert];
+  
+  UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"Cancel"
+                                                         style:UIAlertActionStyleDestructive
+                                                       handler:nil];
+  
+  [alert addAction:cancelAction];
+  
+  if ([npf1vc_.textField.text isEqualToString:@""] ||
+      
+      [npf2vc_.scvA.value isEqualToNumber:@(-1)] ||
+      [npf2vc_.scvB.value isEqualToNumber:@(-1)] ||
+      
+      [npf3vc_.scvA.value isEqualToNumber:@(-1)] ||
+      [npf3vc_.scvB.value isEqualToNumber:@(-1)] ||
+      [npf3vc_.scvC.value isEqualToNumber:@(-1)] ||
+      
+      [npf4vc_.scvA.value isEqualToNumber:@(-1)] ||
+      [npf4vc_.scvB.value isEqualToNumber:@(-1)] ||
+      
+      [npf5vc_.scvA.value isEqualToNumber:@(-1)] ||
+      
+      [npf6vc_.scvA.value isEqualToNumber:@(-1)] ||
+      [npf6vc_.scvB.value isEqualToNumber:@(-1)] ||
+      [npf6vc_.scvC.value isEqualToNumber:@(-1)] ||
+      
+      [npf7vc_.scvA.value isEqualToNumber:@(-1)] ||
+      [npf7vc_.scvB.value isEqualToNumber:@(-1)])
+  {
+    [self presentViewController:alert animated:YES completion:nil];
+    
+    return;
+  }
+  
   GlobalData *gb = [GlobalData singleton];
   gb.numberOfBeds = -1.0f;
   gb.percentage = -1.0f;
   gb.costPerBed = -1.0f;
+
+  NSDictionary *token = @{@"name": npf1vc_.textField.text,
+                          @"propertyType": npf1vc_.propertyType.titleLabel.text,
+                          
+                          npf2vc_.scvA.key: npf2vc_.scvA.value,
+                          npf2vc_.scvB.key: npf2vc_.scvB.value,
+                          
+                          npf3vc_.scvA.key: npf3vc_.scvA.value,
+                          npf3vc_.scvB.key: npf3vc_.scvB.value,
+                          npf3vc_.scvC.key: npf3vc_.scvC.value,
+                          
+                          npf4vc_.scvA.key: npf4vc_.scvA.value,
+                          npf4vc_.scvB.key: npf4vc_.scvB.value,
+                          
+                          npf5vc_.scvA.key: npf5vc_.scvA.value,
+                          
+                          npf6vc_.scvA.key: npf6vc_.scvA.value,
+                          npf6vc_.scvB.key: npf6vc_.scvB.value,
+                          npf6vc_.scvC.key: npf6vc_.scvC.value,
+                          //npf6vc_.scvD.key: npf6vc_.scvD.value,
+                          
+                          npf7vc_.scvA.key: npf7vc_.scvA.value,
+                          npf7vc_.scvB.key: npf7vc_.scvB.value};
   
-  [CoreDataStoring storeProperty:@{@"name": npf1vc_.textField.text,
-                                   @"propertyType": npf1vc_.propertyType.titleLabel.text,
-                                   
-                                   npf2vc_.scvA.key: npf2vc_.scvA.value,
-                                   npf2vc_.scvB.key: npf2vc_.scvB.value,
-                                   
-                                   npf3vc_.scvA.key: npf3vc_.scvA.value,
-                                   npf3vc_.scvB.key: npf3vc_.scvB.value,
-                                   npf3vc_.scvC.key: npf3vc_.scvC.value,
-                                   
-                                   npf4vc_.scvA.key: npf4vc_.scvA.value,
-                                   npf4vc_.scvB.key: npf4vc_.scvB.value,
-                                   
-                                   npf5vc_.scvA.key: npf5vc_.scvA.value,
-                                   
-                                   npf6vc_.scvA.key: npf6vc_.scvA.value,
-                                   npf6vc_.scvB.key: npf6vc_.scvB.value,
-                                   npf6vc_.scvC.key: npf6vc_.scvC.value,
-                                   npf6vc_.scvD.key: npf6vc_.scvD.value,
-                                   
-                                   npf7vc_.scvA.key: npf7vc_.scvA.value,
-                                   npf7vc_.scvB.key: npf7vc_.scvB.value}];
+  [CoreDataStoring storeProperty:token];
   
   [self.navigationController popToRootViewControllerAnimated:YES];
 }
