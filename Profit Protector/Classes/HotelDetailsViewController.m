@@ -44,6 +44,7 @@
                           CGRectGetWidth(self.view.bounds) - 20.0f,
                           33.0f);
   [uisc addTarget:self action:@selector(segmentedControlEventChanged:) forControlEvents:UIControlEventValueChanged];
+  uisc.tintColor = [UIColor colorWithRed:0.0f green:0.68f blue:0.94f alpha:1.0f];
   [self.view addSubview:uisc];
   
   // Lifetime ROI
@@ -61,7 +62,7 @@
                                                            CGRectGetHeight(self.view.bounds) - 70.0f,
                                                            CGRectGetWidth(self.view.bounds),
                                                            70.0f)];
-  lifetimeROI_.backgroundColor = [UIColor greenColor];
+  lifetimeROI_.backgroundColor = [UIColor colorWithRed:0 green:0.75 blue:0.3 alpha:1];
   lifetimeROI_.textColor = [UIColor whiteColor];
   lifetimeROI_.font = [UIFont fontWithName:@"HelveticaNeue" size:26.0f];
   lifetimeROI_.textAlignment = NSTextAlignmentCenter;
@@ -125,7 +126,7 @@
                                                                    170.0f,
                                                                    CGRectGetHeight(cell.bounds))];
       details.font = [UIFont fontWithName:@"HelveticaNeue-Light" size:14.0f];
-      details.textColor = [UIColor blueColor];
+      details.textColor = [UIColor colorWithRed:0.0f green:0.68f blue:0.94f alpha:1.0f];
       details.textAlignment = NSTextAlignmentRight;
       details.autoresizingMask = (UIViewAutoresizingFlexibleLeftMargin |
                                   UIViewAutoresizingFlexibleTopMargin |
@@ -251,10 +252,10 @@
           UIImageView *newProperty = [[UIImageView alloc] initWithImage:[ProfitProtectorStyleKit imageOfBadgeWithSize:CGSizeMake(130.0f, 37.0f)
                                                                                                             fillColor:[UIColor whiteColor]
                                                                                                          cornerRadius:7.0f
-                                                                                                          strokeColor:[UIColor greenColor]
+                                                                                                          strokeColor:[UIColor colorWithRed:0 green:0.75 blue:0.3 alpha:1]
                                                                                                           strokeWidth:1.0f
                                                                                                                  text:[formatter_ stringFromNumber:math_[@"totalAnnualCostsLossesPreemptive"]]
-                                                                                                            textColor:[UIColor greenColor]
+                                                                                                            textColor:[UIColor colorWithRed:0 green:0.75 blue:0.3 alpha:1]
                                                                                                              textFont:[UIFont fontWithName:@"HelveticaNeue" size:14.0f]]];
           [newProperty sizeToFit];
           newProperty.center = CGPointMake(CGRectGetWidth(cell.bounds) - (CGRectGetWidth(newProperty.bounds) / 2.0f) - 10.f,

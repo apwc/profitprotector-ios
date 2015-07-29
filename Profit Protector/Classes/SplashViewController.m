@@ -1,6 +1,8 @@
 #import "SplashViewController.h"
 #import "SignupViewController.h"
 #import "TutorialViewController.h"
+#import "GlobalData.h"
+#import "Constants.h"
 
 @interface SplashViewController () <UITextFieldDelegate>
 @end
@@ -40,10 +42,16 @@
   username.delegate = self;
   username.font = [UIFont fontWithName:@"HelveticaNeue" size:textFieldFontsize];
   username.textColor = [UIColor blackColor];
-  username.placeholder = @"<username>";
   username.autocorrectionType = UITextAutocorrectionTypeNo;
   username.autocapitalizationType = UITextAutocapitalizationTypeNone;
   [self.view addSubview:username];
+  
+  UIImageView *usernameIcon = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"username"]];
+  usernameIcon.frame = CGRectMake(20.0f,
+                                  CGRectGetMinY(username.frame) + 10.0f,
+                                  usernameIcon.image.size.width,
+                                  usernameIcon.image.size.height);
+  [self.view addSubview:usernameIcon];
   
   // division line
   UIView *divisionLine1 = [[UIView alloc] initWithFrame:CGRectMake(0.0f,
@@ -61,11 +69,17 @@
   password.delegate = self;
   password.font = [UIFont fontWithName:@"HelveticaNeue" size:textFieldFontsize];
   password.textColor = [UIColor blackColor];
-  password.placeholder = @"<password>";
   password.autocorrectionType = UITextAutocorrectionTypeNo;
   password.autocapitalizationType = UITextAutocapitalizationTypeNone;
   password.secureTextEntry = YES;
   [self.view addSubview:password];
+  
+  UIImageView *passwordIcon = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"password"]];
+  passwordIcon.frame = CGRectMake(20.0f,
+                                  CGRectGetMinY(password.frame) + 10.0f,
+                                  usernameIcon.image.size.width,
+                                  usernameIcon.image.size.height);
+  [self.view addSubview:passwordIcon];
   
   // division line
   UIView *divisionLine2 = [[UIView alloc] initWithFrame:CGRectMake(0.0f,
@@ -115,6 +129,17 @@
              action:@selector(signup:)
    forControlEvents:UIControlEventTouchUpInside];
   [self.view addSubview:signup];
+  
+  //
+  UITapGestureRecognizer *tapper = [[UITapGestureRecognizer alloc] initWithTarget:self
+                                                                           action:@selector(handleSingleTap:)];
+  tapper.cancelsTouchesInView = NO;
+  [self.view addGestureRecognizer:tapper];
+}
+
+- (void)handleSingleTap:(UITapGestureRecognizer *) sender
+{
+  [self.view endEditing:YES];
 }
 
 - (void)forgotPassword:(UIButton *)uib
@@ -123,9 +148,17 @@
 
 - (void)signin:(UIButton *)uib
 {
-  TutorialViewController *tvc = [[TutorialViewController alloc] initWithNibName:nil
-                                                                         bundle:nil];
-  [self.navigationController pushViewController:tvc animated:YES];
+  if (![GlobalData walkthrough])
+  {
+    TutorialViewController *tvc = [[TutorialViewController alloc] initWithNibName:nil
+                                                                           bundle:nil];
+    [self.navigationController pushViewController:tvc animated:YES];
+  }
+  else
+  {
+    [[NSNotificationCenter defaultCenter] postNotificationName:displayMainViewControllerNotification
+                                                        object:nil];
+  }
 }
 
 - (void)signup:(UIButton *)uib

@@ -6,4 +6,8 @@
 @property (nonatomic) float percentage;
 @property (nonatomic) float costPerBed;
 
++ (NSString *)walkthrough;
+
++ (void)saveWalkthrough;
+
 @end

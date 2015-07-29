@@ -49,6 +49,13 @@
   name.autocapitalizationType = UITextAutocapitalizationTypeNone;
   [self.view addSubview:name];
   
+  UIImageView *usernameIcon = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"username"]];
+  usernameIcon.frame = CGRectMake(20.0f,
+                                  CGRectGetMinY(name.frame) + 10.0f,
+                                  usernameIcon.image.size.width,
+                                  usernameIcon.image.size.height);
+  [self.view addSubview:usernameIcon];
+  
   // division line
   UIView *divisionLine1 = [[UIView alloc] initWithFrame:CGRectMake(0.0f,
                                                                    130.0f + textFieldHeight,
@@ -69,6 +76,13 @@
   email.autocorrectionType = UITextAutocorrectionTypeNo;
   email.autocapitalizationType = UITextAutocapitalizationTypeNone;
   [self.view addSubview:email];
+  
+  UIImageView *emailIcon = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"email"]];
+  emailIcon.frame = CGRectMake(20.0f,
+                               CGRectGetMinY(email.frame) + 10.0f,
+                               usernameIcon.image.size.width,
+                               usernameIcon.image.size.height);
+  [self.view addSubview:emailIcon];
   
   // division line
   UIView *divisionLine2 = [[UIView alloc] initWithFrame:CGRectMake(0.0f,
@@ -91,6 +105,13 @@
   password.autocapitalizationType = UITextAutocapitalizationTypeNone;
   [self.view addSubview:password];
   
+  UIImageView *passwordIcon = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"password"]];
+  passwordIcon.frame = CGRectMake(20.0f,
+                                  CGRectGetMinY(password.frame) + 10.0f,
+                                  usernameIcon.image.size.width,
+                                  usernameIcon.image.size.height);
+  [self.view addSubview:passwordIcon];
+  
   // division line
   UIView *divisionLine3 = [[UIView alloc] initWithFrame:CGRectMake(0.0f,
                                                                    210.0f + textFieldHeight,
@@ -111,6 +132,13 @@
   company.autocorrectionType = UITextAutocorrectionTypeNo;
   company.autocapitalizationType = UITextAutocapitalizationTypeNone;
   [self.view addSubview:company];
+  
+  UIImageView *companyIcon = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"company"]];
+  companyIcon.frame = CGRectMake(20.0f,
+                                 CGRectGetMinY(company.frame) + 10.0f,
+                                 usernameIcon.image.size.width,
+                                 usernameIcon.image.size.height);
+  [self.view addSubview:companyIcon];
   
   // division line
   UIView *divisionLine4 = [[UIView alloc] initWithFrame:CGRectMake(0.0f,
@@ -168,6 +196,17 @@
              action:@selector(signin:)
    forControlEvents:UIControlEventTouchUpInside];
   [self.view addSubview:signin];
+  
+  //
+  UITapGestureRecognizer *tapper = [[UITapGestureRecognizer alloc] initWithTarget:self
+                                                                           action:@selector(handleSingleTap:)];
+  tapper.cancelsTouchesInView = NO;
+  [self.view addGestureRecognizer:tapper];
+}
+
+- (void)handleSingleTap:(UITapGestureRecognizer *) sender
+{
+  [self.view endEditing:YES];
 }
 
 - (void)close:(UIBarButtonItem *)uibbi

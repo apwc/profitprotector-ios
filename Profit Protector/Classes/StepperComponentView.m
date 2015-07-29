@@ -94,7 +94,9 @@
     textField_.font = [UIFont fontWithName:@"HelveticaNeue" size:16.0f];
     textField_.textColor = [UIColor darkGrayColor];
     textField_.backgroundColor = [UIColor whiteColor];
-    //textField_.clearsOnBeginEditing = YES;
+    textField_.keyboardType = UIKeyboardTypeDecimalPad;
+    textField_.returnKeyType = UIReturnKeyDefault;
+    textField_.enablesReturnKeyAutomatically = YES;
     textField_.autocorrectionType = UITextAutocorrectionTypeNo;
     [self addSubview:textField_];
   }

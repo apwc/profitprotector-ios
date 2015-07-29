@@ -13,16 +13,19 @@
 @interface NewPropertyViewController () <PropertyTypeDelegate,
                                          UIScrollViewDelegate>
 {
-  UIScrollView  *uisv_;
-  UIPageControl *uipc_;
+  UIScrollView                    *uisv_;
+  UIPageControl                   *uipc_;
   
-  NewPropertyForm1ViewController *npf1vc_;
-  NewPropertyForm2ViewController *npf2vc_;
-  NewPropertyForm3ViewController *npf3vc_;
-  NewPropertyForm4ViewController *npf4vc_;
-  NewPropertyForm5ViewController *npf5vc_;
-  NewPropertyForm6ViewController *npf6vc_;
-  NewPropertyForm7ViewController *npf7vc_;
+  NewPropertyForm1ViewController  *npf1vc_;
+  NewPropertyForm2ViewController  *npf2vc_;
+  NewPropertyForm3ViewController  *npf3vc_;
+  NewPropertyForm4ViewController  *npf4vc_;
+  NewPropertyForm5ViewController  *npf5vc_;
+  NewPropertyForm6ViewController  *npf6vc_;
+  NewPropertyForm7ViewController  *npf7vc_;
+  
+  UIButton                        *back_,
+                                  *next_;
 }
 @end
 
@@ -35,7 +38,7 @@
   // UI customizations
   self.view.backgroundColor = [UIColor whiteColor];
   
-  self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Save"
+  self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Finish"
                                                                             style:UIBarButtonItemStylePlain
                                                                            target:self
                                                                            action:@selector(save:)];
@@ -129,24 +132,28 @@
   [self.view addSubview:bottomBand];
   
   // back
-  UIButton *back = [[UIButton alloc] initWithFrame:CGRectMake(0.0f,
-                                                              0.0f,
-                                                              buttonWidth,
-                                                              CGRectGetHeight(bottomBand.frame))];
-  back.showsTouchWhenHighlighted = YES;
-  [back setTitle:@"Back" forState:UIControlStateNormal];
-  [back addTarget:self action:@selector(back:) forControlEvents:UIControlEventTouchUpInside];
-  [bottomBand addSubview:back];
+  back_ = [[UIButton alloc] initWithFrame:CGRectMake(0.0f,
+                                                     0.0f,
+                                                     buttonWidth,
+                                                     CGRectGetHeight(bottomBand.frame))];
+  back_.showsTouchWhenHighlighted = YES;
+  [back_ setTitle:@"Back" forState:UIControlStateNormal];
+  [back_ addTarget:self action:@selector(back:) forControlEvents:UIControlEventTouchUpInside];
+  [back_ setTitleColor:[UIColor colorWithWhite:1.0f alpha:0.2f] forState:UIControlStateDisabled];
+  [back_ setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+  [bottomBand addSubview:back_];
   
   // next
-  UIButton *next = [[UIButton alloc] initWithFrame:CGRectMake(CGRectGetWidth(bottomBand.bounds) - buttonWidth,
-                                                              0.0f,
-                                                              buttonWidth,
-                                                              CGRectGetHeight(bottomBand.frame))];
-  next.showsTouchWhenHighlighted = YES;
-  [next setTitle:@"Next" forState:UIControlStateNormal];
-  [next addTarget:self action:@selector(next:) forControlEvents:UIControlEventTouchUpInside];
-  [bottomBand addSubview:next];
+  next_ = [[UIButton alloc] initWithFrame:CGRectMake(CGRectGetWidth(bottomBand.bounds) - buttonWidth,
+                                                     0.0f,
+                                                     buttonWidth,
+                                                     CGRectGetHeight(bottomBand.frame))];
+  next_.showsTouchWhenHighlighted = YES;
+  [next_ setTitle:@"Next" forState:UIControlStateNormal];
+  [next_ addTarget:self action:@selector(next:) forControlEvents:UIControlEventTouchUpInside];
+  [next_ setTitleColor:[UIColor colorWithWhite:1.0f alpha:0.2f] forState:UIControlStateDisabled];
+  [next_ setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+  [bottomBand addSubview:next_];
 
   //
   uipc_ = [[UIPageControl alloc] initWithFrame:CGRectMake(buttonWidth,
@@ -157,6 +164,17 @@
   uipc_.currentPageIndicatorTintColor = [UIColor whiteColor];
   uipc_.numberOfPages = 7;
   [bottomBand addSubview:uipc_];
+  
+  //
+  UITapGestureRecognizer *tapper = [[UITapGestureRecognizer alloc] initWithTarget:self
+                                                                           action:@selector(handleSingleTap:)];
+  tapper.cancelsTouchesInView = NO;
+  [self.view addGestureRecognizer:tapper];
+}
+
+- (void)handleSingleTap:(UITapGestureRecognizer *) sender
+{
+  [self.view endEditing:YES];
 }
 
 - (void)save:(UIBarButtonItem *)uibbi
@@ -267,7 +285,19 @@
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView
 {
-  uipc_.currentPage = scrollView.contentOffset.x / CGRectGetWidth(self.view.bounds);
+  CGFloat xPosition = scrollView.contentOffset.x / CGRectGetWidth(self.view.bounds);
+  
+  if (xPosition < 1.0f)
+    back_.enabled = NO;
+  else
+    back_.enabled = YES;
+
+  if (xPosition > 5.0f)
+    next_.enabled = NO;
+  else
+    next_.enabled = YES;
+  
+  uipc_.currentPage = xPosition;
 }
 
 @end

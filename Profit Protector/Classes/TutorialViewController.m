@@ -1,5 +1,6 @@
 #import "TutorialViewController.h"
 #import "Constants.h"
+#import "GlobalData.h"
 #import "TutorialPage1ViewController.h"
 #import "TutorialPage2ViewController.h"
 #import "TutorialPage3ViewController.h"
@@ -76,6 +77,8 @@
 
 - (void)next:(UIButton *)uib
 {
+  [GlobalData saveWalkthrough];
+  
   [[NSNotificationCenter defaultCenter] postNotificationName:displayMainViewControllerNotification
                                                       object:nil];
 }

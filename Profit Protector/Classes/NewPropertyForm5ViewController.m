@@ -54,9 +54,9 @@
 {
   GlobalData *gb = [GlobalData singleton];
   
-  if (gb.numberOfBeds != -1.0f && gb.percentage!= -1.0f && gb.costPerBed != -1.0f)
+  if (gb.numberOfBeds != -1.0f && gb.percentage!= -1.0f)
     label_.text = [NSString stringWithFormat:@"Total savings from spoilage alone: $%.2f",
-                   gb.numberOfBeds * gb.percentage * gb.costPerBed * 8.0f];
+                   gb.numberOfBeds * gb.percentage * 80.0f * 8.0f];
 }
 
 @end

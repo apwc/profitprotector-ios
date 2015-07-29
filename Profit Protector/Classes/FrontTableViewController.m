@@ -71,8 +71,6 @@
   
   UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellReusableIdentifier];
   
-  NSManagedObject *property = properties_[indexPath.row];
-  
   if (!cell)
   {
     cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault
@@ -103,6 +101,8 @@
     
     if (indexPath.section == 1)
     {
+      NSManagedObject *property = properties_[indexPath.row];
+      
       NSNumberFormatter *formatter_ = [[NSNumberFormatter alloc] init];
       [formatter_ setNumberStyle:NSNumberFormatterCurrencyStyle];
       
@@ -136,6 +136,8 @@
   
   if (indexPath.section == 1)
   {
+    NSManagedObject *property = properties_[indexPath.row];
+    
     name_.text = [property valueForKey:@"name"];
     
     if ([[property valueForKey:@"favorite"] boolValue])
