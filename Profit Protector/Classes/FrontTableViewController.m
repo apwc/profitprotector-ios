@@ -98,45 +98,43 @@
       
       cell.clipsToBounds = YES;
     }
-    
-    if (indexPath.section == 1)
-    {
-      NSManagedObject *property = properties_[indexPath.row];
-      
-      NSNumberFormatter *formatter_ = [[NSNumberFormatter alloc] init];
-      [formatter_ setNumberStyle:NSNumberFormatterCurrencyStyle];
-      
-      // get the math results
-      NSDictionary *math = [GlobalMethods math:property];
-      
-      UIImageView *newProperty = [[UIImageView alloc] initWithImage:[ProfitProtectorStyleKit imageOfBadgeWithSize:CGSizeMake(130.0f, 37.0f)
-                                                                                                        fillColor:[UIColor whiteColor]
-                                                                                                     cornerRadius:7.0f
-                                                                                                      strokeColor:[UIColor colorWithRed:0.0f green:0.68f blue:0.94f alpha:1.0f]
-                                                                                                      strokeWidth:1.0f
-                                                                                                             text:[formatter_ stringFromNumber:math[@"roi"]]
-                                                                                                        textColor:[UIColor colorWithRed:0.0f green:0.68f blue:0.94f alpha:1.0f]
-                                                                                                         textFont:[UIFont fontWithName:@"HelveticaNeue" size:14.0f]]];
-      [newProperty sizeToFit];
-      newProperty.center = CGPointMake(CGRectGetWidth(cell.bounds) - (CGRectGetWidth(newProperty.bounds) / 2.0f) - 10.f,
-                                       CGRectGetHeight(cell.bounds) / 2.0f);
-      newProperty.autoresizingMask = (UIViewAutoresizingFlexibleLeftMargin |
-                                      UIViewAutoresizingFlexibleTopMargin |
-                                      UIViewAutoresizingFlexibleBottomMargin);
-      [cell.contentView addSubview:newProperty];
-      
-      //
-      name_ = [[UILabel alloc] initWithFrame:CGRectZero];
-      name_.font = [UIFont fontWithName:@"HelveticaNeue" size:16.0f];
-      name_.numberOfLines = 2;
-      name_.autoresizingMask = UIViewAutoresizingFlexibleHeight;
-      [cell.contentView addSubview:name_];
-    }
   }
   
   if (indexPath.section == 1)
   {
+    cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault
+                                  reuseIdentifier:cellReusableIdentifier];
+    
     NSManagedObject *property = properties_[indexPath.row];
+    
+    NSNumberFormatter *formatter_ = [[NSNumberFormatter alloc] init];
+    [formatter_ setNumberStyle:NSNumberFormatterCurrencyStyle];
+    
+    // get the math results
+    NSDictionary *math = [GlobalMethods math:property];
+    
+    UIImageView *newProperty = [[UIImageView alloc] initWithImage:[ProfitProtectorStyleKit imageOfBadgeWithSize:CGSizeMake(130.0f, 37.0f)
+                                                                                                      fillColor:[UIColor whiteColor]
+                                                                                                   cornerRadius:7.0f
+                                                                                                    strokeColor:[UIColor colorWithRed:0.0f green:0.68f blue:0.94f alpha:1.0f]
+                                                                                                    strokeWidth:1.0f
+                                                                                                           text:[formatter_ stringFromNumber:math[@"roi"]]
+                                                                                                      textColor:[UIColor colorWithRed:0.0f green:0.68f blue:0.94f alpha:1.0f]
+                                                                                                       textFont:[UIFont fontWithName:@"HelveticaNeue" size:14.0f]]];
+    [newProperty sizeToFit];
+    newProperty.center = CGPointMake(CGRectGetWidth(cell.bounds) - (CGRectGetWidth(newProperty.bounds) / 2.0f) - 10.f,
+                                     CGRectGetHeight(cell.bounds) / 2.0f);
+    newProperty.autoresizingMask = (UIViewAutoresizingFlexibleLeftMargin |
+                                    UIViewAutoresizingFlexibleTopMargin |
+                                    UIViewAutoresizingFlexibleBottomMargin);
+    [cell.contentView addSubview:newProperty];
+    
+    //
+    name_ = [[UILabel alloc] initWithFrame:CGRectZero];
+    name_.font = [UIFont fontWithName:@"HelveticaNeue" size:16.0f];
+    name_.numberOfLines = 2;
+    name_.autoresizingMask = UIViewAutoresizingFlexibleHeight;
+    [cell.contentView addSubview:name_];
     
     name_.text = [property valueForKey:@"name"];
     
@@ -209,7 +207,17 @@
                                                                  }];
   frwrd.backgroundColor = [UIColor colorWithRed:0 green:0.83 blue:0 alpha:1];
   
-  UITableViewRowAction *trsh = [UITableViewRowAction rowActionWithStyle:UITableViewRowActionStyleNormal
+  UITableViewRowAction *edt = [UITableViewRowAction rowActionWithStyle:UITableViewRowActionStyleNormal
+                                                                   title:@"EDT"
+                                                                 handler:^(UITableViewRowAction *action, NSIndexPath *indexPath) {
+                                                                   NewPropertyViewController *npvc = [[NewPropertyViewController alloc] initWithNibName:nil
+                                                                                                                                                 bundle:nil];
+                                                                   npvc.property = property;
+                                                                   [self.navigationController pushViewController:npvc animated:YES];
+                                                                 }];
+  edt.backgroundColor = [UIColor colorWithRed:0.38 green:0.54 blue:1 alpha:1];
+  
+  UITableViewRowAction *trsh = [UITableViewRowAction rowActionWithStyle:UITableViewRowActionStyleDestructive
                                                                   title:@"TRSH"
                                                                 handler:^(UITableViewRowAction *action, NSIndexPath *indexPath) {
                                                                   CoreDataManager *cdm = [CoreDataManager singleton];
@@ -220,7 +228,7 @@
                                                                   [self.tableView reloadData];
                                                                 }];
   
-  return @[trsh, frwrd, fav];
+  return @[trsh, edt, frwrd, fav];
 }
 
 #pragma mark - UITableView delegate methods implementation

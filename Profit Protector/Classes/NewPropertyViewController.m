@@ -64,6 +64,13 @@
                                   CGRectGetWidth(uisv_.bounds),
                                   CGRectGetHeight(uisv_.bounds) - buttonHeight);
   [npf1vc_.propertyType addTarget:self action:@selector(propertyType:) forControlEvents:UIControlEventTouchUpInside];
+  
+  if (self.property)
+  {
+    npf1vc_.textField.text = [self.property valueForKey:@"name"];
+    npf1vc_.propertyType.titleLabel.text = [self.property valueForKey:@"propertyType"];
+  }
+  
   [uisv_ addSubview:npf1vc_.view];
   
   //
@@ -73,6 +80,13 @@
                                   0.0f,
                                   CGRectGetWidth(uisv_.bounds),
                                   CGRectGetHeight(uisv_.bounds) - buttonHeight);
+  
+  if (self.property)
+  {
+    npf2vc_.scvA.value = [self.property valueForKey:@"roomsNumber"];
+    npf2vc_.scvB.value = [self.property valueForKey:@"bedsNumber"];
+  }
+  
   [uisv_ addSubview:npf2vc_.view];
   
   //
@@ -82,6 +96,14 @@
                                   0.0f,
                                   CGRectGetWidth(uisv_.bounds),
                                   CGRectGetHeight(uisv_.bounds) - buttonHeight);
+  
+  if (self.property)
+  {
+    npf3vc_.scvA.value = [self.property valueForKey:@"roomRevenuePerNight"];
+    npf3vc_.scvB.value = [self.property valueForKey:@"foodBeverageSalesPerRoomPerNight"];
+    npf3vc_.scvC.value = [self.property valueForKey:@"ancillariesRevenuePerRoomPerNight"];
+  }
+  
   [uisv_ addSubview:npf3vc_.view];
   
   //
@@ -91,6 +113,13 @@
                                   0.0f,
                                   CGRectGetWidth(uisv_.bounds),
                                   CGRectGetHeight(uisv_.bounds) - buttonHeight);
+  
+  if (self.property)
+  {
+    npf4vc_.scvA.value = [self.property valueForKey:@"costOfReplaceMattressesAndBoxSpring"];
+    npf4vc_.scvB.value = [self.property valueForKey:@"costOfReplaceFurnishings"];
+  }
+  
   [uisv_ addSubview:npf4vc_.view];
   
   //
@@ -100,6 +129,12 @@
                                   0.0f,
                                   CGRectGetWidth(uisv_.bounds),
                                   CGRectGetHeight(uisv_.bounds) - buttonHeight);
+  
+  if (self.property)
+  {
+    npf5vc_.scvA.value = [self.property valueForKey:@"percentageOfMattressesReplaceEachYear"];
+  }
+  
   [uisv_ addSubview:npf5vc_.view];
   
   //
@@ -109,6 +144,14 @@
                                   0.0f,
                                   CGRectGetWidth(uisv_.bounds),
                                   CGRectGetHeight(uisv_.bounds) - buttonHeight);
+  
+  if (self.property)
+  {
+    npf6vc_.scvA.value = [self.property valueForKey:@"percentageOfMattressesReplaceEachYear"];
+    npf6vc_.scvB.value = [self.property valueForKey:@"percentageOfMattressesReplaceEachYear"];
+    npf6vc_.scvC.value = [self.property valueForKey:@"percentageOfMattressesReplaceEachYear"];
+  }
+  
   [uisv_ addSubview:npf6vc_.view];
   
   //
@@ -118,6 +161,13 @@
                                   0.0f,
                                   CGRectGetWidth(uisv_.bounds),
                                   CGRectGetHeight(uisv_.bounds) - buttonHeight);
+  
+  if (self.property)
+  {
+    npf7vc_.scvA.value = [self.property valueForKey:@"bugInspectionAndPestControlFees"];
+    npf7vc_.scvB.value = [self.property valueForKey:@"futureBookingDaysLost"];
+  }
+  
   [uisv_ addSubview:npf7vc_.view];
   
   uisv_.contentSize = CGSizeMake(CGRectGetWidth(uisv_.bounds) * 7.0f,
@@ -238,12 +288,19 @@
                           npf6vc_.scvA.key: npf6vc_.scvA.value,
                           npf6vc_.scvB.key: npf6vc_.scvB.value,
                           npf6vc_.scvC.key: npf6vc_.scvC.value,
-                          //npf6vc_.scvD.key: npf6vc_.scvD.value,
                           
                           npf7vc_.scvA.key: npf7vc_.scvA.value,
                           npf7vc_.scvB.key: npf7vc_.scvB.value};
   
-  [CoreDataStoring storeProperty:token];
+  if (self.property)
+  {
+    [self.property setValuesForKeysWithDictionary:token];
+    
+    CoreDataManager *cdm = [CoreDataManager singleton];
+    [cdm.managedObjectContext save:nil];
+  }
+  else
+    [CoreDataStoring storeProperty:token];
   
   [self.navigationController popToRootViewControllerAnimated:YES];
 }

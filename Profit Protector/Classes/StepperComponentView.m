@@ -123,6 +123,15 @@
     [formatter_ setNumberStyle:NSNumberFormatterPercentStyle];
 }
 
+- (void)setValue:(NSNumber *)value
+{
+  _value = value;
+  
+  textField_.text = [formatter_ stringFromNumber:_value];
+  
+  [self updateGlobalValues];
+}
+
 - (void)minus:(UIButton *)uib
 {
   NSNumber *number = [formatter_ numberFromString:textField_.text];

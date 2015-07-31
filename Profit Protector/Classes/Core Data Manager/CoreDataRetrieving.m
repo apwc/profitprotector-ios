@@ -5,7 +5,9 @@
 + (NSArray *)properties;
 {
   NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:@"Property"];
-  request.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:@"name"
+  request.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:@"favorite"
+                                                            ascending:NO],
+                              [NSSortDescriptor sortDescriptorWithKey:@"name"
                                                             ascending:YES]];
   
   NSArray *result = [[CoreDataManager managedObjectContext] executeFetchRequest:request

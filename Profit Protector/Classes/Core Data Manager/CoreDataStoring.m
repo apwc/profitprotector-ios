@@ -4,7 +4,6 @@
 
 + (void)storeProperty:(NSDictionary *)dictionary
 {
-  NSLog(@"%@", dictionary);
   CoreDataManager *cdm = [CoreDataManager singleton];
   
   // create the entity object
