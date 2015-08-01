@@ -4,9 +4,7 @@
 #import "MainViewController.h"
 #import "FrontTableViewController.h"
 #import "LeftTableViewController.h"
-
-@interface AppDelegate ()
-@end
+#import "API.h"
 
 @implementation AppDelegate
 
@@ -35,6 +33,13 @@
                                                name:userDidLogoutNotification
                                              object:nil];
   
+  //
+  /*[API createUser:@"david"
+         password:@"david"
+             name:@"David"
+            email:@"david@david.com"
+             role:@"Designer"];*/
+  
   return YES;
 }
 
@@ -51,7 +56,7 @@
 
 - (void)displayMainViewController:(NSNotification *)notification
 {
-  MainViewController *mvc = [MainViewController revealControllerWithFrontViewController:[[UINavigationController alloc] initWithRootViewController:[[FrontTableViewController alloc] initWithStyle:UITableViewStylePlain]]
+  MainViewController *mvc = [MainViewController revealControllerWithFrontViewController:[[UINavigationController alloc] initWithRootViewController:[[FrontTableViewController alloc] initWithNibName:nil bundle:nil]]
                                                                      leftViewController:[[LeftTableViewController alloc] initWithStyle:UITableViewStylePlain]];
   
   self.window.rootViewController = mvc;

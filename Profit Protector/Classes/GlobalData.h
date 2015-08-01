@@ -10,4 +10,12 @@
 
 + (void)saveWalkthrough;
 
++ (NSString *)username;
+
++ (void)saveUsername:(NSString *)username;
+
++ (NSString *)password;
+
++ (void)savePassword:(NSString *)password;
+
 @end

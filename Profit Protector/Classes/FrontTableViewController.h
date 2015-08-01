@@ -1,4 +1,4 @@
 @import UIKit;
 
-@interface FrontTableViewController : UITableViewController
+@interface FrontTableViewController : UIViewController
 @end

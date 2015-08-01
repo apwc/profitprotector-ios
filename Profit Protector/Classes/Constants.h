@@ -3,6 +3,12 @@
 #define persistenceDBName @"Profit_Protector"
 #define persistenceDBNameSuffix @"sqlite"
 
+#define apiPrefix @"http://cleanrestapp.com/wp-json/"
+#define adminUsername @"cleanrestadmin"
+#define adminPassword @"vRjycfxrLcmo"
+#define properties @"posts"
+#define users @"users"
+
 #pragma mark - Core Data SQLite database reset
 
 #define contentClearProcessStartNotification @"contentClearProcessStartNotification"
