@@ -1,6 +1,10 @@
 #import "Singleton.h"
+#import "Constants.h"
 
 @interface API : Singleton
+
++ (void)loginWithUsername:(NSString *)username
+                 password:(NSString *)password;
 
 + (void)createUser:(NSString *)username
           password:(NSString *)password

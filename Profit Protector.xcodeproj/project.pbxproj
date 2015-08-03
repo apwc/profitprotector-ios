@@ -45,6 +45,7 @@
 		B7A58F271B4DFC3800C408D8 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = B7A58F1D1B4DFC3800C408D8 /* LaunchScreen.xib */; };
 		B7A58F2A1B4DFC3800C408D8 /* Profit_Protector.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = B7A58F211B4DFC3800C408D8 /* Profit_Protector.xcdatamodeld */; };
 		B7A58F2B1B4DFC3800C408D8 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = B7A58F231B4DFC3800C408D8 /* main.m */; };
+		B7C3F9AB1B6EE7CA00C252EE /* UserTypeTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B7C3F9AA1B6EE7CA00C252EE /* UserTypeTableViewController.m */; };
 		B7D8ACC81B5A3F3C00041ED1 /* CoreDataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = B7D8ACC31B5A3F3C00041ED1 /* CoreDataManager.m */; };
 		B7D8ACC91B5A3F3C00041ED1 /* CoreDataRetrieving.m in Sources */ = {isa = PBXBuildFile; fileRef = B7D8ACC51B5A3F3C00041ED1 /* CoreDataRetrieving.m */; };
 		B7D8ACCA1B5A3F3C00041ED1 /* CoreDataStoring.m in Sources */ = {isa = PBXBuildFile; fileRef = B7D8ACC71B5A3F3C00041ED1 /* CoreDataStoring.m */; };
@@ -136,6 +137,8 @@
 		B7A58F221B4DFC3800C408D8 /* Profit_Protector.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Profit_Protector.xcdatamodel; sourceTree = "<group>"; };
 		B7A58F231B4DFC3800C408D8 /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		B7AB0ECE1B4CE82E00AB6A3E /* Profit Protector.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Profit Protector.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		B7C3F9A91B6EE7CA00C252EE /* UserTypeTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserTypeTableViewController.h; sourceTree = "<group>"; };
+		B7C3F9AA1B6EE7CA00C252EE /* UserTypeTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserTypeTableViewController.m; sourceTree = "<group>"; };
 		B7D8ACC21B5A3F3C00041ED1 /* CoreDataManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CoreDataManager.h; sourceTree = "<group>"; };
 		B7D8ACC31B5A3F3C00041ED1 /* CoreDataManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CoreDataManager.m; sourceTree = "<group>"; };
 		B7D8ACC41B5A3F3C00041ED1 /* CoreDataRetrieving.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CoreDataRetrieving.h; sourceTree = "<group>"; };
@@ -307,6 +310,8 @@
 				B791E3B21B55E15D00C697F1 /* StepperComponentView.m */,
 				B768D7FA1B50B41D00D2FEF7 /* SuperViewController.h */,
 				B768D7FB1B50B41D00D2FEF7 /* SuperViewController.m */,
+				B7C3F9A91B6EE7CA00C252EE /* UserTypeTableViewController.h */,
+				B7C3F9AA1B6EE7CA00C252EE /* UserTypeTableViewController.m */,
 				B791E3A51B55D97200C697F1 /* TutorialPage1ViewController.h */,
 				B791E3A61B55D97200C697F1 /* TutorialPage1ViewController.m */,
 				B791E3A81B55D98500C697F1 /* TutorialPage2ViewController.h */,
@@ -477,6 +482,7 @@
 				B768D8231B50E54B00D2FEF7 /* CAAnimation+PKIdentifier.m in Sources */,
 				B768D82F1B50E5BB00D2FEF7 /* MainViewController.m in Sources */,
 				B7D8ACCA1B5A3F3C00041ED1 /* CoreDataStoring.m in Sources */,
+				B7C3F9AB1B6EE7CA00C252EE /* UserTypeTableViewController.m in Sources */,
 				B72789141B65A831000AB281 /* GlobalMethods.m in Sources */,
 				B768D8251B50E54B00D2FEF7 /* NSObject+PKBlocks.m in Sources */,
 				B7FEF8D91B548DC00018CB7D /* NewPropertyForm4ViewController.m in Sources */,

@@ -33,3 +33,11 @@
 #define updateUserInterfaceNotification @"updateUserInterfaceNotification"
 #define userHasBeenRegisteredNotification @"userHasBeenRegisteredNotification"
 #define userDidLogoutNotification @"userDidLogoutNotification"
+
+#pragma mark - API
+
+#define apiUserLoginSuccessfulNotification @"apiUserLoginSuccessfulNotification"
+#define apiUserLoginErrorNotification @"apiUserLoginErrorNotification"
+
+#define apiUserSignupSuccessfulNotification @"apiUserSignupSuccessfulNotification"
+#define apiUserSignupErrorNotification @"apiUserSignupErrorNotification"

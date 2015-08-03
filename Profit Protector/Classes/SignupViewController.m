@@ -1,6 +1,20 @@
 #import "SignupViewController.h"
+#import "API.h"
+#import "GlobalData.h"
+#import "UserTypeTableViewController.h"
 
-@interface SignupViewController () <UITextFieldDelegate>
+@interface SignupViewController () <UITextFieldDelegate,
+                                    UserTypeDelegate>
+{
+  UIScrollView *uisv_;
+  
+  UITextField *name_,
+              *username_,
+              *password_,
+              *email_,
+              *company_,
+              *type_;
+}
 @end
 
 @implementation SignupViewController
@@ -9,19 +23,15 @@
 {
   [super viewDidLoad];
   
-  UIToolbar *uit = [[UIToolbar alloc] initWithFrame:CGRectMake(0.0f,
-                                                               0.0f,
-                                                               CGRectGetWidth(self.view.frame),
-                                                               64.0f)];
-  uit.items = @[[[UIBarButtonItem alloc] initWithTitle:@"Close"
-                                                 style:UIBarButtonItemStylePlain
-                                                target:self
-                                                action:@selector(close:)],
-                [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace
-                                                              target:nil
-                                                              action:nil]];
-  [self.view addSubview:uit];
+  self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Close"
+                                                                           style:UIBarButtonItemStylePlain
+                                                                          target:self
+                                                                          action:@selector(close:)];
   
+  uisv_ = [[UIScrollView alloc] initWithFrame:self.view.bounds];
+  uisv_.autoresizingMask = (UIViewAutoresizingFlexibleWidth |
+                            UIViewAutoresizingFlexibleHeight);
+  [self.view addSubview:uisv_];
   
   UILabel *title = [[UILabel alloc] initWithFrame:CGRectMake(15.0f,
                                                              74.0f,
@@ -30,145 +40,167 @@
   title.text = @"Sign Up";
   title.font = [UIFont fontWithName:@"HelveticaNeue" size:26.0f];
   title.textColor = [UIColor darkGrayColor];
-  [self.view addSubview:title];
+  [uisv_ addSubview:title];
   
   CGFloat textFieldHeight = 37.0f;
   CGFloat textFieldFontsize = 16.0f;
   CGFloat buttonHeight = 60.0f;
   
   // username
-  UITextField *name = [[UITextField alloc] initWithFrame:CGRectMake(60.0f,
-                                                                    130.0f,
-                                                                    CGRectGetWidth(self.view.bounds) - 60.0f,
-                                                                    textFieldHeight)];
-  name.delegate = self;
-  name.font = [UIFont fontWithName:@"HelveticaNeue" size:textFieldFontsize];
-  name.textColor = [UIColor blackColor];
-  name.placeholder = @"<name>";
-  name.autocorrectionType = UITextAutocorrectionTypeNo;
-  name.autocapitalizationType = UITextAutocapitalizationTypeNone;
-  [self.view addSubview:name];
+  username_ = [[UITextField alloc] initWithFrame:CGRectMake(60.0f,
+                                                            CGRectGetMaxY(title.frame),
+                                                            CGRectGetWidth(self.view.bounds) - 60.0f,
+                                                            textFieldHeight)];
+  username_.delegate = self;
+  username_.font = [UIFont fontWithName:@"HelveticaNeue" size:textFieldFontsize];
+  username_.textColor = [UIColor blackColor];
+  username_.autocorrectionType = UITextAutocorrectionTypeNo;
+  username_.autocapitalizationType = UITextAutocapitalizationTypeNone;
+  [uisv_ addSubview:username_];
   
   UIImageView *usernameIcon = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"username"]];
   usernameIcon.frame = CGRectMake(20.0f,
-                                  CGRectGetMinY(name.frame) + 10.0f,
+                                  CGRectGetMinY(username_.frame) + 10.0f,
                                   usernameIcon.image.size.width,
                                   usernameIcon.image.size.height);
-  [self.view addSubview:usernameIcon];
+  [uisv_ addSubview:usernameIcon];
   
   // division line
   UIView *divisionLine1 = [[UIView alloc] initWithFrame:CGRectMake(0.0f,
-                                                                   130.0f + textFieldHeight,
+                                                                   CGRectGetMaxY(username_.frame),
                                                                    CGRectGetWidth(self.view.bounds),
                                                                    1.0f)];
   divisionLine1.backgroundColor = [UIColor colorWithWhite:0.7f alpha:1.0f];
-  [self.view addSubview:divisionLine1];
+  [uisv_ addSubview:divisionLine1];
   
-  // username
-  UITextField *email = [[UITextField alloc] initWithFrame:CGRectMake(60.0f,
-                                                                     170.0f,
-                                                                     CGRectGetWidth(self.view.bounds) - 60.0f,
-                                                                     textFieldHeight)];
-  email.delegate = self;
-  email.font = [UIFont fontWithName:@"HelveticaNeue" size:textFieldFontsize];
-  email.textColor = [UIColor blackColor];
-  email.placeholder = @"<email>";
-  email.autocorrectionType = UITextAutocorrectionTypeNo;
-  email.autocapitalizationType = UITextAutocapitalizationTypeNone;
-  [self.view addSubview:email];
-  
-  UIImageView *emailIcon = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"email"]];
-  emailIcon.frame = CGRectMake(20.0f,
-                               CGRectGetMinY(email.frame) + 10.0f,
-                               usernameIcon.image.size.width,
-                               usernameIcon.image.size.height);
-  [self.view addSubview:emailIcon];
-  
-  // division line
-  UIView *divisionLine2 = [[UIView alloc] initWithFrame:CGRectMake(0.0f,
-                                                                   170.0f + textFieldHeight,
-                                                                   CGRectGetWidth(self.view.bounds),
-                                                                   1.0f)];
-  divisionLine2.backgroundColor = [UIColor colorWithWhite:0.7f alpha:1.0f];
-  [self.view addSubview:divisionLine2];
-  
-  // username
-  UITextField *password = [[UITextField alloc] initWithFrame:CGRectMake(60.0f,
-                                                                        210.0f,
-                                                                        CGRectGetWidth(self.view.bounds) - 60.0f,
-                                                                        textFieldHeight)];
-  password.delegate = self;
-  password.font = [UIFont fontWithName:@"HelveticaNeue" size:textFieldFontsize];
-  password.textColor = [UIColor blackColor];
-  password.placeholder = @"<password>";
-  password.autocorrectionType = UITextAutocorrectionTypeNo;
-  password.autocapitalizationType = UITextAutocapitalizationTypeNone;
-  [self.view addSubview:password];
+  // password
+  password_ = [[UITextField alloc] initWithFrame:CGRectMake(60.0f,
+                                                            CGRectGetMaxY(username_.frame),
+                                                            CGRectGetWidth(self.view.bounds) - 60.0f,
+                                                            textFieldHeight)];
+  password_.delegate = self;
+  password_.font = [UIFont fontWithName:@"HelveticaNeue" size:textFieldFontsize];
+  password_.textColor = [UIColor blackColor];
+  password_.autocorrectionType = UITextAutocorrectionTypeNo;
+  password_.autocapitalizationType = UITextAutocapitalizationTypeNone;
+  [uisv_ addSubview:password_];
   
   UIImageView *passwordIcon = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"password"]];
   passwordIcon.frame = CGRectMake(20.0f,
-                                  CGRectGetMinY(password.frame) + 10.0f,
+                                  CGRectGetMinY(password_.frame) + 10.0f,
                                   usernameIcon.image.size.width,
                                   usernameIcon.image.size.height);
-  [self.view addSubview:passwordIcon];
+  [uisv_ addSubview:passwordIcon];
+  
+  // division line
+  UIView *divisionLine2 = [[UIView alloc] initWithFrame:CGRectMake(0.0f,
+                                                                   CGRectGetMaxY(password_.frame),
+                                                                   CGRectGetWidth(self.view.bounds),
+                                                                   1.0f)];
+  divisionLine2.backgroundColor = [UIColor colorWithWhite:0.7f alpha:1.0f];
+  [uisv_ addSubview:divisionLine2];
+  
+  // name
+  name_ = [[UITextField alloc] initWithFrame:CGRectMake(60.0f,
+                                                        CGRectGetMaxY(password_.frame),
+                                                        CGRectGetWidth(self.view.bounds) - 60.0f,
+                                                        textFieldHeight)];
+  name_.delegate = self;
+  name_.font = [UIFont fontWithName:@"HelveticaNeue" size:textFieldFontsize];
+  name_.textColor = [UIColor blackColor];
+  name_.autocorrectionType = UITextAutocorrectionTypeNo;
+  name_.autocapitalizationType = UITextAutocapitalizationTypeNone;
+  [uisv_ addSubview:name_];
+  
+  UIImageView *nameIcon = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"username"]];
+  nameIcon.frame = CGRectMake(20.0f,
+                              CGRectGetMinY(name_.frame) + 10.0f,
+                              usernameIcon.image.size.width,
+                              usernameIcon.image.size.height);
+  [uisv_ addSubview:nameIcon];
   
   // division line
   UIView *divisionLine3 = [[UIView alloc] initWithFrame:CGRectMake(0.0f,
-                                                                   210.0f + textFieldHeight,
+                                                                   CGRectGetMaxY(name_.frame),
                                                                    CGRectGetWidth(self.view.bounds),
                                                                    1.0f)];
   divisionLine3.backgroundColor = [UIColor colorWithWhite:0.7f alpha:1.0f];
-  [self.view addSubview:divisionLine3];
+  [uisv_ addSubview:divisionLine3];
+
+  // email
+  email_ = [[UITextField alloc] initWithFrame:CGRectMake(60.0f,
+                                                         CGRectGetMaxY(name_.frame),
+                                                         CGRectGetWidth(self.view.bounds) - 60.0f,
+                                                         textFieldHeight)];
+  email_.delegate = self;
+  email_.font = [UIFont fontWithName:@"HelveticaNeue" size:textFieldFontsize];
+  email_.textColor = [UIColor blackColor];
+  email_.autocorrectionType = UITextAutocorrectionTypeNo;
+  email_.autocapitalizationType = UITextAutocapitalizationTypeNone;
+  [uisv_ addSubview:email_];
   
-  // username
-  UITextField *company = [[UITextField alloc] initWithFrame:CGRectMake(60.0f,
-                                                                       250.0f,
-                                                                       CGRectGetWidth(self.view.bounds) - 60.0f,
-                                                                       textFieldHeight)];
-  company.delegate = self;
-  company.font = [UIFont fontWithName:@"HelveticaNeue" size:textFieldFontsize];
-  company.textColor = [UIColor blackColor];
-  company.placeholder = @"<company>";
-  company.autocorrectionType = UITextAutocorrectionTypeNo;
-  company.autocapitalizationType = UITextAutocapitalizationTypeNone;
-  [self.view addSubview:company];
-  
-  UIImageView *companyIcon = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"company"]];
-  companyIcon.frame = CGRectMake(20.0f,
-                                 CGRectGetMinY(company.frame) + 10.0f,
-                                 usernameIcon.image.size.width,
-                                 usernameIcon.image.size.height);
-  [self.view addSubview:companyIcon];
+  UIImageView *emailIcon = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"email"]];
+  emailIcon.frame = CGRectMake(20.0f,
+                               CGRectGetMinY(email_.frame) + 10.0f,
+                               usernameIcon.image.size.width,
+                               usernameIcon.image.size.height);
+  [uisv_ addSubview:emailIcon];
   
   // division line
   UIView *divisionLine4 = [[UIView alloc] initWithFrame:CGRectMake(0.0f,
-                                                                   250.0f + textFieldHeight,
+                                                                   CGRectGetMaxY(email_.frame),
                                                                    CGRectGetWidth(self.view.bounds),
                                                                    1.0f)];
   divisionLine4.backgroundColor = [UIColor colorWithWhite:0.7f alpha:1.0f];
-  [self.view addSubview:divisionLine4];
+  [uisv_ addSubview:divisionLine4];
   
-  // username
-  UITextField *type = [[UITextField alloc] initWithFrame:CGRectMake(60.0f,
-                                                                    290.0f,
-                                                                    CGRectGetWidth(self.view.bounds) - 60.0f,
-                                                                    textFieldHeight)];
-  type.delegate = self;
-  type.font = [UIFont fontWithName:@"HelveticaNeue" size:textFieldFontsize];
-  type.textColor = [UIColor blackColor];
-  type.placeholder = @"<type>";
-  type.autocorrectionType = UITextAutocorrectionTypeNo;
-  type.autocapitalizationType = UITextAutocapitalizationTypeNone;
-  type.enabled = NO;
-  [self.view addSubview:type];
+  // company
+  company_ = [[UITextField alloc] initWithFrame:CGRectMake(60.0f,
+                                                           CGRectGetMaxY(email_.frame),
+                                                           CGRectGetWidth(self.view.bounds) - 60.0f,
+                                                           textFieldHeight)];
+  company_.delegate = self;
+  company_.font = [UIFont fontWithName:@"HelveticaNeue" size:textFieldFontsize];
+  company_.textColor = [UIColor blackColor];
+  company_.autocorrectionType = UITextAutocorrectionTypeNo;
+  company_.autocapitalizationType = UITextAutocapitalizationTypeNone;
+  [uisv_ addSubview:company_];
+  
+  UIImageView *companyIcon = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"company"]];
+  companyIcon.frame = CGRectMake(20.0f,
+                                 CGRectGetMinY(company_.frame) + 10.0f,
+                                 usernameIcon.image.size.width,
+                                 usernameIcon.image.size.height);
+  [uisv_ addSubview:companyIcon];
   
   // division line
   UIView *divisionLine5 = [[UIView alloc] initWithFrame:CGRectMake(0.0f,
-                                                                   290.0f + textFieldHeight,
+                                                                   CGRectGetMaxY(company_.frame),
                                                                    CGRectGetWidth(self.view.bounds),
                                                                    1.0f)];
   divisionLine5.backgroundColor = [UIColor colorWithWhite:0.7f alpha:1.0f];
-  [self.view addSubview:divisionLine5];
+  [uisv_ addSubview:divisionLine5];
+  
+  // username
+  type_ = [[UITextField alloc] initWithFrame:CGRectMake(60.0f,
+                                                        CGRectGetMaxY(company_.frame),
+                                                        CGRectGetWidth(self.view.bounds) - 60.0f,
+                                                        textFieldHeight)];
+  type_.delegate = self;
+  type_.font = [UIFont fontWithName:@"HelveticaNeue" size:textFieldFontsize];
+  type_.textColor = [UIColor blackColor];
+  type_.autocorrectionType = UITextAutocorrectionTypeNo;
+  type_.autocapitalizationType = UITextAutocapitalizationTypeNone;
+  type_.enabled = YES;
+  [uisv_ addSubview:type_];
+  
+  // division line
+  UIView *divisionLine6 = [[UIView alloc] initWithFrame:CGRectMake(0.0f,
+                                                                   CGRectGetMaxY(type_.frame),
+                                                                   CGRectGetWidth(self.view.bounds),
+                                                                   1.0f)];
+  divisionLine6.backgroundColor = [UIColor colorWithWhite:0.7f alpha:1.0f];
+  [uisv_ addSubview:divisionLine6];
   
   // signup
   UIButton *signup = [[UIButton alloc] initWithFrame:CGRectMake(0.0f,
@@ -181,7 +213,7 @@
   [signup addTarget:self
              action:@selector(join:)
    forControlEvents:UIControlEventTouchUpInside];
-  [self.view addSubview:signup];
+  [uisv_ addSubview:signup];
   
   // signup
   UIButton *signin = [[UIButton alloc] initWithFrame:CGRectMake(0.0f,
@@ -195,13 +227,20 @@
   [signin addTarget:self
              action:@selector(signin:)
    forControlEvents:UIControlEventTouchUpInside];
-  [self.view addSubview:signin];
+  [uisv_ addSubview:signin];
   
   //
   UITapGestureRecognizer *tapper = [[UITapGestureRecognizer alloc] initWithTarget:self
                                                                            action:@selector(handleSingleTap:)];
   tapper.cancelsTouchesInView = NO;
-  [self.view addGestureRecognizer:tapper];
+  [uisv_ addGestureRecognizer:tapper];
+  
+  //
+  //
+  [[NSNotificationCenter defaultCenter] addObserver:self
+                                           selector:@selector(apiUserSignupSuccessful:)
+                                               name:apiUserSignupSuccessfulNotification
+                                             object:nil];
 }
 
 - (void)handleSingleTap:(UITapGestureRecognizer *) sender
@@ -216,7 +255,11 @@
 
 - (void)join:(UIButton *)uib
 {
-  
+  [API createUser:username_.text
+         password:password_.text
+             name:name_.text
+            email:email_.text
+             role:type_.text];
 }
 
 - (void)signin:(UIButton *)uib
@@ -224,8 +267,40 @@
   [self dismissViewControllerAnimated:YES completion:nil];
 }
 
+- (void)userTypeSelected:(NSString *)userType
+{
+  type_.text = userType;
+}
+
+#pragma mark - API notifications callbacks
+
+- (void)apiUserSignupSuccessful:(NSNotification *)notification
+{
+  [GlobalData saveUsername:username_.text];
+  [GlobalData savePassword:password_.text];
+  
+  [self dismissViewControllerAnimated:YES
+                           completion:^{
+                             [[NSNotificationCenter defaultCenter] postNotificationName:userHasBeenRegisteredNotification
+                                                                                 object:nil];
+                           }];
+}
+
 #pragma mark - UITextField delegate methods implementation
 
+- (BOOL)textFieldShouldBeginEditing:(UITextField *)textField
+{
+  if (textField == type_)
+  {
+    UserTypeTableViewController *uttvc = [[UserTypeTableViewController alloc] initWithStyle:UITableViewStylePlain];
+    uttvc.delegate = self;
+    [self.navigationController pushViewController:uttvc animated:YES];
+    
+    return NO;
+  }
+  
+  return YES;
+}
 - (BOOL)textFieldShouldEndEditing:(UITextField *)textField
 {
   return YES;

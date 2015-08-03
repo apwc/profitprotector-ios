@@ -2,9 +2,13 @@
 #import "SignupViewController.h"
 #import "TutorialViewController.h"
 #import "GlobalData.h"
-#import "Constants.h"
+#import "API.h"
 
 @interface SplashViewController () <UITextFieldDelegate>
+{
+  UITextField *username_,
+              *password_;
+}
 @end
 
 @implementation SplashViewController
@@ -35,55 +39,55 @@
   CGFloat buttonHeight = 60.0f;
   
   // username
-  UITextField *username = [[UITextField alloc] initWithFrame:CGRectMake(60.0f,
-                                                                        CGRectGetMaxY(copy.frame) + 20.0f,
-                                                                        CGRectGetWidth(self.view.bounds) - 60.0f,
-                                                                        textFieldHeight)];
-  username.delegate = self;
-  username.font = [UIFont fontWithName:@"HelveticaNeue" size:textFieldFontsize];
-  username.textColor = [UIColor blackColor];
-  username.autocorrectionType = UITextAutocorrectionTypeNo;
-  username.autocapitalizationType = UITextAutocapitalizationTypeNone;
-  [self.view addSubview:username];
+  username_ = [[UITextField alloc] initWithFrame:CGRectMake(60.0f,
+                                                            CGRectGetMaxY(copy.frame) + 20.0f,
+                                                            CGRectGetWidth(self.view.bounds) - 60.0f,
+                                                            textFieldHeight)];
+  username_.delegate = self;
+  username_.font = [UIFont fontWithName:@"HelveticaNeue" size:textFieldFontsize];
+  username_.textColor = [UIColor blackColor];
+  username_.autocorrectionType = UITextAutocorrectionTypeNo;
+  username_.autocapitalizationType = UITextAutocapitalizationTypeNone;
+  [self.view addSubview:username_];
   
   UIImageView *usernameIcon = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"username"]];
   usernameIcon.frame = CGRectMake(20.0f,
-                                  CGRectGetMinY(username.frame) + 10.0f,
+                                  CGRectGetMinY(username_.frame) + 10.0f,
                                   usernameIcon.image.size.width,
                                   usernameIcon.image.size.height);
   [self.view addSubview:usernameIcon];
   
   // division line
   UIView *divisionLine1 = [[UIView alloc] initWithFrame:CGRectMake(0.0f,
-                                                                   CGRectGetMaxY(username.frame),
+                                                                   CGRectGetMaxY(username_.frame),
                                                                    CGRectGetWidth(self.view.bounds),
                                                                    1.0f)];
   divisionLine1.backgroundColor = [UIColor colorWithWhite:0.7f alpha:1.0f];
   [self.view addSubview:divisionLine1];
   
   // username
-  UITextField *password = [[UITextField alloc] initWithFrame:CGRectMake(60.0f,
-                                                                        CGRectGetMaxY(username.frame),
-                                                                        CGRectGetWidth(self.view.bounds) - 60.0f,
-                                                                        textFieldHeight)];
-  password.delegate = self;
-  password.font = [UIFont fontWithName:@"HelveticaNeue" size:textFieldFontsize];
-  password.textColor = [UIColor blackColor];
-  password.autocorrectionType = UITextAutocorrectionTypeNo;
-  password.autocapitalizationType = UITextAutocapitalizationTypeNone;
-  password.secureTextEntry = YES;
-  [self.view addSubview:password];
+  password_ = [[UITextField alloc] initWithFrame:CGRectMake(60.0f,
+                                                            CGRectGetMaxY(username_.frame),
+                                                            CGRectGetWidth(self.view.bounds) - 60.0f,
+                                                            textFieldHeight)];
+  password_.delegate = self;
+  password_.font = [UIFont fontWithName:@"HelveticaNeue" size:textFieldFontsize];
+  password_.textColor = [UIColor blackColor];
+  password_.autocorrectionType = UITextAutocorrectionTypeNo;
+  password_.autocapitalizationType = UITextAutocapitalizationTypeNone;
+  password_.secureTextEntry = YES;
+  [self.view addSubview:password_];
   
   UIImageView *passwordIcon = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"password"]];
   passwordIcon.frame = CGRectMake(20.0f,
-                                  CGRectGetMinY(password.frame) + 10.0f,
+                                  CGRectGetMinY(password_.frame) + 10.0f,
                                   usernameIcon.image.size.width,
                                   usernameIcon.image.size.height);
   [self.view addSubview:passwordIcon];
   
   // division line
   UIView *divisionLine2 = [[UIView alloc] initWithFrame:CGRectMake(0.0f,
-                                                                   CGRectGetMaxY(password.frame),
+                                                                   CGRectGetMaxY(password_.frame),
                                                                    CGRectGetWidth(self.view.bounds),
                                                                    1.0f)];
   divisionLine2.backgroundColor = [UIColor colorWithWhite:0.7f alpha:1.0f];
@@ -91,7 +95,7 @@
   
   // signup
   UIButton *forgotPassword = [[UIButton alloc] initWithFrame:CGRectMake(CGRectGetWidth(self.view.bounds) / 2.0f,
-                                                                        CGRectGetMaxY(password.frame),
+                                                                        CGRectGetMaxY(password_.frame),
                                                                         CGRectGetWidth(self.view.bounds) / 2.0f,
                                                                         buttonHeight / 2.0f)];
   forgotPassword.showsTouchWhenHighlighted = YES;
@@ -135,6 +139,17 @@
                                                                            action:@selector(handleSingleTap:)];
   tapper.cancelsTouchesInView = NO;
   [self.view addGestureRecognizer:tapper];
+  
+  //
+  [[NSNotificationCenter defaultCenter] addObserver:self
+                                           selector:@selector(apiUserLoginSuccessful:)
+                                               name:apiUserLoginSuccessfulNotification
+                                             object:nil];
+  
+  [[NSNotificationCenter defaultCenter] addObserver:self
+                                           selector:@selector(userHasBeenRegistered:)
+                                               name:userHasBeenRegisteredNotification
+                                             object:nil];
 }
 
 - (void)handleSingleTap:(UITapGestureRecognizer *) sender
@@ -148,6 +163,27 @@
 
 - (void)signin:(UIButton *)uib
 {
+  [API loginWithUsername:username_.text
+                password:password_.text];
+}
+
+- (void)signup:(UIButton *)uib
+{
+  SignupViewController *svc = [[SignupViewController alloc] initWithNibName:nil
+                                                                     bundle:nil];
+  
+  [self presentViewController:[[UINavigationController alloc] initWithRootViewController:svc]
+                     animated:YES
+                   completion:nil];
+}
+
+#pragma mark - API notifications callbacks
+
+- (void)apiUserLoginSuccessful:(NSNotification *)notification
+{
+  [GlobalData saveUsername:username_.text];
+  [GlobalData savePassword:password_.text];
+  
   if (![GlobalData walkthrough])
   {
     TutorialViewController *tvc = [[TutorialViewController alloc] initWithNibName:nil
@@ -161,11 +197,10 @@
   }
 }
 
-- (void)signup:(UIButton *)uib
+- (void)userHasBeenRegistered:(NSNotification *)notification
 {
-  SignupViewController *svc = [[SignupViewController alloc] initWithNibName:nil
-                                                                     bundle:nil];
-  [self presentViewController:svc animated:YES completion:nil];
+  [API loginWithUsername:[GlobalData username]
+                password:[GlobalData password]];
 }
 
 #pragma mark - UITextField delegate methods implementation

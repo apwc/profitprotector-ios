@@ -38,11 +38,13 @@
   
   // new property
   UIButton *new = [UIButton buttonWithType:UIButtonTypeCustom];
-  new.frame = CGRectMake(0.0f, 64.0, CGRectGetWidth(self.view.frame), 200.0f);
-  [new setImage:[UIImage imageNamed:@"newProperty"] forState:UIControlStateNormal];
+  new.frame = CGRectMake(0.0f, 64.0f, CGRectGetWidth(self.view.frame), 230.0f);
+  [new setBackgroundImage:[UIImage imageNamed:@"newProperty"] forState:UIControlStateNormal];
   new.contentMode = UIViewContentModeScaleAspectFill;
   new.titleLabel.font = [UIFont fontWithName:@"HelveticaNeue" size:26.0f];
+  new.titleEdgeInsets = UIEdgeInsetsMake(-160.0f, 0.0f, 0.0, 0.0f);
   [new setTitle:@"Create a Property" forState:UIControlStateNormal];
+  [new setTitleColor:[UIColor darkGrayColor] forState:UIControlStateNormal];
   [new addTarget:self action:@selector(addProperty:) forControlEvents:UIControlEventTouchUpInside];
   [self.view addSubview:new];
   

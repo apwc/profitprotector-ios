@@ -4,7 +4,6 @@
 #import "MainViewController.h"
 #import "FrontTableViewController.h"
 #import "LeftTableViewController.h"
-#import "API.h"
 
 @implementation AppDelegate
 
@@ -32,14 +31,7 @@
                                            selector:@selector(userDidLogout:)
                                                name:userDidLogoutNotification
                                              object:nil];
-  
-  //
-  /*[API createUser:@"david"
-         password:@"david"
-             name:@"David"
-            email:@"david@david.com"
-             role:@"Designer"];*/
-  
+ 
   return YES;
 }
 
