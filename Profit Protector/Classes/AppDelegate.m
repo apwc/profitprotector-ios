@@ -1,5 +1,6 @@
 #import "AppDelegate.h"
 #import "Constants.h"
+#import "GlobalData.h"
 #import "SplashViewController.h"
 #import "MainViewController.h"
 #import "FrontTableViewController.h"
@@ -13,13 +14,19 @@
   self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
   [self.window makeKeyAndVisible];
   
-  self.window.backgroundColor = [UIColor colorWithWhite:0.9f alpha:1.0f];
+  NSLog(@"username %@", [GlobalData username]);
+  NSLog(@"password %@", [GlobalData password]);
   
-  UINavigationController *uinc = [[UINavigationController alloc] initWithRootViewController:[[SplashViewController alloc] initWithNibName:nil
-                                                                                                                                   bundle:nil]];
-  [uinc setNavigationBarHidden:YES animated:NO];
-  
-  self.window.rootViewController = uinc;
+  if ([GlobalData username] && [GlobalData password])
+    [self displayMainViewController:nil];
+  else
+  {
+    UINavigationController *uinc = [[UINavigationController alloc] initWithRootViewController:[[SplashViewController alloc] initWithNibName:nil
+                                                                                                                                     bundle:nil]];
+    [uinc setNavigationBarHidden:YES animated:NO];
+    
+    self.window.rootViewController = uinc;
+  }
   
   // register the UI notifications
   [[NSNotificationCenter defaultCenter] addObserver:self
@@ -56,6 +63,9 @@
 
 - (void)userDidLogout:(NSNotification *)notification
 {
+  [GlobalData deleteUsername];
+  [GlobalData deletePassword];
+  
   UINavigationController *uinc = [[UINavigationController alloc] initWithRootViewController:[[SplashViewController alloc] initWithNibName:nil
                                                                                                                                    bundle:nil]];
   [uinc setNavigationBarHidden:YES animated:NO];

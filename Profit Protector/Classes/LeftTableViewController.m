@@ -1,6 +1,7 @@
 #import "LeftTableViewController.h"
-#import "SettingsViewController.h"
 #import "Constants.h"
+#import "GlobalData.h"
+//#import "SettingsViewController.h"
 
 @implementation LeftTableViewController
 
@@ -40,7 +41,7 @@
                                   reuseIdentifier:cellReusableIdentifier];
   
   if (indexPath.row == 0)
-    cell.textLabel.text = @"User Name";
+    cell.textLabel.text = [GlobalData username];
 
   if (indexPath.row == 1)
     cell.textLabel.text = @"Settings";

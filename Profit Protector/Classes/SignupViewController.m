@@ -236,7 +236,6 @@
   [uisv_ addGestureRecognizer:tapper];
   
   //
-  //
   [[NSNotificationCenter defaultCenter] addObserver:self
                                            selector:@selector(apiUserSignupSuccessful:)
                                                name:apiUserSignupSuccessfulNotification
@@ -278,6 +277,9 @@
 {
   [GlobalData saveUsername:username_.text];
   [GlobalData savePassword:password_.text];
+  
+  NSLog(@"username %@", [GlobalData username]);
+  NSLog(@"password %@", [GlobalData password]);
   
   [self dismissViewControllerAnimated:YES
                            completion:^{

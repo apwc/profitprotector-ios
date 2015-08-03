@@ -14,8 +14,12 @@
 
 + (void)saveUsername:(NSString *)username;
 
++ (void)deleteUsername;
+
 + (NSString *)password;
 
 + (void)savePassword:(NSString *)password;
+
++ (void)deletePassword;
 
 @end

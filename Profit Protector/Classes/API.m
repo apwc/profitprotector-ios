@@ -119,17 +119,18 @@
                                                 
                                                 NSLog(@"Response:%@\nError: %@", response, error);
                                                 
-                                                NSArray *json = [NSJSONSerialization JSONObjectWithData:data
+                                                id json = [NSJSONSerialization JSONObjectWithData:data
                                                                                                 options:NSJSONReadingMutableContainers
                                                                                                   error:nil];
                                                 
-                                                NSLog(@"%@", json);
+                                                if ([json isKindOfClass:[NSArray class]])
+                                                  json = [json firstObject];
                                                 
-                                                if (![json[@"code"] isEqualToString:@"invalid_username"])
+                                                if ([json[@"code"] isEqualToString:@"json_missing_callback_param"])
                                                 {
                                                   HUD *hud = [HUD singleton];
                                                   hud.hud.mode = MBProgressHUDModeText;
-                                                  hud.hud.detailsLabelText = @"Invalid username";
+                                                  hud.hud.detailsLabelText = json[@"message"];
                                                   
                                                   dispatch_async(dispatch_get_main_queue(), ^{
                                                     [HUD removeHUDAfterDelay:1.5f];

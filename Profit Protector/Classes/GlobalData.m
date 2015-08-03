@@ -26,6 +26,13 @@
   [nsud synchronize];
 }
 
++ (void)deleteUsername
+{
+  NSUserDefaults *nsud = [NSUserDefaults standardUserDefaults];
+  [nsud removeObjectForKey:@"username"];
+  [nsud synchronize];
+}
+
 + (NSString *)password
 {
   return [[NSUserDefaults standardUserDefaults] objectForKey:@"password"];
@@ -35,6 +42,13 @@
 {
   NSUserDefaults *nsud = [NSUserDefaults standardUserDefaults];
   [nsud setObject:password forKey:@"password"];
+  [nsud synchronize];
+}
+
++ (void)deletePassword
+{
+  NSUserDefaults *nsud = [NSUserDefaults standardUserDefaults];
+  [nsud removeObjectForKey:@"password"];
   [nsud synchronize];
 }
 
