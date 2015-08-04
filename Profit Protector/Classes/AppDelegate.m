@@ -13,10 +13,7 @@
 {
   self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
   [self.window makeKeyAndVisible];
-  
-  NSLog(@"username %@", [GlobalData username]);
-  NSLog(@"password %@", [GlobalData password]);
-  
+ 
   if ([GlobalData username] && [GlobalData password])
     [self displayMainViewController:nil];
   else

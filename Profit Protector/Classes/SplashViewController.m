@@ -8,6 +8,8 @@
 {
   UITextField *username_,
               *password_;
+  
+  BOOL        storeLogin_;
 }
 @end
 
@@ -16,6 +18,8 @@
 - (void)viewDidLoad
 {
   [super viewDidLoad];
+  
+  storeLogin_ = NO;
   
   UIImageView *logo = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"logo"]];
   logo.frame = CGRectMake((CGRectGetWidth(self.view.bounds) - logo.image.size.width / 2.0f) / 2.0f,
@@ -163,6 +167,8 @@
 
 - (void)signin:(UIButton *)uib
 {
+  storeLogin_ = YES;
+  
   [API loginWithUsername:username_.text
                 password:password_.text];
 }
@@ -181,8 +187,11 @@
 
 - (void)apiUserLoginSuccessful:(NSNotification *)notification
 {
-  [GlobalData saveUsername:username_.text];
-  [GlobalData savePassword:password_.text];
+  if (storeLogin_)
+  {
+    [GlobalData saveUsername:username_.text];
+    [GlobalData savePassword:password_.text];
+  }
   
   if (![GlobalData walkthrough])
   {

@@ -12,6 +12,7 @@
               *username_,
               *password_,
               *email_,
+              *phone_,
               *company_,
               *type_;
 }
@@ -83,6 +84,7 @@
   password_.textColor = [UIColor blackColor];
   password_.autocorrectionType = UITextAutocorrectionTypeNo;
   password_.autocapitalizationType = UITextAutocapitalizationTypeNone;
+  password_.secureTextEntry = YES;
   [uisv_ addSubview:password_];
   
   UIImageView *passwordIcon = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"password"]];
@@ -154,9 +156,36 @@
   divisionLine4.backgroundColor = [UIColor colorWithWhite:0.7f alpha:1.0f];
   [uisv_ addSubview:divisionLine4];
   
+  // phone
+  phone_ = [[UITextField alloc] initWithFrame:CGRectMake(60.0f,
+                                                         CGRectGetMaxY(email_.frame),
+                                                         CGRectGetWidth(self.view.bounds) - 60.0f,
+                                                         textFieldHeight)];
+  phone_.delegate = self;
+  phone_.font = [UIFont fontWithName:@"HelveticaNeue" size:textFieldFontsize];
+  phone_.textColor = [UIColor blackColor];
+  phone_.autocorrectionType = UITextAutocorrectionTypeNo;
+  phone_.autocapitalizationType = UITextAutocapitalizationTypeNone;
+  [uisv_ addSubview:phone_];
+  
+  UIImageView *phoneIcon = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"phone"]];
+  phoneIcon.frame = CGRectMake(20.0f,
+                               CGRectGetMinY(phone_.frame) + 10.0f,
+                               phoneIcon.image.size.width,
+                               phoneIcon.image.size.height);
+  [uisv_ addSubview:phoneIcon];
+  
+  // division line
+  UIView *divisionLine5 = [[UIView alloc] initWithFrame:CGRectMake(0.0f,
+                                                                   CGRectGetMaxY(phone_.frame),
+                                                                   CGRectGetWidth(self.view.bounds),
+                                                                   1.0f)];
+  divisionLine5.backgroundColor = [UIColor colorWithWhite:0.7f alpha:1.0f];
+  [uisv_ addSubview:divisionLine5];
+  
   // company
   company_ = [[UITextField alloc] initWithFrame:CGRectMake(60.0f,
-                                                           CGRectGetMaxY(email_.frame),
+                                                           CGRectGetMaxY(phone_.frame),
                                                            CGRectGetWidth(self.view.bounds) - 60.0f,
                                                            textFieldHeight)];
   company_.delegate = self;
@@ -174,12 +203,12 @@
   [uisv_ addSubview:companyIcon];
   
   // division line
-  UIView *divisionLine5 = [[UIView alloc] initWithFrame:CGRectMake(0.0f,
+  UIView *divisionLine6 = [[UIView alloc] initWithFrame:CGRectMake(0.0f,
                                                                    CGRectGetMaxY(company_.frame),
                                                                    CGRectGetWidth(self.view.bounds),
                                                                    1.0f)];
-  divisionLine5.backgroundColor = [UIColor colorWithWhite:0.7f alpha:1.0f];
-  [uisv_ addSubview:divisionLine5];
+  divisionLine6.backgroundColor = [UIColor colorWithWhite:0.7f alpha:1.0f];
+  [uisv_ addSubview:divisionLine6];
   
   // username
   type_ = [[UITextField alloc] initWithFrame:CGRectMake(60.0f,
@@ -195,16 +224,16 @@
   [uisv_ addSubview:type_];
   
   // division line
-  UIView *divisionLine6 = [[UIView alloc] initWithFrame:CGRectMake(0.0f,
+  UIView *divisionLine7 = [[UIView alloc] initWithFrame:CGRectMake(0.0f,
                                                                    CGRectGetMaxY(type_.frame),
                                                                    CGRectGetWidth(self.view.bounds),
                                                                    1.0f)];
-  divisionLine6.backgroundColor = [UIColor colorWithWhite:0.7f alpha:1.0f];
-  [uisv_ addSubview:divisionLine6];
+  divisionLine7.backgroundColor = [UIColor colorWithWhite:0.7f alpha:1.0f];
+  [uisv_ addSubview:divisionLine7];
   
   // signup
   UIButton *signup = [[UIButton alloc] initWithFrame:CGRectMake(0.0f,
-                                                                CGRectGetHeight(self.view.bounds) - (buttonHeight * 2.0f) - 10.0f,
+                                                                CGRectGetMaxY(type_.frame) + 40.0f,//CGRectGetHeight(self.view.bounds) - (buttonHeight * 2.0f) - 10.0f,
                                                                 CGRectGetWidth(self.view.bounds),
                                                                 buttonHeight)];
   signup.backgroundColor = [UIColor colorWithRed:0 green:0.68 blue:0.95 alpha:1];
@@ -217,7 +246,7 @@
   
   // signup
   UIButton *signin = [[UIButton alloc] initWithFrame:CGRectMake(0.0f,
-                                                                CGRectGetHeight(self.view.bounds) - (buttonHeight / 2.0f) - 15.0f,
+                                                                CGRectGetMaxY(signup.frame) + 20.0f,//CGRectGetHeight(self.view.bounds) - (buttonHeight / 2.0f) - 15.0f,
                                                                 CGRectGetWidth(self.view.bounds),
                                                                 buttonHeight / 2.0f)];
   signin.showsTouchWhenHighlighted = YES;
@@ -228,6 +257,8 @@
              action:@selector(signin:)
    forControlEvents:UIControlEventTouchUpInside];
   [uisv_ addSubview:signin];
+  
+  uisv_.contentSize = CGSizeMake(0.0f, CGRectGetMaxY(signin.frame) + 10.0f);
   
   //
   UITapGestureRecognizer *tapper = [[UITapGestureRecognizer alloc] initWithTarget:self
@@ -240,6 +271,31 @@
                                            selector:@selector(apiUserSignupSuccessful:)
                                                name:apiUserSignupSuccessfulNotification
                                              object:nil];
+  
+  // register the UIKeyboard notifications
+  [[NSNotificationCenter defaultCenter] addObserver:self
+                                           selector:@selector(keyboardWillShow:)
+                                               name:UIKeyboardWillShowNotification
+                                             object:nil];
+  
+  [[NSNotificationCenter defaultCenter] addObserver:self
+                                           selector:@selector(keyboardWillHide:)
+                                               name:UIKeyboardWillHideNotification
+                                             object:nil];
+}
+
+- (void)viewWillDisappear:(BOOL)animated
+{
+  [super viewWillDisappear:animated];
+  
+  // register the UIKeyboard notifications
+  [[NSNotificationCenter defaultCenter] removeObserver:self
+                                                  name:UIKeyboardWillShowNotification
+                                                object:nil];
+  
+  [[NSNotificationCenter defaultCenter] removeObserver:self
+                                                  name:UIKeyboardWillHideNotification
+                                                object:nil];
 }
 
 - (void)handleSingleTap:(UITapGestureRecognizer *) sender
@@ -278,9 +334,6 @@
   [GlobalData saveUsername:username_.text];
   [GlobalData savePassword:password_.text];
   
-  NSLog(@"username %@", [GlobalData username]);
-  NSLog(@"password %@", [GlobalData password]);
-  
   [self dismissViewControllerAnimated:YES
                            completion:^{
                              [[NSNotificationCenter defaultCenter] postNotificationName:userHasBeenRegisteredNotification
@@ -313,6 +366,25 @@
   [textField resignFirstResponder];
   
   return YES;
+}
+
+#pragma mark - UIKeyboard delegate methods implementation
+
+- (void)keyboardWillShow:(NSNotification *)notification
+{
+  NSDictionary *info = [notification userInfo];
+  
+  CGSize keyboardSize = [[info objectForKey:UIKeyboardFrameBeginUserInfoKey] CGRectValue].size;
+  
+  uisv_.contentInset = UIEdgeInsetsMake(0.0f,
+                                        0.0f,
+                                        keyboardSize.height,
+                                        0.0f);
+}
+
+- (void)keyboardWillHide:(NSNotification *)notification
+{
+  uisv_.contentInset = UIEdgeInsetsZero;
 }
 
 @end
