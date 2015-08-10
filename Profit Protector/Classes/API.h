@@ -10,8 +10,15 @@
           password:(NSString *)password
               name:(NSString *)name
              email:(NSString *)email
+             phone:(NSString *)phone
+           company:(NSString *)company
               role:(NSString *)role;
 
 + (void)getProperties;
+
++ (void)uploadPropertyWithTitle:(NSString *)title
+                     contentRaw:(NSString *)contentRaw
+                         author:(NSString *)author
+                       postMeta:(NSDictionary *)postMeta;
 
 @end

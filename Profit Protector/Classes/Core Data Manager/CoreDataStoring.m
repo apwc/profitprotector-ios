@@ -7,10 +7,10 @@
   CoreDataManager *cdm = [CoreDataManager singleton];
   
   // create the entity object
-  NSManagedObject *user = (NSManagedObject *)[NSEntityDescription insertNewObjectForEntityForName:@"Property"
-                                                            inManagedObjectContext:cdm.managedObjectContext];
-
-  [user setValuesForKeysWithDictionary:dictionary];
+  NSManagedObject *property = (NSManagedObject *)[NSEntityDescription insertNewObjectForEntityForName:@"Property"
+                                                                               inManagedObjectContext:cdm.managedObjectContext];
+  
+  [property setValuesForKeysWithDictionary:dictionary];
   
   [cdm.managedObjectContext performBlockAndWait:^{
     [cdm.managedObjectContext save:nil];

@@ -22,4 +22,10 @@
 
 + (void)deletePassword;
 
++ (NSString *)authorID;
+
++ (void)saveAuthorID:(NSString *)authorID;
+
++ (void)deleteAuthorID;
+
 @end

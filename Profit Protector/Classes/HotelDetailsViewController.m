@@ -286,6 +286,7 @@
   
   cell.textLabel.numberOfLines = 2;
   cell.textLabel.font = [UIFont fontWithName:@"HelveticaNeue-Light" size:14.0f];
+  cell.selectionStyle = UITableViewCellSelectionStyleNone;
   
   return cell;
 }
@@ -295,9 +296,8 @@
 - (CGFloat)tableView:(UITableView *)tableView
   heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-  return 70.0f;
+  return 64.0f;
 }
-
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
 {

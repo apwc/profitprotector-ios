@@ -233,7 +233,7 @@
   
   // signup
   UIButton *signup = [[UIButton alloc] initWithFrame:CGRectMake(0.0f,
-                                                                CGRectGetMaxY(type_.frame) + 40.0f,//CGRectGetHeight(self.view.bounds) - (buttonHeight * 2.0f) - 10.0f,
+                                                                CGRectGetMaxY(type_.frame) + 40.0f,
                                                                 CGRectGetWidth(self.view.bounds),
                                                                 buttonHeight)];
   signup.backgroundColor = [UIColor colorWithRed:0 green:0.68 blue:0.95 alpha:1];
@@ -246,7 +246,7 @@
   
   // signup
   UIButton *signin = [[UIButton alloc] initWithFrame:CGRectMake(0.0f,
-                                                                CGRectGetMaxY(signup.frame) + 20.0f,//CGRectGetHeight(self.view.bounds) - (buttonHeight / 2.0f) - 15.0f,
+                                                                CGRectGetMaxY(signup.frame) + 20.0f,
                                                                 CGRectGetWidth(self.view.bounds),
                                                                 buttonHeight / 2.0f)];
   signin.showsTouchWhenHighlighted = YES;
@@ -310,11 +310,32 @@
 
 - (void)join:(UIButton *)uib
 {
+  NSString *type = @"";
+  
+  if (![type_.text isEqualToString:@""])
+  {
+    if ([type_.text isEqualToString:@"Distributor"])
+      type = @"distributor";
+    
+    if ([type_.text isEqualToString:@"Hotel Owner"])
+      type = @"hotel_owner";
+    
+    if ([type_.text isEqualToString:@"PCO"])
+      type = @"pco";
+  }
+  
   [API createUser:username_.text
          password:password_.text
              name:name_.text
             email:email_.text
-             role:type_.text];
+            phone:(NSString *)CFBridgingRelease(CFURLCreateStringByAddingPercentEscapes(
+                                                                                        NULL,
+                                                                                        (CFStringRef)phone_.text,
+                                                                                        NULL,
+                                                                                        CFSTR("!*'();:@&=+$,/?%#[]\" "),
+                                                                                        kCFStringEncodingUTF8))
+          company:company_.text
+             role:type];
 }
 
 - (void)signin:(UIButton *)uib

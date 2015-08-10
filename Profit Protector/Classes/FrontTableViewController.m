@@ -5,6 +5,7 @@
 #import "HotelDetailsViewController.h"
 #import "CoreDataRetrieving.h"
 #import "GlobalMethods.h"
+#import "API.h"
 
 @interface FrontTableViewController () <UITableViewDataSource,
                                         UITableViewDelegate>
@@ -35,6 +36,10 @@
                                                                            style:UIBarButtonItemStylePlain
                                                                           target:self
                                                                           action:@selector(showLeftViewController:)];
+  
+  self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemRefresh
+                                                                                         target:self
+                                                                                         action:@selector(allProperties:)];
   
   // new property
   UIButton *new = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -71,21 +76,44 @@
   [chevron_ setImage:[UIImage imageNamed:@"up"] forState:UIControlStateNormal];
   [chevron_ addTarget:self action:@selector(accordion:) forControlEvents:UIControlEventTouchUpInside];
   [self.view addSubview:chevron_];
+  
+  //
+  [self allProperties:nil];
 }
 
 - (void)viewWillAppear:(BOOL)animated
 {
   [super viewWillAppear:animated];
+ 
+  //
+  [[NSNotificationCenter defaultCenter] addObserver:self
+                                           selector:@selector(apiUserPropertiesSuccessful:)
+                                               name:apiUserPropertiesSuccessfulNotification
+                                             object:nil];
   
-  properties_ = [CoreDataRetrieving properties];
+  properties_ = [CoreDataRetrieving allProperties];
   
   [uitv_ reloadData];
+}
+
+- (void)viewWillDisappear:(BOOL)animated
+{
+  [super viewWillDisappear:animated];
+  
+  [[NSNotificationCenter defaultCenter] removeObserver:self
+                                                  name:apiUserPropertiesSuccessfulNotification
+                                                object:nil];
 }
 
 - (void)showLeftViewController:(UIBarButtonItem *)uibbi
 {
   MainViewController *mvc = (MainViewController *)self.parentViewController.parentViewController;
   [mvc showViewController:mvc.leftViewController];
+}
+
+- (void)allProperties:(UIBarButtonItem *)uibbi
+{
+  [API getProperties];
 }
 
 - (void)addProperty:(UIButton *)uib
@@ -127,6 +155,12 @@
                                                 CGRectGetHeight(self.view.frame) - 64.0f);
                      }];
   }
+}
+
+#pragma mark - API notifications callbacks
+
+- (void)apiUserPropertiesSuccessful:(NSNotification *)notification
+{
 }
 
 #pragma mark - UITableView datasource methods implementation
@@ -211,7 +245,7 @@
 - (BOOL)tableView:(UITableView *)tableView
   canEditRowAtIndexPath:(NSIndexPath *)indexPath
 {
-  return indexPath.section == 0 ? NO : YES;
+  return YES;
 }
 
 - (void)tableView:(UITableView *)tableView
@@ -223,9 +257,6 @@
 - (NSArray *)tableView:(UITableView *)tableView
   editActionsForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-  if (indexPath.section == 0)
-    return nil;
-  
   __block NSManagedObject *property = properties_[indexPath.row];
   
   BOOL isFavorited = [[property valueForKey:@"favorite"] boolValue];
@@ -242,7 +273,7 @@
                                                                  CoreDataManager *cdm = [CoreDataManager singleton];
                                                                  [cdm saveData];
                                                                  
-                                                                 properties_ = [CoreDataRetrieving properties];
+                                                                 properties_ = [CoreDataRetrieving allProperties];
                                                                  
                                                                  [uitv_ reloadData];
                                                                }];
@@ -270,7 +301,7 @@
                                                                   CoreDataManager *cdm = [CoreDataManager singleton];
                                                                   [cdm deleteObject:properties_[indexPath.row]];
                                                                   
-                                                                  properties_ = [CoreDataRetrieving properties];
+                                                                  properties_ = [CoreDataRetrieving allProperties];
                                                                   
                                                                   [uitv_ reloadData];
                                                                 }];

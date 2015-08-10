@@ -143,6 +143,11 @@
                                                                            action:@selector(handleSingleTap:)];
   tapper.cancelsTouchesInView = NO;
   [self.view addGestureRecognizer:tapper];
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+  [super viewWillAppear:animated];
   
   //
   [[NSNotificationCenter defaultCenter] addObserver:self
@@ -154,6 +159,19 @@
                                            selector:@selector(userHasBeenRegistered:)
                                                name:userHasBeenRegisteredNotification
                                              object:nil];
+}
+
+- (void)viewWillDisappear:(BOOL)animated
+{
+  [super viewWillDisappear:animated];
+  
+  [[NSNotificationCenter defaultCenter] removeObserver:self
+                                                  name:apiUserLoginSuccessfulNotification
+                                                object:nil];
+  
+  [[NSNotificationCenter defaultCenter] removeObserver:self
+                                                  name:userHasBeenRegisteredNotification
+                                                object:nil];
 }
 
 - (void)handleSingleTap:(UITapGestureRecognizer *) sender
@@ -189,6 +207,9 @@
 {
   if (storeLogin_)
   {
+    NSDictionary *json = (NSDictionary *)notification.object;
+
+    [GlobalData saveAuthorID:json[@"ID"]];
     [GlobalData saveUsername:username_.text];
     [GlobalData savePassword:password_.text];
   }

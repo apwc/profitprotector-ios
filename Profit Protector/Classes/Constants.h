@@ -6,8 +6,9 @@
 #define apiPrefix @"http://cleanrestapp.com/wp-json/"
 #define adminUsername @"cleanrestadmin"
 #define adminPassword @"vRjycfxrLcmo"
-#define properties @"posts"
+#define user @"login"
 #define users @"users"
+#define properties @"posts"
 
 #pragma mark - Core Data SQLite database reset
 
@@ -41,3 +42,6 @@
 
 #define apiUserSignupSuccessfulNotification @"apiUserSignupSuccessfulNotification"
 #define apiUserSignupErrorNotification @"apiUserSignupErrorNotification"
+
+#define apiUserPropertiesSuccessfulNotification @"apiUserPropertiesSuccessfulNotification"
+#define apiUserPropertiesErrorNotification @"apiUserPropertiesErrorNotification"

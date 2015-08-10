@@ -3,6 +3,6 @@
 
 @interface CoreDataRetrieving : Singleton
 
-+ (NSArray *)properties;
++ (NSArray *)allProperties;
 
 @end

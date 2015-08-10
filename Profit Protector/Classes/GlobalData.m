@@ -52,4 +52,23 @@
   [nsud synchronize];
 }
 
++ (NSString *)authorID
+{
+  return [[NSUserDefaults standardUserDefaults] objectForKey:@"authorID"];
+}
+
++ (void)saveAuthorID:(NSString *)authorID
+{
+  NSUserDefaults *nsud = [NSUserDefaults standardUserDefaults];
+  [nsud setObject:authorID forKey:@"authorID"];
+  [nsud synchronize];
+}
+
++ (void)deleteAuthorID
+{
+  NSUserDefaults *nsud = [NSUserDefaults standardUserDefaults];
+  [nsud removeObjectForKey:@"authorID"];
+  [nsud synchronize];
+}
+
 @end

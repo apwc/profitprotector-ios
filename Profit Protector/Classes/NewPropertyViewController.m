@@ -1,5 +1,7 @@
 #import "NewPropertyViewController.h"
 #import "CoreDataStoring.h"
+#import "GlobalData.h"
+#import "API.h"
 #import "PropertyTypeTableViewController.h"
 #import "NewPropertyForm1ViewController.h"
 #import "NewPropertyForm2ViewController.h"
@@ -8,7 +10,6 @@
 #import "NewPropertyForm5ViewController.h"
 #import "NewPropertyForm6ViewController.h"
 #import "NewPropertyForm7ViewController.h"
-#import "GlobalData.h"
 
 @interface NewPropertyViewController () <PropertyTypeDelegate,
                                          UIScrollViewDelegate>
@@ -300,7 +301,14 @@
     [cdm.managedObjectContext save:nil];
   }
   else
+  {
     [CoreDataStoring storeProperty:token];
+    
+    [API uploadPropertyWithTitle:npf1vc_.textField.text
+                      contentRaw:npf1vc_.textField.text
+                          author:[GlobalData authorID]
+                        postMeta:token];
+  }
   
   [self.navigationController popToRootViewControllerAnimated:YES];
 }

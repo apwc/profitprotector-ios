@@ -2,7 +2,7 @@
 
 @implementation CoreDataRetrieving
 
-+ (NSArray *)properties;
++ (NSArray *)allProperties;
 {
   NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:@"Property"];
   request.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:@"favorite"
