@@ -148,9 +148,9 @@
   
   if (self.property)
   {
-    npf6vc_.scvA.value = [self.property valueForKey:@"percentageOfMattressesReplaceEachYear"];
-    npf6vc_.scvB.value = [self.property valueForKey:@"percentageOfMattressesReplaceEachYear"];
-    npf6vc_.scvC.value = [self.property valueForKey:@"percentageOfMattressesReplaceEachYear"];
+    npf6vc_.scvA.value = [self.property valueForKey:@"timesPerYearBedClean"];
+    npf6vc_.scvB.value = [self.property valueForKey:@"costToCleanAndReinstallEncasements"];
+    npf6vc_.scvC.value = [self.property valueForKey:@"bedBugIncidents"];
   }
   
   [uisv_ addSubview:npf6vc_.view];
@@ -303,11 +303,17 @@
   else
   {
     [CoreDataStoring storeProperty:token];
+
+    [API updateUploadedProperty:@"242"
+                          title:npf1vc_.textField.text
+                     contentRaw:npf1vc_.textField.text
+                         author:[GlobalData authorID]
+                       postMeta:token];
     
-    [API uploadPropertyWithTitle:npf1vc_.textField.text
+    /*[API uploadPropertyWithTitle:npf1vc_.textField.text
                       contentRaw:npf1vc_.textField.text
                           author:[GlobalData authorID]
-                        postMeta:token];
+                        postMeta:token];*/
   }
   
   [self.navigationController popToRootViewControllerAnimated:YES];

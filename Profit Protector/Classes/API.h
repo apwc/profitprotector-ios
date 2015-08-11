@@ -21,4 +21,10 @@
                          author:(NSString *)author
                        postMeta:(NSDictionary *)postMeta;
 
++ (void)updateUploadedProperty:(NSString *)postID
+                         title:(NSString *)title
+                    contentRaw:(NSString *)contentRaw
+                        author:(NSString *)author
+                      postMeta:(NSDictionary *)postMeta;
+
 @end

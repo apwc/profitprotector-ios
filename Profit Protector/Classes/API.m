@@ -220,28 +220,172 @@
   NSData *authData = [auth dataUsingEncoding:NSUTF8StringEncoding];
   NSString *base64 = [authData base64EncodedStringWithOptions:NSDataBase64Encoding64CharacterLineLength];
   
-  NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"%@%@?iam=%@",
+  NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"%@%@",
                                      apiPrefix,
-                                     properties,
-                                     base64]];
+                                     properties]];
   
   NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
   [request addValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-type"];
   [request setHTTPMethod:@"POST"];
   
-  NSData *jsonData = [NSJSONSerialization dataWithJSONObject:postMeta
-                                                     options:NSJSONWritingPrettyPrinted
-                                                       error:nil];
+  NSMutableString *parameters = [NSMutableString stringWithCapacity:0];
   
-  NSString *jsonString = [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
+  [parameters appendFormat:@"iam=%@", base64];
   
-  NSString *parameters = [NSString stringWithFormat:@"iam=%@&filter=%@&context=edit&type=property&title=%@&content_raw=%@&author=%@&post_meta=%@",
-                          base64,
-                          [GlobalData username],
-                          title,
-                          contentRaw,
-                          author,
-                          jsonString];
+  [parameters appendFormat:@"&filter=%@", [GlobalData username]];
+  
+  [parameters appendString:@"&context=edit"];
+  
+  [parameters appendString:@"&type=property"];
+  
+  [parameters appendString:@"&status=publish"];
+  
+  [parameters appendFormat:@"&title=%@", title];
+  
+  [parameters appendFormat:@"&content_raw=%@", contentRaw];
+  
+  [parameters appendFormat:@"&post_meta[0][key]=%@", @"roomsNumber"];
+  [parameters appendFormat:@"&post_meta[0][value]=%@", postMeta[@"roomsNumber"]];
+
+  [parameters appendFormat:@"&post_meta[1][key]=%@", @"bedsNumber"];
+  [parameters appendFormat:@"&post_meta[1][value]=%@", postMeta[@"bedsNumber"]];
+  
+  [parameters appendFormat:@"&post_meta[2][key]=%@", @"roomRevenuePerNight"];
+  [parameters appendFormat:@"&post_meta[2][value]=%@", postMeta[@"roomRevenuePerNight"]];
+  
+  [parameters appendFormat:@"&post_meta[3][key]=%@", @"foodBeverageSalesPerRoomPerNight"];
+  [parameters appendFormat:@"&post_meta[3][value]=%@", postMeta[@"foodBeverageSalesPerRoomPerNight"]];
+  
+  [parameters appendFormat:@"&post_meta[4][key]=%@", @"ancillariesRevenuePerRoomPerNight"];
+  [parameters appendFormat:@"&post_meta[4][value]=%@", postMeta[@"ancillariesRevenuePerRoomPerNight"]];
+
+  [parameters appendFormat:@"&post_meta[5][key]=%@", @"costOfReplaceMattressesAndBoxSpring"];
+  [parameters appendFormat:@"&post_meta[5][value]=%@", postMeta[@"costOfReplaceMattressesAndBoxSpring"]];
+
+  [parameters appendFormat:@"&post_meta[6][key]=%@", @"costOfReplaceFurnishings"];
+  [parameters appendFormat:@"&post_meta[6][value]=%@", postMeta[@"costOfReplaceFurnishings"]];
+
+  [parameters appendFormat:@"&post_meta[7][key]=%@", @"percentageOfMattressesReplaceEachYear"];
+  [parameters appendFormat:@"&post_meta[7][value]=%@", postMeta[@"percentageOfMattressesReplaceEachYear"]];
+
+  [parameters appendFormat:@"&post_meta[8][key]=%@", @"timesPerYearBedClean"];
+  [parameters appendFormat:@"&post_meta[8][value]=%@", postMeta[@"timesPerYearBedClean"]];
+  
+  [parameters appendFormat:@"&post_meta[9][key]=%@", @"costToCleanAndReinstallEncasements"];
+  [parameters appendFormat:@"&post_meta[9][value]=%@", postMeta[@"costToCleanAndReinstallEncasements"]];
+
+  [parameters appendFormat:@"&post_meta[10][key]=%@", @"bedBugIncidents"];
+  [parameters appendFormat:@"&post_meta[10][value]=%@", postMeta[@"bedBugIncidents"]];
+  
+  [parameters appendFormat:@"&post_meta[11][key]=%@", @"bugInspectionAndPestControlFees"];
+  [parameters appendFormat:@"&post_meta[11][value]=%@", postMeta[@"bugInspectionAndPestControlFees"]];
+
+  [parameters appendFormat:@"&post_meta[12][key]=%@", @"futureBookingDaysLost"];
+  [parameters appendFormat:@"&post_meta[12][value]=%@", postMeta[@"futureBookingDaysLost"]];
+
+  [request setHTTPBody:[parameters dataUsingEncoding:NSUTF8StringEncoding]];
+  
+  NSURLSession *session = [NSURLSession sharedSession];
+  
+  NSURLSessionDataTask *dataTask = [session dataTaskWithRequest:request
+                                              completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
+                                                
+                                                NSLog(@"Response:%@\nError: %@", response, error);
+                                                
+                                                NSArray *json = [NSJSONSerialization JSONObjectWithData:data
+                                                                                                options:NSJSONReadingMutableContainers
+                                                                                                  error:nil];
+                                                
+                                                NSLog(@"%@", json);
+                                                
+                                                dispatch_async(dispatch_get_main_queue(), ^{
+                                                  [HUD removeHUD];
+                                                  
+                                                  [[NSNotificationCenter defaultCenter] postNotificationName:apiUserPropertiesSuccessfulNotification
+                                                                                                      object:json];
+                                                });
+                                              }];
+  [dataTask resume];
+}
+
++ (void)updateUploadedProperty:(NSString *)postID
+                         title:(NSString *)title
+                    contentRaw:(NSString *)contentRaw
+                        author:(NSString *)author
+                      postMeta:(NSDictionary *)postMeta
+{
+  [HUD addHUD];
+  
+  NSString *auth = [NSString stringWithFormat:@"%@fjir50e%@",
+                    [GlobalData username],
+                    [GlobalData password]];
+  
+  NSData *authData = [auth dataUsingEncoding:NSUTF8StringEncoding];
+  NSString *base64 = [authData base64EncodedStringWithOptions:NSDataBase64Encoding64CharacterLineLength];
+  
+  NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"%@%@/%@",
+                                     apiPrefix,
+                                     properties,
+                                     postID]];
+  
+  NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
+  [request addValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-type"];
+  [request setHTTPMethod:@"POST"];
+  
+  NSMutableString *parameters = [NSMutableString stringWithCapacity:0];
+  
+  [parameters appendFormat:@"iam=%@", base64];
+  
+  [parameters appendFormat:@"&filter=%@", [GlobalData username]];
+  
+  [parameters appendString:@"&context=edit"];
+  
+  [parameters appendString:@"&type=property"];
+  
+  [parameters appendString:@"&status=publish"];
+  
+  [parameters appendFormat:@"&title=%@", title];
+  
+  [parameters appendFormat:@"&content_raw=%@", contentRaw];
+  
+  [parameters appendFormat:@"&post_meta[0][key]=%@", @"roomsNumber"];
+  [parameters appendFormat:@"&post_meta[0][value]=%@", postMeta[@"roomsNumber"]];
+  
+  [parameters appendFormat:@"&post_meta[1][key]=%@", @"bedsNumber"];
+  [parameters appendFormat:@"&post_meta[1][value]=%@", postMeta[@"bedsNumber"]];
+  
+  [parameters appendFormat:@"&post_meta[2][key]=%@", @"roomRevenuePerNight"];
+  [parameters appendFormat:@"&post_meta[2][value]=%@", postMeta[@"roomRevenuePerNight"]];
+  
+  [parameters appendFormat:@"&post_meta[3][key]=%@", @"foodBeverageSalesPerRoomPerNight"];
+  [parameters appendFormat:@"&post_meta[3][value]=%@", postMeta[@"foodBeverageSalesPerRoomPerNight"]];
+  
+  [parameters appendFormat:@"&post_meta[4][key]=%@", @"ancillariesRevenuePerRoomPerNight"];
+  [parameters appendFormat:@"&post_meta[4][value]=%@", postMeta[@"ancillariesRevenuePerRoomPerNight"]];
+  
+  [parameters appendFormat:@"&post_meta[5][key]=%@", @"costOfReplaceMattressesAndBoxSpring"];
+  [parameters appendFormat:@"&post_meta[5][value]=%@", postMeta[@"costOfReplaceMattressesAndBoxSpring"]];
+  
+  [parameters appendFormat:@"&post_meta[6][key]=%@", @"costOfReplaceFurnishings"];
+  [parameters appendFormat:@"&post_meta[6][value]=%@", postMeta[@"costOfReplaceFurnishings"]];
+  
+  [parameters appendFormat:@"&post_meta[7][key]=%@", @"percentageOfMattressesReplaceEachYear"];
+  [parameters appendFormat:@"&post_meta[7][value]=%@", postMeta[@"percentageOfMattressesReplaceEachYear"]];
+  
+  [parameters appendFormat:@"&post_meta[8][key]=%@", @"timesPerYearBedClean"];
+  [parameters appendFormat:@"&post_meta[8][value]=%@", postMeta[@"timesPerYearBedClean"]];
+  
+  [parameters appendFormat:@"&post_meta[9][key]=%@", @"costToCleanAndReinstallEncasements"];
+  [parameters appendFormat:@"&post_meta[9][value]=%@", postMeta[@"costToCleanAndReinstallEncasements"]];
+  
+  [parameters appendFormat:@"&post_meta[10][key]=%@", @"bedBugIncidents"];
+  [parameters appendFormat:@"&post_meta[10][value]=%@", postMeta[@"bedBugIncidents"]];
+  
+  [parameters appendFormat:@"&post_meta[11][key]=%@", @"bugInspectionAndPestControlFees"];
+  [parameters appendFormat:@"&post_meta[11][value]=%@", postMeta[@"bugInspectionAndPestControlFees"]];
+  
+  [parameters appendFormat:@"&post_meta[12][key]=%@", @"futureBookingDaysLost"];
+  [parameters appendFormat:@"&post_meta[12][value]=%@", postMeta[@"futureBookingDaysLost"]];
   
   [request setHTTPBody:[parameters dataUsingEncoding:NSUTF8StringEncoding]];
   
