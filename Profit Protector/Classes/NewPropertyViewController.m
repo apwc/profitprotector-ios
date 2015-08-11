@@ -223,6 +223,26 @@
   [self.view addGestureRecognizer:tapper];
 }
 
+- (void)viewWillAppear:(BOOL)animated
+{
+  [super viewWillAppear:animated];
+  
+  //
+  [[NSNotificationCenter defaultCenter] addObserver:self
+                                           selector:@selector(apiUserPropertiesSuccessful:)
+                                               name:apiUserPropertiesSuccessfulNotification
+                                             object:nil];
+}
+
+- (void)viewWillDisappear:(BOOL)animated
+{
+  [super viewWillDisappear:animated];
+  
+  [[NSNotificationCenter defaultCenter] removeObserver:self
+                                                  name:apiUserPropertiesSuccessfulNotification
+                                                object:nil];
+}
+
 - (void)handleSingleTap:(UITapGestureRecognizer *) sender
 {
   [self.view endEditing:YES];
@@ -302,21 +322,11 @@
   }
   else
   {
-    [CoreDataStoring storeProperty:token];
-
-    [API updateUploadedProperty:@"242"
-                          title:npf1vc_.textField.text
-                     contentRaw:npf1vc_.textField.text
-                         author:[GlobalData authorID]
-                       postMeta:token];
-    
-    /*[API uploadPropertyWithTitle:npf1vc_.textField.text
+    [API uploadPropertyWithTitle:npf1vc_.textField.text
                       contentRaw:npf1vc_.textField.text
                           author:[GlobalData authorID]
-                        postMeta:token];*/
+                        postMeta:token];
   }
-  
-  [self.navigationController popToRootViewControllerAnimated:YES];
 }
 
 - (void)back:(UIButton *)uib
@@ -343,6 +353,25 @@
   ptvc.delegate = self;
   
   [self.navigationController pushViewController:ptvc animated:YES];
+}
+
+#pragma mark - API notifications callbacks
+
+- (void)apiUserPropertiesSuccessful:(NSNotification *)notification
+{
+  NSDictionary *token = (NSDictionary *)notification.object;
+  
+  [CoreDataStoring storeProperty:token];
+  
+  [self.navigationController popToRootViewControllerAnimated:YES];
+  //
+  
+  /*[API updateUploadedProperty:[self.property valueForKey:@"propertyID"]
+   title:npf1vc_.textField.text
+   contentRaw:npf1vc_.textField.text
+   author:[GlobalData authorID]
+   postMeta:token];*/
+  
 }
 
 #pragma mark - PropertyTypeDelegate delegate methods implementation

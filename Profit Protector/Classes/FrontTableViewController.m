@@ -86,10 +86,10 @@
   [super viewWillAppear:animated];
  
   //
-  [[NSNotificationCenter defaultCenter] addObserver:self
+  /*[[NSNotificationCenter defaultCenter] addObserver:self
                                            selector:@selector(apiUserPropertiesSuccessful:)
                                                name:apiUserPropertiesSuccessfulNotification
-                                             object:nil];
+                                             object:nil];*/
   
   properties_ = [CoreDataRetrieving allProperties];
   
@@ -155,12 +155,6 @@
                                                 CGRectGetHeight(self.view.frame) - 64.0f);
                      }];
   }
-}
-
-#pragma mark - API notifications callbacks
-
-- (void)apiUserPropertiesSuccessful:(NSNotification *)notification
-{
 }
 
 #pragma mark - UITableView datasource methods implementation
