@@ -41,6 +41,22 @@
                                                 
                                                 NSLog(@"%@", json);
                                                 
+                                                if (error)
+                                                {
+                                                  HUD *hud = [HUD singleton];
+                                                  hud.hud.mode = MBProgressHUDModeText;
+                                                  hud.hud.detailsLabelText = @"Network error, please try again.";
+                                                  
+                                                  dispatch_async(dispatch_get_main_queue(), ^{
+                                                    [HUD removeHUDAfterDelay:1.5f];
+                                                    
+                                                    [[NSNotificationCenter defaultCenter] postNotificationName:apiUserLoginErrorNotification
+                                                                                                        object:json];
+                                                  });
+                                                  
+                                                  return;
+                                                }
+                                                
                                                 if ([json isKindOfClass:[NSDictionary class]])
                                                 {
                                                   dispatch_async(dispatch_get_main_queue(), ^{
@@ -129,6 +145,22 @@
                                                 
                                                 NSLog(@"Response:%@\nError: %@", response, error);
                                                 
+                                                if (error)
+                                                {
+                                                  HUD *hud = [HUD singleton];
+                                                  hud.hud.mode = MBProgressHUDModeText;
+                                                  hud.hud.detailsLabelText = @"Network error, please try again.";
+                                                  
+                                                  dispatch_async(dispatch_get_main_queue(), ^{
+                                                    [HUD removeHUDAfterDelay:1.5f];
+                                                    
+                                                    [[NSNotificationCenter defaultCenter] postNotificationName:apiUserSignupErrorNotification
+                                                                                                        object:nil];
+                                                  });
+                                                  
+                                                  return;
+                                                }
+
                                                 id json = [NSJSONSerialization JSONObjectWithData:data
                                                                                                 options:NSJSONReadingMutableContainers
                                                                                                   error:nil];
@@ -189,6 +221,22 @@
                                               completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
                                                 
                                                 NSLog(@"Response:%@\nError: %@", response, error);
+                                                
+                                                if (error)
+                                                {
+                                                  HUD *hud = [HUD singleton];
+                                                  hud.hud.mode = MBProgressHUDModeText;
+                                                  hud.hud.detailsLabelText = @"Network error, please try again.";
+                                                  
+                                                  dispatch_async(dispatch_get_main_queue(), ^{
+                                                    [HUD removeHUDAfterDelay:1.5f];
+                                                    
+                                                    [[NSNotificationCenter defaultCenter] postNotificationName:apiUserPropertiesErrorNotification
+                                                                                                        object:nil];
+                                                  });
+                                                  
+                                                  return;
+                                                }
                                                 
                                                 NSArray *json = [NSJSONSerialization JSONObjectWithData:data
                                                                                                 options:NSJSONReadingMutableContainers
@@ -301,12 +349,31 @@
                                                 
                                                 NSLog(@"%@", json);
                                                 
-                                                dispatch_async(dispatch_get_main_queue(), ^{
-                                                  [HUD removeHUD];
+                                                HUD *hud = [HUD singleton];
+                                                hud.hud.mode = MBProgressHUDModeText;
+                                                
+                                                if (error)
+                                                {
+                                                  hud.hud.detailsLabelText = @"Network error, please try again.";
                                                   
-                                                  [[NSNotificationCenter defaultCenter] postNotificationName:apiUserPropertiesSuccessfulNotification
-                                                                                                      object:json];
-                                                });
+                                                  dispatch_async(dispatch_get_main_queue(), ^{
+                                                    [HUD removeHUDAfterDelay:1.5f];
+                                                    
+                                                    [[NSNotificationCenter defaultCenter] postNotificationName:apiUserPropertiesErrorNotification
+                                                                                                        object:json];
+                                                  });
+                                                }
+                                                else
+                                                {
+                                                  hud.hud.detailsLabelText = @"Property successfully saved";
+                                                  
+                                                  dispatch_async(dispatch_get_main_queue(), ^{
+                                                    [HUD removeHUDAfterDelay:1.5f];
+                                                    
+                                                    [[NSNotificationCenter defaultCenter] postNotificationName:apiUserPropertiesSuccessfulNotification
+                                                                                                        object:json];
+                                                  });
+                                                }
                                               }];
   [dataTask resume];
 }
@@ -351,9 +418,9 @@
   
   [parameters appendFormat:@"&content_raw=%@", contentRaw];
   
-  [parameters appendFormat:@"&post_meta[0][ID]=%@", postMeta[@"favoritedID"]];
+  /*[parameters appendFormat:@"&post_meta[0][ID]=%@", postMeta[@"favoritedID"]];
   [parameters appendFormat:@"&post_meta[0][key]=%@", @"favorited"];
-  [parameters appendFormat:@"&post_meta[0][value]=%d", [postMeta[@"favorited"] boolValue]];
+  [parameters appendFormat:@"&post_meta[0][value]=%d", [postMeta[@"favorited"] boolValue]];*/
   
   [parameters appendFormat:@"&post_meta[1][ID]=%@", postMeta[@"roomsNumberID"]];
   [parameters appendFormat:@"&post_meta[1][key]=%@", @"roomsNumber"];
@@ -422,12 +489,31 @@
                                                 
                                                 NSLog(@"%@", json);
                                                 
-                                                dispatch_async(dispatch_get_main_queue(), ^{
-                                                  [HUD removeHUD];
+                                                HUD *hud = [HUD singleton];
+                                                hud.hud.mode = MBProgressHUDModeText;
+                                                
+                                                if (error)
+                                                {
+                                                  hud.hud.detailsLabelText = @"Network error, please try again.";
                                                   
-                                                  [[NSNotificationCenter defaultCenter] postNotificationName:apiUserPropertiesSuccessfulNotification
-                                                                                                      object:json];
-                                                });
+                                                  dispatch_async(dispatch_get_main_queue(), ^{
+                                                    [HUD removeHUDAfterDelay:1.5f];
+                                                    
+                                                    [[NSNotificationCenter defaultCenter] postNotificationName:apiUserPropertyUpdateErrorNotification
+                                                                                                        object:json];
+                                                  });
+                                                }
+                                                else
+                                                {
+                                                  hud.hud.detailsLabelText = @"Property successfully updated";
+                                                  
+                                                  dispatch_async(dispatch_get_main_queue(), ^{
+                                                    [HUD removeHUDAfterDelay:1.5f];
+                                                    
+                                                    [[NSNotificationCenter defaultCenter] postNotificationName:apiUserPropertyUpdateSuccessfulNotification
+                                                                                                        object:json];
+                                                  });
+                                                }
                                               }];
   [dataTask resume];
 }

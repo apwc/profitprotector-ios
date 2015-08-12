@@ -69,7 +69,8 @@
   if (self.property)
   {
     npf1vc_.textField.text = [self.property valueForKey:@"name"];
-    npf1vc_.propertyType.titleLabel.text = [self.property valueForKey:@"propertyType"];
+    [npf1vc_.propertyType setTitle:[self.property valueForKey:@"propertyType"] forState:UIControlStateNormal];
+    //npf1vc_.propertyType.titleLabel.text = [self.property valueForKey:@"propertyType"];
   }
   
   [uisv_ addSubview:npf1vc_.view];
@@ -232,6 +233,11 @@
                                            selector:@selector(apiUserPropertiesSuccessful:)
                                                name:apiUserPropertiesSuccessfulNotification
                                              object:nil];
+  
+  [[NSNotificationCenter defaultCenter] addObserver:self
+                                           selector:@selector(apiUserPropertyUpdateSuccessful:)
+                                               name:apiUserPropertyUpdateSuccessfulNotification
+                                             object:nil];
 }
 
 - (void)viewWillDisappear:(BOOL)animated
@@ -240,6 +246,10 @@
   
   [[NSNotificationCenter defaultCenter] removeObserver:self
                                                   name:apiUserPropertiesSuccessfulNotification
+                                                object:nil];
+  
+  [[NSNotificationCenter defaultCenter] removeObserver:self
+                                                  name:apiUserPropertyUpdateSuccessfulNotification
                                                 object:nil];
 }
 
@@ -315,10 +325,11 @@
   
   if (self.property)
   {
-    [self.property setValuesForKeysWithDictionary:token];
-    
-    CoreDataManager *cdm = [CoreDataManager singleton];
-    [cdm.managedObjectContext save:nil];
+    [API updateUploadedProperty:[self.property valueForKey:@"propertyID"]
+                          title:npf1vc_.textField.text
+                     contentRaw:npf1vc_.textField.text
+                         author:[GlobalData authorID]
+                       postMeta:token];
   }
   else
   {
@@ -364,14 +375,16 @@
   [CoreDataStoring storeProperty:token];
   
   [self.navigationController popToRootViewControllerAnimated:YES];
-  //
+}
+
+- (void)apiUserPropertyUpdateSuccessful:(NSNotification *)notification
+{
+  //[self.property setValuesForKeysWithDictionary:token];
   
-  /*[API updateUploadedProperty:[self.property valueForKey:@"propertyID"]
-   title:npf1vc_.textField.text
-   contentRaw:npf1vc_.textField.text
-   author:[GlobalData authorID]
-   postMeta:token];*/
+//  CoreDataManager *cdm = [CoreDataManager singleton];
+//  [cdm.managedObjectContext save:nil];
   
+  [self.navigationController popToRootViewControllerAnimated:YES];
 }
 
 #pragma mark - PropertyTypeDelegate delegate methods implementation

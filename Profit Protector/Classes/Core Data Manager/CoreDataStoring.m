@@ -93,7 +93,7 @@
 
     if ([meta[@"key"] isEqualToString:@"percentageOfMattressesReplaceEachYear"])
     {
-      [property setValue:@([meta[@"value"] integerValue])
+      [property setValue:@([meta[@"value"] doubleValue])
                   forKey:meta[@"key"]];
     }
     

@@ -45,3 +45,6 @@
 
 #define apiUserPropertiesSuccessfulNotification @"apiUserPropertiesSuccessfulNotification"
 #define apiUserPropertiesErrorNotification @"apiUserPropertiesErrorNotification"
+
+#define apiUserPropertyUpdateSuccessfulNotification @"apiUserPropertyUpdateSuccessfulNotification"
+#define apiUserPropertyUpdateErrorNotification @"apiUserPropertyUpdateErrorNotification"
