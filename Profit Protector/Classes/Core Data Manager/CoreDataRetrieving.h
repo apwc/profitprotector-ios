@@ -5,4 +5,6 @@
 
 + (NSArray *)allProperties;
 
++ (NSManagedObject *)propertyWithID:(NSString *)propertyID;
+
 @end

@@ -46,5 +46,11 @@
 #define apiUserPropertiesSuccessfulNotification @"apiUserPropertiesSuccessfulNotification"
 #define apiUserPropertiesErrorNotification @"apiUserPropertiesErrorNotification"
 
+#define apiUserPropertyStoreSuccessfulNotification @"apiUserPropertyStoredSuccessfulNotification"
+#define apiUserPropertyStoreErrorNotification @"apiUserPropertyStoredErrorNotification"
+
 #define apiUserPropertyUpdateSuccessfulNotification @"apiUserPropertyUpdateSuccessfulNotification"
 #define apiUserPropertyUpdateErrorNotification @"apiUserPropertyUpdateErrorNotification"
+
+#define apiUserPropertyDeleteSuccessfulNotification @"apiUserPropertyDeleteSuccessfulNotification"
+#define apiUserPropertyDeleteErrorNotification @"apiUserPropertyDeleteErrorNotification"

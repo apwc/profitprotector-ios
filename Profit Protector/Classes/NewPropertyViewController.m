@@ -70,7 +70,6 @@
   {
     npf1vc_.textField.text = [self.property valueForKey:@"name"];
     [npf1vc_.propertyType setTitle:[self.property valueForKey:@"propertyType"] forState:UIControlStateNormal];
-    //npf1vc_.propertyType.titleLabel.text = [self.property valueForKey:@"propertyType"];
   }
   
   [uisv_ addSubview:npf1vc_.view];
@@ -230,8 +229,8 @@
   
   //
   [[NSNotificationCenter defaultCenter] addObserver:self
-                                           selector:@selector(apiUserPropertiesSuccessful:)
-                                               name:apiUserPropertiesSuccessfulNotification
+                                           selector:@selector(apiUserPropertyStoreSuccessful:)
+                                               name:apiUserPropertyStoreSuccessfulNotification
                                              object:nil];
   
   [[NSNotificationCenter defaultCenter] addObserver:self
@@ -245,7 +244,7 @@
   [super viewWillDisappear:animated];
   
   [[NSNotificationCenter defaultCenter] removeObserver:self
-                                                  name:apiUserPropertiesSuccessfulNotification
+                                                  name:apiUserPropertyStoreSuccessfulNotification
                                                 object:nil];
   
   [[NSNotificationCenter defaultCenter] removeObserver:self
@@ -368,7 +367,7 @@
 
 #pragma mark - API notifications callbacks
 
-- (void)apiUserPropertiesSuccessful:(NSNotification *)notification
+- (void)apiUserPropertyStoreSuccessful:(NSNotification *)notification
 {
   NSDictionary *token = (NSDictionary *)notification.object;
   
@@ -379,10 +378,118 @@
 
 - (void)apiUserPropertyUpdateSuccessful:(NSNotification *)notification
 {
-  //[self.property setValuesForKeysWithDictionary:token];
+  NSDictionary *dictionary = (NSDictionary *)notification.object;
   
-//  CoreDataManager *cdm = [CoreDataManager singleton];
-//  [cdm.managedObjectContext save:nil];
+  [self.property setValue:dictionary[@"ID"] forKey:@"propertyID"];
+  
+  [self.property setValue:dictionary[@"title"] forKey:@"name"];
+  
+  [self.property setValue:dictionary[@"author"][@"ID"] forKey:@"authorID"];
+  
+  NSArray *postMeta = dictionary[@"post_meta"];
+  
+  [postMeta enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+    NSDictionary *meta = (NSDictionary *)obj;
+    
+    if ([meta[@"key"] isEqualToString:@"ancillariesRevenuePerRoomPerNight"])
+    {
+      [self.property setValue:@([meta[@"value"] doubleValue])
+                       forKey:meta[@"key"]];
+    }
+    
+    if ([meta[@"key"] isEqualToString:@"bedBugIncidents"])
+    {
+      [self.property setValue:@([meta[@"value"] integerValue])
+                       forKey:meta[@"key"]];
+    }
+    
+    if ([meta[@"key"] isEqualToString:@"bedsNumber"])
+    {
+      [self.property setValue:@([meta[@"value"] integerValue])
+                       forKey:meta[@"key"]];
+    }
+    
+    if ([meta[@"key"] isEqualToString:@"bugInspectionAndPestControlFees"])
+    {
+      [self.property setValue:@([meta[@"value"] doubleValue])
+                       forKey:meta[@"key"]];
+    }
+    
+    if ([meta[@"key"] isEqualToString:@"costOfReplaceFurnishings"])
+    {
+      [self.property setValue:@([meta[@"value"] doubleValue])
+                       forKey:meta[@"key"]];
+    }
+    
+    if ([meta[@"key"] isEqualToString:@"costOfReplaceMattressesAndBoxSpring"])
+    {
+      [self.property setValue:@([meta[@"value"] doubleValue])
+                       forKey:meta[@"key"]];
+    }
+    
+    if ([meta[@"key"] isEqualToString:@"costToCleanAndReinstallEncasements"])
+    {
+      [self.property setValue:@([meta[@"value"] doubleValue])
+                       forKey:meta[@"key"]];
+    }
+    
+    if ([meta[@"key"] isEqualToString:@"favorite"])
+    {
+      [self.property setValue:@([meta[@"value"] boolValue])
+                       forKey:meta[@"key"]];
+    }
+    
+    if ([meta[@"key"] isEqualToString:@"foodBeverageSalesPerRoomPerNight"])
+    {
+      [self.property setValue:@([meta[@"value"] doubleValue])
+                       forKey:meta[@"key"]];
+    }
+    
+    if ([meta[@"key"] isEqualToString:@"futureBookingDaysLost"])
+    {
+      [self.property setValue:@([meta[@"value"] integerValue])
+                       forKey:meta[@"key"]];
+    }
+    
+    if ([meta[@"key"] isEqualToString:@"grevianceCostsPerInfestation"])
+    {
+      [self.property setValue:@([meta[@"value"] doubleValue])
+                       forKey:meta[@"key"]];
+    }
+    
+    if ([meta[@"key"] isEqualToString:@"percentageOfMattressesReplaceEachYear"])
+    {
+      [self.property setValue:@([meta[@"value"] doubleValue])
+                       forKey:meta[@"key"]];
+    }
+    
+    if ([meta[@"key"] isEqualToString:@"propertyType"])
+    {
+      [self.property setValue:meta[@"value"]
+                       forKey:meta[@"key"]];
+    }
+    
+    if ([meta[@"key"] isEqualToString:@"roomRevenuePerNight"])
+    {
+      [self.property setValue:@([meta[@"value"] doubleValue])
+                       forKey:meta[@"key"]];
+    }
+    
+    if ([meta[@"key"] isEqualToString:@"roomsNumber"])
+    {
+      [self.property setValue:@([meta[@"value"] integerValue])
+                       forKey:meta[@"key"]];
+    }
+    
+    if ([meta[@"key"] isEqualToString:@"timesPerYearBedClean"])
+    {
+      [self.property setValue:@([meta[@"value"] integerValue])
+                       forKey:meta[@"key"]];
+    }
+  }];
+  
+  CoreDataManager *cdm = [CoreDataManager singleton];
+  [cdm.managedObjectContext save:nil];
   
   [self.navigationController popToRootViewControllerAnimated:YES];
 }

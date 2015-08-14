@@ -2,42 +2,26 @@
 <model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="7701" systemVersion="14E46" minimumToolsVersion="Automatic" macOSVersion="Automatic" iOSVersion="Automatic">
     <entity name="Property" syncable="YES">
         <attribute name="ancillariesRevenuePerRoomPerNight" optional="YES" attributeType="Double" defaultValueString="0" syncable="YES"/>
-        <attribute name="ancillariesRevenuePerRoomPerNightID" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
         <attribute name="authorID" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
         <attribute name="bedBugIncidents" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
-        <attribute name="bedBugIncidentsID" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
         <attribute name="bedsNumber" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
-        <attribute name="bedsNumberID" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
         <attribute name="bugInspectionAndPestControlFees" optional="YES" attributeType="Double" defaultValueString="0" syncable="YES"/>
-        <attribute name="bugInspectionAndPestControlFeesID" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
         <attribute name="costOfReplaceFurnishings" optional="YES" attributeType="Double" defaultValueString="0" syncable="YES"/>
-        <attribute name="costOfReplaceFurnishingsID" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
         <attribute name="costOfReplaceMattressesAndBoxSpring" optional="YES" attributeType="Double" defaultValueString="0" syncable="YES"/>
-        <attribute name="costOfReplaceMattressesAndBoxSpringID" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
         <attribute name="costToCleanAndReinstallEncasements" optional="YES" attributeType="Double" defaultValueString="0" syncable="YES"/>
-        <attribute name="costToCleanAndReinstallEncasementsID" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
         <attribute name="favorite" optional="YES" attributeType="Boolean" syncable="YES"/>
-        <attribute name="favoriteID" optional="YES" attributeType="Integer 64" syncable="YES"/>
         <attribute name="foodBeverageSalesPerRoomPerNight" optional="YES" attributeType="Double" defaultValueString="0" syncable="YES"/>
-        <attribute name="foodBeverageSalesPerRoomPerNightID" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
         <attribute name="futureBookingDaysLost" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
-        <attribute name="futureBookingDaysLostID" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
         <attribute name="grevianceCostsPerInfestation" optional="YES" attributeType="Double" defaultValueString="0" syncable="YES"/>
-        <attribute name="grevianceCostsPerInfestationID" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="percentageOfMattressesReplaceEachYear" optional="YES" attributeType="Double" defaultValueString="0" syncable="YES"/>
-        <attribute name="percentageOfMattressesReplaceEachYearID" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
         <attribute name="propertyID" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
         <attribute name="propertyType" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="propertyTypeID" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
         <attribute name="roomRevenuePerNight" optional="YES" attributeType="Double" defaultValueString="0" syncable="YES"/>
-        <attribute name="roomRevenuePerNightID" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
         <attribute name="roomsNumber" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
-        <attribute name="roomsNumberID" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
         <attribute name="timesPerYearBedClean" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
-        <attribute name="timesPerYearBedCleanID" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
     </entity>
     <elements>
-        <element name="Property" positionX="-63" positionY="-18" width="128" height="570"/>
+        <element name="Property" positionX="-63" positionY="-18" width="128" height="330"/>
     </elements>
 </model>

@@ -343,7 +343,7 @@
                                                 
                                                 NSLog(@"Response:%@\nError: %@", response, error);
                                                 
-                                                NSArray *json = [NSJSONSerialization JSONObjectWithData:data
+                                                id json = [NSJSONSerialization JSONObjectWithData:data
                                                                                                 options:NSJSONReadingMutableContainers
                                                                                                   error:nil];
                                                 
@@ -359,18 +359,32 @@
                                                   dispatch_async(dispatch_get_main_queue(), ^{
                                                     [HUD removeHUDAfterDelay:1.5f];
                                                     
-                                                    [[NSNotificationCenter defaultCenter] postNotificationName:apiUserPropertiesErrorNotification
-                                                                                                        object:json];
+                                                    [[NSNotificationCenter defaultCenter] postNotificationName:apiUserPropertyStoreErrorNotification
+                                                                                                        object:nil];
                                                   });
                                                 }
                                                 else
                                                 {
+                                                  if ([json isKindOfClass:[NSArray class]] &&
+                                                      [[json firstObject][@"code"] isEqualToString:@"json_cannot_create"])
+                                                  {
+                                                    HUD *hud = [HUD singleton];
+                                                    hud.hud.mode = MBProgressHUDModeText;
+                                                    hud.hud.detailsLabelText = [json firstObject][@"message"];
+                                                    
+                                                    dispatch_async(dispatch_get_main_queue(), ^{
+                                                      [HUD removeHUDAfterDelay:1.5f];
+                                                    });
+                                                    
+                                                    return;
+                                                  }
+
                                                   hud.hud.detailsLabelText = @"Property successfully saved";
                                                   
                                                   dispatch_async(dispatch_get_main_queue(), ^{
                                                     [HUD removeHUDAfterDelay:1.5f];
                                                     
-                                                    [[NSNotificationCenter defaultCenter] postNotificationName:apiUserPropertiesSuccessfulNotification
+                                                    [[NSNotificationCenter defaultCenter] postNotificationName:apiUserPropertyStoreSuccessfulNotification
                                                                                                         object:json];
                                                   });
                                                 }
@@ -418,61 +432,44 @@
   
   [parameters appendFormat:@"&content_raw=%@", contentRaw];
   
-  /*[parameters appendFormat:@"&post_meta[0][ID]=%@", postMeta[@"favoritedID"]];
-  [parameters appendFormat:@"&post_meta[0][key]=%@", @"favorited"];
-  [parameters appendFormat:@"&post_meta[0][value]=%d", [postMeta[@"favorited"] boolValue]];*/
+  [parameters appendFormat:@"&post_meta[0][key]=%@", @"roomsNumber"];
+  [parameters appendFormat:@"&post_meta[0][value]=%@", postMeta[@"roomsNumber"]];
+
+  [parameters appendFormat:@"&post_meta[1][key]=%@", @"bedsNumber"];
+  [parameters appendFormat:@"&post_meta[1][value]=%@", postMeta[@"bedsNumber"]];
   
-  [parameters appendFormat:@"&post_meta[1][ID]=%@", postMeta[@"roomsNumberID"]];
-  [parameters appendFormat:@"&post_meta[1][key]=%@", @"roomsNumber"];
-  [parameters appendFormat:@"&post_meta[1][value]=%@", postMeta[@"roomsNumber"]];
-  
-  [parameters appendFormat:@"&post_meta[2][ID]=%@", postMeta[@"bedsNumberID"]];
-  [parameters appendFormat:@"&post_meta[2][key]=%@", @"bedsNumber"];
-  [parameters appendFormat:@"&post_meta[2][value]=%@", postMeta[@"bedsNumber"]];
-  
-  [parameters appendFormat:@"&post_meta[3][ID]=%@", postMeta[@"roomRevenuePerNightID"]];
-  [parameters appendFormat:@"&post_meta[3][key]=%@", @"roomRevenuePerNight"];
-  [parameters appendFormat:@"&post_meta[3][value]=%@", postMeta[@"roomRevenuePerNight"]];
-  
-  [parameters appendFormat:@"&post_meta[4][ID]=%@", postMeta[@"foodBeverageSalesPerRoomPerNightID"]];
-  [parameters appendFormat:@"&post_meta[4][key]=%@", @"foodBeverageSalesPerRoomPerNight"];
-  [parameters appendFormat:@"&post_meta[4][value]=%@", postMeta[@"foodBeverageSalesPerRoomPerNight"]];
-  
-  [parameters appendFormat:@"&post_meta[5][ID]=%@", postMeta[@"ancillariesRevenuePerRoomPerNightID"]];
-  [parameters appendFormat:@"&post_meta[5][key]=%@", @"ancillariesRevenuePerRoomPerNight"];
-  [parameters appendFormat:@"&post_meta[5][value]=%@", postMeta[@"ancillariesRevenuePerRoomPerNight"]];
-  
-  [parameters appendFormat:@"&post_meta[6][ID]=%@", postMeta[@"costOfReplaceMattressesAndBoxSpringID"]];
-  [parameters appendFormat:@"&post_meta[6][key]=%@", @"costOfReplaceMattressesAndBoxSpring"];
-  [parameters appendFormat:@"&post_meta[6][value]=%@", postMeta[@"costOfReplaceMattressesAndBoxSpring"]];
-  
-  [parameters appendFormat:@"&post_meta[7][ID]=%@", postMeta[@"costOfReplaceFurnishingsID"]];
-  [parameters appendFormat:@"&post_meta[7][key]=%@", @"costOfReplaceFurnishings"];
-  [parameters appendFormat:@"&post_meta[7][value]=%@", postMeta[@"costOfReplaceFurnishings"]];
-  
-  [parameters appendFormat:@"&post_meta[8][ID]=%@", postMeta[@"percentageOfMattressesReplaceEachYearID"]];
-  [parameters appendFormat:@"&post_meta[8][key]=%@", @"percentageOfMattressesReplaceEachYear"];
-  [parameters appendFormat:@"&post_meta[8][value]=%@", postMeta[@"percentageOfMattressesReplaceEachYear"]];
-  
-  [parameters appendFormat:@"&post_meta[9][ID]=%@", postMeta[@"timesPerYearBedCleanID"]];
-  [parameters appendFormat:@"&post_meta[9][key]=%@", @"timesPerYearBedClean"];
-  [parameters appendFormat:@"&post_meta[9][value]=%@", postMeta[@"timesPerYearBedClean"]];
-  
-  [parameters appendFormat:@"&post_meta[10][ID]=%@", postMeta[@"costToCleanAndReinstallEncasementsID"]];
-  [parameters appendFormat:@"&post_meta[10][key]=%@", @"costToCleanAndReinstallEncasements"];
-  [parameters appendFormat:@"&post_meta[10][value]=%@", postMeta[@"costToCleanAndReinstallEncasements"]];
-  
-  [parameters appendFormat:@"&post_meta[11][ID]=%@", postMeta[@"bedBugIncidentsID"]];
-  [parameters appendFormat:@"&post_meta[11][key]=%@", @"bedBugIncidents"];
-  [parameters appendFormat:@"&post_meta[11][value]=%@", postMeta[@"bedBugIncidents"]];
-  
-  [parameters appendFormat:@"&post_meta[12][ID]=%@", postMeta[@"bugInspectionAndPestControlFeesID"]];
-  [parameters appendFormat:@"&post_meta[12][key]=%@", @"bugInspectionAndPestControlFees"];
-  [parameters appendFormat:@"&post_meta[12][value]=%@", postMeta[@"bugInspectionAndPestControlFees"]];
-  
-  [parameters appendFormat:@"&post_meta[13][ID]=%@", postMeta[@"futureBookingDaysLostID"]];
-  [parameters appendFormat:@"&post_meta[13][key]=%@", @"futureBookingDaysLost"];
-  [parameters appendFormat:@"&post_meta[13][value]=%@", postMeta[@"futureBookingDaysLost"]];
+  [parameters appendFormat:@"&post_meta[2][key]=%@", @"roomRevenuePerNight"];
+  [parameters appendFormat:@"&post_meta[2][value]=%@", postMeta[@"roomRevenuePerNight"]];
+
+  [parameters appendFormat:@"&post_meta[3][key]=%@", @"foodBeverageSalesPerRoomPerNight"];
+  [parameters appendFormat:@"&post_meta[3][value]=%@", postMeta[@"foodBeverageSalesPerRoomPerNight"]];
+
+  [parameters appendFormat:@"&post_meta[4][key]=%@", @"ancillariesRevenuePerRoomPerNight"];
+  [parameters appendFormat:@"&post_meta[4][value]=%@", postMeta[@"ancillariesRevenuePerRoomPerNight"]];
+
+  [parameters appendFormat:@"&post_meta[5][key]=%@", @"costOfReplaceMattressesAndBoxSpring"];
+  [parameters appendFormat:@"&post_meta[5][value]=%@", postMeta[@"costOfReplaceMattressesAndBoxSpring"]];
+
+  [parameters appendFormat:@"&post_meta[6][key]=%@", @"costOfReplaceFurnishings"];
+  [parameters appendFormat:@"&post_meta[6][value]=%@", postMeta[@"costOfReplaceFurnishings"]];
+
+  [parameters appendFormat:@"&post_meta[7][key]=%@", @"percentageOfMattressesReplaceEachYear"];
+  [parameters appendFormat:@"&post_meta[7][value]=%@", postMeta[@"percentageOfMattressesReplaceEachYear"]];
+
+  [parameters appendFormat:@"&post_meta[8][key]=%@", @"timesPerYearBedClean"];
+  [parameters appendFormat:@"&post_meta[8][value]=%@", postMeta[@"timesPerYearBedClean"]];
+
+  [parameters appendFormat:@"&post_meta[9][key]=%@", @"costToCleanAndReinstallEncasements"];
+  [parameters appendFormat:@"&post_meta[9][value]=%@", postMeta[@"costToCleanAndReinstallEncasements"]];
+
+  [parameters appendFormat:@"&post_meta[10][key]=%@", @"bedBugIncidents"];
+  [parameters appendFormat:@"&post_meta[10][value]=%@", postMeta[@"bedBugIncidents"]];
+
+  [parameters appendFormat:@"&post_meta[11][key]=%@", @"bugInspectionAndPestControlFees"];
+  [parameters appendFormat:@"&post_meta[11][value]=%@", postMeta[@"bugInspectionAndPestControlFees"]];
+
+  [parameters appendFormat:@"&post_meta[12][key]=%@", @"futureBookingDaysLost"];
+  [parameters appendFormat:@"&post_meta[12][value]=%@", postMeta[@"futureBookingDaysLost"]];
   
   [request setHTTPBody:[parameters dataUsingEncoding:NSUTF8StringEncoding]];
   
@@ -483,7 +480,7 @@
                                                 
                                                 NSLog(@"Response:%@\nError: %@", response, error);
                                                 
-                                                NSArray *json = [NSJSONSerialization JSONObjectWithData:data
+                                                id json = [NSJSONSerialization JSONObjectWithData:data
                                                                                                 options:NSJSONReadingMutableContainers
                                                                                                   error:nil];
                                                 
@@ -505,12 +502,163 @@
                                                 }
                                                 else
                                                 {
+                                                  if ([json isKindOfClass:[NSArray class]] &&
+                                                      [[json firstObject][@"code"] isEqualToString:@"json_cannot_edit"])
+                                                  {
+                                                    HUD *hud = [HUD singleton];
+                                                    hud.hud.mode = MBProgressHUDModeText;
+                                                    hud.hud.detailsLabelText = [json firstObject][@"message"];
+                                                    
+                                                    dispatch_async(dispatch_get_main_queue(), ^{
+                                                      [HUD removeHUDAfterDelay:1.5f];
+                                                    });
+                                                    
+                                                    return;
+                                                  }
+                                                  
                                                   hud.hud.detailsLabelText = @"Property successfully updated";
                                                   
                                                   dispatch_async(dispatch_get_main_queue(), ^{
                                                     [HUD removeHUDAfterDelay:1.5f];
                                                     
                                                     [[NSNotificationCenter defaultCenter] postNotificationName:apiUserPropertyUpdateSuccessfulNotification
+                                                                                                        object:json];
+                                                  });
+                                                }
+                                              }];
+  [dataTask resume];
+}
+
++ (void)deleteProperty:(NSManagedObject *)property
+{
+  [HUD addHUD];
+  
+  NSString *auth = [NSString stringWithFormat:@"%@fjir50e%@",
+                    [GlobalData username],
+                    [GlobalData password]];
+  
+  NSData *authData = [auth dataUsingEncoding:NSUTF8StringEncoding];
+  NSString *base64 = [authData base64EncodedStringWithOptions:NSDataBase64Encoding64CharacterLineLength];
+  
+  NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"%@%@/%@",
+                                     apiPrefix,
+                                     properties,
+                                     [property valueForKey:@"propertyID"]]];
+  
+  NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
+  [request addValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-type"];
+  [request setHTTPMethod:@"POST"];
+  
+  NSMutableString *parameters = [NSMutableString stringWithCapacity:0];
+  
+  [parameters appendFormat:@"iam=%@", base64];
+  
+  [parameters appendFormat:@"&filter=%@", [GlobalData username]];
+  
+  [parameters appendString:@"&context=edit"];
+  
+  [parameters appendString:@"&type=property"];
+  
+  [parameters appendString:@"&status=draft"];
+  
+  [parameters appendFormat:@"&title=%@", [property valueForKey:@"name"]];
+  
+  [parameters appendFormat:@"&content_raw=%@", [property valueForKey:@"name"]];
+  
+  [parameters appendFormat:@"&post_meta[0][key]=%@", @"roomsNumber"];
+  [parameters appendFormat:@"&post_meta[0][value]=%@", [property valueForKey:@"roomsNumber"]];
+  
+  [parameters appendFormat:@"&post_meta[1][key]=%@", @"bedsNumber"];
+  [parameters appendFormat:@"&post_meta[1][value]=%@", [property valueForKey:@"bedsNumber"]];
+  
+  [parameters appendFormat:@"&post_meta[2][key]=%@", @"roomRevenuePerNight"];
+  [parameters appendFormat:@"&post_meta[2][value]=%@", [property valueForKey:@"roomRevenuePerNight"]];
+  
+  [parameters appendFormat:@"&post_meta[3][key]=%@", @"foodBeverageSalesPerRoomPerNight"];
+  [parameters appendFormat:@"&post_meta[3][value]=%@", [property valueForKey:@"foodBeverageSalesPerRoomPerNight"]];
+  
+  [parameters appendFormat:@"&post_meta[4][key]=%@", @"ancillariesRevenuePerRoomPerNight"];
+  [parameters appendFormat:@"&post_meta[4][value]=%@", [property valueForKey:@"ancillariesRevenuePerRoomPerNight"]];
+  
+  [parameters appendFormat:@"&post_meta[5][key]=%@", @"costOfReplaceMattressesAndBoxSpring"];
+  [parameters appendFormat:@"&post_meta[5][value]=%@", [property valueForKey:@"costOfReplaceMattressesAndBoxSpring"]];
+  
+  [parameters appendFormat:@"&post_meta[6][key]=%@", @"costOfReplaceFurnishings"];
+  [parameters appendFormat:@"&post_meta[6][value]=%@", [property valueForKey:@"costOfReplaceFurnishings"]];
+  
+  [parameters appendFormat:@"&post_meta[7][key]=%@", @"percentageOfMattressesReplaceEachYear"];
+  [parameters appendFormat:@"&post_meta[7][value]=%@", [property valueForKey:@"percentageOfMattressesReplaceEachYear"]];
+  
+  [parameters appendFormat:@"&post_meta[8][key]=%@", @"timesPerYearBedClean"];
+  [parameters appendFormat:@"&post_meta[8][value]=%@", [property valueForKey:@"timesPerYearBedClean"]];
+  
+  [parameters appendFormat:@"&post_meta[9][key]=%@", @"costToCleanAndReinstallEncasements"];
+  [parameters appendFormat:@"&post_meta[9][value]=%@", [property valueForKey:@"costToCleanAndReinstallEncasements"]];
+  
+  [parameters appendFormat:@"&post_meta[10][key]=%@", @"bedBugIncidents"];
+  [parameters appendFormat:@"&post_meta[10][value]=%@", [property valueForKey:@"bedBugIncidents"]];
+  
+  [parameters appendFormat:@"&post_meta[11][key]=%@", @"bugInspectionAndPestControlFees"];
+  [parameters appendFormat:@"&post_meta[11][value]=%@", [property valueForKey:@"bugInspectionAndPestControlFees"]];
+  
+  [parameters appendFormat:@"&post_meta[12][key]=%@", @"futureBookingDaysLost"];
+  [parameters appendFormat:@"&post_meta[12][value]=%@", [property valueForKey:@"futureBookingDaysLost"]];
+  
+  [request setHTTPBody:[parameters dataUsingEncoding:NSUTF8StringEncoding]];
+  
+  NSURLSession *session = [NSURLSession sharedSession];
+  
+  NSURLSessionDataTask *dataTask = [session dataTaskWithRequest:request
+                                              completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
+                                                
+                                                NSLog(@"Response:%@\nError: %@", response, error);
+                                                
+                                                id json = [NSJSONSerialization JSONObjectWithData:data
+                                                                                                options:NSJSONReadingMutableContainers
+                                                                                                  error:nil];
+                                                
+                                                NSLog(@"%@", json);
+                                                
+                                                HUD *hud = [HUD singleton];
+                                                hud.hud.mode = MBProgressHUDModeText;
+                                                
+                                                if (error)
+                                                {
+                                                  hud.hud.detailsLabelText = @"Network error, please try again.";
+                                                  
+                                                  dispatch_async(dispatch_get_main_queue(), ^{
+                                                    [HUD removeHUDAfterDelay:1.5f];
+                                                    
+                                                    [[NSNotificationCenter defaultCenter] postNotificationName:apiUserPropertyDeleteErrorNotification
+                                                                                                        object:json];
+                                                  });
+                                                }
+                                                else
+                                                {
+                                                  if ([json isKindOfClass:[NSArray class]] &&
+                                                      [[json firstObject][@"code"] isEqualToString:@"json_cannot_edit"])
+                                                  {
+                                                    HUD *hud = [HUD singleton];
+                                                    hud.hud.mode = MBProgressHUDModeText;
+                                                    hud.hud.detailsLabelText = [json firstObject][@"message"];
+                                                    
+                                                    dispatch_async(dispatch_get_main_queue(), ^{
+                                                      [HUD removeHUDAfterDelay:1.5f];
+                                                    });
+                                                    
+                                                    return;
+                                                  }
+
+                                                  hud.hud.detailsLabelText = @"Property successfully deleted";
+                                                  
+                                                  dispatch_async(dispatch_get_main_queue(), ^{
+                                                    [HUD removeHUDAfterDelay:1.5f];
+                                                    
+                                                    CoreDataManager *cdm = [CoreDataManager singleton];
+                                                    [cdm deleteObject:property];
+                                                    [cdm saveData];
+                                                    
+                                                    [[NSNotificationCenter defaultCenter] postNotificationName:apiUserPropertyDeleteSuccessfulNotification
                                                                                                         object:json];
                                                   });
                                                 }

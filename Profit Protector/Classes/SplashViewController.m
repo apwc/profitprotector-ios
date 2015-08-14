@@ -205,11 +205,12 @@
 
 - (void)apiUserLoginSuccessful:(NSNotification *)notification
 {
+  NSDictionary *json = (NSDictionary *)notification.object;
+
+  [GlobalData saveAuthorID:json[@"ID"]];
+  
   if (storeLogin_)
   {
-    NSDictionary *json = (NSDictionary *)notification.object;
-
-    [GlobalData saveAuthorID:json[@"ID"]];
     [GlobalData saveUsername:username_.text];
     [GlobalData savePassword:password_.text];
   }
@@ -229,6 +230,7 @@
 
 - (void)userHasBeenRegistered:(NSNotification *)notification
 {
+  
   [API loginWithUsername:[GlobalData username]
                 password:[GlobalData password]];
 }

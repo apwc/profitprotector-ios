@@ -1,5 +1,6 @@
 #import "Singleton.h"
 #import "Constants.h"
+#import "CoreDataManager.h"
 
 @interface API : Singleton
 
@@ -26,5 +27,7 @@
                     contentRaw:(NSString *)contentRaw
                         author:(NSString *)author
                       postMeta:(NSDictionary *)postMeta;
+
++ (void)deleteProperty:(NSManagedObject *)property;
 
 @end

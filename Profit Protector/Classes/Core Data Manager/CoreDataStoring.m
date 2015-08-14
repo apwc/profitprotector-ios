@@ -1,4 +1,5 @@
 #import "CoreDataStoring.h"
+#import "CoreDataRetrieving.h"
 
 @implementation CoreDataStoring
 
@@ -6,9 +7,13 @@
 {
   CoreDataManager *cdm = [CoreDataManager singleton];
   
+  NSLog(@"%@", dictionary[@"ID"]);
   // create the entity object
-  NSManagedObject *property = (NSManagedObject *)[NSEntityDescription insertNewObjectForEntityForName:@"Property"
-                                                                               inManagedObjectContext:cdm.managedObjectContext];
+  NSManagedObject *property = [CoreDataRetrieving propertyWithID:dictionary[@"ID"]];
+  
+  if (!property)
+    property = (NSManagedObject *)[NSEntityDescription insertNewObjectForEntityForName:@"Property"
+                                                                inManagedObjectContext:cdm.managedObjectContext];
   
   
   [property setValue:dictionary[@"ID"] forKey:@"propertyID"];
@@ -21,9 +26,6 @@
   
   [postMeta enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
     NSDictionary *meta = (NSDictionary *)obj;
-    
-    [property setValue:@([meta[@"ID"] integerValue])
-                forKey:[NSString stringWithFormat:@"%@ID", meta[@"key"]]];
     
     if ([meta[@"key"] isEqualToString:@"ancillariesRevenuePerRoomPerNight"])
     {
@@ -99,9 +101,6 @@
     
     if ([meta[@"key"] isEqualToString:@"propertyType"])
     {
-      [property setValue:meta[@"ID"]
-                  forKey:[NSString stringWithFormat:@"%@ID", meta[@"key"]]];
-      
       [property setValue:meta[@"value"]
                   forKey:meta[@"key"]];
     }

@@ -60,6 +60,7 @@
 
 - (void)userDidLogout:(NSNotification *)notification
 {
+  [GlobalData deleteAuthorID];
   [GlobalData deleteUsername];
   [GlobalData deletePassword];
   

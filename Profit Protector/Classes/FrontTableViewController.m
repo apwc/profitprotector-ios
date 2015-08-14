@@ -4,6 +4,7 @@
 #import "NewPropertyViewController.h"
 #import "HotelDetailsViewController.h"
 #import "CoreDataRetrieving.h"
+#import "CoreDataStoring.h"
 #import "GlobalMethods.h"
 #import "API.h"
 
@@ -84,12 +85,17 @@
 - (void)viewWillAppear:(BOOL)animated
 {
   [super viewWillAppear:animated];
- 
+  
   //
-  /*[[NSNotificationCenter defaultCenter] addObserver:self
+  [[NSNotificationCenter defaultCenter] addObserver:self
                                            selector:@selector(apiUserPropertiesSuccessful:)
                                                name:apiUserPropertiesSuccessfulNotification
-                                             object:nil];*/
+                                             object:nil];
+  
+  [[NSNotificationCenter defaultCenter] addObserver:self
+                                           selector:@selector(apiUserPropertyDeleteSuccessful:)
+                                               name:apiUserPropertyDeleteSuccessfulNotification
+                                             object:nil];
   
   properties_ = [CoreDataRetrieving allProperties];
   
@@ -102,6 +108,10 @@
   
   [[NSNotificationCenter defaultCenter] removeObserver:self
                                                   name:apiUserPropertiesSuccessfulNotification
+                                                object:nil];
+  
+  [[NSNotificationCenter defaultCenter] removeObserver:self
+                                                  name:apiUserPropertyDeleteSuccessfulNotification
                                                 object:nil];
 }
 
@@ -155,6 +165,28 @@
                                                 CGRectGetHeight(self.view.frame) - 64.0f);
                      }];
   }
+}
+
+#pragma mark - API notifications callbacks
+
+- (void)apiUserPropertiesSuccessful:(NSNotification *)notification
+{
+  NSArray *array = (NSArray *)notification.object;
+  
+  [array enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+    [CoreDataStoring storeProperty:obj];
+  }];
+  
+  properties_ = [CoreDataRetrieving allProperties];
+  
+  [uitv_ reloadData];
+}
+
+- (void)apiUserPropertyDeleteSuccessful:(NSNotification *)notification
+{
+  properties_ = [CoreDataRetrieving allProperties];
+  
+  [uitv_ reloadData];
 }
 
 #pragma mark - UITableView datasource methods implementation
@@ -292,12 +324,7 @@
   UITableViewRowAction *trsh = [UITableViewRowAction rowActionWithStyle:UITableViewRowActionStyleDestructive
                                                                   title:@"TRSH"
                                                                 handler:^(UITableViewRowAction *action, NSIndexPath *indexPath) {
-                                                                  CoreDataManager *cdm = [CoreDataManager singleton];
-                                                                  [cdm deleteObject:properties_[indexPath.row]];
-                                                                  
-                                                                  properties_ = [CoreDataRetrieving allProperties];
-                                                                  
-                                                                  [uitv_ reloadData];
+                                                                  [API deleteProperty:properties_[indexPath.row]];
                                                                 }];
   
   return @[trsh, edt, frwrd, fav];
