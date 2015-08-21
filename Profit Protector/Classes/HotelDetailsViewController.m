@@ -1,21 +1,20 @@
 #import "HotelDetailsViewController.h"
 #import "ProfitProtectorStyleKit.h"
 #import "GlobalMethods.h"
+#import "NewPropertyViewController.h"
+#import "AnnualLosesTableViewController.h"
+#import "AnnualSavingsTableViewController.h"
 
 @interface HotelDetailsViewController () <UITableViewDataSource,
                                           UITableViewDelegate>
 {
-  NSDictionary  *math_;
+  NSDictionary      *math_;
   
-  UILabel       *lifetimeROI_;
+  UILabel           *lifetimeROI_;
   
-  UITableView   *uitv_;
+  UITableView       *uitv_;
   
-  BOOL          isProfileSelected_;
-  
-  float         totalAnnualCostsLossesWithout_,
-                totalAnnualCostsLossesWith_,
-                totalAnnualCostsLossesPreemptive_;
+  BOOL              isProfileSelected_;
   
   NSNumberFormatter *formatter_;
 }
@@ -32,6 +31,10 @@
   
   // UI customizations
   self.view.backgroundColor = [UIColor whiteColor];
+
+  self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Edit" style:UIBarButtonItemStylePlain
+                                                                           target:self
+                                                                           action:@selector(edit:)];
   
   // get the math results
   math_ = [GlobalMethods math:self.property];
@@ -47,38 +50,25 @@
   uisc.tintColor = [UIColor colorWithRed:0.0f green:0.68f blue:0.94f alpha:1.0f];
   [self.view addSubview:uisc];
   
-  // Lifetime ROI
-  UILabel *lifetimeROITitle = [[UILabel alloc] initWithFrame:CGRectMake(0.0f,
-                                                                        CGRectGetHeight(self.view.bounds) - 70.0f - 42.0f,
-                                                                        CGRectGetWidth(self.view.bounds),
-                                                                        42.0f)];
-  lifetimeROITitle.textColor = [UIColor blackColor];
-  lifetimeROITitle.font = [UIFont fontWithName:@"HelveticaNeue-Light" size:22.0f];
-  lifetimeROITitle.textAlignment = NSTextAlignmentCenter;
-  lifetimeROITitle.text = @"Lifetime ROI";
-  [self.view addSubview:lifetimeROITitle];
-  
-  lifetimeROI_ = [[UILabel alloc] initWithFrame:CGRectMake(0.0f,
-                                                           CGRectGetHeight(self.view.bounds) - 70.0f,
-                                                           CGRectGetWidth(self.view.bounds),
-                                                           70.0f)];
-  lifetimeROI_.backgroundColor = [UIColor colorWithRed:0 green:0.75 blue:0.3 alpha:1];
-  lifetimeROI_.textColor = [UIColor whiteColor];
-  lifetimeROI_.font = [UIFont fontWithName:@"HelveticaNeue" size:26.0f];
-  lifetimeROI_.textAlignment = NSTextAlignmentCenter;
-  lifetimeROI_.text = [formatter_ stringFromNumber:math_[@"roi"]];
-  [self.view addSubview:lifetimeROI_];
-  
   uitv_ = [[UITableView alloc] initWithFrame:CGRectMake(0.0f,
                                                         CGRectGetMaxY(uisc.frame) + 10.0f,
                                                         CGRectGetWidth(self.view.bounds),
-                                                        CGRectGetHeight(self.view.bounds) - (CGRectGetMaxY(uisc.frame) + 10.0f) - CGRectGetHeight(lifetimeROITitle.frame) - CGRectGetHeight(lifetimeROI_.frame))//(CGRectGetMaxY(uisc.frame) + 10.0f) - )
+                                                        CGRectGetHeight(self.view.bounds) - (CGRectGetMaxY(uisc.frame) + 10.0f))
                                        style:UITableViewStylePlain];
   uitv_.dataSource = self;
   uitv_.delegate = self;
+  uitv_.separatorColor = [UIColor clearColor];
   [self.view addSubview:uitv_];
   
   isProfileSelected_ = NO;
+}
+
+- (void)edit:(UIBarButtonItem *)uibbi
+{
+  NewPropertyViewController *npvc = [[NewPropertyViewController alloc] initWithNibName:nil
+                                                                                bundle:nil];
+  npvc.property = self.property;
+  [self.navigationController pushViewController:npvc animated:YES];
 }
 
 - (void)segmentedControlEventChanged:(UISegmentedControl *)uisc
@@ -92,13 +82,20 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-  return isProfileSelected_ ? 1 : 2;
+  return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView
  numberOfRowsInSection:(NSInteger)section
 {
-  return isProfileSelected_ ? 6 : section == 0 ? 2 : 1;
+  NSInteger count = 0;
+  
+  if (isProfileSelected_)
+    count = 6;
+  else
+    count = 7;
+  
+  return count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView
@@ -204,83 +201,108 @@
       cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault
                                     reuseIdentifier:cellIdentifier];
       
-      if (indexPath.section == 0)
-      {
-        if (indexPath.row == 0)
-        {
-          UIImageView *newProperty = [[UIImageView alloc] initWithImage:[ProfitProtectorStyleKit imageOfBadgeWithSize:CGSizeMake(130.0f, 37.0f)
-                                                                                                            fillColor:[UIColor whiteColor]
-                                                                                                         cornerRadius:7.0f
-                                                                                                          strokeColor:[UIColor redColor]
-                                                                                                          strokeWidth:1.0f
-                                                                                                                 text:[formatter_ stringFromNumber:math_[@"totalAnnualCostsLossesWithout"]]
-                                                                                                            textColor:[UIColor redColor]
-                                                                                                             textFont:[UIFont fontWithName:@"HelveticaNeue" size:14.0f]]];
-          [newProperty sizeToFit];
-          newProperty.center = CGPointMake(CGRectGetWidth(cell.bounds) - (CGRectGetWidth(newProperty.bounds) / 2.0f) - 10.f,
-                                           CGRectGetHeight(cell.bounds) / 2.0f);
-          newProperty.autoresizingMask = (UIViewAutoresizingFlexibleLeftMargin |
-                                          UIViewAutoresizingFlexibleTopMargin |
-                                          UIViewAutoresizingFlexibleBottomMargin);
-          [cell.contentView addSubview:newProperty];
-        }
-        
-        if (indexPath.row == 1)
-        {
-          UIImageView *newProperty = [[UIImageView alloc] initWithImage:[ProfitProtectorStyleKit imageOfBadgeWithSize:CGSizeMake(130.0f, 37.0f)
-                                                                                                            fillColor:[UIColor whiteColor]
-                                                                                                         cornerRadius:7.0f
-                                                                                                          strokeColor:[UIColor orangeColor]
-                                                                                                          strokeWidth:1.0f
-                                                                                                                 text:[formatter_ stringFromNumber:math_[@"totalAnnualCostsLossesWith"]]
-                                                                                                            textColor:[UIColor orangeColor]
-                                                                                                             textFont:[UIFont fontWithName:@"HelveticaNeue" size:14.0f]]];
-          [newProperty sizeToFit];
-          newProperty.center = CGPointMake(CGRectGetWidth(cell.bounds) - (CGRectGetWidth(newProperty.bounds) / 2.0f) - 10.f,
-                                           CGRectGetHeight(cell.bounds) / 2.0f);
-          newProperty.autoresizingMask = (UIViewAutoresizingFlexibleLeftMargin |
-                                          UIViewAutoresizingFlexibleTopMargin |
-                                          UIViewAutoresizingFlexibleBottomMargin);
-          [cell.contentView addSubview:newProperty];
-        }
-      }
-      
-      if (indexPath.section == 1)
-      {
-        if (indexPath.row == 0)
-        {
-          UIImageView *newProperty = [[UIImageView alloc] initWithImage:[ProfitProtectorStyleKit imageOfBadgeWithSize:CGSizeMake(130.0f, 37.0f)
-                                                                                                            fillColor:[UIColor whiteColor]
-                                                                                                         cornerRadius:7.0f
-                                                                                                          strokeColor:[UIColor colorWithRed:0 green:0.75 blue:0.3 alpha:1]
-                                                                                                          strokeWidth:1.0f
-                                                                                                                 text:[formatter_ stringFromNumber:math_[@"totalAnnualCostsLossesPreemptive"]]
-                                                                                                            textColor:[UIColor colorWithRed:0 green:0.75 blue:0.3 alpha:1]
-                                                                                                             textFont:[UIFont fontWithName:@"HelveticaNeue" size:14.0f]]];
-          [newProperty sizeToFit];
-          newProperty.center = CGPointMake(CGRectGetWidth(cell.bounds) - (CGRectGetWidth(newProperty.bounds) / 2.0f) - 10.f,
-                                           CGRectGetHeight(cell.bounds) / 2.0f);
-          newProperty.autoresizingMask = (UIViewAutoresizingFlexibleLeftMargin |
-                                          UIViewAutoresizingFlexibleTopMargin |
-                                          UIViewAutoresizingFlexibleBottomMargin);
-          [cell.contentView addSubview:newProperty];
-        }
-      }
-    }
-    
-    if (indexPath.section == 0)
-    {
       if (indexPath.row == 0)
-        cell.textLabel.text = @"Without Encasements";
+      {
+        cell.textLabel.text = @"YOUR ANNUAL LOSES";
+        cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+        cell.backgroundColor = [UIColor colorWithWhite:0.95f alpha:1.0f];
+      }
       
       if (indexPath.row == 1)
-        cell.textLabel.text = @"With Preemptive\nEncasements";
-    }
-    
-    if (indexPath.section == 1)
-    {
-      if (indexPath.row == 0)
-        cell.textLabel.text = @"Preemptive Encasements\nSavings";
+      {
+        cell.textLabel.text = @"Without Encasements";
+        UIImageView *newProperty = [[UIImageView alloc] initWithImage:[ProfitProtectorStyleKit imageOfBadgeWithSize:CGSizeMake(130.0f, 37.0f)
+                                                                                                          fillColor:[UIColor whiteColor]
+                                                                                                       cornerRadius:7.0f
+                                                                                                        strokeColor:[UIColor colorWithRed:0.0f green:0.68f blue:0.94f alpha:1.0f]
+                                                                                                        strokeWidth:1.0f
+                                                                                                               text:[formatter_ stringFromNumber:math_[@"totalAnnualCostsLossesWithout"]]
+                                                                                                          textColor:[UIColor colorWithRed:0.0f green:0.68f blue:0.94f alpha:1.0f]
+                                                                                                           textFont:[UIFont fontWithName:@"HelveticaNeue" size:14.0f]]];
+        [newProperty sizeToFit];
+        newProperty.center = CGPointMake(CGRectGetWidth(cell.bounds) - (CGRectGetWidth(newProperty.bounds) / 2.0f) - 10.f,
+                                         CGRectGetHeight(cell.bounds) / 2.0f);
+        newProperty.autoresizingMask = (UIViewAutoresizingFlexibleLeftMargin |
+                                        UIViewAutoresizingFlexibleTopMargin |
+                                        UIViewAutoresizingFlexibleBottomMargin);
+        [cell.contentView addSubview:newProperty];
+      }
+      
+      if (indexPath.row == 2)
+      {
+        cell.textLabel.text = @"With Encasements";
+        
+        UIImageView *newProperty = [[UIImageView alloc] initWithImage:[ProfitProtectorStyleKit imageOfBadgeWithSize:CGSizeMake(130.0f, 37.0f)
+                                                                                                          fillColor:[UIColor whiteColor]
+                                                                                                       cornerRadius:7.0f
+                                                                                                        strokeColor:[UIColor colorWithRed:0.0f green:0.68f blue:0.94f alpha:1.0f]
+                                                                                                        strokeWidth:1.0f
+                                                                                                               text:[formatter_ stringFromNumber:math_[@"totalAnnualCostsLossesWith"]]
+                                                                                                          textColor:[UIColor colorWithRed:0.0f green:0.68f blue:0.94f alpha:1.0f]
+                                                                                                           textFont:[UIFont fontWithName:@"HelveticaNeue" size:14.0f]]];
+        [newProperty sizeToFit];
+        newProperty.center = CGPointMake(CGRectGetWidth(cell.bounds) - (CGRectGetWidth(newProperty.bounds) / 2.0f) - 10.f,
+                                         CGRectGetHeight(cell.bounds) / 2.0f);
+        newProperty.autoresizingMask = (UIViewAutoresizingFlexibleLeftMargin |
+                                        UIViewAutoresizingFlexibleTopMargin |
+                                        UIViewAutoresizingFlexibleBottomMargin);
+        [cell.contentView addSubview:newProperty];
+      }
+      
+      if (indexPath.row == 3)
+      {
+        cell.textLabel.text = @"YOUR ANNUAL SAVINGS";
+        cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+        cell.backgroundColor = [UIColor colorWithWhite:0.95f alpha:1.0f];
+      }
+      
+      if (indexPath.row == 4)
+      {
+        cell.textLabel.text = @"Total Preemptive Savings";
+        
+        UIImageView *newProperty = [[UIImageView alloc] initWithImage:[ProfitProtectorStyleKit imageOfBadgeWithSize:CGSizeMake(130.0f, 37.0f)
+                                                                                                          fillColor:[UIColor whiteColor]
+                                                                                                       cornerRadius:7.0f
+                                                                                                        strokeColor:[UIColor colorWithRed:0.0f green:0.68f blue:0.94f alpha:1.0f]
+                                                                                                        strokeWidth:1.0f
+                                                                                                               text:[formatter_ stringFromNumber:math_[@"totalAnnualCostsLossesPreemptive"]]
+                                                                                                          textColor:[UIColor colorWithRed:0.0f green:0.68f blue:0.94f alpha:1.0f]
+                                                                                                           textFont:[UIFont fontWithName:@"HelveticaNeue" size:14.0f]]];
+        [newProperty sizeToFit];
+        newProperty.center = CGPointMake(CGRectGetWidth(cell.bounds) - (CGRectGetWidth(newProperty.bounds) / 2.0f) - 10.f,
+                                         CGRectGetHeight(cell.bounds) / 2.0f);
+        newProperty.autoresizingMask = (UIViewAutoresizingFlexibleLeftMargin |
+                                        UIViewAutoresizingFlexibleTopMargin |
+                                        UIViewAutoresizingFlexibleBottomMargin);
+        [cell.contentView addSubview:newProperty];
+      }
+      
+      if (indexPath.row == 5)
+      {
+        cell.textLabel.text = @"LIFETIME RETURN OF INVESTMENT";
+        cell.backgroundColor = [UIColor colorWithWhite:0.95f alpha:1.0f];
+      }
+      
+      if (indexPath.row == 6)
+      {
+        cell.textLabel.text = @"CleanRest Pro ROI";
+        
+        UIImageView *newProperty = [[UIImageView alloc] initWithImage:[ProfitProtectorStyleKit imageOfBadgeWithSize:CGSizeMake(130.0f, 37.0f)
+                                                                                                          fillColor:[UIColor whiteColor]
+                                                                                                       cornerRadius:7.0f
+                                                                                                        strokeColor:[UIColor colorWithRed:0.0f green:0.68f blue:0.94f alpha:1.0f]
+                                                                                                        strokeWidth:1.0f
+                                                                                                               text:[formatter_ stringFromNumber:math_[@"roi"]]//[formatter_ stringFromNumber:math_[@"totalAnnualCostsLossesWithout"]]
+                                                                                                          textColor:[UIColor colorWithRed:0.0f green:0.68f blue:0.94f alpha:1.0f]
+                                                                                                           textFont:[UIFont fontWithName:@"HelveticaNeue" size:14.0f]]];
+        [newProperty sizeToFit];
+        newProperty.center = CGPointMake(CGRectGetWidth(cell.bounds) - (CGRectGetWidth(newProperty.bounds) / 2.0f) - 10.f,
+                                         CGRectGetHeight(cell.bounds) / 2.0f);
+        newProperty.autoresizingMask = (UIViewAutoresizingFlexibleLeftMargin |
+                                        UIViewAutoresizingFlexibleTopMargin |
+                                        UIViewAutoresizingFlexibleBottomMargin);
+        [cell.contentView addSubview:newProperty];
+      }
     }
   }
   
@@ -296,31 +318,36 @@
 - (CGFloat)tableView:(UITableView *)tableView
   heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-  return 64.0f;
-}
-
-- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
-{
-  NSString *headerTitle;
+  if (!isProfileSelected_)
+  {
+    if (indexPath.row == 0 ||
+        indexPath.row == 3 ||
+        indexPath.row == 5)
+      return 34.0f;
+    
+    return 64.0f;
+  }
   
-  if (section == 0)
-    headerTitle = @"Your Annual Loses";
-  
-  if (section == 1)
-    headerTitle = @"Your Annual Savings";
-  
-  return headerTitle;
-}
-
-- (CGFloat)tableView:(UITableView *)tableView
-  heightForHeaderInSection:(NSInteger)section
-{
-  return isProfileSelected_ ? 0.0f : 32.0f;
+  return 44.0f;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
   [tableView deselectRowAtIndexPath:indexPath animated:YES];
+  
+  if (indexPath.row == 0)
+  {
+    AnnualLosesTableViewController *altvc = [[AnnualLosesTableViewController alloc] initWithStyle:UITableViewStylePlain];
+    altvc.math = math_;
+    [self.navigationController pushViewController:altvc animated:YES];
+  }
+ 
+  if (indexPath.row == 3)
+  {
+    AnnualSavingsTableViewController *astvc = [[AnnualSavingsTableViewController alloc] initWithStyle:UITableViewStylePlain];
+    astvc.math = math_;
+    [self.navigationController pushViewController:astvc animated:YES];
+  }
 }
 
 @end

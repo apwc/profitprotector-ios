@@ -10,11 +10,7 @@
   [super viewDidLoad];
   
   self.view.clipsToBounds = YES;
-  
-  // UI customizations
-  UIImageView *background = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"bkg"]];
-  background.contentMode = UIViewContentModeScaleAspectFill;
-  [self.view addSubview:background];
+  self.view.backgroundColor = [UIColor colorWithRed:0.91 green:0.9 blue:0.9 alpha:1];
 }
 
 @end

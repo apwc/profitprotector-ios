@@ -22,10 +22,10 @@
   storeLogin_ = NO;
   
   UIImageView *logo = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"logo"]];
-  logo.frame = CGRectMake((CGRectGetWidth(self.view.bounds) - logo.image.size.width / 2.0f) / 2.0f,
+  logo.frame = CGRectMake((CGRectGetWidth(self.view.bounds) - logo.image.size.width / 1.5f) / 2.0f,
                           60.0f,
-                          logo.image.size.width / 2.0f,
-                          logo.image.size.height / 2.0f);
+                          logo.image.size.width / 1.5f,
+                          logo.image.size.height / 1.5f);
   [self.view addSubview:logo];
   
   UILabel *copy = [[UILabel alloc] initWithFrame:CGRectMake(20.0f,
@@ -52,9 +52,10 @@
   username_.textColor = [UIColor blackColor];
   username_.autocorrectionType = UITextAutocorrectionTypeNo;
   username_.autocapitalizationType = UITextAutocapitalizationTypeNone;
+  username_.placeholder = @"Email";
   [self.view addSubview:username_];
   
-  UIImageView *usernameIcon = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"username"]];
+  UIImageView *usernameIcon = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"email"]];
   usernameIcon.frame = CGRectMake(20.0f,
                                   CGRectGetMinY(username_.frame) + 10.0f,
                                   usernameIcon.image.size.width,
@@ -80,6 +81,7 @@
   password_.autocorrectionType = UITextAutocorrectionTypeNo;
   password_.autocapitalizationType = UITextAutocapitalizationTypeNone;
   password_.secureTextEntry = YES;
+  password_.placeholder = @"Password";
   [self.view addSubview:password_];
   
   UIImageView *passwordIcon = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"password"]];
@@ -230,7 +232,6 @@
 
 - (void)userHasBeenRegistered:(NSNotification *)notification
 {
-  
   [API loginWithUsername:[GlobalData username]
                 password:[GlobalData password]];
 }

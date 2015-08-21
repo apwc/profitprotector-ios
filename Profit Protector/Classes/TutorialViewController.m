@@ -21,7 +21,11 @@
   [super viewDidLoad];
   
   // UI customizations
-  self.view.backgroundColor = [UIColor whiteColor];
+  UIImageView *bkg = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"walkthroughBackground"]];
+  bkg.frame = self.view.bounds;
+  bkg.autoresizingMask = (UIViewAutoresizingFlexibleWidth |
+                          UIViewAutoresizingFlexibleHeight);
+  [self.view addSubview:bkg];
   
   CGFloat buttonHeight = 60.0f;
   

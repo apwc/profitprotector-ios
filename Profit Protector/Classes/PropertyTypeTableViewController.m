@@ -35,7 +35,7 @@
     cell.textLabel.text = @"Full Service";
   
   if (indexPath.row == 1)
-    cell.textLabel.text = @"Half Service";
+    cell.textLabel.text = @"Selective Service";
   
   return cell;
 }

@@ -35,7 +35,7 @@
   [self.view addSubview:uisv_];
   
   UILabel *title = [[UILabel alloc] initWithFrame:CGRectMake(15.0f,
-                                                             74.0f,
+                                                             14.0f,
                                                              CGRectGetWidth(self.view.frame) - 15.0f,
                                                              48.0f)];
   title.text = @"Sign Up";
@@ -47,28 +47,29 @@
   CGFloat textFieldFontsize = 16.0f;
   CGFloat buttonHeight = 60.0f;
   
-  // username
-  username_ = [[UITextField alloc] initWithFrame:CGRectMake(60.0f,
-                                                            CGRectGetMaxY(title.frame),
-                                                            CGRectGetWidth(self.view.bounds) - 60.0f,
-                                                            textFieldHeight)];
-  username_.delegate = self;
-  username_.font = [UIFont fontWithName:@"HelveticaNeue" size:textFieldFontsize];
-  username_.textColor = [UIColor blackColor];
-  username_.autocorrectionType = UITextAutocorrectionTypeNo;
-  username_.autocapitalizationType = UITextAutocapitalizationTypeNone;
-  [uisv_ addSubview:username_];
+  // email
+  email_ = [[UITextField alloc] initWithFrame:CGRectMake(60.0f,
+                                                         CGRectGetMaxY(title.frame),
+                                                         CGRectGetWidth(self.view.bounds) - 60.0f,
+                                                         textFieldHeight)];
+  email_.delegate = self;
+  email_.font = [UIFont fontWithName:@"HelveticaNeue" size:textFieldFontsize];
+  email_.textColor = [UIColor blackColor];
+  email_.autocorrectionType = UITextAutocorrectionTypeNo;
+  email_.autocapitalizationType = UITextAutocapitalizationTypeNone;
+  email_.placeholder = @"Email";
+  [uisv_ addSubview:email_];
   
-  UIImageView *usernameIcon = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"username"]];
-  usernameIcon.frame = CGRectMake(20.0f,
-                                  CGRectGetMinY(username_.frame) + 10.0f,
-                                  usernameIcon.image.size.width,
-                                  usernameIcon.image.size.height);
-  [uisv_ addSubview:usernameIcon];
+  UIImageView *emailIcon = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"email"]];
+  emailIcon.frame = CGRectMake(20.0f,
+                               CGRectGetMinY(email_.frame) + 10.0f,
+                               emailIcon.image.size.width,
+                               emailIcon.image.size.height);
+  [uisv_ addSubview:emailIcon];
   
   // division line
   UIView *divisionLine1 = [[UIView alloc] initWithFrame:CGRectMake(0.0f,
-                                                                   CGRectGetMaxY(username_.frame),
+                                                                   CGRectGetMaxY(email_.frame),
                                                                    CGRectGetWidth(self.view.bounds),
                                                                    1.0f)];
   divisionLine1.backgroundColor = [UIColor colorWithWhite:0.7f alpha:1.0f];
@@ -76,7 +77,7 @@
   
   // password
   password_ = [[UITextField alloc] initWithFrame:CGRectMake(60.0f,
-                                                            CGRectGetMaxY(username_.frame),
+                                                            CGRectGetMaxY(email_.frame),
                                                             CGRectGetWidth(self.view.bounds) - 60.0f,
                                                             textFieldHeight)];
   password_.delegate = self;
@@ -85,13 +86,14 @@
   password_.autocorrectionType = UITextAutocorrectionTypeNo;
   password_.autocapitalizationType = UITextAutocapitalizationTypeNone;
   password_.secureTextEntry = YES;
+  password_.placeholder = @"Password";
   [uisv_ addSubview:password_];
   
   UIImageView *passwordIcon = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"password"]];
   passwordIcon.frame = CGRectMake(20.0f,
                                   CGRectGetMinY(password_.frame) + 10.0f,
-                                  usernameIcon.image.size.width,
-                                  usernameIcon.image.size.height);
+                                  emailIcon.image.size.width,
+                                  emailIcon.image.size.height);
   [uisv_ addSubview:passwordIcon];
   
   // division line
@@ -112,13 +114,14 @@
   name_.textColor = [UIColor blackColor];
   name_.autocorrectionType = UITextAutocorrectionTypeNo;
   name_.autocapitalizationType = UITextAutocapitalizationTypeNone;
+  name_.placeholder = @"Full Name";
   [uisv_ addSubview:name_];
   
   UIImageView *nameIcon = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"username"]];
   nameIcon.frame = CGRectMake(20.0f,
                               CGRectGetMinY(name_.frame) + 10.0f,
-                              usernameIcon.image.size.width,
-                              usernameIcon.image.size.height);
+                              emailIcon.image.size.width,
+                              emailIcon.image.size.height);
   [uisv_ addSubview:nameIcon];
   
   // division line
@@ -129,28 +132,11 @@
   divisionLine3.backgroundColor = [UIColor colorWithWhite:0.7f alpha:1.0f];
   [uisv_ addSubview:divisionLine3];
 
-  // email
-  email_ = [[UITextField alloc] initWithFrame:CGRectMake(60.0f,
-                                                         CGRectGetMaxY(name_.frame),
-                                                         CGRectGetWidth(self.view.bounds) - 60.0f,
-                                                         textFieldHeight)];
-  email_.delegate = self;
-  email_.font = [UIFont fontWithName:@"HelveticaNeue" size:textFieldFontsize];
-  email_.textColor = [UIColor blackColor];
-  email_.autocorrectionType = UITextAutocorrectionTypeNo;
-  email_.autocapitalizationType = UITextAutocapitalizationTypeNone;
-  [uisv_ addSubview:email_];
   
-  UIImageView *emailIcon = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"email"]];
-  emailIcon.frame = CGRectMake(20.0f,
-                               CGRectGetMinY(email_.frame) + 10.0f,
-                               usernameIcon.image.size.width,
-                               usernameIcon.image.size.height);
-  [uisv_ addSubview:emailIcon];
   
   // division line
   UIView *divisionLine4 = [[UIView alloc] initWithFrame:CGRectMake(0.0f,
-                                                                   CGRectGetMaxY(email_.frame),
+                                                                   CGRectGetMaxY(name_.frame),
                                                                    CGRectGetWidth(self.view.bounds),
                                                                    1.0f)];
   divisionLine4.backgroundColor = [UIColor colorWithWhite:0.7f alpha:1.0f];
@@ -158,7 +144,7 @@
   
   // phone
   phone_ = [[UITextField alloc] initWithFrame:CGRectMake(60.0f,
-                                                         CGRectGetMaxY(email_.frame),
+                                                         CGRectGetMaxY(name_.frame),
                                                          CGRectGetWidth(self.view.bounds) - 60.0f,
                                                          textFieldHeight)];
   phone_.delegate = self;
@@ -166,6 +152,7 @@
   phone_.textColor = [UIColor blackColor];
   phone_.autocorrectionType = UITextAutocorrectionTypeNo;
   phone_.autocapitalizationType = UITextAutocapitalizationTypeNone;
+  phone_.placeholder = @"Phone";
   [uisv_ addSubview:phone_];
   
   UIImageView *phoneIcon = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"phone"]];
@@ -193,13 +180,14 @@
   company_.textColor = [UIColor blackColor];
   company_.autocorrectionType = UITextAutocorrectionTypeNo;
   company_.autocapitalizationType = UITextAutocapitalizationTypeNone;
+  company_.placeholder = @"Company";
   [uisv_ addSubview:company_];
   
   UIImageView *companyIcon = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"company"]];
   companyIcon.frame = CGRectMake(20.0f,
                                  CGRectGetMinY(company_.frame) + 10.0f,
-                                 usernameIcon.image.size.width,
-                                 usernameIcon.image.size.height);
+                                 emailIcon.image.size.width,
+                                 emailIcon.image.size.height);
   [uisv_ addSubview:companyIcon];
   
   // division line
@@ -221,7 +209,15 @@
   type_.autocorrectionType = UITextAutocorrectionTypeNo;
   type_.autocapitalizationType = UITextAutocapitalizationTypeNone;
   type_.enabled = YES;
+  type_.placeholder = @"Type";
   [uisv_ addSubview:type_];
+  
+  UIImageView *typeIcon = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"job"]];
+  typeIcon.frame = CGRectMake(20.0f,
+                              CGRectGetMinY(type_.frame) + 10.0f,
+                              emailIcon.image.size.width,
+                              emailIcon.image.size.height);
+  [uisv_ addSubview:typeIcon];
   
   // division line
   UIView *divisionLine7 = [[UIView alloc] initWithFrame:CGRectMake(0.0f,
@@ -324,7 +320,7 @@
       type = @"pco";
   }
   
-  [API createUser:username_.text
+  [API createUser:email_.text
          password:password_.text
              name:name_.text
             email:email_.text
@@ -352,7 +348,7 @@
 
 - (void)apiUserSignupSuccessful:(NSNotification *)notification
 {
-  [GlobalData saveUsername:username_.text];
+  [GlobalData saveUsername:email_.text];
   [GlobalData savePassword:password_.text];
   
   [self dismissViewControllerAnimated:YES

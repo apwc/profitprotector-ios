@@ -14,6 +14,8 @@
   NSArray     *properties_;
   UILabel     *name_;
   
+  UIButton    *new_;
+  
   BOOL        isExpanded_;
   UIButton    *chevron_;
   
@@ -28,7 +30,7 @@
   [super viewDidLoad];
   
   // UI customizations
-  self.view.backgroundColor = [UIColor whiteColor];
+  self.view.backgroundColor = [UIColor colorWithRed:0.91 green:0.9 blue:0.9 alpha:1];
   
   isExpanded_ = YES;
   
@@ -43,22 +45,18 @@
                                                                                          action:@selector(allProperties:)];
   
   // new property
-  UIButton *new = [UIButton buttonWithType:UIButtonTypeCustom];
-  new.frame = CGRectMake(0.0f, 64.0f, CGRectGetWidth(self.view.frame), 230.0f);
-  [new setBackgroundImage:[UIImage imageNamed:@"newProperty"] forState:UIControlStateNormal];
-  new.contentMode = UIViewContentModeScaleAspectFill;
-  new.titleLabel.font = [UIFont fontWithName:@"HelveticaNeue" size:26.0f];
-  new.titleEdgeInsets = UIEdgeInsetsMake(-160.0f, 0.0f, 0.0, 0.0f);
-  [new setTitle:@"Create a Property" forState:UIControlStateNormal];
-  [new setTitleColor:[UIColor darkGrayColor] forState:UIControlStateNormal];
-  [new addTarget:self action:@selector(addProperty:) forControlEvents:UIControlEventTouchUpInside];
-  [self.view addSubview:new];
+  new_ = [UIButton buttonWithType:UIButtonTypeCustom];
+  new_.frame = CGRectMake(0.0f, 64.0f, CGRectGetWidth(self.view.frame), CGRectGetWidth(self.view.frame));
+  [new_ setImage:[UIImage imageNamed:@"walkthroughPage2"] forState:UIControlStateNormal];
+  [new_ setTitleColor:[UIColor darkGrayColor] forState:UIControlStateNormal];
+  [new_ addTarget:self action:@selector(addProperty:) forControlEvents:UIControlEventTouchUpInside];
+  [self.view addSubview:new_];
   
   // properties list
   uitv_ = [[UITableView alloc] initWithFrame:CGRectMake(0.0f,
-                                                        CGRectGetMaxY(new.frame),
+                                                        CGRectGetMaxY(new_.frame),
                                                         CGRectGetWidth(self.view.frame),
-                                                        CGRectGetHeight(self.view.frame) - CGRectGetMaxY(new.frame))];
+                                                        CGRectGetHeight(self.view.frame) - CGRectGetMaxY(new_.frame))];
   uitv_.dataSource = self;
   uitv_.delegate = self;
   uitv_.bounces = NO;
@@ -67,7 +65,7 @@
   // accordion
   chevron_ = [UIButton buttonWithType:UIButtonTypeCustom];
   chevron_.frame = CGRectMake(CGRectGetWidth(self.view.frame) - 58.0f,
-                              CGRectGetMaxY(new.frame) - 14.0f,
+                              CGRectGetMaxY(new_.frame) - 14.0f,
                               48.0f,
                               48.0f);
   chevron_.backgroundColor = [UIColor whiteColor];
@@ -143,10 +141,11 @@
     
     [UIView animateWithDuration:0.25f
                      animations:^{
-                       chevron_.center = CGPointMake(chevron_.center.x, chevron_.center.y + 200.0f);
+                       chevron_.center = CGPointMake(chevron_.center.x,
+                                                     CGRectGetMaxY(new_.frame) + 10.0f);
                        
                        uitv_.frame = CGRectMake(0.0f,
-                                                264.0f,
+                                                CGRectGetMaxY(new_.frame),
                                                 CGRectGetWidth(self.view.frame),
                                                 CGRectGetHeight(self.view.frame) - 264.0f);
                      }];
@@ -157,7 +156,7 @@
     
     [UIView animateWithDuration:0.25f
                      animations:^{
-                       chevron_.center = CGPointMake(chevron_.center.x, chevron_.center.y - 200.0f);
+                       chevron_.center = CGPointMake(chevron_.center.x, 74.0f);
                        
                        uitv_.frame = CGRectMake(0.0f,
                                                 64.0f,
@@ -311,23 +310,13 @@
                                                                  }];
   frwrd.backgroundColor = [UIColor colorWithRed:0 green:0.83 blue:0 alpha:1];
   
-  UITableViewRowAction *edt = [UITableViewRowAction rowActionWithStyle:UITableViewRowActionStyleNormal
-                                                                   title:@"EDT"
-                                                                 handler:^(UITableViewRowAction *action, NSIndexPath *indexPath) {
-                                                                   NewPropertyViewController *npvc = [[NewPropertyViewController alloc] initWithNibName:nil
-                                                                                                                                                 bundle:nil];
-                                                                   npvc.property = property;
-                                                                   [self.navigationController pushViewController:npvc animated:YES];
-                                                                 }];
-  edt.backgroundColor = [UIColor colorWithRed:0.38 green:0.54 blue:1 alpha:1];
-  
   UITableViewRowAction *trsh = [UITableViewRowAction rowActionWithStyle:UITableViewRowActionStyleDestructive
                                                                   title:@"TRSH"
                                                                 handler:^(UITableViewRowAction *action, NSIndexPath *indexPath) {
                                                                   [API deleteProperty:properties_[indexPath.row]];
                                                                 }];
   
-  return @[trsh, edt, frwrd, fav];
+  return @[trsh, frwrd, fav];
 }
 
 #pragma mark - UITableView delegate methods implementation
@@ -343,10 +332,10 @@
 {
   UILabel *holder = [[UILabel alloc] initWithFrame:CGRectZero];
   holder.textAlignment = NSTextAlignmentCenter;
-  holder.font = [UIFont fontWithName:@"HelveticaNeue-Light" size:18.0f];
-  holder.textColor = [UIColor colorWithWhite:0.5f alpha:1.0f];
+  holder.font = [UIFont fontWithName:@"HelveticaNeue-Medium" size:18.0f];
+  holder.textColor = [UIColor colorWithRed:0.28 green:0.69 blue:0.92 alpha:1];
   holder.backgroundColor = [UIColor colorWithWhite:0.95f alpha:1.0f];
-  holder.text = @"Properties";
+  holder.text = @"PROPERTIES";
   return holder;
 }
 

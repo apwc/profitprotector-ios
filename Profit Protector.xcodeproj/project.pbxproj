@@ -29,6 +29,8 @@
 		B768D8321B50EFA100D2FEF7 /* LeftTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B768D8311B50EFA100D2FEF7 /* LeftTableViewController.m */; };
 		B768D8351B50F22F00D2FEF7 /* FrontTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B768D8341B50F22F00D2FEF7 /* FrontTableViewController.m */; };
 		B773680B1B5481A200D8140E /* NewPropertyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B773680A1B5481A200D8140E /* NewPropertyViewController.m */; };
+		B77ED0871B87257800275A1A /* AnnualSavingsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B77ED0861B87257800275A1A /* AnnualSavingsTableViewController.m */; };
+		B77ED08A1B8725C700275A1A /* AnnualLosesTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B77ED0891B8725C700275A1A /* AnnualLosesTableViewController.m */; };
 		B78D68A11B6C830700092349 /* API.m in Sources */ = {isa = PBXBuildFile; fileRef = B78D68A01B6C830700092349 /* API.m */; };
 		B78D68A41B6C834C00092349 /* HUD.m in Sources */ = {isa = PBXBuildFile; fileRef = B78D68A31B6C834C00092349 /* HUD.m */; };
 		B791E3A71B55D97200C697F1 /* TutorialPage1ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B791E3A61B55D97200C697F1 /* TutorialPage1ViewController.m */; };
@@ -107,6 +109,10 @@
 		B768D8341B50F22F00D2FEF7 /* FrontTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FrontTableViewController.m; sourceTree = "<group>"; };
 		B77368091B5481A200D8140E /* NewPropertyViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewPropertyViewController.h; sourceTree = "<group>"; };
 		B773680A1B5481A200D8140E /* NewPropertyViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewPropertyViewController.m; sourceTree = "<group>"; };
+		B77ED0851B87257800275A1A /* AnnualSavingsTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AnnualSavingsTableViewController.h; sourceTree = "<group>"; };
+		B77ED0861B87257800275A1A /* AnnualSavingsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AnnualSavingsTableViewController.m; sourceTree = "<group>"; };
+		B77ED0881B8725C700275A1A /* AnnualLosesTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AnnualLosesTableViewController.h; sourceTree = "<group>"; };
+		B77ED0891B8725C700275A1A /* AnnualLosesTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AnnualLosesTableViewController.m; sourceTree = "<group>"; };
 		B78D689F1B6C830700092349 /* API.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = API.h; sourceTree = "<group>"; };
 		B78D68A01B6C830700092349 /* API.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = API.m; sourceTree = "<group>"; };
 		B78D68A21B6C834C00092349 /* HUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HUD.h; sourceTree = "<group>"; };
@@ -254,6 +260,10 @@
 		B7A58F161B4DFC3800C408D8 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				B77ED0881B8725C700275A1A /* AnnualLosesTableViewController.h */,
+				B77ED0891B8725C700275A1A /* AnnualLosesTableViewController.m */,
+				B77ED0851B87257800275A1A /* AnnualSavingsTableViewController.h */,
+				B77ED0861B87257800275A1A /* AnnualSavingsTableViewController.m */,
 				B78D689F1B6C830700092349 /* API.h */,
 				B78D68A01B6C830700092349 /* API.m */,
 				B7A58F171B4DFC3800C408D8 /* AppDelegate.h */,
@@ -310,8 +320,6 @@
 				B791E3B21B55E15D00C697F1 /* StepperComponentView.m */,
 				B768D7FA1B50B41D00D2FEF7 /* SuperViewController.h */,
 				B768D7FB1B50B41D00D2FEF7 /* SuperViewController.m */,
-				B7C3F9A91B6EE7CA00C252EE /* UserTypeTableViewController.h */,
-				B7C3F9AA1B6EE7CA00C252EE /* UserTypeTableViewController.m */,
 				B791E3A51B55D97200C697F1 /* TutorialPage1ViewController.h */,
 				B791E3A61B55D97200C697F1 /* TutorialPage1ViewController.m */,
 				B791E3A81B55D98500C697F1 /* TutorialPage2ViewController.h */,
@@ -323,6 +331,8 @@
 				B768D8001B50D36D00D2FEF7 /* TutorialViewController.h */,
 				B768D8011B50D36D00D2FEF7 /* TutorialViewController.m */,
 				B71F34211B572B54000C7A1D /* TypeDefEnumerators.h */,
+				B7C3F9A91B6EE7CA00C252EE /* UserTypeTableViewController.h */,
+				B7C3F9AA1B6EE7CA00C252EE /* UserTypeTableViewController.m */,
 			);
 			name = Classes;
 			path = "Profit Protector/Classes";
@@ -500,11 +510,13 @@
 				B768D8281B50E54B00D2FEF7 /* PKAnimation.m in Sources */,
 				B768D8291B50E54B00D2FEF7 /* PKLayerAnimator.m in Sources */,
 				B78D68A41B6C834C00092349 /* HUD.m in Sources */,
+				B77ED08A1B8725C700275A1A /* AnnualLosesTableViewController.m in Sources */,
 				B768D8261B50E54B00D2FEF7 /* UIViewController+PKRevealController.m in Sources */,
 				B768D8351B50F22F00D2FEF7 /* FrontTableViewController.m in Sources */,
 				B791E3A71B55D97200C697F1 /* TutorialPage1ViewController.m in Sources */,
 				B768D82B1B50E54B00D2FEF7 /* PKLog.m in Sources */,
 				B768D8221B50E54B00D2FEF7 /* MBProgressHUD.m in Sources */,
+				B77ED0871B87257800275A1A /* AnnualSavingsTableViewController.m in Sources */,
 				B7D8ACCD1B5A3F5200041ED1 /* Singleton.m in Sources */,
 				B79F99571B52086E00BF945F /* ProfitProtectorStyleKit.m in Sources */,
 				B753ECE81B5B304200EFBD57 /* NewPropertyForm7ViewController.m in Sources */,
