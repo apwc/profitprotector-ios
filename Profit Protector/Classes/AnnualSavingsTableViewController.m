@@ -14,6 +14,9 @@
   [super viewDidLoad];
   
   self.title = @"ANNUAL SAVINGS";
+  
+  formatter_ = [[NSNumberFormatter alloc] init];
+  [formatter_ setNumberStyle:NSNumberFormatterCurrencyStyle];
 }
 
 #pragma mark - Table view data source
@@ -52,7 +55,7 @@
                                                                                                      cornerRadius:7.0f
                                                                                                       strokeColor:[UIColor colorWithRed:0.0f green:0.68f blue:0.94f alpha:1.0f]
                                                                                                       strokeWidth:1.0f
-                                                                                                             text:[formatter_ stringFromNumber:self.math[@"totalAnnualCostsLossesWithout"]]
+                                                                                                             text:[formatter_ stringFromNumber:self.math[@"totalLifetimeSavingsFromEncasingWithCleanRestPro"]]
                                                                                                         textColor:[UIColor colorWithRed:0.0f green:0.68f blue:0.94f alpha:1.0f]
                                                                                                          textFont:[UIFont fontWithName:@"HelveticaNeue" size:14.0f]]];
       [newProperty sizeToFit];
@@ -73,7 +76,7 @@
                                                                                                      cornerRadius:7.0f
                                                                                                       strokeColor:[UIColor colorWithRed:0.0f green:0.68f blue:0.94f alpha:1.0f]
                                                                                                       strokeWidth:1.0f
-                                                                                                             text:[formatter_ stringFromNumber:self.math[@"totalAnnualCostsLossesWithout"]]
+                                                                                                             text:[formatter_ stringFromNumber:self.math[@"totalInvestmentToEncaseAllBeds"]]
                                                                                                         textColor:[UIColor colorWithRed:0.0f green:0.68f blue:0.94f alpha:1.0f]
                                                                                                          textFont:[UIFont fontWithName:@"HelveticaNeue" size:14.0f]]];
       [newProperty sizeToFit];
@@ -94,7 +97,7 @@
                                                                                                      cornerRadius:7.0f
                                                                                                       strokeColor:[UIColor colorWithRed:0.0f green:0.68f blue:0.94f alpha:1.0f]
                                                                                                       strokeWidth:1.0f
-                                                                                                             text:[formatter_ stringFromNumber:self.math[@"totalAnnualCostsLossesWithout"]]
+                                                                                                             text:[formatter_ stringFromNumber:self.math[@"roi"]]
                                                                                                         textColor:[UIColor colorWithRed:0.0f green:0.68f blue:0.94f alpha:1.0f]
                                                                                                          textFont:[UIFont fontWithName:@"HelveticaNeue" size:14.0f]]];
       [newProperty sizeToFit];
@@ -115,7 +118,7 @@
                                                                                                      cornerRadius:7.0f
                                                                                                       strokeColor:[UIColor colorWithRed:0.0f green:0.68f blue:0.94f alpha:1.0f]
                                                                                                       strokeWidth:1.0f
-                                                                                                             text:[formatter_ stringFromNumber:self.math[@"totalAnnualCostsLossesWithout"]]
+                                                                                                             text:[formatter_ stringFromNumber:self.math[@"lifetimeSavingsEncasementInvestment"]]
                                                                                                         textColor:[UIColor colorWithRed:0.0f green:0.68f blue:0.94f alpha:1.0f]
                                                                                                          textFont:[UIFont fontWithName:@"HelveticaNeue" size:14.0f]]];
       [newProperty sizeToFit];
@@ -136,7 +139,7 @@
                                                                                                      cornerRadius:7.0f
                                                                                                       strokeColor:[UIColor colorWithRed:0.0f green:0.68f blue:0.94f alpha:1.0f]
                                                                                                       strokeWidth:1.0f
-                                                                                                             text:[formatter_ stringFromNumber:self.math[@"totalAnnualCostsLossesWithout"]]
+                                                                                                             text:[formatter_ stringFromNumber:self.math[@"encasementInvestmentPaybackInMonths"]]
                                                                                                         textColor:[UIColor colorWithRed:0.0f green:0.68f blue:0.94f alpha:1.0f]
                                                                                                          textFont:[UIFont fontWithName:@"HelveticaNeue" size:14.0f]]];
       [newProperty sizeToFit];
@@ -163,7 +166,7 @@
                                                                                                      cornerRadius:7.0f
                                                                                                       strokeColor:[UIColor colorWithRed:0.0f green:0.68f blue:0.94f alpha:1.0f]
                                                                                                       strokeWidth:1.0f
-                                                                                                             text:[formatter_ stringFromNumber:self.math[@"totalAnnualCostsLossesWithout"]]
+                                                                                                             text:[formatter_ stringFromNumber:self.math[@"remediationCostSavings"]]
                                                                                                         textColor:[UIColor colorWithRed:0.0f green:0.68f blue:0.94f alpha:1.0f]
                                                                                                          textFont:[UIFont fontWithName:@"HelveticaNeue" size:14.0f]]];
       [newProperty sizeToFit];
@@ -184,7 +187,7 @@
                                                                                                      cornerRadius:7.0f
                                                                                                       strokeColor:[UIColor colorWithRed:0.0f green:0.68f blue:0.94f alpha:1.0f]
                                                                                                       strokeWidth:1.0f
-                                                                                                             text:[formatter_ stringFromNumber:self.math[@"totalAnnualCostsLossesWithout"]]
+                                                                                                             text:[formatter_ stringFromNumber:self.math[@"lostRevenueSavings"]]
                                                                                                         textColor:[UIColor colorWithRed:0.0f green:0.68f blue:0.94f alpha:1.0f]
                                                                                                          textFont:[UIFont fontWithName:@"HelveticaNeue" size:14.0f]]];
       [newProperty sizeToFit];
@@ -205,7 +208,7 @@
                                                                                                      cornerRadius:7.0f
                                                                                                       strokeColor:[UIColor colorWithRed:0.0f green:0.68f blue:0.94f alpha:1.0f]
                                                                                                       strokeWidth:1.0f
-                                                                                                             text:[formatter_ stringFromNumber:self.math[@"totalAnnualCostsLossesWithout"]]
+                                                                                                             text:[formatter_ stringFromNumber:self.math[@"propertyDamageSavings"]]
                                                                                                         textColor:[UIColor colorWithRed:0.0f green:0.68f blue:0.94f alpha:1.0f]
                                                                                                          textFont:[UIFont fontWithName:@"HelveticaNeue" size:14.0f]]];
       [newProperty sizeToFit];
@@ -226,7 +229,7 @@
                                                                                                      cornerRadius:7.0f
                                                                                                       strokeColor:[UIColor colorWithRed:0.0f green:0.68f blue:0.94f alpha:1.0f]
                                                                                                       strokeWidth:1.0f
-                                                                                                             text:[formatter_ stringFromNumber:self.math[@"totalAnnualCostsLossesWithout"]]
+                                                                                                             text:[formatter_ stringFromNumber:self.math[@"brandDamageSavings"]]
                                                                                                         textColor:[UIColor colorWithRed:0.0f green:0.68f blue:0.94f alpha:1.0f]
                                                                                                          textFont:[UIFont fontWithName:@"HelveticaNeue" size:14.0f]]];
       [newProperty sizeToFit];
@@ -247,7 +250,7 @@
                                                                                                      cornerRadius:7.0f
                                                                                                       strokeColor:[UIColor colorWithRed:0.0f green:0.68f blue:0.94f alpha:1.0f]
                                                                                                       strokeWidth:1.0f
-                                                                                                             text:[formatter_ stringFromNumber:self.math[@"totalAnnualCostsLossesWithout"]]
+                                                                                                             text:[formatter_ stringFromNumber:self.math[@"totalLossesPerBedBugInfestationIncidentSavings"]]
                                                                                                         textColor:[UIColor colorWithRed:0.0f green:0.68f blue:0.94f alpha:1.0f]
                                                                                                          textFont:[UIFont fontWithName:@"HelveticaNeue" size:14.0f]]];
       [newProperty sizeToFit];
@@ -268,7 +271,7 @@
                                                                                                      cornerRadius:7.0f
                                                                                                       strokeColor:[UIColor colorWithRed:0.0f green:0.68f blue:0.94f alpha:1.0f]
                                                                                                       strokeWidth:1.0f
-                                                                                                             text:[formatter_ stringFromNumber:self.math[@"totalAnnualCostsLossesWithout"]]
+                                                                                                             text:[formatter_ stringFromNumber:self.math[@"totalAnnualBedBugInfestationLossesSavings"]]
                                                                                                         textColor:[UIColor colorWithRed:0.0f green:0.68f blue:0.94f alpha:1.0f]
                                                                                                          textFont:[UIFont fontWithName:@"HelveticaNeue" size:14.0f]]];
       [newProperty sizeToFit];
@@ -289,7 +292,7 @@
                                                                                                      cornerRadius:7.0f
                                                                                                       strokeColor:[UIColor colorWithRed:0.0f green:0.68f blue:0.94f alpha:1.0f]
                                                                                                       strokeWidth:1.0f
-                                                                                                             text:[formatter_ stringFromNumber:self.math[@"totalAnnualCostsLossesWithout"]]
+                                                                                                             text:[formatter_ stringFromNumber:self.math[@"totalAnnualCostsLossesSavings"]]
                                                                                                         textColor:[UIColor colorWithRed:0.0f green:0.68f blue:0.94f alpha:1.0f]
                                                                                                          textFont:[UIFont fontWithName:@"HelveticaNeue" size:14.0f]]];
       [newProperty sizeToFit];
@@ -310,7 +313,7 @@
                                                                                                      cornerRadius:7.0f
                                                                                                       strokeColor:[UIColor colorWithRed:0.0f green:0.68f blue:0.94f alpha:1.0f]
                                                                                                       strokeWidth:1.0f
-                                                                                                             text:[formatter_ stringFromNumber:self.math[@"totalAnnualCostsLossesWithout"]]
+                                                                                                             text:[formatter_ stringFromNumber:self.math[@"preemptiveEncasementLaunderingCostsSavings"]]
                                                                                                         textColor:[UIColor colorWithRed:0.0f green:0.68f blue:0.94f alpha:1.0f]
                                                                                                          textFont:[UIFont fontWithName:@"HelveticaNeue" size:14.0f]]];
       [newProperty sizeToFit];
@@ -331,7 +334,7 @@
                                                                                                      cornerRadius:7.0f
                                                                                                       strokeColor:[UIColor colorWithRed:0.0f green:0.68f blue:0.94f alpha:1.0f]
                                                                                                       strokeWidth:1.0f
-                                                                                                             text:[formatter_ stringFromNumber:self.math[@"totalAnnualCostsLossesWithout"]]
+                                                                                                             text:[formatter_ stringFromNumber:self.math[@"totalAnnualCostsLossesSavings"]]
                                                                                                         textColor:[UIColor colorWithRed:0.0f green:0.68f blue:0.94f alpha:1.0f]
                                                                                                          textFont:[UIFont fontWithName:@"HelveticaNeue" size:14.0f]]];
       [newProperty sizeToFit];

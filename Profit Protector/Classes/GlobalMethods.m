@@ -43,32 +43,42 @@
   // sums
   float remediationCostsWithout = roomsTreatedPerInfestationWithout * typicalRemediationCostPerRoomWithout;
   float remediationCostsWith = roomsTreatedPerInfestationWith * typicalRemediationCostPerRoomWith;
+  float remediationCostSavings = remediationCostsWithout - remediationCostsWith;
   
   float lostRevenueWithout = daysLostToRemediationTreatmentWithout * (roomRevenuePerNight + foodBeverageSalesPerRoomPerNight + ancillariesRevenuePerRoomPerNight) * roomsTreatedPerInfestationWithout * revenueLossRateFromRoomClosures;
   float lostRevenueWith = daysLostToRemediationTreatmentWith * (roomRevenuePerNight + foodBeverageSalesPerRoomPerNight + ancillariesRevenuePerRoomPerNight) * roomsTreatedPerInfestationWith * revenueLossRateFromRoomClosures;
+  float lostRevenueSavings = lostRevenueWithout - lostRevenueWith;
   
   float propertyDamageWithout = (roomsTreatedPerInfestationWithout * percentageOfRoomsExperiencePropertyDamageFromInfestationWithout) * ((bedsNumber / roomsNumber) * costOfReplaceMattressesAndBoxSpring + costOfReplaceFurnishings);
   float propertyDamageWith = (roomsTreatedPerInfestationWith * percentageOfRoomsExperiencePropertyDamageFromInfestationWith) * (bedsNumber / roomsNumber) * (costOfReplaceMattressesAndBoxSpring + costOfReplaceFurnishings);
+  float propertyDamageSavings = propertyDamageWithout - propertyDamageWith;
   
   float customerGrievanceCostsWithout =  bugInspectionAndPestControlFees;
   
   float brandDamageWithout = futureBookingDaysLost * (roomRevenuePerNight + foodBeverageSalesPerRoomPerNight + ancillariesRevenuePerRoomPerNight);
+  float brandDamageSavings = brandDamageWithout;
   
   float totalLossesPerBedBugInfestationIncidentWithout = remediationCostsWithout + lostRevenueWithout + propertyDamageWithout + customerGrievanceCostsWithout + brandDamageWithout;
   float totalLossesPerBedBugInfestationIncidentWith = remediationCostsWith + lostRevenueWith + propertyDamageWith;
+  float totalLossesPerBedBugInfestationIncidentSavings = remediationCostSavings + lostRevenueSavings + propertyDamageSavings + brandDamageSavings;
   
   //  double timesIncidentsPerYear = roomsNumber * 2.8f;
   
   float totalAnnualBedBugInfestationLossesWithout = totalLossesPerBedBugInfestationIncidentWithout * yourBedBugIncidentRate * roomsNumber;
   float totalAnnualBedBugInfestationLossesWith = totalLossesPerBedBugInfestationIncidentWith * yourBedBugIncidentRate * roomsNumber;
+  float totalAnnualBedBugInfestationLossesSavings = totalAnnualBedBugInfestationLossesWithout - totalAnnualBedBugInfestationLossesWith;
   
   float mattressSpoilageCostsPerYear = bedsNumber * percentageOfMattressesReplaceEachYear * costOfReplaceMattressesAndBoxSpring;
   
   float preemptiveEncasementLaunderingCostsWith = timesPerYearBedClean * costToCleanAndReinstallEncasements * bedsNumber;
   
+  float preemptiveEncasementLaunderingCostsSavings = preemptiveEncasementLaunderingCostsWith;
+  
   float totalAnnualCostsLossesWithout = totalAnnualBedBugInfestationLossesWithout + mattressSpoilageCostsPerYear;
   
   float totalAnnualCostsLossesWith = totalAnnualBedBugInfestationLossesWith + preemptiveEncasementLaunderingCostsWith;
+  
+  float totalAnnualCostsLossesSavings = totalAnnualCostsLossesWithout - totalAnnualCostsLossesWith;
   
   float totalAnnualCostsLossesPreemptive = totalAnnualCostsLossesWithout - totalAnnualCostsLossesWith;
   
@@ -78,10 +88,45 @@
   
   float roi = totalLifetimeSavingsFromEncasingWithCleanRestPro - totalInvestmentToEncaseAllBeds;
   
-  return @{@"totalAnnualCostsLossesWithout": @(totalAnnualCostsLossesWithout),
+  float lifetimeSavingsEncasementInvestment = totalLifetimeSavingsFromEncasingWithCleanRestPro / totalInvestmentToEncaseAllBeds;
+
+  float encasementInvestmentPaybackInMonths = 12 / (totalAnnualCostsLossesPreemptive / totalInvestmentToEncaseAllBeds);
+
+  return @{@"yourBedBugIncidentRate": @(yourBedBugIncidentRate),
+           @"yourBedBugIncidentRate": @(yourBedBugIncidentRate),
+           @"remediationCostsWithout": @(remediationCostsWithout),
+           @"remediationCostsWith": @(remediationCostsWith),
+           @"remediationCostSavings": @(remediationCostSavings),
+           @"lostRevenueWithout": @(lostRevenueWithout),
+           @"lostRevenueWith": @(lostRevenueWith),
+           @"lostRevenueSavings": @(lostRevenueSavings),
+           @"propertyDamageWithout": @(propertyDamageWithout),
+           @"propertyDamageWith": @(propertyDamageWith),
+           @"propertyDamageSavings": @(propertyDamageSavings),
+           @"customerGrievanceCostsWithout": @(customerGrievanceCostsWithout),
+           @"brandDamageWithout": @(brandDamageWithout),
+           @"brandDamageSavings": @(brandDamageSavings),
+           @"totalLossesPerBedBugInfestationIncidentWithout": @(totalLossesPerBedBugInfestationIncidentWithout),
+           @"totalLossesPerBedBugInfestationIncidentWith": @(totalLossesPerBedBugInfestationIncidentWith),
+           @"totalLossesPerBedBugInfestationIncidentSavings": @(totalLossesPerBedBugInfestationIncidentSavings),
+           @"totalAnnualBedBugInfestationLossesWithout": @(totalAnnualBedBugInfestationLossesWithout),
+           @"totalAnnualBedBugInfestationLossesWith": @(totalAnnualBedBugInfestationLossesWith),
+           @"mattressSpoilageCostsPerYear": @(mattressSpoilageCostsPerYear),
+           @"preemptiveEncasementLaunderingCostsWith": @(preemptiveEncasementLaunderingCostsWith),
+           @"totalAnnualCostsLossesWithout": @(totalAnnualCostsLossesWithout),
            @"totalAnnualCostsLossesWith": @(totalAnnualCostsLossesWith),
            @"totalAnnualCostsLossesPreemptive": @(totalAnnualCostsLossesPreemptive),
-           @"roi": @(roi)};
+           @"totalLifetimeSavingsFromEncasingWithCleanRestPro": @(totalLifetimeSavingsFromEncasingWithCleanRestPro),
+           @"totalInvestmentToEncaseAllBeds": @(totalInvestmentToEncaseAllBeds),
+           @"totalAnnualCostsLossesWithout": @(totalAnnualCostsLossesWithout),
+           @"totalAnnualCostsLossesWith": @(totalAnnualCostsLossesWith),
+           @"totalAnnualCostsLossesPreemptive": @(totalAnnualCostsLossesPreemptive),
+           @"roi": @(roi),
+           @"lifetimeSavingsEncasementInvestment": @(lifetimeSavingsEncasementInvestment),
+           @"encasementInvestmentPaybackInMonths": @(encasementInvestmentPaybackInMonths),
+           @"totalAnnualCostsLossesSavings": @(totalAnnualCostsLossesSavings),
+           @"totalAnnualBedBugInfestationLossesSavings": @(totalAnnualBedBugInfestationLossesSavings),
+           @"preemptiveEncasementLaunderingCostsSavings": @(preemptiveEncasementLaunderingCostsSavings)};
 }
 
 @end
