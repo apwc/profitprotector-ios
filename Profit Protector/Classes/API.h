@@ -30,4 +30,6 @@
 
 + (void)deleteProperty:(NSManagedObject *)property;
 
++ (void)profilePasswordRecover:(NSString *)email;
+
 @end

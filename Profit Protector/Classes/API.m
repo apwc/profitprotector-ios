@@ -432,44 +432,47 @@
   
   [parameters appendFormat:@"&content_raw=%@", contentRaw];
   
-  [parameters appendFormat:@"&post_meta[0][key]=%@", @"roomsNumber"];
-  [parameters appendFormat:@"&post_meta[0][value]=%@", postMeta[@"roomsNumber"]];
-
-  [parameters appendFormat:@"&post_meta[1][key]=%@", @"bedsNumber"];
-  [parameters appendFormat:@"&post_meta[1][value]=%@", postMeta[@"bedsNumber"]];
+  [parameters appendFormat:@"&post_meta[1][key]=%@", @"propertyType"];
+  [parameters appendFormat:@"&post_meta[1][value]=%@", postMeta[@"propertyType"]];
   
-  [parameters appendFormat:@"&post_meta[2][key]=%@", @"roomRevenuePerNight"];
-  [parameters appendFormat:@"&post_meta[2][value]=%@", postMeta[@"roomRevenuePerNight"]];
+  [parameters appendFormat:@"&post_meta[2][key]=%@", @"roomsNumber"];
+  [parameters appendFormat:@"&post_meta[2][value]=%@", postMeta[@"roomsNumber"]];
 
-  [parameters appendFormat:@"&post_meta[3][key]=%@", @"foodBeverageSalesPerRoomPerNight"];
-  [parameters appendFormat:@"&post_meta[3][value]=%@", postMeta[@"foodBeverageSalesPerRoomPerNight"]];
+  [parameters appendFormat:@"&post_meta[3][key]=%@", @"bedsNumber"];
+  [parameters appendFormat:@"&post_meta[3][value]=%@", postMeta[@"bedsNumber"]];
+  
+  [parameters appendFormat:@"&post_meta[4][key]=%@", @"roomRevenuePerNight"];
+  [parameters appendFormat:@"&post_meta[4][value]=%@", postMeta[@"roomRevenuePerNight"]];
 
-  [parameters appendFormat:@"&post_meta[4][key]=%@", @"ancillariesRevenuePerRoomPerNight"];
-  [parameters appendFormat:@"&post_meta[4][value]=%@", postMeta[@"ancillariesRevenuePerRoomPerNight"]];
+  [parameters appendFormat:@"&post_meta[5][key]=%@", @"foodBeverageSalesPerRoomPerNight"];
+  [parameters appendFormat:@"&post_meta[5][value]=%@", postMeta[@"foodBeverageSalesPerRoomPerNight"]];
 
-  [parameters appendFormat:@"&post_meta[5][key]=%@", @"costOfReplaceMattressesAndBoxSpring"];
-  [parameters appendFormat:@"&post_meta[5][value]=%@", postMeta[@"costOfReplaceMattressesAndBoxSpring"]];
+  [parameters appendFormat:@"&post_meta[6][key]=%@", @"ancillariesRevenuePerRoomPerNight"];
+  [parameters appendFormat:@"&post_meta[6][value]=%@", postMeta[@"ancillariesRevenuePerRoomPerNight"]];
 
-  [parameters appendFormat:@"&post_meta[6][key]=%@", @"costOfReplaceFurnishings"];
-  [parameters appendFormat:@"&post_meta[6][value]=%@", postMeta[@"costOfReplaceFurnishings"]];
+  [parameters appendFormat:@"&post_meta[7][key]=%@", @"costOfReplaceMattressesAndBoxSpring"];
+  [parameters appendFormat:@"&post_meta[7][value]=%@", postMeta[@"costOfReplaceMattressesAndBoxSpring"]];
 
-  [parameters appendFormat:@"&post_meta[7][key]=%@", @"percentageOfMattressesReplaceEachYear"];
-  [parameters appendFormat:@"&post_meta[7][value]=%@", postMeta[@"percentageOfMattressesReplaceEachYear"]];
+  [parameters appendFormat:@"&post_meta[8][key]=%@", @"costOfReplaceFurnishings"];
+  [parameters appendFormat:@"&post_meta[8][value]=%@", postMeta[@"costOfReplaceFurnishings"]];
 
-  [parameters appendFormat:@"&post_meta[8][key]=%@", @"timesPerYearBedClean"];
-  [parameters appendFormat:@"&post_meta[8][value]=%@", postMeta[@"timesPerYearBedClean"]];
+  [parameters appendFormat:@"&post_meta[9][key]=%@", @"percentageOfMattressesReplaceEachYear"];
+  [parameters appendFormat:@"&post_meta[9][value]=%@", postMeta[@"percentageOfMattressesReplaceEachYear"]];
 
-  [parameters appendFormat:@"&post_meta[9][key]=%@", @"costToCleanAndReinstallEncasements"];
-  [parameters appendFormat:@"&post_meta[9][value]=%@", postMeta[@"costToCleanAndReinstallEncasements"]];
+  [parameters appendFormat:@"&post_meta[10][key]=%@", @"timesPerYearBedClean"];
+  [parameters appendFormat:@"&post_meta[10][value]=%@", postMeta[@"timesPerYearBedClean"]];
 
-  [parameters appendFormat:@"&post_meta[10][key]=%@", @"bedBugIncidents"];
-  [parameters appendFormat:@"&post_meta[10][value]=%@", postMeta[@"bedBugIncidents"]];
+  [parameters appendFormat:@"&post_meta[11][key]=%@", @"costToCleanAndReinstallEncasements"];
+  [parameters appendFormat:@"&post_meta[11][value]=%@", postMeta[@"costToCleanAndReinstallEncasements"]];
 
-  [parameters appendFormat:@"&post_meta[11][key]=%@", @"bugInspectionAndPestControlFees"];
-  [parameters appendFormat:@"&post_meta[11][value]=%@", postMeta[@"bugInspectionAndPestControlFees"]];
+  [parameters appendFormat:@"&post_meta[12][key]=%@", @"bedBugIncidents"];
+  [parameters appendFormat:@"&post_meta[12][value]=%@", postMeta[@"bedBugIncidents"]];
 
-  [parameters appendFormat:@"&post_meta[12][key]=%@", @"futureBookingDaysLost"];
-  [parameters appendFormat:@"&post_meta[12][value]=%@", postMeta[@"futureBookingDaysLost"]];
+  [parameters appendFormat:@"&post_meta[13][key]=%@", @"bugInspectionAndPestControlFees"];
+  [parameters appendFormat:@"&post_meta[13][value]=%@", postMeta[@"bugInspectionAndPestControlFees"]];
+
+  [parameters appendFormat:@"&post_meta[14][key]=%@", @"futureBookingDaysLost"];
+  [parameters appendFormat:@"&post_meta[14][value]=%@", postMeta[@"futureBookingDaysLost"]];
   
   [request setHTTPBody:[parameters dataUsingEncoding:NSUTF8StringEncoding]];
   
@@ -662,6 +665,58 @@
                                                                                                         object:json];
                                                   });
                                                 }
+                                              }];
+  [dataTask resume];
+}
+
++ (void)profilePasswordRecover:(NSString *)email
+{
+  [HUD addHUD];
+  
+  NSString *auth = [NSString stringWithFormat:@"%@fjir50e%@",
+                    [GlobalData username],
+                    [GlobalData password]];
+  
+  NSData *authData = [auth dataUsingEncoding:NSUTF8StringEncoding];
+  NSString *base64 = [authData base64EncodedStringWithOptions:NSDataBase64Encoding64CharacterLineLength];
+  
+  NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"%@%@?iam=%@&user_login=%@",
+                                     apiPrefix,
+                                     recoverPassword,
+                                     base64,
+                                     email]];
+  
+  // first we aleays clean the cache for every request
+  [[NSURLCache sharedURLCache] removeAllCachedResponses];
+  
+  NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
+  [request addValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-type"];
+  
+  NSURLSession *session = [NSURLSession sharedSession];
+  
+  NSURLSessionDataTask *dataTask = [session dataTaskWithRequest:request
+                                              completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
+                                                
+                                                NSLog(@"Response:%@\nError: %@", response, error);
+                                                
+                                                NSArray *json = [NSJSONSerialization JSONObjectWithData:data
+                                                                                          options:NSJSONReadingMutableContainers
+                                                                                            error:nil];
+                                                
+                                                NSLog(@"%@", json);
+                                                
+                                                HUD *hud = [HUD singleton];
+                                                hud.hud.mode = MBProgressHUDModeText;
+                                                
+                                                if ([[json firstObject][@"code"] isEqualToString:@"invalid_username"])
+                                                  hud.hud.detailsLabelText = @"Invalid Email";
+                                                
+                                                dispatch_async(dispatch_get_main_queue(), ^{
+                                                  [HUD removeHUDAfterDelay:1.5f];
+                                                  
+                                                  [[NSNotificationCenter defaultCenter] postNotificationName:apiUserLoginErrorNotification
+                                                                                                      object:json];
+                                                });
                                               }];
   [dataTask resume];
 }

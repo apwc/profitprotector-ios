@@ -9,6 +9,7 @@
 #define user @"login"
 #define users @"users"
 #define properties @"posts"
+#define recoverPassword @"password"
 
 #pragma mark - Core Data SQLite database reset
 

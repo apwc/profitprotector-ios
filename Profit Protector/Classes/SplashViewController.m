@@ -183,6 +183,34 @@
 
 - (void)forgotPassword:(UIButton *)uib
 {
+  // display the name and info request
+  UIAlertController *alert = [UIAlertController alertControllerWithTitle:@""
+                                                                 message:@"Please insert the email to recover your password"
+                                                          preferredStyle:UIAlertControllerStyleAlert];
+  
+  [alert addTextFieldWithConfigurationHandler:^(UITextField *textField) {
+    textField.placeholder = @"email";
+    textField.font = [UIFont fontWithName:@"helveticaNeue" size:16.0f];
+  }];
+  
+  UIAlertAction *ok = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault
+                                             handler:^(UIAlertAction * action) {
+                                               
+                                               UITextField *info = [alert textFields][0];
+                                               
+                                               if (![info.text isEqualToString:@""])
+                                                 [API profilePasswordRecover:info.text];
+                                             }];
+  
+  [alert addAction:ok];
+  
+  UIAlertAction *cancel = [UIAlertAction actionWithTitle:@"Cancel"
+                                                   style:UIAlertActionStyleCancel
+                                                 handler:nil];
+  
+  [alert addAction:cancel];
+  
+  [self presentViewController:alert animated:YES completion:nil];
 }
 
 - (void)signin:(UIButton *)uib
