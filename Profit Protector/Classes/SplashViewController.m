@@ -184,8 +184,8 @@
 - (void)forgotPassword:(UIButton *)uib
 {
   // display the name and info request
-  UIAlertController *alert = [UIAlertController alertControllerWithTitle:@""
-                                                                 message:@"Please insert the email to recover your password"
+  UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Password reset"
+                                                                 message:@"Please enter your username or email address. You will receive a link to create a new password via email."
                                                           preferredStyle:UIAlertControllerStyleAlert];
   
   [alert addTextFieldWithConfigurationHandler:^(UITextField *textField) {

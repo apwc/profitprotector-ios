@@ -673,17 +673,9 @@
 {
   [HUD addHUD];
   
-  NSString *auth = [NSString stringWithFormat:@"%@fjir50e%@",
-                    [GlobalData username],
-                    [GlobalData password]];
-  
-  NSData *authData = [auth dataUsingEncoding:NSUTF8StringEncoding];
-  NSString *base64 = [authData base64EncodedStringWithOptions:NSDataBase64Encoding64CharacterLineLength];
-  
-  NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"%@%@?iam=%@&user_login=%@",
+  NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"%@%@?user_login=%@",
                                      apiPrefix,
                                      recoverPassword,
-                                     base64,
                                      email]];
   
   // first we aleays clean the cache for every request
@@ -710,6 +702,8 @@
                                                 
                                                 if ([[json firstObject][@"code"] isEqualToString:@"invalid_username"])
                                                   hud.hud.detailsLabelText = @"Invalid Email";
+                                                else
+                                                  hud.hud.detailsLabelText = @"Check your e-mail for the confirmation link.";
                                                 
                                                 dispatch_async(dispatch_get_main_queue(), ^{
                                                   [HUD removeHUDAfterDelay:1.5f];

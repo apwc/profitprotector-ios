@@ -9,8 +9,10 @@
 /* Begin PBXBuildFile section */
 		B72789141B65A831000AB281 /* GlobalMethods.m in Sources */ = {isa = PBXBuildFile; fileRef = B72789131B65A831000AB281 /* GlobalMethods.m */; };
 		B72789171B65B991000AB281 /* GlobalData.m in Sources */ = {isa = PBXBuildFile; fileRef = B72789161B65B991000AB281 /* GlobalData.m */; };
+		B736BBF11B8A998400557C5A /* report_receipt.html in Resources */ = {isa = PBXBuildFile; fileRef = B736BBEF1B8A998400557C5A /* report_receipt.html */; };
 		B753ECE81B5B304200EFBD57 /* NewPropertyForm7ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B753ECE71B5B304200EFBD57 /* NewPropertyForm7ViewController.m */; };
 		B753ECEB1B5B410600EFBD57 /* PropertyTypeTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B753ECEA1B5B410600EFBD57 /* PropertyTypeTableViewController.m */; };
+		B75A187E1B8AACD400C37C48 /* NDHTMLtoPDF.m in Sources */ = {isa = PBXBuildFile; fileRef = B75A187D1B8AACD400C37C48 /* NDHTMLtoPDF.m */; };
 		B768D7FC1B50B41D00D2FEF7 /* SuperViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B768D7FB1B50B41D00D2FEF7 /* SuperViewController.m */; };
 		B768D7FF1B50C44200D2FEF7 /* SignupViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B768D7FE1B50C44200D2FEF7 /* SignupViewController.m */; };
 		B768D8021B50D36D00D2FEF7 /* TutorialViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B768D8011B50D36D00D2FEF7 /* TutorialViewController.m */; };
@@ -67,10 +69,13 @@
 		B72789131B65A831000AB281 /* GlobalMethods.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GlobalMethods.m; sourceTree = "<group>"; };
 		B72789151B65B991000AB281 /* GlobalData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GlobalData.h; sourceTree = "<group>"; };
 		B72789161B65B991000AB281 /* GlobalData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GlobalData.m; sourceTree = "<group>"; };
+		B736BBEF1B8A998400557C5A /* report_receipt.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = report_receipt.html; sourceTree = "<group>"; };
 		B753ECE61B5B304200EFBD57 /* NewPropertyForm7ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewPropertyForm7ViewController.h; sourceTree = "<group>"; };
 		B753ECE71B5B304200EFBD57 /* NewPropertyForm7ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewPropertyForm7ViewController.m; sourceTree = "<group>"; };
 		B753ECE91B5B410600EFBD57 /* PropertyTypeTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PropertyTypeTableViewController.h; sourceTree = "<group>"; };
 		B753ECEA1B5B410600EFBD57 /* PropertyTypeTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PropertyTypeTableViewController.m; sourceTree = "<group>"; };
+		B75A187C1B8AACD400C37C48 /* NDHTMLtoPDF.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NDHTMLtoPDF.h; sourceTree = "<group>"; };
+		B75A187D1B8AACD400C37C48 /* NDHTMLtoPDF.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NDHTMLtoPDF.m; sourceTree = "<group>"; };
 		B768D7FA1B50B41D00D2FEF7 /* SuperViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SuperViewController.h; sourceTree = "<group>"; };
 		B768D7FB1B50B41D00D2FEF7 /* SuperViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SuperViewController.m; sourceTree = "<group>"; };
 		B768D7FD1B50C44200D2FEF7 /* SignupViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SignupViewController.h; sourceTree = "<group>"; };
@@ -285,6 +290,8 @@
 				B768D82D1B50E5BB00D2FEF7 /* MainViewController.h */,
 				B768D82E1B50E5BB00D2FEF7 /* MainViewController.m */,
 				B768D8041B50E54B00D2FEF7 /* MBProgressHUD */,
+				B75A187C1B8AACD400C37C48 /* NDHTMLtoPDF.h */,
+				B75A187D1B8AACD400C37C48 /* NDHTMLtoPDF.m */,
 				B7FEF8CA1B548D4E0018CB7D /* NewPropertyForm1ViewController.h */,
 				B7FEF8CB1B548D4E0018CB7D /* NewPropertyForm1ViewController.m */,
 				B7FEF8CD1B548DC00018CB7D /* NewPropertyForm2ViewController.h */,
@@ -343,6 +350,7 @@
 			children = (
 				B7A58F1C1B4DFC3800C408D8 /* Images.xcassets */,
 				B7A58F1D1B4DFC3800C408D8 /* LaunchScreen.xib */,
+				B736BBEF1B8A998400557C5A /* report_receipt.html */,
 			);
 			name = Resources;
 			path = "Profit Protector/Resources";
@@ -449,6 +457,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B7A58F271B4DFC3800C408D8 /* LaunchScreen.xib in Resources */,
+				B736BBF11B8A998400557C5A /* report_receipt.html in Resources */,
 				B7A58F261B4DFC3800C408D8 /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -517,6 +526,7 @@
 				B768D82B1B50E54B00D2FEF7 /* PKLog.m in Sources */,
 				B768D8221B50E54B00D2FEF7 /* MBProgressHUD.m in Sources */,
 				B77ED0871B87257800275A1A /* AnnualSavingsTableViewController.m in Sources */,
+				B75A187E1B8AACD400C37C48 /* NDHTMLtoPDF.m in Sources */,
 				B7D8ACCD1B5A3F5200041ED1 /* Singleton.m in Sources */,
 				B79F99571B52086E00BF945F /* ProfitProtectorStyleKit.m in Sources */,
 				B753ECE81B5B304200EFBD57 /* NewPropertyForm7ViewController.m in Sources */,
