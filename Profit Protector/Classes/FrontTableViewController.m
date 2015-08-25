@@ -337,6 +337,16 @@
 {
   NSArray *array = (NSArray *)notification.object;
   
+  properties_ = [CoreDataRetrieving allProperties];
+  
+  [properties_ enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+    NSManagedObject *property = (NSManagedObject *)obj;
+    
+    CoreDataManager *cdm = [CoreDataManager singleton];
+    [cdm deleteObject:property];
+    [cdm saveData];
+  }];
+  
   [array enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
     [CoreDataStoring storeProperty:obj];
   }];
