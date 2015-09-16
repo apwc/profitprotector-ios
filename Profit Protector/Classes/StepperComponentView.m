@@ -28,7 +28,7 @@
                                                        0.0f,
                                                        CGRectGetWidth(self.frame),
                                                        48.0f)];
-    title_.font = [UIFont fontWithName:@"HelveticaNeue" size:13.0f];
+    title_.font = [UIFont fontWithName:@"HelveticaNeue" size:18.0f];
     title_.textColor = [UIColor colorWithRed:0 green:0.68 blue:0.95 alpha:1];
     title_.textAlignment = NSTextAlignmentCenter;
     title_.numberOfLines = 0;
@@ -91,7 +91,7 @@
                                                                38.0f)];
     textField_.delegate = self;
     textField_.textAlignment = NSTextAlignmentCenter;
-    textField_.font = [UIFont fontWithName:@"HelveticaNeue" size:16.0f];
+    textField_.font = [UIFont fontWithName:@"HelveticaNeue" size:18.0f];
     textField_.textColor = [UIColor darkGrayColor];
     textField_.backgroundColor = [UIColor whiteColor];
     textField_.keyboardType = UIKeyboardTypeDecimalPad;
@@ -107,6 +107,13 @@
 {
   _title = title;
   title_.text = title;
+  
+  [title_ sizeToFit];
+  
+  title_.frame = CGRectMake(0.0f,
+                            0.0f,
+                            CGRectGetWidth(self.frame),
+                            CGRectGetHeight(title_.frame));
 }
 
 - (void)setNumericType:(NumericType)numericType

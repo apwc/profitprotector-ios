@@ -9,11 +9,9 @@
 #import "API.h"
 #import "NDHTMLtoPDF.h"
 #import "HUD.h"
-@import MessageUI;
 
 @interface FrontTableViewController () <UITableViewDataSource,
-                                        UITableViewDelegate,
-                                        MFMailComposeViewControllerDelegate>
+                                        UITableViewDelegate>
 {
   NSArray     *properties_;
   UILabel     *name_;
@@ -24,8 +22,6 @@
   UIButton    *chevron_;
   
   UITableView *uitv_;
-  
-  NDHTMLtoPDF *PDFCreator_;
 }
 @end
 
@@ -53,7 +49,7 @@
   // new property
   new_ = [UIButton buttonWithType:UIButtonTypeCustom];
   new_.frame = CGRectMake(0.0f, 64.0f, CGRectGetWidth(self.view.frame), CGRectGetWidth(self.view.frame));
-  [new_ setImage:[UIImage imageNamed:@"walkthroughPage2"] forState:UIControlStateNormal];
+  [new_ setImage:[UIImage imageNamed:@"newProperty"] forState:UIControlStateNormal];
   [new_ setTitleColor:[UIColor darkGrayColor] forState:UIControlStateNormal];
   [new_ addTarget:self action:@selector(addProperty:) forControlEvents:UIControlEventTouchUpInside];
   [self.view addSubview:new_];
@@ -170,165 +166,6 @@
                                                 CGRectGetHeight(self.view.frame) - 64.0f);
                      }];
   }
-}
-
-- (void)forward:(NSIndexPath *)indexPath
-{
-  NSString *html = [[NSString alloc] initWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"report_receipt" ofType:@"html"]
-                                                   encoding:NSASCIIStringEncoding
-                                                      error:nil];
-  
-  NSManagedObject *property = properties_[indexPath.row];
-  
-  NSNumberFormatter *formatter_ = [[NSNumberFormatter alloc] init];
-  [formatter_ setNumberStyle:NSNumberFormatterCurrencyStyle];
-  
-  // get the math results
-  NSDictionary *math = [GlobalMethods math:property];
-  
-  // replace the values
-  html = [html stringByReplacingOccurrencesOfString:@"[name]" withString:[property valueForKey:@"name"]];
-  
-  html = [html stringByReplacingOccurrencesOfString:@"[remediationCostsWithout]"
-                                         withString:[formatter_ stringFromNumber:math[@"remediationCostsWithout"]]];
-  
-  html = [html stringByReplacingOccurrencesOfString:@"[remediationCostsWith]"
-                                         withString:[formatter_ stringFromNumber:math[@"remediationCostsWith"]]];
-  
-  html = [html stringByReplacingOccurrencesOfString:@"[remediationCostSavings]"
-                                         withString:[formatter_ stringFromNumber:math[@"remediationCostSavings"]]];
-  
-  html = [html stringByReplacingOccurrencesOfString:@"[lostRevenueWithout]"
-                                         withString:[formatter_ stringFromNumber:math[@"lostRevenueWithout"]]];
-  
-  html = [html stringByReplacingOccurrencesOfString:@"[lostRevenueWith]"
-                                         withString:[formatter_ stringFromNumber:math[@"lostRevenueWith"]]];
-  
-  html = [html stringByReplacingOccurrencesOfString:@"[lostRevenueSavings]"
-                                         withString:[formatter_ stringFromNumber:math[@"lostRevenueSavings"]]];
-  
-  html = [html stringByReplacingOccurrencesOfString:@"[propertyDamageWithout]"
-                                         withString:[formatter_ stringFromNumber:math[@"propertyDamageWithout"]]];
-  
-  html = [html stringByReplacingOccurrencesOfString:@"[propertyDamageWith]"
-                                         withString:[formatter_ stringFromNumber:math[@"propertyDamageWith"]]];
-  
-  html = [html stringByReplacingOccurrencesOfString:@"[propertyDamageSavings]"
-                                         withString:[formatter_ stringFromNumber:math[@"propertyDamageSavings"]]];
-  
-  html = [html stringByReplacingOccurrencesOfString:@"[customerGrievanceCostsWithout]"
-                                         withString:[formatter_ stringFromNumber:math[@"customerGrievanceCostsWithout"]]];
-  
-  html = [html stringByReplacingOccurrencesOfString:@"[brandDamageWithout]"
-                                         withString:[formatter_ stringFromNumber:math[@"brandDamageWithout"]]];
-  
-  html = [html stringByReplacingOccurrencesOfString:@"[brandDamageSavings]"
-                                         withString:[formatter_ stringFromNumber:math[@"brandDamageSavings"]]];
-
-  html = [html stringByReplacingOccurrencesOfString:@"[totalLossesPerBedBugInfestationIncidentWithout]"
-                                         withString:[formatter_ stringFromNumber:math[@"totalLossesPerBedBugInfestationIncidentWithout"]]];
-  
-  html = [html stringByReplacingOccurrencesOfString:@"[totalLossesPerBedBugInfestationIncidentWith]"
-                                         withString:[formatter_ stringFromNumber:math[@"totalLossesPerBedBugInfestationIncidentWith"]]];
-  
-  html = [html stringByReplacingOccurrencesOfString:@"[totalLossesPerBedBugInfestationIncidentSavings]"
-                                         withString:[formatter_ stringFromNumber:math[@"totalLossesPerBedBugInfestationIncidentSavings"]]];
-  
-  html = [html stringByReplacingOccurrencesOfString:@"[totalAnnualBedBugInfestationLossesWithout]"
-                                         withString:[formatter_ stringFromNumber:math[@"totalAnnualBedBugInfestationLossesWithout"]]];
-  
-  html = [html stringByReplacingOccurrencesOfString:@"[totalAnnualBedBugInfestationLossesWith]"
-                                         withString:[formatter_ stringFromNumber:math[@"totalAnnualBedBugInfestationLossesWith"]]];
-  
-  html = [html stringByReplacingOccurrencesOfString:@"[totalAnnualBedBugInfestationLossesSavings]"
-                                         withString:[formatter_ stringFromNumber:math[@"totalAnnualBedBugInfestationLossesSavings"]]];
-  
-  html = [html stringByReplacingOccurrencesOfString:@"[mattressSpoilageCostsPerYear]"
-                                         withString:[formatter_ stringFromNumber:math[@"mattressSpoilageCostsPerYear"]]];
-  
-  html = [html stringByReplacingOccurrencesOfString:@"[mattressSpoilageCostsPerYear]"
-                                         withString:[formatter_ stringFromNumber:math[@"mattressSpoilageCostsPerYear"]]];
-  
-  html = [html stringByReplacingOccurrencesOfString:@"[preemptiveEncasementLaunderingCostsSavings]"
-                                         withString:[formatter_ stringFromNumber:math[@"preemptiveEncasementLaunderingCostsSavings"]]];
-  
-  html = [html stringByReplacingOccurrencesOfString:@"[preemptiveEncasementLaunderingCostsSavings]"
-                                         withString:[formatter_ stringFromNumber:math[@"preemptiveEncasementLaunderingCostsSavings"]]];
-  
-  html = [html stringByReplacingOccurrencesOfString:@"[totalAnnualCostsLossesWithout]"
-                                         withString:[formatter_ stringFromNumber:math[@"totalAnnualCostsLossesWithout"]]];
-  
-  html = [html stringByReplacingOccurrencesOfString:@"[totalAnnualCostsLossesWith]"
-                                         withString:[formatter_ stringFromNumber:math[@"totalAnnualCostsLossesWith"]]];
-  
-  html = [html stringByReplacingOccurrencesOfString:@"[totalAnnualCostsLossesSavings]"
-                                         withString:[formatter_ stringFromNumber:math[@"totalAnnualCostsLossesSavings"]]];
-  
-  html = [html stringByReplacingOccurrencesOfString:@"[totalLifetimeSavingsFromEncasingWithCleanRestPro]"
-                                         withString:[formatter_ stringFromNumber:math[@"totalLifetimeSavingsFromEncasingWithCleanRestPro"]]];
-  
-  html = [html stringByReplacingOccurrencesOfString:@"[totalInvestmentToEncaseAllBeds]"
-                                         withString:[formatter_ stringFromNumber:math[@"totalInvestmentToEncaseAllBeds"]]];
-  
-  html = [html stringByReplacingOccurrencesOfString:@"[roi]"
-                                         withString:[formatter_ stringFromNumber:math[@"roi"]]];
-  
-  html = [html stringByReplacingOccurrencesOfString:@"[lifetimeSavingsEncasementInvestment]"
-                                         withString:[NSString stringWithFormat:@"%@x", [math[@"lifetimeSavingsEncasementInvestment"] stringValue]]];
-
-  html = [html stringByReplacingOccurrencesOfString:@"[encasementInvestmentPaybackInMonths]"
-                                         withString:[math[@"encasementInvestmentPaybackInMonths"] stringValue]];
-  
-  html = [html stringByReplacingOccurrencesOfString:@"[bedBugIncidents]"
-                                         withString:[[property valueForKey:@"bedBugIncidents"] stringValue]];
-  
-  __block NSString *pdfFilename = [NSString stringWithFormat:@"CleanRest Pro Savings Report %@.pdf", [NSDate date]];
-  __block NSString *pdfPath = [[NSString stringWithFormat:@"~/Documents/%@.pdf", pdfFilename] stringByExpandingTildeInPath];
-  
-  PDFCreator_ = [NDHTMLtoPDF createPDFWithHTML:html
-                                       baseURL:nil
-                                    pathForPDF:pdfPath
-                                      pageSize:CGSizeMake(500.0f, 650.0f)
-                                       margins:UIEdgeInsetsZero
-                                  successBlock:^(NDHTMLtoPDF *htmlToPDF) {
-                                    [uitv_ reloadData];
-                                    
-                                    PDFCreator_ = nil;
-                                    
-                                    if ([MFMailComposeViewController canSendMail])
-                                    {
-                                      MFMailComposeViewController *picker = [[MFMailComposeViewController alloc] init];
-                                      picker.navigationBar.tintColor = [UIColor darkGrayColor];
-                                      picker.mailComposeDelegate = self;
-                                      
-                                      // body
-                                      [picker setSubject:@"CleanRest Pro Savings Report"];
-                                      
-                                      NSFileManager *fileManager = [NSFileManager defaultManager];
-                                      
-                                      if ([fileManager fileExistsAtPath:pdfPath])
-                                      {
-                                        [picker addAttachmentData:[NSData dataWithContentsOfFile:pdfPath]
-                                                         mimeType:@"application/pdf"
-                                                         fileName:pdfFilename];
-                                      }
-                                      
-                                      [self presentViewController:picker animated:YES completion:nil];
-                                    }
-                                    else
-                                    {
-                                      UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Alert"
-                                                                                      message:@"Device is unable to send email in its current state."
-                                                                                     delegate:self
-                                                                            cancelButtonTitle:@"OK"
-                                                                            otherButtonTitles:nil];
-                                      
-                                      [alert show];
-                                    }
-                                  }
-                                    errorBlock:^(NDHTMLtoPDF *htmlToPDF) {
-                                      PDFCreator_ = nil;
-                                    }];
 }
 
 #pragma mark - API notifications callbacks
@@ -479,20 +316,13 @@
                                                                }];
   fav.backgroundColor = [UIColor colorWithRed:0.89 green:0.88 blue:0.13 alpha:1];
   
-  UITableViewRowAction *frwrd = [UITableViewRowAction rowActionWithStyle:UITableViewRowActionStyleNormal
-                                                                   title:@"FRWRD"
-                                                                 handler:^(UITableViewRowAction *action, NSIndexPath *indexPath) {
-                                                                   [self forward:indexPath];
-                                                                 }];
-  frwrd.backgroundColor = [UIColor colorWithRed:0 green:0.83 blue:0 alpha:1];
-  
   UITableViewRowAction *trsh = [UITableViewRowAction rowActionWithStyle:UITableViewRowActionStyleDestructive
                                                                   title:@"TRSH"
                                                                 handler:^(UITableViewRowAction *action, NSIndexPath *indexPath) {
                                                                   [API deleteProperty:properties_[indexPath.row]];
                                                                 }];
   
-  return @[trsh, frwrd, fav];
+  return @[trsh, fav];
 }
 
 #pragma mark - UITableView delegate methods implementation
@@ -530,15 +360,6 @@
                                                                                   bundle:nil];
   hdvc.property = properties_[indexPath.row];
   [self.navigationController pushViewController:hdvc animated:YES];
-}
-
-#pragma mark - MFMailComposeViewController delegate methods implementation
-
-- (void)mailComposeController:(MFMailComposeViewController *)controller
-          didFinishWithResult:(MFMailComposeResult)result
-                        error:(NSError *)error
-{
-  [controller dismissViewControllerAnimated:YES completion:nil];
 }
 
 @end

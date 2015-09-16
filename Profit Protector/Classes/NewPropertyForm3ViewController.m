@@ -18,22 +18,22 @@
   
   //
   self.scvB = [[StepperComponentView alloc] initWithFrame:CGRectMake(20.0f,
-                                                                     CGRectGetMaxY(self.scvA.frame) + 20.0f,
+                                                                     CGRectGetMaxY(self.scvA.frame) + 30.0f,
                                                                      CGRectGetWidth(self.view.frame) - 40.0f,
-                                                                     100.0f)];
+                                                                     120.0f)];
   self.scvB.numericType = Currency;
   self.scvB.key = @"foodBeverageSalesPerRoomPerNight";
-  self.scvB.title = @"What is your average food and beverage\nsales per room per night?";
+  self.scvB.title = @"What is your average food and beverage sales per room per night?";
   [self.uisv addSubview:self.scvB];
   
   //
   self.scvC = [[StepperComponentView alloc] initWithFrame:CGRectMake(20.0f,
-                                                                     CGRectGetMaxY(self.scvB.frame) + 20.0f,
+                                                                     CGRectGetMaxY(self.scvB.frame) + 30.0f,
                                                                      CGRectGetWidth(self.view.frame) - 40.0f,
                                                                      100.0f)];
   self.scvC.numericType = Currency;
   self.scvC.key = @"ancillariesRevenuePerRoomPerNight";
-  self.scvC.title = @"What is your total ancillaries revenues\nper room per night?";
+  self.scvC.title = @"What is your total ancillaries revenues per room per night?";
   [self.uisv addSubview:self.scvC];
   
   self.uisv.contentSize = CGSizeMake(CGRectGetWidth(self.view.frame),

@@ -39,11 +39,6 @@
   // UI customizations
   self.view.backgroundColor = [UIColor whiteColor];
   
-  self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Finish"
-                                                                            style:UIBarButtonItemStylePlain
-                                                                           target:self
-                                                                           action:@selector(save:)];
-  
   // ivars
   CGFloat buttonWidth = 90.0f;
   CGFloat buttonHeight = 60.0f;
@@ -132,9 +127,7 @@
                                   CGRectGetHeight(uisv_.bounds) - buttonHeight);
   
   if (self.property)
-  {
     npf5vc_.scvA.value = [self.property valueForKey:@"percentageOfMattressesReplaceEachYear"];
-  }
   
   [uisv_ addSubview:npf5vc_.view];
   
@@ -169,6 +162,7 @@
     npf7vc_.scvB.value = [self.property valueForKey:@"futureBookingDaysLost"];
   }
   
+  [npf7vc_.finish addTarget:self action:@selector(save:) forControlEvents:UIControlEventTouchUpInside];
   [uisv_ addSubview:npf7vc_.view];
   
   uisv_.contentSize = CGSizeMake(CGRectGetWidth(uisv_.bounds) * 7.0f,
