@@ -97,6 +97,11 @@
                                                name:apiUserPropertyDeleteSuccessfulNotification
                                              object:nil];
   
+  [[NSNotificationCenter defaultCenter] addObserver:self
+                                           selector:@selector(displaySelectedProperty:)
+                                               name:displaySelectedPropertyNotification
+                                             object:nil];
+  
   properties_ = [CoreDataRetrieving allProperties];
   
   [uitv_ reloadData];
@@ -113,6 +118,10 @@
   [[NSNotificationCenter defaultCenter] removeObserver:self
                                                   name:apiUserPropertyDeleteSuccessfulNotification
                                                 object:nil];
+  
+  [[NSNotificationCenter defaultCenter] removeObserver:self
+                                                  name:displaySelectedPropertyNotification
+                                                object:nil];
 }
 
 - (void)showLeftViewController:(UIBarButtonItem *)uibbi
@@ -128,9 +137,11 @@
 
 - (void)addProperty:(UIButton *)uib
 {
-  NewPropertyViewController *npvc = [[NewPropertyViewController alloc] initWithNibName:nil
-                                                                                bundle:nil];
-  [self.navigationController pushViewController:npvc animated:YES];
+  NewPropertyViewController *npvc = [[NewPropertyViewController alloc] init];
+  
+  UINavigationController *uinc = [[UINavigationController alloc] initWithRootViewController:npvc];
+
+  [self presentViewController:uinc animated:YES completion:nil];
 }
 
 - (void)accordion:(UIButton *)uib
@@ -166,6 +177,27 @@
                                                 CGRectGetHeight(self.view.frame) - 64.0f);
                      }];
   }
+}
+
+#pragma mark - UI Updates notifications callbacks
+
+- (void)displaySelectedProperty:(NSNotification *)notification
+{
+  NSDictionary *token = (NSDictionary *)notification.object;
+  
+  [properties_ enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+    NSManagedObject *property = (NSManagedObject *)obj;
+    
+    if ([[property valueForKey:@"propertyID"] integerValue] == [token[@"ID"] integerValue])
+    {
+      HotelDetailsViewController *hdvc = [[HotelDetailsViewController alloc] initWithNibName:nil
+                                                                                      bundle:nil];
+      hdvc.property = property;
+      [self.navigationController pushViewController:hdvc animated:YES];
+      
+      *stop = YES;
+    }
+  }];
 }
 
 #pragma mark - API notifications callbacks

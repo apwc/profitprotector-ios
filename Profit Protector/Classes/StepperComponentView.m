@@ -7,6 +7,8 @@
   UITextField       *textField_;
   
   NSNumberFormatter *formatter_;
+  
+  NSTimer           *timer_;
 }
 @end
 
@@ -48,7 +50,9 @@
                                              0.0f,
                                              0.0f);
     [minus setTitle:@"-" forState:UIControlStateNormal];
-    [minus addTarget:self action:@selector(minus:) forControlEvents:UIControlEventTouchUpInside];
+    [minus addTarget:self action:@selector(startMinusTimer) forControlEvents:UIControlEventTouchDown];
+    [minus addTarget:self action:@selector(stopTimer) forControlEvents:UIControlEventTouchUpInside];
+    [minus addTarget:self action:@selector(stopTimer) forControlEvents:UIControlEventTouchUpOutside];
     [self addSubview:minus];
     
     //
@@ -65,7 +69,9 @@
                                             0.0f,
                                             0.0f);
     [plus setTitle:@"+" forState:UIControlStateNormal];
-    [plus addTarget:self action:@selector(plus:) forControlEvents:UIControlEventTouchUpInside];
+    [plus addTarget:self action:@selector(startPlusTimer) forControlEvents:UIControlEventTouchDown];
+    [plus addTarget:self action:@selector(stopTimer) forControlEvents:UIControlEventTouchUpInside];
+    [plus addTarget:self action:@selector(stopTimer) forControlEvents:UIControlEventTouchUpOutside];
     [self addSubview:plus];
     
     //
@@ -159,6 +165,44 @@
   [self updateGlobalValues];
 }
 
+- (void)startMinusTimer
+{
+  if (timer_)
+  {
+    [self stopTimer];
+    return;
+  }
+  
+  [self minus:nil];
+  timer_ = [NSTimer scheduledTimerWithTimeInterval:0.15f
+                                            target:self
+                                          selector:@selector(minus:)
+                                          userInfo:nil
+                                           repeats:YES];
+}
+
+- (void)startPlusTimer
+{
+  if (timer_)
+  {
+    [self stopTimer];
+    return;
+  }
+  
+  [self plus:nil];
+  timer_ = [NSTimer scheduledTimerWithTimeInterval:0.15f
+                                            target:self
+                                          selector:@selector(plus:)
+                                          userInfo:nil
+                                           repeats:YES];
+}
+
+- (void)stopTimer
+{
+  [timer_ invalidate];
+  timer_ = nil;
+}
+
 - (void)formatTextField
 {
   textField_.text = [formatter_ stringFromNumber:@([textField_.text floatValue])];
@@ -184,8 +228,8 @@
   
   if ([self.key isEqualToString:@"percentageOfMattressesReplaceEachYear"])
   {
-    GlobalData *gb = [GlobalData singleton];
-    gb.percentage = [self.value floatValue];
+    GlobalData *gd = [GlobalData singleton];
+    gd.percentage = [self.value floatValue];
   }
   
   [[NSNotificationCenter defaultCenter] postNotificationName:self.key

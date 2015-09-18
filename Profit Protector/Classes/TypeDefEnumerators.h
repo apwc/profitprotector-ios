@@ -4,3 +4,9 @@ typedef NS_ENUM(NSInteger, NumericType)
   Percentage,
   Currency
 };
+
+typedef NS_ENUM(NSInteger, PropertyType)
+{
+  Full = 0,
+  Select
+};

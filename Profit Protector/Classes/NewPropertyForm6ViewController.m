@@ -36,13 +36,12 @@
   self.scvB.numericType = Currency;
   self.scvB.key = @"costToCleanAndReinstallEncasements";
   self.scvB.title = @"CleanBrands estimates it will cost $1.50 to remove, launder and install the typical mattress encasement. Note it is not necessary to launder box spring encasements as they do not come in contact with the guest.";
+  self.scvB.value = @(1.50);
   [self.uisv addSubview:self.scvB];
   
   self.uisv.contentSize = CGSizeMake(CGRectGetWidth(self.view.frame),
                                      CGRectGetMaxY(self.scvB.frame) + 20.0f);
 
-  
-  return;
   //
   self.scvC = [[StepperComponentView alloc] initWithFrame:CGRectMake(20.0f,
                                                                      CGRectGetMaxY(self.scvB.frame) + 20.0f,

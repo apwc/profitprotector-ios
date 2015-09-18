@@ -43,17 +43,17 @@
   [self updateField];
   
   //
-  self.scvB = [[StepperComponentView alloc] initWithFrame:CGRectMake(20.0f,
+  /*self.scvB = [[StepperComponentView alloc] initWithFrame:CGRectMake(20.0f,
                                                                      CGRectGetMaxY(label_.frame) + 30.0f,
                                                                      CGRectGetWidth(self.view.frame) - 40.0f,
                                                                      200.0f)];
   self.scvB.numericType = Numeric;
   self.scvB.key = @"";
   self.scvB.title = @"CleanBrands estimates it will cost $1.50 to remove, launder and install the typical mattress encasement. Note it is not necessary to launder box spring encasements as they do not come in contact with the guest.";
-  [self.uisv addSubview:self.scvB];
+  [self.uisv addSubview:self.scvB];*/
   
   self.uisv.contentSize = CGSizeMake(CGRectGetWidth(self.view.frame),
-                                     CGRectGetMaxY(self.scvB.frame) + 20.0f);
+                                     CGRectGetMaxY(self.scvA.frame) + 20.0f);
   
   [[NSNotificationCenter defaultCenter] addObserver:self
                                            selector:@selector(updateField)
@@ -63,12 +63,14 @@
 
 - (void)updateField
 {
-  GlobalData *gb = [GlobalData singleton];
+  GlobalData *gd = [GlobalData singleton];
   
-//  if (gb.numberOfBeds != -1.0f && gb.percentage!= -1.0f)
-//  {
+  if (gd.numberOfBeds != -1.0f && gd.percentage!= -1.0f)
+  {
+    CGFloat res = gd.numberOfBeds * (gd.percentage / 100.0f) * 80.0f;
+    
     NSString *composedString = [NSString stringWithFormat:@"Total savings from spoilage alone:\n$%.2f\n\nLifetime savings from loss due\nto spoilage:\n$%.2f",
-                                9999.99f,//gb.numberOfBeds * gb.percentage/100 * 80.0f,
+                                res,
                                 9999.99f];
     
     NSMutableAttributedString *attributedText = [[NSMutableAttributedString alloc] initWithString:composedString];
@@ -83,22 +85,22 @@
     
     [attributedText setAttributes:@{NSForegroundColorAttributeName: [UIColor colorWithRed:0 green:0.68 blue:0.95 alpha:1],
                                     NSFontAttributeName: [UIFont fontWithName:@"HelveticaNeue" size:16.0f]}
-                            range:NSMakeRange(startRange, 9)];
+                            range:NSMakeRange(startRange, [[NSString stringWithFormat:@"%.2f", res] length] + 1)];
     
-    startRange += 9;
+    startRange += [[NSString stringWithFormat:@"%.2f", res] length] + 1;
     
     [attributedText setAttributes:@{NSForegroundColorAttributeName: [UIColor darkGrayColor],
                                     NSFontAttributeName: [UIFont fontWithName:@"HelveticaNeue" size:16.0f]}
-                            range:NSMakeRange(startRange, 44)];
+                            range:NSMakeRange(startRange, 45)];
     
-    startRange += 44;
+    startRange += 45;
     
     [attributedText setAttributes:@{NSForegroundColorAttributeName: [UIColor colorWithRed:0 green:0.68 blue:0.95 alpha:1],
                                     NSFontAttributeName: [UIFont fontWithName:@"HelveticaNeue" size:16.0f]}
                             range:NSMakeRange(startRange, 9)];
     
     label_.attributedText = attributedText;
-//  }
+  }
 }
 
 @end

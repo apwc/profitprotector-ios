@@ -39,6 +39,21 @@
   // UI customizations
   self.view.backgroundColor = [UIColor whiteColor];
   
+  if ([self.navigationController.viewControllers count] == 1)
+    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Cancel"
+                                                                             style:UIBarButtonItemStylePlain
+                                                                            target:self
+                                                                            action:@selector(cancel:)];
+  else
+  {
+    [self.navigationItem hidesBackButton];
+    
+    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Exit"
+                                                                             style:UIBarButtonItemStylePlain
+                                                                            target:self
+                                                                            action:@selector(exit:)];
+  }
+  
   // ivars
   CGFloat buttonWidth = 90.0f;
   CGFloat buttonHeight = 60.0f;
@@ -251,6 +266,16 @@
   [self.view endEditing:YES];
 }
 
+- (void)exit:(UIBarButtonItem *)uibbi
+{
+  [self.navigationController popToRootViewControllerAnimated:YES];
+}
+
+- (void)cancel:(UIBarButtonItem *)uibbi
+{
+  [self dismissViewControllerAnimated:YES completion:nil];
+}
+
 - (void)save:(UIBarButtonItem *)uibbi
 {
   UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Profit Protector"
@@ -262,8 +287,7 @@
                                                        handler:nil];
   
   [alert addAction:cancelAction];
-  
-  if ([npf1vc_.textField.text isEqualToString:@""] ||
+       if ([npf1vc_.textField.text isEqualToString:@""] ||
       
       [npf2vc_.scvA.value isEqualToNumber:@(-1)] ||
       [npf2vc_.scvB.value isEqualToNumber:@(-1)] ||
@@ -289,10 +313,10 @@
     return;
   }
   
-  GlobalData *gb = [GlobalData singleton];
-  gb.numberOfBeds = -1.0f;
-  gb.percentage = -1.0f;
-  gb.costPerBed = -1.0f;
+  GlobalData *gd = [GlobalData singleton];
+  gd.numberOfBeds = -1.0f;
+  gd.percentage = -1.0f;
+  gd.costPerBed = -1.0f;
 
   NSDictionary *token = @{@"name": npf1vc_.textField.text,
                           @"propertyType": npf1vc_.propertyType.titleLabel.text,
@@ -351,7 +375,7 @@
                     animated:YES];
 }
 
-- (void)propertyType:(UIButton *)uib
+ - (void)propertyType:(UIButton *)uib
 {
   PropertyTypeTableViewController *ptvc = [[PropertyTypeTableViewController alloc] initWithStyle:UITableViewStylePlain];
   ptvc.delegate = self;
@@ -367,7 +391,11 @@
   
   [CoreDataStoring storeProperty:token];
   
-  [self.navigationController popToRootViewControllerAnimated:YES];
+  [self dismissViewControllerAnimated:YES
+                           completion:^{
+                             [[NSNotificationCenter defaultCenter] postNotificationName:displaySelectedPropertyNotification
+                                                                                 object:token];
+                           }];
 }
 
 - (void)apiUserPropertyUpdateSuccessful:(NSNotification *)notification

@@ -37,7 +37,8 @@
   
   // UI customizations
   self.view.backgroundColor = [UIColor whiteColor];
-
+  self.title = [self.property valueForKey:@"name"];
+  
   self.navigationItem.rightBarButtonItems = @[[[UIBarButtonItem alloc] initWithTitle:@"Edit"
                                                                               style:UIBarButtonItemStylePlain
                                                                            target:self
