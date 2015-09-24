@@ -7,6 +7,7 @@ typedef NS_ENUM(NSInteger, NumericType)
 
 typedef NS_ENUM(NSInteger, PropertyType)
 {
-  Full = 0,
+  None = 0,
+  Full,
   Select
 };

@@ -39,7 +39,7 @@
                                                                                           options:NSJSONReadingMutableContainers
                                                                                             error:nil];
                                                 
-                                                NSLog(@"%@", json);
+//                                                NSLog(@"%@", json);
                                                 
                                                 if (error)
                                                 {
@@ -242,7 +242,7 @@
                                                                                                 options:NSJSONReadingMutableContainers
                                                                                                   error:nil];
                                                 
-                                                NSLog(@"%@", json);
+//                                                NSLog(@"%@", json);
                                                 
                                                 dispatch_async(dispatch_get_main_queue(), ^{
                                                   [HUD removeHUD];
@@ -347,7 +347,7 @@
                                                                                                 options:NSJSONReadingMutableContainers
                                                                                                   error:nil];
                                                 
-                                                NSLog(@"%@", json);
+//                                                NSLog(@"%@", json);
                                                 
                                                 HUD *hud = [HUD singleton];
                                                 hud.hud.mode = MBProgressHUDModeText;
@@ -487,7 +487,7 @@
                                                                                                 options:NSJSONReadingMutableContainers
                                                                                                   error:nil];
                                                 
-                                                NSLog(@"%@", json);
+//                                                NSLog(@"%@", json);
                                                 
                                                 HUD *hud = [HUD singleton];
                                                 hud.hud.mode = MBProgressHUDModeText;
@@ -620,7 +620,7 @@
                                                                                                 options:NSJSONReadingMutableContainers
                                                                                                   error:nil];
                                                 
-                                                NSLog(@"%@", json);
+//                                                NSLog(@"%@", json);
                                                 
                                                 HUD *hud = [HUD singleton];
                                                 hud.hud.mode = MBProgressHUDModeText;
@@ -695,7 +695,7 @@
                                                                                           options:NSJSONReadingMutableContainers
                                                                                             error:nil];
                                                 
-                                                NSLog(@"%@", json);
+//                                                NSLog(@"%@", json);
                                                 
                                                 HUD *hud = [HUD singleton];
                                                 hud.hud.mode = MBProgressHUDModeText;

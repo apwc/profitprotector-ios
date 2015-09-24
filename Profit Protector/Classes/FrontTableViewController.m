@@ -249,8 +249,8 @@
          cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
   NSString *cellReusableIdentifier = [NSString stringWithFormat:@"cellReusableIdentifier%ld%ld",
-                                      indexPath.section,
-                                      indexPath.row];
+                                      (long)indexPath.section,
+                                      (long)indexPath.row];
   
   UITableViewCell *cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault
                                                  reuseIdentifier:cellReusableIdentifier];

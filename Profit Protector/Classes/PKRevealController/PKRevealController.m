@@ -1368,26 +1368,26 @@ typedef struct
 
 - (NSUInteger)supportedInterfaceOrientations
 {
-    if ([self hasLeftViewController] && [self hasRightViewController])
-    {
-        return self.frontViewController.supportedInterfaceOrientations &
-               self.leftViewController.supportedInterfaceOrientations &
-               self.rightViewController.supportedInterfaceOrientations;
-    }
-    else if ([self hasLeftViewController])
-    {
-        return self.frontViewController.supportedInterfaceOrientations &
-               self.leftViewController.supportedInterfaceOrientations;
-    }
-    else if ([self hasRightViewController])
-    {
-        return self.frontViewController.supportedInterfaceOrientations &
-               self.rightViewController.supportedInterfaceOrientations;
-    }
-    else
-    {
-        return self.frontViewController.supportedInterfaceOrientations;
-    }
+  if ([self hasLeftViewController] && [self hasRightViewController])
+  {
+    return self.frontViewController.supportedInterfaceOrientations &
+    self.leftViewController.supportedInterfaceOrientations &
+    self.rightViewController.supportedInterfaceOrientations;
+  }
+  else if ([self hasLeftViewController])
+  {
+    return self.frontViewController.supportedInterfaceOrientations &
+    self.leftViewController.supportedInterfaceOrientations;
+  }
+  else if ([self hasRightViewController])
+  {
+    return self.frontViewController.supportedInterfaceOrientations &
+    self.rightViewController.supportedInterfaceOrientations;
+  }
+  else
+  {
+    return self.frontViewController.supportedInterfaceOrientations;
+  }
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation

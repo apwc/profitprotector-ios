@@ -1,4 +1,6 @@
 #import "NewPropertyForm3ViewController.h"
+#import "GlobalData.h"
+#import "TypeDefEnumerators.h"
 
 @implementation NewPropertyForm3ViewController
 

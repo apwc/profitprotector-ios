@@ -313,11 +313,13 @@
     return;
   }
   
+  // reset the global values
   GlobalData *gd = [GlobalData singleton];
   gd.numberOfBeds = -1.0f;
   gd.percentage = -1.0f;
   gd.costPerBed = -1.0f;
-
+  gd.propertyType = None;
+  
   NSDictionary *token = @{@"name": npf1vc_.textField.text,
                           @"propertyType": npf1vc_.propertyType.titleLabel.text,
                           
@@ -521,6 +523,18 @@
 - (void)propertyTypeDidSelect:(NSString *)propertyType
 {
   [npf1vc_.propertyType setTitle:propertyType forState:UIControlStateNormal];
+  
+  GlobalData *gd = [GlobalData singleton];
+  gd.propertyType = [propertyType isEqualToString:@"Full Service"] ? Full : Select;
+  
+  if ([npf3vc_.scvA.value integerValue] == -1)
+    npf3vc_.scvA.value = gd.propertyType == Full ? @(150) : @(0);
+  
+  if ([npf3vc_.scvB.value integerValue] == -1)
+    npf3vc_.scvB.value = gd.propertyType == Full ? @(57) : @(10);
+  
+  if ([npf3vc_.scvC.value integerValue] == -1)
+    npf3vc_.scvC.value = gd.propertyType == Full ? @(17) : @(0);
 }
 
 #pragma mark - UIScrollView delegate methods implementation

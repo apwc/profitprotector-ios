@@ -6,8 +6,7 @@
 + (void)storeProperty:(NSDictionary *)dictionary
 {
   CoreDataManager *cdm = [CoreDataManager singleton];
-  
-  NSLog(@"%@", dictionary[@"ID"]);
+
   // create the entity object
   NSManagedObject *property = [CoreDataRetrieving propertyWithID:dictionary[@"ID"]];
   
