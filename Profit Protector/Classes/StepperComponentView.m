@@ -35,76 +35,6 @@
     title_.textAlignment = NSTextAlignmentCenter;
     title_.numberOfLines = 0;
     [self addSubview:title_];
-    
-    //
-    UIButton *minus = [UIButton buttonWithType:UIButtonTypeCustom];
-    minus.showsTouchWhenHighlighted = YES;
-    minus.frame = CGRectMake(0.0f,
-                             CGRectGetHeight(self.frame) - 40.0f,
-                             40.0f,
-                             40.0f);
-    minus.backgroundColor = [UIColor colorWithRed:0 green:0.68 blue:0.95 alpha:1];
-    minus.titleLabel.font = [UIFont fontWithName:@"HelveticaNeue-Bold" size:32.0f];
-    minus.titleEdgeInsets = UIEdgeInsetsMake(-5.0f,
-                                             0.0f,
-                                             0.0f,
-                                             0.0f);
-    [minus setTitle:@"-" forState:UIControlStateNormal];
-    [minus addTarget:self action:@selector(startMinusTimer) forControlEvents:UIControlEventTouchDown];
-    [minus addTarget:self action:@selector(stopTimer) forControlEvents:UIControlEventTouchUpInside];
-    [minus addTarget:self action:@selector(stopTimer) forControlEvents:UIControlEventTouchUpOutside];
-    [self addSubview:minus];
-    
-    //
-    UIButton *plus = [UIButton buttonWithType:UIButtonTypeCustom];
-    plus.showsTouchWhenHighlighted = YES;
-    plus.frame = CGRectMake(CGRectGetWidth(self.frame) - 40.0f,
-                            CGRectGetHeight(self.frame) - 40.0f,
-                            40.0f,
-                            40.0f);
-    plus.backgroundColor = [UIColor colorWithRed:0 green:0.68 blue:0.95 alpha:1];
-    plus.titleLabel.font = [UIFont fontWithName:@"HelveticaNeue-Bold" size:32.0f];
-    plus.titleEdgeInsets = UIEdgeInsetsMake(-5.0f,
-                                            0.0f,
-                                            0.0f,
-                                            0.0f);
-    [plus setTitle:@"+" forState:UIControlStateNormal];
-    [plus addTarget:self action:@selector(startPlusTimer) forControlEvents:UIControlEventTouchDown];
-    [plus addTarget:self action:@selector(stopTimer) forControlEvents:UIControlEventTouchUpInside];
-    [plus addTarget:self action:@selector(stopTimer) forControlEvents:UIControlEventTouchUpOutside];
-    [self addSubview:plus];
-    
-    //
-    UIView *topLine = [[UIView alloc] initWithFrame:CGRectMake(0.0f,
-                                                               CGRectGetHeight(self.frame) - 40.0f,
-                                                               CGRectGetWidth(self.frame),
-                                                               1.0f)];
-    topLine.backgroundColor = [UIColor colorWithRed:0 green:0.68 blue:0.95 alpha:1];
-    [self addSubview:topLine];
-    
-    //
-    UIView *bottomLine = [[UIView alloc] initWithFrame:CGRectMake(0.0f,
-                                                                  CGRectGetHeight(self.frame) - 1.0f,
-                                                                  CGRectGetWidth(self.frame),
-                                                                  1.0f)];
-    bottomLine.backgroundColor = [UIColor colorWithRed:0 green:0.68 blue:0.95 alpha:1];
-    [self addSubview:bottomLine];
-    
-    //
-    textField_ = [[UITextField alloc] initWithFrame:CGRectMake(40.0f,
-                                                               CGRectGetHeight(self.frame) - 39.0f,
-                                                               CGRectGetWidth(self.frame) - 80.0f,
-                                                               38.0f)];
-    textField_.delegate = self;
-    textField_.textAlignment = NSTextAlignmentCenter;
-    textField_.font = [UIFont fontWithName:@"HelveticaNeue" size:18.0f];
-    textField_.textColor = [UIColor darkGrayColor];
-    textField_.backgroundColor = [UIColor whiteColor];
-    textField_.keyboardType = UIKeyboardTypeDecimalPad;
-    textField_.returnKeyType = UIReturnKeyDefault;
-    textField_.enablesReturnKeyAutomatically = YES;
-    textField_.autocorrectionType = UITextAutocorrectionTypeNo;
-    [self addSubview:textField_];
   }
   return self;
 }
@@ -120,6 +50,79 @@
                             0.0f,
                             CGRectGetWidth(self.frame),
                             CGRectGetHeight(title_.frame));
+  
+  
+  //
+  UIButton *minus = [UIButton buttonWithType:UIButtonTypeCustom];
+  minus.showsTouchWhenHighlighted = YES;
+  minus.frame = CGRectMake(0.0f,
+                           CGRectGetMaxY(title_.frame) + 10.0f,
+                           40.0f,
+                           40.0f);
+  minus.backgroundColor = [UIColor colorWithRed:0 green:0.68 blue:0.95 alpha:1];
+  minus.titleLabel.font = [UIFont fontWithName:@"HelveticaNeue-Bold" size:32.0f];
+  minus.titleEdgeInsets = UIEdgeInsetsMake(-5.0f,
+                                           0.0f,
+                                           0.0f,
+                                           0.0f);
+  [minus setTitle:@"-" forState:UIControlStateNormal];
+  [minus addTarget:self action:@selector(startMinusTimer) forControlEvents:UIControlEventTouchDown];
+  [minus addTarget:self action:@selector(stopTimer) forControlEvents:UIControlEventTouchUpInside];
+  [minus addTarget:self action:@selector(stopTimer) forControlEvents:UIControlEventTouchUpOutside];
+  [self addSubview:minus];
+  
+  //
+  UIButton *plus = [UIButton buttonWithType:UIButtonTypeCustom];
+  plus.showsTouchWhenHighlighted = YES;
+  plus.frame = CGRectMake(CGRectGetWidth(self.frame) - 40.0f,
+                          CGRectGetMaxY(title_.frame) + 10.0f,
+                          40.0f,
+                          40.0f);
+  plus.backgroundColor = [UIColor colorWithRed:0 green:0.68 blue:0.95 alpha:1];
+  plus.titleLabel.font = [UIFont fontWithName:@"HelveticaNeue-Bold" size:32.0f];
+  plus.titleEdgeInsets = UIEdgeInsetsMake(-5.0f,
+                                          0.0f,
+                                          0.0f,
+                                          0.0f);
+  [plus setTitle:@"+" forState:UIControlStateNormal];
+  [plus addTarget:self action:@selector(startPlusTimer) forControlEvents:UIControlEventTouchDown];
+  [plus addTarget:self action:@selector(stopTimer) forControlEvents:UIControlEventTouchUpInside];
+  [plus addTarget:self action:@selector(stopTimer) forControlEvents:UIControlEventTouchUpOutside];
+  [self addSubview:plus];
+  
+  //
+  UIView *topLine = [[UIView alloc] initWithFrame:CGRectMake(0.0f,
+                                                             CGRectGetMaxY(title_.frame) + 10.0f,
+                                                             CGRectGetWidth(self.frame),
+                                                             1.0f)];
+  topLine.backgroundColor = [UIColor colorWithRed:0 green:0.68 blue:0.95 alpha:1];
+  [self addSubview:topLine];
+  
+  //
+  UIView *bottomLine = [[UIView alloc] initWithFrame:CGRectMake(0.0f,
+                                                                CGRectGetMaxY(minus.frame),
+                                                                CGRectGetWidth(self.frame),
+                                                                1.0f)];
+  bottomLine.backgroundColor = [UIColor colorWithRed:0 green:0.68 blue:0.95 alpha:1];
+  [self addSubview:bottomLine];
+  
+  //
+  textField_ = [[UITextField alloc] initWithFrame:CGRectMake(40.0f,
+                                                             CGRectGetMaxY(title_.frame) + 11.0f,
+                                                             CGRectGetWidth(self.frame) - 80.0f,
+                                                             38.0f)];
+  textField_.delegate = self;
+  textField_.textAlignment = NSTextAlignmentCenter;
+  textField_.font = [UIFont fontWithName:@"HelveticaNeue" size:18.0f];
+  textField_.textColor = [UIColor darkGrayColor];
+  textField_.backgroundColor = [UIColor whiteColor];
+  textField_.keyboardType = UIKeyboardTypeDecimalPad;
+  textField_.returnKeyType = UIReturnKeyDefault;
+  textField_.enablesReturnKeyAutomatically = YES;
+  textField_.autocorrectionType = UITextAutocorrectionTypeNo;
+  [self addSubview:textField_];
+
+  self.height = CGRectGetMaxY(bottomLine.frame);
 }
 
 - (void)setNumericType:(NumericType)numericType

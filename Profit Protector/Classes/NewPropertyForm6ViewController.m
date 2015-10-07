@@ -7,20 +7,8 @@
   [super viewDidLoad];
   
   //
-  UILabel *title = [[UILabel alloc] initWithFrame:CGRectMake(10.0f,
-                                                             20.0f,
-                                                             CGRectGetWidth(self.view.frame) - 20.0f,
-                                                             120.0f)];
-  title.numberOfLines = 0;
-  title.font = [UIFont fontWithName:@"HelveticaNeue" size:16.0f];
-  title.textColor = [UIColor darkGrayColor];
-  title.textAlignment = NSTextAlignmentCenter;
-  title.text = @"This section is designed to collect the costs associated with properly maintaining your encasements as well as hiring a professional pest control company to help train your staff and conduct routine inspections.";
-  [self.uisv addSubview:title];
-  
-  //
   self.scvA = [[StepperComponentView alloc] initWithFrame:CGRectMake(20.0f,
-                                                                     CGRectGetMaxY(title.frame) + 30.0f,
+                                                                     20.0f,
                                                                      CGRectGetWidth(self.view.frame) - 40.0f,
                                                                      140.0f)];
   self.scvA.numericType = Numeric;
@@ -30,7 +18,7 @@
   
   //
   self.scvB = [[StepperComponentView alloc] initWithFrame:CGRectMake(20.0f,
-                                                                     CGRectGetMaxY(self.scvA.frame) + 30.0f,
+                                                                     CGRectGetMinY(self.scvA.frame) + self.scvA.height + 30.0f,
                                                                      CGRectGetWidth(self.view.frame) - 40.0f,
                                                                      200.0f)];
   self.scvB.numericType = Currency;
@@ -39,22 +27,19 @@
   self.scvB.value = @(1.50);
   [self.uisv addSubview:self.scvB];
   
-  self.uisv.contentSize = CGSizeMake(CGRectGetWidth(self.view.frame),
-                                     CGRectGetMaxY(self.scvB.frame) + 20.0f);
-
   //
   self.scvC = [[StepperComponentView alloc] initWithFrame:CGRectMake(20.0f,
-                                                                     CGRectGetMaxY(self.scvB.frame) + 20.0f,
+                                                                     CGRectGetMinY(self.scvB.frame) + self.scvB.height + 30.0f,
                                                                      CGRectGetWidth(self.view.frame) - 40.0f,
                                                                      100.0f)];
   self.scvC.numericType = Numeric;
   self.scvC.key = @"bedBugIncidents";
-  self.scvC.title = @"How many bed bugs incidents did you\nhave this year?";
+  self.scvC.title = @"How many bed bugs incidents did you have this year?";
   [self.uisv addSubview:self.scvC];
   
   //
   self.scvD = [[StepperComponentView alloc] initWithFrame:CGRectMake(20.0f,
-                                                                     CGRectGetMaxY(self.scvC.frame) + 20.0f,
+                                                                     CGRectGetMinY(self.scvC.frame) + self.scvC.height + 30.0f,
                                                                      CGRectGetWidth(self.view.frame) - 40.0f,
                                                                      100.0f)];
   self.scvD.numericType = Currency;
@@ -63,7 +48,7 @@
   //[self.uisv addSubview:self.scvD];
   
   self.uisv.contentSize = CGSizeMake(CGRectGetWidth(self.view.frame),
-                                     CGRectGetMaxY(self.scvC.frame) + 20.0f);
+                                     CGRectGetMinY(self.scvC.frame) + self.scvC.height + 20.0f);
 }
 
 @end

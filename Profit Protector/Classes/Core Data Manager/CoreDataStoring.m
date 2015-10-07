@@ -44,6 +44,12 @@
                   forKey:meta[@"key"]];
     }
     
+    if ([meta[@"key"] isEqualToString:@"occupancyRate"])
+    {
+      [property setValue:@([meta[@"value"] doubleValue])
+                  forKey:meta[@"key"]];
+    }
+    
     if ([meta[@"key"] isEqualToString:@"bugInspectionAndPestControlFees"])
     {
       [property setValue:@([meta[@"value"] doubleValue])

@@ -96,6 +96,7 @@
   {
     npf2vc_.scvA.value = [self.property valueForKey:@"roomsNumber"];
     npf2vc_.scvB.value = [self.property valueForKey:@"bedsNumber"];
+    npf2vc_.scvC.value = [self.property valueForKey:@"occupancyRate"];
   }
   
   [uisv_ addSubview:npf2vc_.view];
@@ -172,10 +173,7 @@
                                   CGRectGetHeight(uisv_.bounds) - buttonHeight);
   
   if (self.property)
-  {
-    npf7vc_.scvA.value = [self.property valueForKey:@"bugInspectionAndPestControlFees"];
     npf7vc_.scvB.value = [self.property valueForKey:@"futureBookingDaysLost"];
-  }
   
   [npf7vc_.finish addTarget:self action:@selector(save:) forControlEvents:UIControlEventTouchUpInside];
   [uisv_ addSubview:npf7vc_.view];
@@ -287,10 +285,12 @@
                                                        handler:nil];
   
   [alert addAction:cancelAction];
-       if ([npf1vc_.textField.text isEqualToString:@""] ||
+  
+  if ([npf1vc_.textField.text isEqualToString:@""] ||
       
       [npf2vc_.scvA.value isEqualToNumber:@(-1)] ||
       [npf2vc_.scvB.value isEqualToNumber:@(-1)] ||
+      [npf2vc_.scvC.value isEqualToNumber:@(-1)] ||
       
       [npf3vc_.scvA.value isEqualToNumber:@(-1)] ||
       [npf3vc_.scvB.value isEqualToNumber:@(-1)] ||
@@ -305,7 +305,6 @@
       [npf6vc_.scvB.value isEqualToNumber:@(-1)] ||
       [npf6vc_.scvC.value isEqualToNumber:@(-1)] ||
       
-      [npf7vc_.scvA.value isEqualToNumber:@(-1)] ||
       [npf7vc_.scvB.value isEqualToNumber:@(-1)])
   {
     [self presentViewController:alert animated:YES completion:nil];
@@ -325,6 +324,7 @@
                           
                           npf2vc_.scvA.key: npf2vc_.scvA.value,
                           npf2vc_.scvB.key: npf2vc_.scvB.value,
+                          npf2vc_.scvC.key: npf2vc_.scvC.value,
                           
                           npf3vc_.scvA.key: npf3vc_.scvA.value,
                           npf3vc_.scvB.key: npf3vc_.scvB.value,
@@ -339,7 +339,6 @@
                           npf6vc_.scvB.key: npf6vc_.scvB.value,
                           npf6vc_.scvC.key: npf6vc_.scvC.value,
                           
-                          npf7vc_.scvA.key: npf7vc_.scvA.value,
                           npf7vc_.scvB.key: npf7vc_.scvB.value};
   
   if (self.property)
@@ -440,6 +439,12 @@
     }
     
     if ([meta[@"key"] isEqualToString:@"costOfReplaceFurnishings"])
+    {
+      [self.property setValue:@([meta[@"value"] doubleValue])
+                       forKey:meta[@"key"]];
+    }
+    
+    if ([meta[@"key"] isEqualToString:@"occupancyRate"])
     {
       [self.property setValue:@([meta[@"value"] doubleValue])
                        forKey:meta[@"key"]];

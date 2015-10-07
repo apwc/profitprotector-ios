@@ -334,6 +334,9 @@
   [parameters appendFormat:@"&post_meta[13][key]=%@", @"futureBookingDaysLost"];
   [parameters appendFormat:@"&post_meta[13][value]=%@", postMeta[@"futureBookingDaysLost"]];
 
+  [parameters appendFormat:@"&post_meta[14][key]=%@", @"occupancyRate"];
+  [parameters appendFormat:@"&post_meta[14][value]=%@", postMeta[@"occupancyRate"]];
+  
   [request setHTTPBody:[parameters dataUsingEncoding:NSUTF8StringEncoding]];
   
   NSURLSession *session = [NSURLSession sharedSession];
@@ -347,7 +350,7 @@
                                                                                                 options:NSJSONReadingMutableContainers
                                                                                                   error:nil];
                                                 
-//                                                NSLog(@"%@", json);
+                                                NSLog(@"%@", json);
                                                 
                                                 HUD *hud = [HUD singleton];
                                                 hud.hud.mode = MBProgressHUDModeText;
@@ -432,47 +435,50 @@
   
   [parameters appendFormat:@"&content_raw=%@", contentRaw];
   
-  [parameters appendFormat:@"&post_meta[1][key]=%@", @"propertyType"];
-  [parameters appendFormat:@"&post_meta[1][value]=%@", postMeta[@"propertyType"]];
+  [parameters appendFormat:@"&post_meta[0][key]=%@", @"propertyType"];
+  [parameters appendFormat:@"&post_meta[0][value]=%@", postMeta[@"propertyType"]];
   
-  [parameters appendFormat:@"&post_meta[2][key]=%@", @"roomsNumber"];
-  [parameters appendFormat:@"&post_meta[2][value]=%@", postMeta[@"roomsNumber"]];
+  [parameters appendFormat:@"&post_meta[1][key]=%@", @"roomsNumber"];
+  [parameters appendFormat:@"&post_meta[1][value]=%@", postMeta[@"roomsNumber"]];
 
-  [parameters appendFormat:@"&post_meta[3][key]=%@", @"bedsNumber"];
-  [parameters appendFormat:@"&post_meta[3][value]=%@", postMeta[@"bedsNumber"]];
+  [parameters appendFormat:@"&post_meta[2][key]=%@", @"bedsNumber"];
+  [parameters appendFormat:@"&post_meta[2][value]=%@", postMeta[@"bedsNumber"]];
   
-  [parameters appendFormat:@"&post_meta[4][key]=%@", @"roomRevenuePerNight"];
-  [parameters appendFormat:@"&post_meta[4][value]=%@", postMeta[@"roomRevenuePerNight"]];
+  [parameters appendFormat:@"&post_meta[3][key]=%@", @"roomRevenuePerNight"];
+  [parameters appendFormat:@"&post_meta[3][value]=%@", postMeta[@"roomRevenuePerNight"]];
 
-  [parameters appendFormat:@"&post_meta[5][key]=%@", @"foodBeverageSalesPerRoomPerNight"];
-  [parameters appendFormat:@"&post_meta[5][value]=%@", postMeta[@"foodBeverageSalesPerRoomPerNight"]];
+  [parameters appendFormat:@"&post_meta[4][key]=%@", @"foodBeverageSalesPerRoomPerNight"];
+  [parameters appendFormat:@"&post_meta[4][value]=%@", postMeta[@"foodBeverageSalesPerRoomPerNight"]];
 
-  [parameters appendFormat:@"&post_meta[6][key]=%@", @"ancillariesRevenuePerRoomPerNight"];
-  [parameters appendFormat:@"&post_meta[6][value]=%@", postMeta[@"ancillariesRevenuePerRoomPerNight"]];
+  [parameters appendFormat:@"&post_meta[5][key]=%@", @"ancillariesRevenuePerRoomPerNight"];
+  [parameters appendFormat:@"&post_meta[5][value]=%@", postMeta[@"ancillariesRevenuePerRoomPerNight"]];
 
-  [parameters appendFormat:@"&post_meta[7][key]=%@", @"costOfReplaceMattressesAndBoxSpring"];
-  [parameters appendFormat:@"&post_meta[7][value]=%@", postMeta[@"costOfReplaceMattressesAndBoxSpring"]];
+  [parameters appendFormat:@"&post_meta[6][key]=%@", @"costOfReplaceMattressesAndBoxSpring"];
+  [parameters appendFormat:@"&post_meta[6][value]=%@", postMeta[@"costOfReplaceMattressesAndBoxSpring"]];
 
-  [parameters appendFormat:@"&post_meta[8][key]=%@", @"costOfReplaceFurnishings"];
-  [parameters appendFormat:@"&post_meta[8][value]=%@", postMeta[@"costOfReplaceFurnishings"]];
+  [parameters appendFormat:@"&post_meta[7][key]=%@", @"costOfReplaceFurnishings"];
+  [parameters appendFormat:@"&post_meta[7][value]=%@", postMeta[@"costOfReplaceFurnishings"]];
 
-  [parameters appendFormat:@"&post_meta[9][key]=%@", @"percentageOfMattressesReplaceEachYear"];
-  [parameters appendFormat:@"&post_meta[9][value]=%@", postMeta[@"percentageOfMattressesReplaceEachYear"]];
+  [parameters appendFormat:@"&post_meta[8][key]=%@", @"percentageOfMattressesReplaceEachYear"];
+  [parameters appendFormat:@"&post_meta[8][value]=%@", postMeta[@"percentageOfMattressesReplaceEachYear"]];
 
-  [parameters appendFormat:@"&post_meta[10][key]=%@", @"timesPerYearBedClean"];
-  [parameters appendFormat:@"&post_meta[10][value]=%@", postMeta[@"timesPerYearBedClean"]];
+  [parameters appendFormat:@"&post_meta[9][key]=%@", @"timesPerYearBedClean"];
+  [parameters appendFormat:@"&post_meta[9][value]=%@", postMeta[@"timesPerYearBedClean"]];
 
-  [parameters appendFormat:@"&post_meta[11][key]=%@", @"costToCleanAndReinstallEncasements"];
-  [parameters appendFormat:@"&post_meta[11][value]=%@", postMeta[@"costToCleanAndReinstallEncasements"]];
+  [parameters appendFormat:@"&post_meta[10][key]=%@", @"costToCleanAndReinstallEncasements"];
+  [parameters appendFormat:@"&post_meta[10][value]=%@", postMeta[@"costToCleanAndReinstallEncasements"]];
 
-  [parameters appendFormat:@"&post_meta[12][key]=%@", @"bedBugIncidents"];
-  [parameters appendFormat:@"&post_meta[12][value]=%@", postMeta[@"bedBugIncidents"]];
+  [parameters appendFormat:@"&post_meta[11][key]=%@", @"bedBugIncidents"];
+  [parameters appendFormat:@"&post_meta[11][value]=%@", postMeta[@"bedBugIncidents"]];
 
-  [parameters appendFormat:@"&post_meta[13][key]=%@", @"bugInspectionAndPestControlFees"];
-  [parameters appendFormat:@"&post_meta[13][value]=%@", postMeta[@"bugInspectionAndPestControlFees"]];
+  [parameters appendFormat:@"&post_meta[12][key]=%@", @"bugInspectionAndPestControlFees"];
+  [parameters appendFormat:@"&post_meta[12][value]=%@", postMeta[@"bugInspectionAndPestControlFees"]];
 
-  [parameters appendFormat:@"&post_meta[14][key]=%@", @"futureBookingDaysLost"];
-  [parameters appendFormat:@"&post_meta[14][value]=%@", postMeta[@"futureBookingDaysLost"]];
+  [parameters appendFormat:@"&post_meta[13][key]=%@", @"futureBookingDaysLost"];
+  [parameters appendFormat:@"&post_meta[13][value]=%@", postMeta[@"futureBookingDaysLost"]];
+  
+  [parameters appendFormat:@"&post_meta[14][key]=%@", @"occupancyRate"];
+  [parameters appendFormat:@"&post_meta[14][value]=%@", postMeta[@"occupancyRate"]];
   
   [request setHTTPBody:[parameters dataUsingEncoding:NSUTF8StringEncoding]];
   
@@ -568,44 +574,50 @@
   
   [parameters appendFormat:@"&content_raw=%@", [property valueForKey:@"name"]];
   
-  [parameters appendFormat:@"&post_meta[0][key]=%@", @"roomsNumber"];
-  [parameters appendFormat:@"&post_meta[0][value]=%@", [property valueForKey:@"roomsNumber"]];
+  [parameters appendFormat:@"&post_meta[0][key]=%@", @"propertyType"];
+  [parameters appendFormat:@"&post_meta[0][value]=%@", [property valueForKey:@"propertyType"]];
   
-  [parameters appendFormat:@"&post_meta[1][key]=%@", @"bedsNumber"];
-  [parameters appendFormat:@"&post_meta[1][value]=%@", [property valueForKey:@"bedsNumber"]];
+  [parameters appendFormat:@"&post_meta[1][key]=%@", @"roomsNumber"];
+  [parameters appendFormat:@"&post_meta[1][value]=%@", [property valueForKey:@"roomsNumber"]];
   
-  [parameters appendFormat:@"&post_meta[2][key]=%@", @"roomRevenuePerNight"];
-  [parameters appendFormat:@"&post_meta[2][value]=%@", [property valueForKey:@"roomRevenuePerNight"]];
+  [parameters appendFormat:@"&post_meta[2][key]=%@", @"bedsNumber"];
+  [parameters appendFormat:@"&post_meta[2][value]=%@", [property valueForKey:@"bedsNumber"]];
   
-  [parameters appendFormat:@"&post_meta[3][key]=%@", @"foodBeverageSalesPerRoomPerNight"];
-  [parameters appendFormat:@"&post_meta[3][value]=%@", [property valueForKey:@"foodBeverageSalesPerRoomPerNight"]];
+  [parameters appendFormat:@"&post_meta[3][key]=%@", @"roomRevenuePerNight"];
+  [parameters appendFormat:@"&post_meta[3][value]=%@", [property valueForKey:@"roomRevenuePerNight"]];
   
-  [parameters appendFormat:@"&post_meta[4][key]=%@", @"ancillariesRevenuePerRoomPerNight"];
-  [parameters appendFormat:@"&post_meta[4][value]=%@", [property valueForKey:@"ancillariesRevenuePerRoomPerNight"]];
+  [parameters appendFormat:@"&post_meta[4][key]=%@", @"foodBeverageSalesPerRoomPerNight"];
+  [parameters appendFormat:@"&post_meta[4][value]=%@", [property valueForKey:@"foodBeverageSalesPerRoomPerNight"]];
   
-  [parameters appendFormat:@"&post_meta[5][key]=%@", @"costOfReplaceMattressesAndBoxSpring"];
-  [parameters appendFormat:@"&post_meta[5][value]=%@", [property valueForKey:@"costOfReplaceMattressesAndBoxSpring"]];
+  [parameters appendFormat:@"&post_meta[5][key]=%@", @"ancillariesRevenuePerRoomPerNight"];
+  [parameters appendFormat:@"&post_meta[5][value]=%@", [property valueForKey:@"ancillariesRevenuePerRoomPerNight"]];
   
-  [parameters appendFormat:@"&post_meta[6][key]=%@", @"costOfReplaceFurnishings"];
-  [parameters appendFormat:@"&post_meta[6][value]=%@", [property valueForKey:@"costOfReplaceFurnishings"]];
+  [parameters appendFormat:@"&post_meta[6][key]=%@", @"costOfReplaceMattressesAndBoxSpring"];
+  [parameters appendFormat:@"&post_meta[6][value]=%@", [property valueForKey:@"costOfReplaceMattressesAndBoxSpring"]];
   
-  [parameters appendFormat:@"&post_meta[7][key]=%@", @"percentageOfMattressesReplaceEachYear"];
-  [parameters appendFormat:@"&post_meta[7][value]=%@", [property valueForKey:@"percentageOfMattressesReplaceEachYear"]];
+  [parameters appendFormat:@"&post_meta[7][key]=%@", @"costOfReplaceFurnishings"];
+  [parameters appendFormat:@"&post_meta[7][value]=%@", [property valueForKey:@"costOfReplaceFurnishings"]];
   
-  [parameters appendFormat:@"&post_meta[8][key]=%@", @"timesPerYearBedClean"];
-  [parameters appendFormat:@"&post_meta[8][value]=%@", [property valueForKey:@"timesPerYearBedClean"]];
+  [parameters appendFormat:@"&post_meta[8][key]=%@", @"percentageOfMattressesReplaceEachYear"];
+  [parameters appendFormat:@"&post_meta[8][value]=%@", [property valueForKey:@"percentageOfMattressesReplaceEachYear"]];
   
-  [parameters appendFormat:@"&post_meta[9][key]=%@", @"costToCleanAndReinstallEncasements"];
-  [parameters appendFormat:@"&post_meta[9][value]=%@", [property valueForKey:@"costToCleanAndReinstallEncasements"]];
+  [parameters appendFormat:@"&post_meta[9][key]=%@", @"timesPerYearBedClean"];
+  [parameters appendFormat:@"&post_meta[9][value]=%@", [property valueForKey:@"timesPerYearBedClean"]];
   
-  [parameters appendFormat:@"&post_meta[10][key]=%@", @"bedBugIncidents"];
-  [parameters appendFormat:@"&post_meta[10][value]=%@", [property valueForKey:@"bedBugIncidents"]];
+  [parameters appendFormat:@"&post_meta[10][key]=%@", @"costToCleanAndReinstallEncasements"];
+  [parameters appendFormat:@"&post_meta[10][value]=%@", [property valueForKey:@"costToCleanAndReinstallEncasements"]];
   
-  [parameters appendFormat:@"&post_meta[11][key]=%@", @"bugInspectionAndPestControlFees"];
-  [parameters appendFormat:@"&post_meta[11][value]=%@", [property valueForKey:@"bugInspectionAndPestControlFees"]];
+  [parameters appendFormat:@"&post_meta[11][key]=%@", @"bedBugIncidents"];
+  [parameters appendFormat:@"&post_meta[11][value]=%@", [property valueForKey:@"bedBugIncidents"]];
   
-  [parameters appendFormat:@"&post_meta[12][key]=%@", @"futureBookingDaysLost"];
-  [parameters appendFormat:@"&post_meta[12][value]=%@", [property valueForKey:@"futureBookingDaysLost"]];
+  [parameters appendFormat:@"&post_meta[12][key]=%@", @"bugInspectionAndPestControlFees"];
+  [parameters appendFormat:@"&post_meta[12][value]=%@", [property valueForKey:@"bugInspectionAndPestControlFees"]];
+  
+  [parameters appendFormat:@"&post_meta[13][key]=%@", @"futureBookingDaysLost"];
+  [parameters appendFormat:@"&post_meta[13][value]=%@", [property valueForKey:@"futureBookingDaysLost"]];
+  
+  [parameters appendFormat:@"&post_meta[14][key]=%@", @"occupancyRate"];
+  [parameters appendFormat:@"&post_meta[14][value]=%@", [property valueForKey:@"occupancyRate"]];
   
   [request setHTTPBody:[parameters dataUsingEncoding:NSUTF8StringEncoding]];
   

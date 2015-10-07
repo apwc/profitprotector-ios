@@ -32,7 +32,7 @@
   
   //
   label_ = [[UILabel alloc] initWithFrame:CGRectMake(0.0f,
-                                                     CGRectGetMaxY(self.scvA.frame) + 30.0f,
+                                                     CGRectGetMinY(self.scvA.frame) + self.scvA.height + 30.0f,
                                                      CGRectGetWidth(self.view.frame),
                                                      130.0f)];
   label_.backgroundColor = [UIColor whiteColor];
@@ -43,17 +43,8 @@
   [self updateField];
   
   //
-  /*self.scvB = [[StepperComponentView alloc] initWithFrame:CGRectMake(20.0f,
-                                                                     CGRectGetMaxY(label_.frame) + 30.0f,
-                                                                     CGRectGetWidth(self.view.frame) - 40.0f,
-                                                                     200.0f)];
-  self.scvB.numericType = Numeric;
-  self.scvB.key = @"";
-  self.scvB.title = @"CleanBrands estimates it will cost $1.50 to remove, launder and install the typical mattress encasement. Note it is not necessary to launder box spring encasements as they do not come in contact with the guest.";
-  [self.uisv addSubview:self.scvB];*/
-  
   self.uisv.contentSize = CGSizeMake(CGRectGetWidth(self.view.frame),
-                                     CGRectGetMaxY(self.scvA.frame) + 20.0f);
+                                     CGRectGetMinY(self.scvA.frame) + self.scvA.height + 20.0f);
   
   [[NSNotificationCenter defaultCenter] addObserver:self
                                            selector:@selector(updateField)
@@ -68,10 +59,11 @@
   if (gd.numberOfBeds != -1.0f && gd.percentage!= -1.0f)
   {
     CGFloat res = gd.numberOfBeds * (gd.percentage / 100.0f) * 80.0f;
+    CGFloat res2 = res * 10.0;
     
     NSString *composedString = [NSString stringWithFormat:@"Total savings from spoilage alone:\n$%.2f\n\nLifetime savings from loss due\nto spoilage:\n$%.2f",
                                 res,
-                                9999.99f];
+                                res2];
     
     NSMutableAttributedString *attributedText = [[NSMutableAttributedString alloc] initWithString:composedString];
     
@@ -97,7 +89,7 @@
     
     [attributedText setAttributes:@{NSForegroundColorAttributeName: [UIColor colorWithRed:0 green:0.68 blue:0.95 alpha:1],
                                     NSFontAttributeName: [UIFont fontWithName:@"HelveticaNeue" size:16.0f]}
-                            range:NSMakeRange(startRange, 9)];
+                            range:NSMakeRange(startRange, [composedString length] - startRange)];
     
     label_.attributedText = attributedText;
   }

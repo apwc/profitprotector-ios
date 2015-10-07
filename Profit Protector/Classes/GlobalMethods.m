@@ -8,6 +8,7 @@
   // values form the database input fields
   float ancillariesRevenuePerRoomPerNight = [[obj valueForKey:@"ancillariesRevenuePerRoomPerNight"] floatValue];
   float bedBugIncidents = [[obj valueForKey:@"bedBugIncidents"] floatValue];
+  float occupancyRate = [[obj valueForKey:@"occupancyRate"] doubleValue] / 100.0f;
   float bedsNumber = [[obj valueForKey:@"bedsNumber"] doubleValue];
   float bugInspectionAndPestControlFees = [[obj valueForKey:@"bugInspectionAndPestControlFees"] floatValue];
   float costOfReplaceFurnishings = [[obj valueForKey:@"costOfReplaceFurnishings"] floatValue];
@@ -36,7 +37,16 @@
   float percentageOfRoomsExperiencePropertyDamageFromInfestationWithout = 0.25f;
   float percentageOfRoomsExperiencePropertyDamageFromInfestationWith = 0.0f;
   
-  float revenueLossRateFromRoomClosures = 0.16f;
+  float a2 = 17.614f;
+  float a3 = -62.8260f;
+  float a4 = 80.9360f;
+  float a5 = -44.0440f;
+  float a6 = 10.1000f;
+  float a7 = -0.7979f;
+  float a8 = 0.0078f;
+
+  float revenueLossRateFromRoomClosuresMyHotel = a2 * powf(occupancyRate, 6) + a3 * powf(occupancyRate, 5) + a4 * powf(occupancyRate, 4) + a5 * powf(occupancyRate, 3) + a6 * powf(occupancyRate, 2) + a7 * occupancyRate + a8;
+  float revenueLossRateFromRoomClosuresIndustryEstimate = 0.16f;
   
   float yourBedBugIncidentRate = bedBugIncidents / roomsNumber;
   
@@ -45,8 +55,8 @@
   float remediationCostsWith = roomsTreatedPerInfestationWith * typicalRemediationCostPerRoomWith;
   float remediationCostSavings = remediationCostsWithout - remediationCostsWith;
   
-  float lostRevenueWithout = daysLostToRemediationTreatmentWithout * (roomRevenuePerNight + foodBeverageSalesPerRoomPerNight + ancillariesRevenuePerRoomPerNight) * roomsTreatedPerInfestationWithout * revenueLossRateFromRoomClosures;
-  float lostRevenueWith = daysLostToRemediationTreatmentWith * (roomRevenuePerNight + foodBeverageSalesPerRoomPerNight + ancillariesRevenuePerRoomPerNight) * roomsTreatedPerInfestationWith * revenueLossRateFromRoomClosures;
+  float lostRevenueWithout = daysLostToRemediationTreatmentWithout * (roomRevenuePerNight + foodBeverageSalesPerRoomPerNight + ancillariesRevenuePerRoomPerNight) * roomsTreatedPerInfestationWithout * revenueLossRateFromRoomClosuresMyHotel;
+  float lostRevenueWith = daysLostToRemediationTreatmentWith * (roomRevenuePerNight + foodBeverageSalesPerRoomPerNight + ancillariesRevenuePerRoomPerNight) * roomsTreatedPerInfestationWith * revenueLossRateFromRoomClosuresIndustryEstimate;
   float lostRevenueSavings = lostRevenueWithout - lostRevenueWith;
   
   float propertyDamageWithout = (roomsTreatedPerInfestationWithout * percentageOfRoomsExperiencePropertyDamageFromInfestationWithout) * ((bedsNumber / roomsNumber) * costOfReplaceMattressesAndBoxSpring + costOfReplaceFurnishings);

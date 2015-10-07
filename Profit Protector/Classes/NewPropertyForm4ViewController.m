@@ -18,7 +18,7 @@
   
   //
   self.scvB = [[StepperComponentView alloc] initWithFrame:CGRectMake(20.0f,
-                                                                     CGRectGetMaxY(self.scvA.frame) + 30.0f,
+                                                                     CGRectGetMinY(self.scvA.frame) + self.scvA.height + 30.0f,
                                                                      CGRectGetWidth(self.view.frame) - 40.0f,
                                                                      240.0f)];
   self.scvB.numericType = Currency;
@@ -27,7 +27,7 @@
   [self.uisv addSubview:self.scvB];
   
   self.uisv.contentSize = CGSizeMake(CGRectGetWidth(self.view.frame),
-                                     CGRectGetMaxY(self.scvB.frame) + 20.0f);
+                                     CGRectGetMinY(self.scvB.frame) + self.scvB.height + 20.0f);
 }
 
 @end

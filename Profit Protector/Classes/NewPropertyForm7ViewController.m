@@ -7,18 +7,8 @@
   [super viewDidLoad];
   
   //
-  self.scvA = [[StepperComponentView alloc] initWithFrame:CGRectMake(20.0f,
-                                                                     20.0f,
-                                                                     CGRectGetWidth(self.view.frame) - 40.0f,
-                                                                     100.0f)];
-  self.scvA.numericType = Currency;
-  self.scvA.key = @"bugInspectionAndPestControlFees";
-  self.scvA.title = @"What are your monthly bed bug inspection  & pest control fees";
-  //[self.uisv addSubview:self.scvA];
-  
-  //
   self.scvB = [[StepperComponentView alloc] initWithFrame:CGRectMake(20.0f,
-                                                                     20.0f,//CGRectGetMaxY(self.scvA.frame) + 20.0f,
+                                                                     20.0f,
                                                                      CGRectGetWidth(self.view.frame) - 40.0f,
                                                                      440.0f)];
   self.scvB.numericType = Numeric;
@@ -30,7 +20,7 @@
   self.finish = [UIButton buttonWithType:UIButtonTypeCustom];
   self.finish.showsTouchWhenHighlighted = YES;
   self.finish.frame = CGRectMake(20.0f,
-                                 CGRectGetMaxY(self.scvB.frame) + 40.0f,
+                                 CGRectGetMinY(self.scvB.frame) + self.scvB.height + 40.0f,
                                  CGRectGetWidth(self.view.frame) - 40.0f,
                                  96.0f);
   self.finish.backgroundColor = [UIColor colorWithRed:0 green:0.68 blue:0.95 alpha:1];

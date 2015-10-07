@@ -1,7 +1,6 @@
 #import "LeftTableViewController.h"
 #import "Constants.h"
 #import "GlobalData.h"
-//#import "SettingsViewController.h"
 
 @implementation LeftTableViewController
 
@@ -25,7 +24,7 @@
 - (NSInteger)tableView:(UITableView *)tableView
  numberOfRowsInSection:(NSInteger)section
 {
-  return 3;
+  return 2;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView
@@ -41,18 +40,16 @@
                                   reuseIdentifier:cellReusableIdentifier];
   
   if (indexPath.row == 0)
+  {
     cell.textLabel.text = [GlobalData username];
+    cell.textLabel.textColor = [UIColor blackColor];
+  }
 
   if (indexPath.row == 1)
-    cell.textLabel.text = @"Settings";
-  
-  if (indexPath.row == 2)
+  {
     cell.textLabel.text = @"Log Out";
-  
-  if (indexPath.row == 0)
-    cell.textLabel.textColor = [UIColor blackColor];
-  else
     cell.textLabel.textColor = [UIColor whiteColor];
+  }
   
   cell.backgroundColor = [UIColor colorWithRed:0 green:0.68 blue:0.95 alpha:1];
   
@@ -65,7 +62,7 @@
 {
   [tableView deselectRowAtIndexPath:indexPath animated:YES];
   
-  if (indexPath.row == 2)
+  if (indexPath.row == 1)
   {
     [[NSNotificationCenter defaultCenter] postNotificationName:userDidLogoutNotification
                                                         object:nil];

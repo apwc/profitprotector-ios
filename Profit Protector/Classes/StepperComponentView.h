@@ -10,5 +10,6 @@
 @property (nonatomic)         NumericType numericType;
 @property (nonatomic, strong) NSString    *key;
 @property (nonatomic, strong) NSNumber    *value;
+@property (nonatomic)         CGFloat     height;
 
 @end
