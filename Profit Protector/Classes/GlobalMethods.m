@@ -15,12 +15,12 @@
   float costOfReplaceMattressesAndBoxSpring = [[obj valueForKey:@"costOfReplaceMattressesAndBoxSpring"] floatValue];
   float costToCleanAndReinstallEncasements = [[obj valueForKey:@"costToCleanAndReinstallEncasements"] floatValue];
   float foodBeverageSalesPerRoomPerNight = [[obj valueForKey:@"foodBeverageSalesPerRoomPerNight"] floatValue];
-  //  double grevianceCostsPerInfestation = [[self.property valueForKey:@"grevianceCostsPerInfestation"] doubleValue];
   float percentageOfMattressesReplaceEachYear = [[obj valueForKey:@"percentageOfMattressesReplaceEachYear"] floatValue] / 100.0f;
   float roomRevenuePerNight = [[obj valueForKey:@"roomRevenuePerNight"] floatValue];
   float roomsNumber = [[obj valueForKey:@"roomsNumber"] floatValue];
   float timesPerYearBedClean = [[obj valueForKey:@"timesPerYearBedClean"] floatValue];
   float futureBookingDaysLost = [[obj valueForKey:@"futureBookingDaysLost"] floatValue];
+  float preemptivePestControlRetainer = [[obj valueForKey:@"preemptivePestControlRetainer"] floatValue];
   
   // constants
   float encasementCommercialWarrantyLifeSavingsPeriod = 8.0f;
@@ -72,8 +72,6 @@
   float totalLossesPerBedBugInfestationIncidentWith = remediationCostsWith + lostRevenueWith + propertyDamageWith;
   float totalLossesPerBedBugInfestationIncidentSavings = remediationCostSavings + lostRevenueSavings + propertyDamageSavings + brandDamageSavings;
   
-  //  double timesIncidentsPerYear = roomsNumber * 2.8f;
-  
   float totalAnnualBedBugInfestationLossesWithout = totalLossesPerBedBugInfestationIncidentWithout * yourBedBugIncidentRate * roomsNumber;
   float totalAnnualBedBugInfestationLossesWith = totalLossesPerBedBugInfestationIncidentWith * yourBedBugIncidentRate * roomsNumber;
   float totalAnnualBedBugInfestationLossesSavings = totalAnnualBedBugInfestationLossesWithout - totalAnnualBedBugInfestationLossesWith;
@@ -83,10 +81,14 @@
   float preemptiveEncasementLaunderingCostsWith = timesPerYearBedClean * costToCleanAndReinstallEncasements * bedsNumber;
   
   float preemptiveEncasementLaunderingCostsSavings = preemptiveEncasementLaunderingCostsWith;
+
+  float preemptivePestControlRetainerCostPerYearWith = preemptivePestControlRetainer / 100.0f * 12.0f * roomsNumber;
+  
+  float preemptiveEncasementLaunderingCostsPerYearWith = timesPerYearBedClean * costToCleanAndReinstallEncasements * bedsNumber;
   
   float totalAnnualCostsLossesWithout = totalAnnualBedBugInfestationLossesWithout + mattressSpoilageCostsPerYear;
   
-  float totalAnnualCostsLossesWith = totalAnnualBedBugInfestationLossesWith + preemptiveEncasementLaunderingCostsWith;
+  float totalAnnualCostsLossesWith = totalAnnualBedBugInfestationLossesWith + preemptiveEncasementLaunderingCostsWith + preemptivePestControlRetainerCostPerYearWith + preemptiveEncasementLaunderingCostsPerYearWith;
   
   float totalAnnualCostsLossesSavings = totalAnnualCostsLossesWithout - totalAnnualCostsLossesWith;
   

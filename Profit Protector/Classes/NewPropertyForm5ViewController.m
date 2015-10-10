@@ -11,9 +11,7 @@
 
 - (void)dealloc
 {
-  [[NSNotificationCenter defaultCenter] removeObserver:self
-                                                  name:@"percentageOfMattressesReplaceEachYear"
-                                                object:nil];
+  [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 - (void)viewDidLoad
@@ -50,15 +48,25 @@
                                            selector:@selector(updateField)
                                                name:self.scvA.key
                                              object:nil];
+  
+  [[NSNotificationCenter defaultCenter] addObserver:self
+                                           selector:@selector(updateField)
+                                               name:@"costOfReplaceMattressesAndBoxSpring"
+                                             object:nil];
+  
+  [[NSNotificationCenter defaultCenter] addObserver:self
+                                           selector:@selector(updateField)
+                                               name:@"bedsNumber"
+                                             object:nil];
 }
 
 - (void)updateField
 {
   GlobalData *gd = [GlobalData singleton];
   
-  if (gd.numberOfBeds != -1.0f && gd.percentage!= -1.0f)
+  if (gd.numberOfBeds != -1.0f && gd.percentage != -1.0f && gd.costPerBed != -1.0f)
   {
-    CGFloat res = gd.numberOfBeds * (gd.percentage / 100.0f) * 80.0f;
+    CGFloat res = gd.numberOfBeds * (gd.percentage / 100.0f) * gd.costPerBed;
     CGFloat res2 = res * 10.0;
     
     NSString *composedString = [NSString stringWithFormat:@"Total savings from spoilage alone:\n$%.2f\n\nLifetime savings from loss due\nto spoilage:\n$%.2f",

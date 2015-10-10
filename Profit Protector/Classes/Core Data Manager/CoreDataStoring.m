@@ -92,12 +92,12 @@
                   forKey:meta[@"key"]];
     }
     
-    if ([meta[@"key"] isEqualToString:@"grevianceCostsPerInfestation"])
+    if ([meta[@"key"] isEqualToString:@"preemptivePestControlRetainer"])
     {
       [property setValue:@([meta[@"value"] doubleValue])
                   forKey:meta[@"key"]];
     }
-
+    
     if ([meta[@"key"] isEqualToString:@"percentageOfMattressesReplaceEachYear"])
     {
       [property setValue:@([meta[@"value"] doubleValue])

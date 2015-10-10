@@ -173,7 +173,10 @@
                                   CGRectGetHeight(uisv_.bounds) - buttonHeight);
   
   if (self.property)
+  {
     npf7vc_.scvB.value = [self.property valueForKey:@"futureBookingDaysLost"];
+    npf7vc_.scvC.value = [self.property valueForKey:@"preemptivePestControlRetainer"];
+  }
   
   [npf7vc_.finish addTarget:self action:@selector(save:) forControlEvents:UIControlEventTouchUpInside];
   [uisv_ addSubview:npf7vc_.view];
@@ -305,7 +308,8 @@
       [npf6vc_.scvB.value isEqualToNumber:@(-1)] ||
       [npf6vc_.scvC.value isEqualToNumber:@(-1)] ||
       
-      [npf7vc_.scvB.value isEqualToNumber:@(-1)])
+      [npf7vc_.scvB.value isEqualToNumber:@(-1)] ||
+      [npf7vc_.scvC.value isEqualToNumber:@(-1)])
   {
     [self presentViewController:alert animated:YES completion:nil];
     
@@ -339,7 +343,8 @@
                           npf6vc_.scvB.key: npf6vc_.scvB.value,
                           npf6vc_.scvC.key: npf6vc_.scvC.value,
                           
-                          npf7vc_.scvB.key: npf7vc_.scvB.value};
+                          npf7vc_.scvB.key: npf7vc_.scvB.value,
+                          npf7vc_.scvC.key: npf7vc_.scvC.value};
   
   if (self.property)
   {
@@ -480,7 +485,7 @@
                        forKey:meta[@"key"]];
     }
     
-    if ([meta[@"key"] isEqualToString:@"grevianceCostsPerInfestation"])
+    if ([meta[@"key"] isEqualToString:@"preemptivePestControlRetainer"])
     {
       [self.property setValue:@([meta[@"value"] doubleValue])
                        forKey:meta[@"key"]];

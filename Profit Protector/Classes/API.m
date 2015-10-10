@@ -337,6 +337,9 @@
   [parameters appendFormat:@"&post_meta[14][key]=%@", @"occupancyRate"];
   [parameters appendFormat:@"&post_meta[14][value]=%@", postMeta[@"occupancyRate"]];
   
+  [parameters appendFormat:@"&post_meta[15][key]=%@", @"preemptivePestControlRetainer"];
+  [parameters appendFormat:@"&post_meta[15][value]=%@", postMeta[@"preemptivePestControlRetainer"]];
+  
   [request setHTTPBody:[parameters dataUsingEncoding:NSUTF8StringEncoding]];
   
   NSURLSession *session = [NSURLSession sharedSession];
@@ -480,6 +483,9 @@
   [parameters appendFormat:@"&post_meta[14][key]=%@", @"occupancyRate"];
   [parameters appendFormat:@"&post_meta[14][value]=%@", postMeta[@"occupancyRate"]];
   
+  [parameters appendFormat:@"&post_meta[15][key]=%@", @"preemptivePestControlRetainer"];
+  [parameters appendFormat:@"&post_meta[15][value]=%@", postMeta[@"preemptivePestControlRetainer"]];
+
   [request setHTTPBody:[parameters dataUsingEncoding:NSUTF8StringEncoding]];
   
   NSURLSession *session = [NSURLSession sharedSession];
@@ -619,6 +625,9 @@
   [parameters appendFormat:@"&post_meta[14][key]=%@", @"occupancyRate"];
   [parameters appendFormat:@"&post_meta[14][value]=%@", [property valueForKey:@"occupancyRate"]];
   
+  [parameters appendFormat:@"&post_meta[15][key]=%@", @"preemptivePestControlRetainer"];
+  [parameters appendFormat:@"&post_meta[15][value]=%@", [property valueForKey:@"preemptivePestControlRetainer"]];
+
   [request setHTTPBody:[parameters dataUsingEncoding:NSUTF8StringEncoding]];
   
   NSURLSession *session = [NSURLSession sharedSession];

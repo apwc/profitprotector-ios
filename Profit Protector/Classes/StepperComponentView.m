@@ -120,6 +120,7 @@
   textField_.returnKeyType = UIReturnKeyDefault;
   textField_.enablesReturnKeyAutomatically = YES;
   textField_.autocorrectionType = UITextAutocorrectionTypeNo;
+  textField_.clearsOnBeginEditing = YES;
   [self addSubview:textField_];
 
   self.height = CGRectGetMaxY(bottomLine.frame);

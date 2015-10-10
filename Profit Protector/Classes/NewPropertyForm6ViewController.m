@@ -37,16 +37,6 @@
   self.scvC.title = @"How many bed bugs incidents did you have this year?";
   [self.uisv addSubview:self.scvC];
   
-  //
-  self.scvD = [[StepperComponentView alloc] initWithFrame:CGRectMake(20.0f,
-                                                                     CGRectGetMinY(self.scvC.frame) + self.scvC.height + 30.0f,
-                                                                     CGRectGetWidth(self.view.frame) - 40.0f,
-                                                                     100.0f)];
-  self.scvD.numericType = Currency;
-  self.scvD.key = @"grevianceCostsPerInfestation";
-  self.scvD.title = @"What is your customer greviance costs\nper infestation?";
-  //[self.uisv addSubview:self.scvD];
-  
   self.uisv.contentSize = CGSizeMake(CGRectGetWidth(self.view.frame),
                                      CGRectGetMinY(self.scvC.frame) + self.scvC.height + 20.0f);
 }
