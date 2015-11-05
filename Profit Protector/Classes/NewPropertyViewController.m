@@ -538,7 +538,7 @@
   gd.propertyType = [propertyType isEqualToString:@"Full Service"] ? Full : Select;
   
   if ([npf3vc_.scvA.value integerValue] == -1)
-    npf3vc_.scvA.value = gd.propertyType == Full ? @(150) : @(0);
+    npf3vc_.scvA.value = gd.propertyType == Full ? @(150) : @(66);
   
   if ([npf3vc_.scvB.value integerValue] == -1)
     npf3vc_.scvB.value = gd.propertyType == Full ? @(57) : @(10);

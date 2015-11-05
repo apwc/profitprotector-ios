@@ -13,7 +13,8 @@
                                                                      140.0f)];
   self.scvA.numericType = Numeric;
   self.scvA.key = @"timesPerYearBedClean";
-  self.scvA.title = @"CleanBrands suggests washing your encasements twice a year, adjust this value to represent your property's protocol.";
+  self.scvA.title = @"CleanBrands estimates you will wash your encasements twice a year, adjust this value to represent your property's protocol.";
+  self.scvA.value = @(2);
   [self.uisv addSubview:self.scvA];
   
   //
@@ -35,6 +36,7 @@
   self.scvC.numericType = Numeric;
   self.scvC.key = @"bedBugIncidents";
   self.scvC.title = @"How many bed bugs incidents did you have this year?";
+  self.scvC.value = @(8);
   [self.uisv addSubview:self.scvC];
   
   self.uisv.contentSize = CGSizeMake(CGRectGetWidth(self.view.frame),

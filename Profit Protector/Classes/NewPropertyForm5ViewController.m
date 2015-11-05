@@ -26,6 +26,7 @@
   self.scvA.numericType = Numeric;
   self.scvA.key = @"percentageOfMattressesReplaceEachYear";
   self.scvA.title = @"According to mattress manufacturers, most hotels lose 5% of their mattresses annually due to spoilage from spills and stains, adjust this value to best represent your property.";
+  self.scvA.value = @(5);
   [self.uisv addSubview:self.scvA];
   
   //
@@ -69,9 +70,16 @@
     CGFloat res = gd.numberOfBeds * (gd.percentage / 100.0f) * gd.costPerBed;
     CGFloat res2 = res * 10.0;
     
-    NSString *composedString = [NSString stringWithFormat:@"Total savings from spoilage alone:\n$%.2f\n\nLifetime savings from loss due\nto spoilage:\n$%.2f",
-                                res,
-                                res2];
+    // tour price
+    NSNumberFormatter *formatter = [[NSNumberFormatter alloc] init];
+    [formatter setNumberStyle:NSNumberFormatterDecimalStyle];
+
+    NSString *resLabel = [formatter stringForObjectValue:@(res)];
+    NSString *res2Label = [formatter stringForObjectValue:@(res2)];
+
+    NSString *composedString = [NSString stringWithFormat:@"Total savings from spoilage alone:\n$%@\n\nLifetime savings from loss due\nto spoilage:\n$%@",
+                                resLabel,
+                                res2Label];
     
     NSMutableAttributedString *attributedText = [[NSMutableAttributedString alloc] initWithString:composedString];
     
@@ -85,9 +93,9 @@
     
     [attributedText setAttributes:@{NSForegroundColorAttributeName: [UIColor colorWithRed:0 green:0.68 blue:0.95 alpha:1],
                                     NSFontAttributeName: [UIFont fontWithName:@"HelveticaNeue" size:16.0f]}
-                            range:NSMakeRange(startRange, [[NSString stringWithFormat:@"%.2f", res] length] + 1)];
+                            range:NSMakeRange(startRange, [resLabel length] + 1)];
     
-    startRange += [[NSString stringWithFormat:@"%.2f", res] length] + 1;
+    startRange += [resLabel length] + 1;
     
     [attributedText setAttributes:@{NSForegroundColorAttributeName: [UIColor darkGrayColor],
                                     NSFontAttributeName: [UIFont fontWithName:@"HelveticaNeue" size:16.0f]}

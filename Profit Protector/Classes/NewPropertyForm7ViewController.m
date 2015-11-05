@@ -13,7 +13,8 @@
                                                                      440.0f)];
   self.scvB.numericType = Numeric;
   self.scvB.key = @"futureBookingDaysLost";
-  self.scvB.title = @"Negative reviews and bed bug related social media posts can seriously affect your bottom line, besides grievance costs such as law suits, they can also result in having to comp your guests free nights or even worse, lost or lower bookings, in a survey with hotel operators such as yourself, CleanBrands has estimated that the average hotel which has experienced bed bug infestations can lose as many as 10 nights of revenue per year, what do you estimate your loss revenue nights at from bed bugs and the negative effects of social media and guest complaints?";
+  self.scvB.title = @"How many future days will you lose based on negative reviews (yelp, TripAdvisor, bed bug registry etc) per Bed Bug incident?";
+  self.scvB.value = @(10);
   [self.uisv addSubview:self.scvB];
   
   //
