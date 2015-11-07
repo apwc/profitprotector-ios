@@ -10,7 +10,7 @@
   self.scvA = [[StepperComponentView alloc] initWithFrame:CGRectMake(20.0f,
                                                                      20.0f,
                                                                      CGRectGetWidth(self.view.frame) - 40.0f,
-                                                                     120.0f)];
+                                                                     245.0f)];
   self.scvA.numericType = Currency;
   self.scvA.key = @"preemptivePestControlRetainer";
   self.scvA.title = @"The best bed bug protocol's include an educated housekeeping staff and a routine pest control service agreement.\nNational Pest control companies typically charge $400 per 100 rooms for routine inspections.\nWhat are you paying per 100 rooms?";

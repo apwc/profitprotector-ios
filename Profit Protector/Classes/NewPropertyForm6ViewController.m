@@ -43,8 +43,8 @@
   self.scvD = [[StepperComponentView alloc] initWithFrame:CGRectMake(20.0f,
                                                                      CGRectGetMinY(self.scvC.frame) + self.scvC.height + 30.0f,
                                                                      CGRectGetWidth(self.view.frame) - 40.0f,
-                                                                     100.0f)];
-  self.scvD.numericType = Numeric;
+                                                                     160.0f)];
+  self.scvD.numericType = Currency;
   self.scvD.key = @"grievanceCosts";
   self.scvD.title = @"What are you customer grievance costs per infestation. Refunds, comps, lawsuits, laundering. We estimate customer grievance will cost you $1,000";
   self.scvD.value = @(1000);

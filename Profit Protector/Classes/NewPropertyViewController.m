@@ -178,13 +178,12 @@
   if (self.property)
     npf7vc_.scvA.value = [self.property valueForKey:@"futureBookingDaysLost"];
   
-  [npf7vc_.finish addTarget:self action:@selector(save:) forControlEvents:UIControlEventTouchUpInside];
   [uisv_ addSubview:npf7vc_.view];
   
   //
   npf8vc_ = [[NewPropertyForm8ViewController alloc] initWithNibName:nil
                                                              bundle:nil];
-  npf8vc_.view.frame = CGRectMake(CGRectGetWidth(uisv_.bounds) * 6.0f,
+  npf8vc_.view.frame = CGRectMake(CGRectGetWidth(uisv_.bounds) * 7.0f,
                                   0.0f,
                                   CGRectGetWidth(uisv_.bounds),
                                   CGRectGetHeight(uisv_.bounds) - buttonHeight);
@@ -237,7 +236,7 @@
                                                           CGRectGetHeight(bottomBand.frame))];
   uipc_.pageIndicatorTintColor = [UIColor colorWithWhite:0.0f alpha:0.3f];
   uipc_.currentPageIndicatorTintColor = [UIColor whiteColor];
-  uipc_.numberOfPages = 7;
+  uipc_.numberOfPages = 8;
   [bottomBand addSubview:uipc_];
   
   //
@@ -582,7 +581,7 @@
   else
     back_.enabled = YES;
 
-  if (xPosition > 5.0f)
+  if (xPosition > 6.0f)
     next_.enabled = NO;
   else
     next_.enabled = YES;

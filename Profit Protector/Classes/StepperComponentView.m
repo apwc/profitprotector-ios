@@ -19,6 +19,7 @@
   self = [super initWithFrame:frame];
   if (self)
   {
+    self.backgroundColor = [UIColor darkGrayColor];
     self.value = @(-1);
     
     // Create formatter

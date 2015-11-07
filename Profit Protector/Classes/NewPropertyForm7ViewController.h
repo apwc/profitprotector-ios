@@ -2,7 +2,6 @@
 
 @interface NewPropertyForm7ViewController : NewPropertyFormSuperViewController
 
-@property (nonatomic, strong) StepperComponentView  *scvA;
-@property (nonatomic, strong) UIButton              *finish;
+@property (nonatomic, strong) StepperComponentView *scvA;
 
 @end

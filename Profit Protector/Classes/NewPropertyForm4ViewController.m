@@ -20,7 +20,7 @@
   self.scvB = [[StepperComponentView alloc] initWithFrame:CGRectMake(20.0f,
                                                                      CGRectGetMinY(self.scvA.frame) + self.scvA.height + 30.0f,
                                                                      CGRectGetWidth(self.view.frame) - 40.0f,
-                                                                     240.0f)];
+                                                                     245.0f)];
   self.scvB.numericType = Currency;
   self.scvB.key = @"costOfReplaceFurnishings";
   self.scvB.title = @"During an infestation, hotel owners typically are forced to throw away other furnishings, according to property managers and pest control specialist the industry average is $500 per room per incident, adjust this value to best represent your property and experience.";
