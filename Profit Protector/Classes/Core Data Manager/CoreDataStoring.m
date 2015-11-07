@@ -92,6 +92,12 @@
                   forKey:meta[@"key"]];
     }
     
+    if ([meta[@"key"] isEqualToString:@"grievanceCosts"])
+    {
+      [property setValue:@([meta[@"value"] doubleValue])
+                  forKey:meta[@"key"]];
+    }
+    
     if ([meta[@"key"] isEqualToString:@"preemptivePestControlRetainer"])
     {
       [property setValue:@([meta[@"value"] doubleValue])

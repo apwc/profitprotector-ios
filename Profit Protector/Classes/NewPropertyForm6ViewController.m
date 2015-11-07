@@ -39,8 +39,19 @@
   self.scvC.value = @(8);
   [self.uisv addSubview:self.scvC];
   
+  //
+  self.scvD = [[StepperComponentView alloc] initWithFrame:CGRectMake(20.0f,
+                                                                     CGRectGetMinY(self.scvC.frame) + self.scvC.height + 30.0f,
+                                                                     CGRectGetWidth(self.view.frame) - 40.0f,
+                                                                     100.0f)];
+  self.scvD.numericType = Numeric;
+  self.scvD.key = @"grievanceCosts";
+  self.scvD.title = @"What are you customer grievance costs per infestation. Refunds, comps, lawsuits, laundering. We estimate customer grievance will cost you $1,000";
+  self.scvD.value = @(1000);
+  [self.uisv addSubview:self.scvD];
+  
   self.uisv.contentSize = CGSizeMake(CGRectGetWidth(self.view.frame),
-                                     CGRectGetMinY(self.scvC.frame) + self.scvC.height + 20.0f);
+                                     CGRectGetMinY(self.scvD.frame) + self.scvD.height + 20.0f);
 }
 
 @end

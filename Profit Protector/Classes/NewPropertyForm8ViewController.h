@@ -1,6 +1,6 @@
 #import "NewPropertyFormSuperViewController.h"
 
-@interface NewPropertyForm7ViewController : NewPropertyFormSuperViewController
+@interface NewPropertyForm8ViewController : NewPropertyFormSuperViewController
 
 @property (nonatomic, strong) StepperComponentView  *scvA;
 @property (nonatomic, strong) UIButton              *finish;

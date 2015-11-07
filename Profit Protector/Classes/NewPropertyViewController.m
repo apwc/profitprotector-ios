@@ -10,6 +10,7 @@
 #import "NewPropertyForm5ViewController.h"
 #import "NewPropertyForm6ViewController.h"
 #import "NewPropertyForm7ViewController.h"
+#import "NewPropertyForm8ViewController.h"
 
 @interface NewPropertyViewController () <PropertyTypeDelegate,
                                          UIScrollViewDelegate>
@@ -24,6 +25,7 @@
   NewPropertyForm5ViewController  *npf5vc_;
   NewPropertyForm6ViewController  *npf6vc_;
   NewPropertyForm7ViewController  *npf7vc_;
+  NewPropertyForm8ViewController  *npf8vc_;
   
   UIButton                        *back_,
                                   *next_;
@@ -160,6 +162,7 @@
     npf6vc_.scvA.value = [self.property valueForKey:@"timesPerYearBedClean"];
     npf6vc_.scvB.value = [self.property valueForKey:@"costToCleanAndReinstallEncasements"];
     npf6vc_.scvC.value = [self.property valueForKey:@"bedBugIncidents"];
+    npf6vc_.scvD.value = [self.property valueForKey:@"grievanceCosts"];
   }
   
   [uisv_ addSubview:npf6vc_.view];
@@ -173,15 +176,26 @@
                                   CGRectGetHeight(uisv_.bounds) - buttonHeight);
   
   if (self.property)
-  {
-    npf7vc_.scvB.value = [self.property valueForKey:@"futureBookingDaysLost"];
-    npf7vc_.scvC.value = [self.property valueForKey:@"preemptivePestControlRetainer"];
-  }
+    npf7vc_.scvA.value = [self.property valueForKey:@"futureBookingDaysLost"];
   
   [npf7vc_.finish addTarget:self action:@selector(save:) forControlEvents:UIControlEventTouchUpInside];
   [uisv_ addSubview:npf7vc_.view];
   
-  uisv_.contentSize = CGSizeMake(CGRectGetWidth(uisv_.bounds) * 7.0f,
+  //
+  npf8vc_ = [[NewPropertyForm8ViewController alloc] initWithNibName:nil
+                                                             bundle:nil];
+  npf8vc_.view.frame = CGRectMake(CGRectGetWidth(uisv_.bounds) * 6.0f,
+                                  0.0f,
+                                  CGRectGetWidth(uisv_.bounds),
+                                  CGRectGetHeight(uisv_.bounds) - buttonHeight);
+  
+  if (self.property)
+    npf8vc_.scvA.value = [self.property valueForKey:@"preemptivePestControlRetainer"];
+  
+  [npf8vc_.finish addTarget:self action:@selector(save:) forControlEvents:UIControlEventTouchUpInside];
+  [uisv_ addSubview:npf8vc_.view];
+  
+  uisv_.contentSize = CGSizeMake(CGRectGetWidth(uisv_.bounds) * 8.0f,
                                  1.0f);
   
   //
@@ -307,9 +321,11 @@
       [npf6vc_.scvA.value isEqualToNumber:@(-1)] ||
       [npf6vc_.scvB.value isEqualToNumber:@(-1)] ||
       [npf6vc_.scvC.value isEqualToNumber:@(-1)] ||
+      [npf6vc_.scvD.value isEqualToNumber:@(-1)] ||
       
-      [npf7vc_.scvB.value isEqualToNumber:@(-1)] ||
-      [npf7vc_.scvC.value isEqualToNumber:@(-1)])
+      [npf7vc_.scvA.value isEqualToNumber:@(-1)] ||
+      
+      [npf8vc_.scvA.value isEqualToNumber:@(-1)])
   {
     [self presentViewController:alert animated:YES completion:nil];
     
@@ -342,9 +358,11 @@
                           npf6vc_.scvA.key: npf6vc_.scvA.value,
                           npf6vc_.scvB.key: npf6vc_.scvB.value,
                           npf6vc_.scvC.key: npf6vc_.scvC.value,
+                          npf6vc_.scvD.key: npf6vc_.scvD.value,
                           
-                          npf7vc_.scvB.key: npf7vc_.scvB.value,
-                          npf7vc_.scvC.key: npf7vc_.scvC.value};
+                          npf7vc_.scvA.key: npf7vc_.scvA.value,
+                          
+                          npf8vc_.scvA.key: npf8vc_.scvA.value};
   
   if (self.property)
   {
@@ -480,6 +498,12 @@
     }
     
     if ([meta[@"key"] isEqualToString:@"futureBookingDaysLost"])
+    {
+      [self.property setValue:@([meta[@"value"] integerValue])
+                       forKey:meta[@"key"]];
+    }
+    
+    if ([meta[@"key"] isEqualToString:@"grievanceCosts"])
     {
       [self.property setValue:@([meta[@"value"] integerValue])
                        forKey:meta[@"key"]];

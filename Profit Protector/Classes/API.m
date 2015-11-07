@@ -340,6 +340,9 @@
   [parameters appendFormat:@"&post_meta[15][key]=%@", @"preemptivePestControlRetainer"];
   [parameters appendFormat:@"&post_meta[15][value]=%@", postMeta[@"preemptivePestControlRetainer"]];
   
+  [parameters appendFormat:@"&post_meta[16][key]=%@", @"grievanceCosts"];
+  [parameters appendFormat:@"&post_meta[16][value]=%@", postMeta[@"grievanceCosts"]];
+
   [request setHTTPBody:[parameters dataUsingEncoding:NSUTF8StringEncoding]];
   
   NSURLSession *session = [NSURLSession sharedSession];
@@ -486,6 +489,9 @@
   [parameters appendFormat:@"&post_meta[15][key]=%@", @"preemptivePestControlRetainer"];
   [parameters appendFormat:@"&post_meta[15][value]=%@", postMeta[@"preemptivePestControlRetainer"]];
 
+  [parameters appendFormat:@"&post_meta[16][key]=%@", @"grievanceCosts"];
+  [parameters appendFormat:@"&post_meta[16][value]=%@", postMeta[@"grievanceCosts"]];
+  
   [request setHTTPBody:[parameters dataUsingEncoding:NSUTF8StringEncoding]];
   
   NSURLSession *session = [NSURLSession sharedSession];
@@ -499,7 +505,7 @@
                                                                                                 options:NSJSONReadingMutableContainers
                                                                                                   error:nil];
                                                 
-//                                                NSLog(@"%@", json);
+                                                NSLog(@"%@", json);
                                                 
                                                 HUD *hud = [HUD singleton];
                                                 hud.hud.mode = MBProgressHUDModeText;
@@ -628,6 +634,9 @@
   [parameters appendFormat:@"&post_meta[15][key]=%@", @"preemptivePestControlRetainer"];
   [parameters appendFormat:@"&post_meta[15][value]=%@", [property valueForKey:@"preemptivePestControlRetainer"]];
 
+  [parameters appendFormat:@"&post_meta[16][key]=%@", @"grievanceCosts"];
+  [parameters appendFormat:@"&post_meta[16][value]=%@", [property valueForKey:@"grievanceCosts"]];
+  
   [request setHTTPBody:[parameters dataUsingEncoding:NSUTF8StringEncoding]];
   
   NSURLSession *session = [NSURLSession sharedSession];
@@ -641,7 +650,7 @@
                                                                                                 options:NSJSONReadingMutableContainers
                                                                                                   error:nil];
                                                 
-//                                                NSLog(@"%@", json);
+                                                NSLog(@"%@", json);
                                                 
                                                 HUD *hud = [HUD singleton];
                                                 hud.hud.mode = MBProgressHUDModeText;

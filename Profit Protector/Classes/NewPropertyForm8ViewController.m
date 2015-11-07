@@ -1,20 +1,20 @@
-#import "NewPropertyForm7ViewController.h"
+#import "NewPropertyForm8ViewController.h"
 
-@implementation NewPropertyForm7ViewController
+@implementation NewPropertyForm8ViewController
 
 - (void)viewDidLoad
 {
   [super viewDidLoad];
-  
+
   //
   self.scvA = [[StepperComponentView alloc] initWithFrame:CGRectMake(20.0f,
                                                                      20.0f,
                                                                      CGRectGetWidth(self.view.frame) - 40.0f,
-                                                                     440.0f)];
-  self.scvA.numericType = Numeric;
-  self.scvA.key = @"futureBookingDaysLost";
-  self.scvA.title = @"How many future days will you lose based on negative reviews (yelp, TripAdvisor, bed bug registry etc) per Bed Bug incident?";
-  self.scvA.value = @(10);
+                                                                     120.0f)];
+  self.scvA.numericType = Currency;
+  self.scvA.key = @"preemptivePestControlRetainer";
+  self.scvA.title = @"The best bed bug protocol's include an educated housekeeping staff and a routine pest control service agreement.\nNational Pest control companies typically charge $400 per 100 rooms for routine inspections.\nWhat are you paying per 100 rooms?";
+  self.scvA.value = @(400);
   [self.uisv addSubview:self.scvA];
   
   //

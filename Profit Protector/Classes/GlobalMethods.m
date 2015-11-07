@@ -15,6 +15,7 @@
   float costOfReplaceMattressesAndBoxSpring = [[obj valueForKey:@"costOfReplaceMattressesAndBoxSpring"] floatValue];
   float costToCleanAndReinstallEncasements = [[obj valueForKey:@"costToCleanAndReinstallEncasements"] floatValue];
   float foodBeverageSalesPerRoomPerNight = [[obj valueForKey:@"foodBeverageSalesPerRoomPerNight"] floatValue];
+  float grievanceCosts = [[obj valueForKey:@"grievanceCosts"] floatValue];
   float percentageOfMattressesReplaceEachYear = [[obj valueForKey:@"percentageOfMattressesReplaceEachYear"] floatValue] / 100.0f;
   float roomRevenuePerNight = [[obj valueForKey:@"roomRevenuePerNight"] floatValue];
   float roomsNumber = [[obj valueForKey:@"roomsNumber"] floatValue];
@@ -63,7 +64,7 @@
   float propertyDamageWith = (roomsTreatedPerInfestationWith * percentageOfRoomsExperiencePropertyDamageFromInfestationWith) * (bedsNumber / roomsNumber) * (costOfReplaceMattressesAndBoxSpring + costOfReplaceFurnishings);
   float propertyDamageSavings = propertyDamageWithout - propertyDamageWith;
   
-  float customerGrievanceCostsWithout =  bugInspectionAndPestControlFees;
+  float customerGrievanceCostsWithout = grievanceCosts;//bugInspectionAndPestControlFees;
   
   float brandDamageWithout = futureBookingDaysLost * (roomRevenuePerNight + foodBeverageSalesPerRoomPerNight + ancillariesRevenuePerRoomPerNight);
   float brandDamageSavings = brandDamageWithout;
