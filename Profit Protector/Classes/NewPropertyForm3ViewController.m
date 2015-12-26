@@ -15,7 +15,7 @@
                                                                      100.0f)];
   self.scvA.numericType = Currency;
   self.scvA.key = @"roomRevenuePerNight";
-  self.scvA.title = @"What is your average\nroom revenue per night?";
+  self.scvA.title = NSLocalizedString(@"Form3 Question1", nil);
   [self.uisv addSubview:self.scvA];
   
   //
@@ -25,7 +25,7 @@
                                                                      120.0f)];
   self.scvB.numericType = Currency;
   self.scvB.key = @"foodBeverageSalesPerRoomPerNight";
-  self.scvB.title = @"What is your average food and beverage sales per room per night?";
+  self.scvB.title = NSLocalizedString(@"Form3 Question2", nil);
   [self.uisv addSubview:self.scvB];
   
   //
@@ -35,7 +35,7 @@
                                                                      100.0f)];
   self.scvC.numericType = Currency;
   self.scvC.key = @"ancillariesRevenuePerRoomPerNight";
-  self.scvC.title = @"What is your total ancillaries revenues per room per night?";
+  self.scvC.title = NSLocalizedString(@"Form3 Question3", nil);
   [self.uisv addSubview:self.scvC];
   
   self.uisv.contentSize = CGSizeMake(CGRectGetWidth(self.view.frame),

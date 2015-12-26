@@ -271,7 +271,7 @@
   NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"%@%@",
                                      apiPrefix,
                                      properties]];
-  
+  NSLog(@"%@", [url absoluteString]);
   NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
   [request addValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-type"];
   [request setHTTPMethod:@"POST"];
@@ -342,7 +342,7 @@
   
   [parameters appendFormat:@"&post_meta[16][key]=%@", @"grievanceCosts"];
   [parameters appendFormat:@"&post_meta[16][value]=%@", postMeta[@"grievanceCosts"]];
-
+  NSLog(@"%@", parameters);
   [request setHTTPBody:[parameters dataUsingEncoding:NSUTF8StringEncoding]];
   
   NSURLSession *session = [NSURLSession sharedSession];

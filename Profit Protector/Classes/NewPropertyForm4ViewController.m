@@ -13,7 +13,7 @@
                                                                      100.0f)];
   self.scvA.numericType = Currency;
   self.scvA.key = @"costOfReplaceMattressesAndBoxSpring";
-  self.scvA.title = @"What does your typical mattress and box spring cost to replace?";
+  self.scvA.title = NSLocalizedString(@"Form4 Question1", nil);
   [self.uisv addSubview:self.scvA];
   
   //
@@ -23,7 +23,7 @@
                                                                      245.0f)];
   self.scvB.numericType = Currency;
   self.scvB.key = @"costOfReplaceFurnishings";
-  self.scvB.title = @"During an infestation, hotel owners typically are forced to throw away other furnishings, according to property managers and pest control specialist the industry average is $500 per room per incident, adjust this value to best represent your property and experience.";
+  self.scvB.title = NSLocalizedString(@"Form4 Question2", nil);
   self.scvB.value = @(500);
   [self.uisv addSubview:self.scvB];
   

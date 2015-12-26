@@ -17,7 +17,7 @@
   title.font = [UIFont fontWithName:@"HelveticaNeue" size:18.0f];
   title.textColor = [UIColor colorWithRed:0 green:0.68 blue:0.95 alpha:1];
   title.textAlignment = NSTextAlignmentCenter;
-  title.text = @"Name this Property";
+  title.text = NSLocalizedString(@"Form1 Question1", nil);
   [self.uisv addSubview:title];
   
   //
@@ -46,7 +46,7 @@
   title2.font = [UIFont fontWithName:@"HelveticaNeue" size:18.0f];
   title2.textColor = [UIColor colorWithRed:0 green:0.68 blue:0.95 alpha:1];
   title2.textAlignment = NSTextAlignmentCenter;
-  title2.text = @"Choose a Property Type";
+  title2.text = NSLocalizedString(@"Form1 Question2", nil);
   [self.uisv addSubview:title2];
   
   self.propertyType = [UIButton buttonWithType:UIButtonTypeCustom];

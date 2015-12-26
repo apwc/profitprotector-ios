@@ -10,10 +10,11 @@
   self.scvA = [[StepperComponentView alloc] initWithFrame:CGRectMake(20.0f,
                                                                      20.0f,
                                                                      CGRectGetWidth(self.view.frame) - 40.0f,
-                                                                     140.0f)];
+                                                                     215.0f)];
   self.scvA.numericType = Numeric;
   self.scvA.key = @"futureBookingDaysLost";
-  self.scvA.title = @"How many future days will you lose based on negative reviews (yelp, TripAdvisor, bed bug registry etc) per Bed Bug incident?";
+  self.scvA.url = [NSURL URLWithString:@"http://www.tripadvisor.com/Search?q=bed+bug&geo=60763&pid=3825&typeaheadRedirect=true&redirect=&startTime=1445881004305&uiOrigin=MASTHEAD&returnTo=__2F__"];
+  self.scvA.title = NSLocalizedString(@"Form7 Question1", nil);
   self.scvA.value = @(10);
   [self.uisv addSubview:self.scvA];
   

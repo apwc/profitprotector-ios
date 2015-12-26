@@ -32,10 +32,10 @@
                                   reuseIdentifier:reuseIdentifier];
   
   if (indexPath.row == 0)
-    cell.textLabel.text = @"Full Service";
+    cell.textLabel.text = NSLocalizedString(@"Full Service", nil);
   
   if (indexPath.row == 1)
-    cell.textLabel.text = @"Select Service";
+    cell.textLabel.text = NSLocalizedString(@"Select Service", nil);
   
   return cell;
 }

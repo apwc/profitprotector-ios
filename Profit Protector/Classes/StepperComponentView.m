@@ -19,7 +19,7 @@
   self = [super initWithFrame:frame];
   if (self)
   {
-    self.backgroundColor = [UIColor darkGrayColor];
+    self.backgroundColor = [UIColor clearColor];
     self.value = @(-1);
     
     // Create formatter
@@ -52,12 +52,29 @@
                             CGRectGetWidth(self.frame),
                             CGRectGetHeight(title_.frame));
   
+  CGFloat y = CGRectGetMaxY(title_.frame);
+  
+  //
+  if (self.url)
+  {
+    UIButton *url = [[UIButton alloc] initWithFrame:CGRectMake(0.0f,
+                                                               y + 10.0f,
+                                                               CGRectGetWidth(self.frame),
+                                                               37.0f)];
+    url.titleLabel.font = [UIFont fontWithName:@"HelveticaNeue-Bold" size:18.0f];
+    [url setTitleColor:[UIColor colorWithRed:0 green:0.68 blue:0.95 alpha:1] forState:UIControlStateNormal];
+    [url setTitle:@"TripAdvisor Example >" forState:UIControlStateNormal];
+    [url addTarget:self action:@selector(openURL:) forControlEvents:UIControlEventTouchUpInside];
+    [self addSubview:url];
+    
+    y = CGRectGetMaxY(url.frame) + 10.0f;
+  }
   
   //
   UIButton *minus = [UIButton buttonWithType:UIButtonTypeCustom];
   minus.showsTouchWhenHighlighted = YES;
   minus.frame = CGRectMake(0.0f,
-                           CGRectGetMaxY(title_.frame) + 10.0f,
+                           y + 10.0f,
                            40.0f,
                            40.0f);
   minus.backgroundColor = [UIColor colorWithRed:0 green:0.68 blue:0.95 alpha:1];
@@ -76,7 +93,7 @@
   UIButton *plus = [UIButton buttonWithType:UIButtonTypeCustom];
   plus.showsTouchWhenHighlighted = YES;
   plus.frame = CGRectMake(CGRectGetWidth(self.frame) - 40.0f,
-                          CGRectGetMaxY(title_.frame) + 10.0f,
+                          y + 10.0f,
                           40.0f,
                           40.0f);
   plus.backgroundColor = [UIColor colorWithRed:0 green:0.68 blue:0.95 alpha:1];
@@ -93,7 +110,7 @@
   
   //
   UIView *topLine = [[UIView alloc] initWithFrame:CGRectMake(0.0f,
-                                                             CGRectGetMaxY(title_.frame) + 10.0f,
+                                                             y + 10.0f,
                                                              CGRectGetWidth(self.frame),
                                                              1.0f)];
   topLine.backgroundColor = [UIColor colorWithRed:0 green:0.68 blue:0.95 alpha:1];
@@ -109,7 +126,7 @@
   
   //
   textField_ = [[UITextField alloc] initWithFrame:CGRectMake(40.0f,
-                                                             CGRectGetMaxY(title_.frame) + 11.0f,
+                                                             y + 11.0f,
                                                              CGRectGetWidth(self.frame) - 80.0f,
                                                              38.0f)];
   textField_.delegate = self;
@@ -255,6 +272,11 @@
   [textField resignFirstResponder];
   
   return YES;
+}
+
+- (void)openURL:(id)sender
+{
+  [[UIApplication sharedApplication] openURL:self.url];
 }
 
 @end

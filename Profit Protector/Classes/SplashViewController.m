@@ -32,7 +32,7 @@
                                                             CGRectGetMaxY(logo.frame) + 10.0f,
                                                             CGRectGetWidth(self.view.bounds) - 40.0f,
                                                             26.0f)];
-  copy.text = @"Profit Protector";
+  copy.text = NSLocalizedString(@"Profit Protector", nil);
   copy.font = [UIFont fontWithName:@"HelveticaNeue-Light" size:21.0f];
   copy.textAlignment = NSTextAlignmentCenter;
   copy.textColor = [UIColor colorWithRed:0.02 green:0.27 blue:0.52 alpha:1];
@@ -52,7 +52,7 @@
   username_.textColor = [UIColor blackColor];
   username_.autocorrectionType = UITextAutocorrectionTypeNo;
   username_.autocapitalizationType = UITextAutocapitalizationTypeNone;
-  username_.placeholder = @"Email";
+  username_.placeholder = NSLocalizedString(@"Email", nil);
   [self.view addSubview:username_];
   
   UIImageView *usernameIcon = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"email"]];
@@ -81,7 +81,7 @@
   password_.autocorrectionType = UITextAutocorrectionTypeNo;
   password_.autocapitalizationType = UITextAutocapitalizationTypeNone;
   password_.secureTextEntry = YES;
-  password_.placeholder = @"Password";
+  password_.placeholder = NSLocalizedString(@"Password", nil);
   [self.view addSubview:password_];
   
   UIImageView *passwordIcon = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"password"]];
@@ -107,7 +107,7 @@
   forgotPassword.showsTouchWhenHighlighted = YES;
   forgotPassword.titleLabel.font = [UIFont fontWithName:@"HelveticaNeue" size:12.0f];
   [forgotPassword setTitleColor:[UIColor darkGrayColor] forState:UIControlStateNormal];
-  [forgotPassword setTitle:@"Forgot Password" forState:UIControlStateNormal];
+  [forgotPassword setTitle:NSLocalizedString(@"Forgot Password", nil) forState:UIControlStateNormal];
   [forgotPassword addTarget:self
                      action:@selector(forgotPassword:)
            forControlEvents:UIControlEventTouchUpInside];
@@ -120,7 +120,7 @@
                                                                 buttonHeight)];
   signin.backgroundColor = [UIColor colorWithRed:0 green:0.68 blue:0.95 alpha:1];
   signin.showsTouchWhenHighlighted = YES;
-  [signin setTitle:@"Sign In" forState:UIControlStateNormal];
+  [signin setTitle:NSLocalizedString(@"Sign In", nil) forState:UIControlStateNormal];
   [signin addTarget:self
              action:@selector(signin:)
    forControlEvents:UIControlEventTouchUpInside];
@@ -184,7 +184,7 @@
 - (void)forgotPassword:(UIButton *)uib
 {
   // display the name and info request
-  UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Password reset"
+  UIAlertController *alert = [UIAlertController alertControllerWithTitle:NSLocalizedString(@"Password reset", nil)
                                                                  message:@"Please enter your username or email address. You will receive a link to create a new password via email."
                                                           preferredStyle:UIAlertControllerStyleAlert];
   
@@ -204,7 +204,7 @@
   
   [alert addAction:ok];
   
-  UIAlertAction *cancel = [UIAlertAction actionWithTitle:@"Cancel"
+  UIAlertAction *cancel = [UIAlertAction actionWithTitle:NSLocalizedString(@"Cancel", nil)
                                                    style:UIAlertActionStyleCancel
                                                  handler:nil];
   

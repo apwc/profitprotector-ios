@@ -13,7 +13,7 @@
                                                                      245.0f)];
   self.scvA.numericType = Currency;
   self.scvA.key = @"preemptivePestControlRetainer";
-  self.scvA.title = @"The best bed bug protocol's include an educated housekeeping staff and a routine pest control service agreement.\nNational Pest control companies typically charge $400 per 100 rooms for routine inspections.\nWhat are you paying per 100 rooms?";
+  self.scvA.title = NSLocalizedString(@"Form8 Question1", nil);
   self.scvA.value = @(400);
   [self.uisv addSubview:self.scvA];
   
@@ -26,7 +26,7 @@
                                  96.0f);
   self.finish.backgroundColor = [UIColor colorWithRed:0 green:0.68 blue:0.95 alpha:1];
   self.finish.titleLabel.font = [UIFont fontWithName:@"HelveticaNeue" size:32.0f];
-  [self.finish setTitle:@"SAVE & FINISH" forState:UIControlStateNormal];
+  [self.finish setTitle:NSLocalizedString(@"SAVE & FINISH", nil) forState:UIControlStateNormal];
   [self.finish setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
   [self.uisv addSubview:self.finish];
   

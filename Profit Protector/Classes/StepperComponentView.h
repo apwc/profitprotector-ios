@@ -11,5 +11,6 @@
 @property (nonatomic, strong) NSString    *key;
 @property (nonatomic, strong) NSNumber    *value;
 @property (nonatomic)         CGFloat     height;
+@property (nonatomic)         NSURL       *url;
 
 @end

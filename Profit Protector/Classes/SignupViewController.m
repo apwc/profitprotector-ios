@@ -38,7 +38,7 @@
                                                              14.0f,
                                                              CGRectGetWidth(self.view.frame) - 15.0f,
                                                              48.0f)];
-  title.text = @"Sign Up";
+  title.text = NSLocalizedString(@"Sign Up", nil);
   title.font = [UIFont fontWithName:@"HelveticaNeue" size:26.0f];
   title.textColor = [UIColor darkGrayColor];
   [uisv_ addSubview:title];
@@ -57,7 +57,7 @@
   email_.textColor = [UIColor blackColor];
   email_.autocorrectionType = UITextAutocorrectionTypeNo;
   email_.autocapitalizationType = UITextAutocapitalizationTypeNone;
-  email_.placeholder = @"Email";
+  email_.placeholder = NSLocalizedString(@"Email", nil);
   [uisv_ addSubview:email_];
   
   UIImageView *emailIcon = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"email"]];
@@ -86,7 +86,7 @@
   password_.autocorrectionType = UITextAutocorrectionTypeNo;
   password_.autocapitalizationType = UITextAutocapitalizationTypeNone;
   password_.secureTextEntry = YES;
-  password_.placeholder = @"Password";
+  password_.placeholder = NSLocalizedString(@"Password", nil);
   [uisv_ addSubview:password_];
   
   UIImageView *passwordIcon = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"password"]];
@@ -114,7 +114,7 @@
   name_.textColor = [UIColor blackColor];
   name_.autocorrectionType = UITextAutocorrectionTypeNo;
   name_.autocapitalizationType = UITextAutocapitalizationTypeNone;
-  name_.placeholder = @"Full Name";
+  name_.placeholder = NSLocalizedString(@"Full Name", nil);
   [uisv_ addSubview:name_];
   
   UIImageView *nameIcon = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"username"]];
@@ -152,7 +152,7 @@
   phone_.textColor = [UIColor blackColor];
   phone_.autocorrectionType = UITextAutocorrectionTypeNo;
   phone_.autocapitalizationType = UITextAutocapitalizationTypeNone;
-  phone_.placeholder = @"Phone";
+  phone_.placeholder = NSLocalizedString(@"Phone", nil);
   [uisv_ addSubview:phone_];
   
   UIImageView *phoneIcon = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"phone"]];
@@ -180,7 +180,7 @@
   company_.textColor = [UIColor blackColor];
   company_.autocorrectionType = UITextAutocorrectionTypeNo;
   company_.autocapitalizationType = UITextAutocapitalizationTypeNone;
-  company_.placeholder = @"Company";
+  company_.placeholder = NSLocalizedString(@"Company", nil);
   [uisv_ addSubview:company_];
   
   UIImageView *companyIcon = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"company"]];
@@ -209,7 +209,7 @@
   type_.autocorrectionType = UITextAutocorrectionTypeNo;
   type_.autocapitalizationType = UITextAutocapitalizationTypeNone;
   type_.enabled = YES;
-  type_.placeholder = @"Type";
+  type_.placeholder = NSLocalizedString(@"Type", nil);
   [uisv_ addSubview:type_];
   
   UIImageView *typeIcon = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"job"]];
@@ -234,7 +234,7 @@
                                                                 buttonHeight)];
   signup.backgroundColor = [UIColor colorWithRed:0 green:0.68 blue:0.95 alpha:1];
   signup.showsTouchWhenHighlighted = YES;
-  [signup setTitle:@"Join" forState:UIControlStateNormal];
+  [signup setTitle:NSLocalizedString(@"Join", nil) forState:UIControlStateNormal];
   [signup addTarget:self
              action:@selector(join:)
    forControlEvents:UIControlEventTouchUpInside];
@@ -310,13 +310,13 @@
   
   if (![type_.text isEqualToString:@""])
   {
-    if ([type_.text isEqualToString:@"Distributor"])
+    if ([type_.text isEqualToString:NSLocalizedString(@"Distributor", nil)])
       type = @"distributor";
     
-    if ([type_.text isEqualToString:@"Hotel Owner"])
+    if ([type_.text isEqualToString:NSLocalizedString(@"Hotel Owner", nil)])
       type = @"hotel_owner";
     
-    if ([type_.text isEqualToString:@"PCO"])
+    if ([type_.text isEqualToString:NSLocalizedString(@"PCO", nil)])
       type = @"pco";
   }
   
@@ -373,6 +373,7 @@
   
   return YES;
 }
+
 - (BOOL)textFieldShouldEndEditing:(UITextField *)textField
 {
   return YES;

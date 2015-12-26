@@ -25,7 +25,7 @@
                                                                      180.0f)];
   self.scvA.numericType = Numeric;
   self.scvA.key = @"percentageOfMattressesReplaceEachYear";
-  self.scvA.title = @"According to mattress manufacturers, most hotels lose 5% of their mattresses annually due to spoilage from spills and stains, adjust this value to best represent your property.";
+  self.scvA.title = NSLocalizedString(@"Form5 Question1", nil);
   self.scvA.value = @(5);
   [self.uisv addSubview:self.scvA];
   
@@ -77,7 +77,7 @@
     NSString *resLabel = [formatter stringForObjectValue:@(res)];
     NSString *res2Label = [formatter stringForObjectValue:@(res2)];
 
-    NSString *composedString = [NSString stringWithFormat:@"Total savings from spoilage alone:\n$%@\n\nLifetime savings from loss due\nto spoilage:\n$%@",
+    NSString *composedString = [NSString stringWithFormat:NSLocalizedString(@"Fast Calculation", nil),
                                 resLabel,
                                 res2Label];
     
