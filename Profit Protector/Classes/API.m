@@ -21,7 +21,7 @@
                                      apiPrefix,
                                      user,
                                      base64]];
-  
+  NSLog(@"%@", [url absoluteString]);
   // first we aleays clean the cache for every request
   [[NSURLCache sharedURLCache] removeAllCachedResponses];
   
@@ -38,9 +38,7 @@
                                                 id json = [NSJSONSerialization JSONObjectWithData:data
                                                                                           options:NSJSONReadingMutableContainers
                                                                                             error:nil];
-                                                
-//                                                NSLog(@"%@", json);
-                                                
+                                                NSLog(@"%@", json);
                                                 if (error)
                                                 {
                                                   HUD *hud = [HUD singleton];
@@ -121,7 +119,7 @@
   NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"%@%@",
                                      apiPrefix,
                                      users]];
-  
+  NSLog(@"%@", [url absoluteString]);
   NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
   [request addValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-type"];
   [request setHTTPMethod:@"POST"];
@@ -164,7 +162,7 @@
                                                 id json = [NSJSONSerialization JSONObjectWithData:data
                                                                                                 options:NSJSONReadingMutableContainers
                                                                                                   error:nil];
-                                                
+                                                NSLog(@"%@", json);
                                                 if ([json isKindOfClass:[NSArray class]])
                                                   json = [json firstObject];
                                                 
@@ -203,12 +201,12 @@
   NSData *authData = [auth dataUsingEncoding:NSUTF8StringEncoding];
   NSString *base64 = [authData base64EncodedStringWithOptions:NSDataBase64Encoding64CharacterLineLength];
   
-  NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"%@%@?iam=%@&filter=%@&context=edit&type=property",
+  NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"%@%@?iam=%@&filter=%@&context=edit&type=property&filter[posts_per_page]=1000",
                                      apiPrefix,
                                      properties,
                                      base64,
                                      [GlobalData username]]];
-  
+  NSLog(@"%@", [url absoluteString]);
   // first we aleays clean the cache for every request
   [[NSURLCache sharedURLCache] removeAllCachedResponses];
   
@@ -241,9 +239,7 @@
                                                 NSArray *json = [NSJSONSerialization JSONObjectWithData:data
                                                                                                 options:NSJSONReadingMutableContainers
                                                                                                   error:nil];
-                                                
-//                                                NSLog(@"%@", json);
-                                                
+                                                NSLog(@"%@", json);
                                                 dispatch_async(dispatch_get_main_queue(), ^{
                                                   [HUD removeHUD];
                                                   
@@ -281,6 +277,8 @@
   [parameters appendFormat:@"iam=%@", base64];
   
   [parameters appendFormat:@"&filter=%@", [GlobalData username]];
+  
+  [parameters appendFormat:@"&filter[posts_per_page]=1000"];
   
   [parameters appendString:@"&context=edit"];
   
@@ -355,9 +353,7 @@
                                                 id json = [NSJSONSerialization JSONObjectWithData:data
                                                                                                 options:NSJSONReadingMutableContainers
                                                                                                   error:nil];
-                                                
                                                 NSLog(@"%@", json);
-                                                
                                                 HUD *hud = [HUD singleton];
                                                 hud.hud.mode = MBProgressHUDModeText;
                                                 
@@ -430,6 +426,8 @@
   [parameters appendFormat:@"iam=%@", base64];
   
   [parameters appendFormat:@"&filter=%@", [GlobalData username]];
+  
+  [parameters appendFormat:@"&filter[posts_per_page]=1000"];
   
   [parameters appendString:@"&context=edit"];
   
@@ -504,9 +502,7 @@
                                                 id json = [NSJSONSerialization JSONObjectWithData:data
                                                                                                 options:NSJSONReadingMutableContainers
                                                                                                   error:nil];
-                                                
                                                 NSLog(@"%@", json);
-                                                
                                                 HUD *hud = [HUD singleton];
                                                 hud.hud.mode = MBProgressHUDModeText;
                                                 
@@ -565,7 +561,7 @@
                                      apiPrefix,
                                      properties,
                                      [property valueForKey:@"propertyID"]]];
-  
+  NSLog(@"%@", [url absoluteString]);
   NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
   [request addValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-type"];
   [request setHTTPMethod:@"POST"];
@@ -575,6 +571,8 @@
   [parameters appendFormat:@"iam=%@", base64];
   
   [parameters appendFormat:@"&filter=%@", [GlobalData username]];
+  
+  [parameters appendFormat:@"&filter[posts_per_page]=1000"];
   
   [parameters appendString:@"&context=edit"];
   
@@ -649,9 +647,7 @@
                                                 id json = [NSJSONSerialization JSONObjectWithData:data
                                                                                                 options:NSJSONReadingMutableContainers
                                                                                                   error:nil];
-                                                
                                                 NSLog(@"%@", json);
-                                                
                                                 HUD *hud = [HUD singleton];
                                                 hud.hud.mode = MBProgressHUDModeText;
                                                 
@@ -707,7 +703,7 @@
                                      apiPrefix,
                                      recoverPassword,
                                      email]];
-  
+  NSLog(@"%@", [url absoluteString]);
   // first we aleays clean the cache for every request
   [[NSURLCache sharedURLCache] removeAllCachedResponses];
   
@@ -724,9 +720,7 @@
                                                 NSArray *json = [NSJSONSerialization JSONObjectWithData:data
                                                                                           options:NSJSONReadingMutableContainers
                                                                                             error:nil];
-                                                
-//                                                NSLog(@"%@", json);
-                                                
+                                                NSLog(@"%@", json);
                                                 HUD *hud = [HUD singleton];
                                                 hud.hud.mode = MBProgressHUDModeText;
                                                 

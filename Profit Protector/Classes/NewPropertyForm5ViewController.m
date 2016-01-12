@@ -77,7 +77,7 @@
     NSString *resLabel = [formatter stringForObjectValue:@(res)];
     NSString *res2Label = [formatter stringForObjectValue:@(res2)];
 
-    NSString *composedString = [NSString stringWithFormat:NSLocalizedString(@"Fast Calculation", nil),
+    NSString *composedString = [NSString stringWithFormat:NSLocalizedString(@"Form5 Fast Calculation", nil),
                                 resLabel,
                                 res2Label];
     

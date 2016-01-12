@@ -1,75 +1,75 @@
-"Name this Property" = "Name this Property"
-"Choose a Property Type" = "Choose a Property Type"
-"Property Type" = "Property Type"
-"Sign Up" = "Sign Up"
-"Sign Up" = "Sign In"
-"Email" = "Email"
-"Password" = "Password"
-"Full Name" = "Full Name"
-"Phone" = "Phone"
-"Company" = "Company"
-"Type" = "Type"
-"Join" = "Join"
-"Distributor" = "Distributor"
-"Hotel Owner" = "Hotel Owner"
-"PCO" = "PCO"
-"ANNUAL LOSES" = "ANNUAL LOSES"
-"Remediation Costs" = "Remediation Costs"
-"Lost Revenue" = "Lost Revenue"
-"Property Damage" = "Property Damage"
-"WITH ENCASEMENTS" = "WITH ENCASEMENTS"
-"Remediation Costs" = "Remediation Costs"
-"Lost Revenue" = "Lost Revenue"
-"Property Damage" = "Property Damage"
-"ANNUAL SAVINGS" = "ANNUAL SAVINGS"
-"PREEMTIVE ENCASEMENTS SAVINGS" = "PREEMTIVE ENCASEMENTS SAVINGS"
-"Remediation Costs" = "Remediation Costs"
-"Lost Revenue" = "Lost Revenue"
-"Property Damage" = "Property Damage"
-"Forgot Password" = "Forgot Password"
-"PROPERTIES" = "PROPERTIES"
-"Log Out" = "Log Out"
-"Cancel" = "Cancel"
-"Exit" = "Exit"
-"Back" = "Back"
-"Next" = "Next"
-"Profit Protector" = "Profit Protector"
-"Cancel" = "Cancel"
-"Password reset" = "Password reset"
-"SAVE & FINISH" = "SAVE & FINISH"
+"Name this Property" = "Name this Property";
+"Choose a Property Type" = "Choose a Property Type";
+"Property Type" = "Property Type";
+"Sign Up" = "Sign Up";
+"Sign Up" = "Sign In";
+"Email" = "Email";
+"Password" = "Password";
+"Full Name" = "Full Name";
+"Phone" = "Phone";
+"Company" = "Company";
+"Type" = "Type";
+"Join" = "Join";
+"Distributor" = "Distributor";
+"Hotel Owner" = "Hotel Owner";
+"PCO" = "PCO";
+"ANNUAL LOSES" = "ANNUAL LOSES";
+"Remediation Costs" = "Remediation Costs";
+"Lost Revenue" = "Lost Revenue";
+"Property Damage" = "Property Damage";
+"WITH ENCASEMENTS" = "WITH ENCASEMENTS";
+"Remediation Costs" = "Remediation Costs";
+"Lost Revenue" = "Lost Revenue";
+"Property Damage" = "Property Damage";
+"ANNUAL SAVINGS" = "ANNUAL SAVINGS";
+"PREEMTIVE ENCASEMENTS SAVINGS" = "PREEMTIVE ENCASEMENTS SAVINGS";
+"Remediation Costs" = "Remediation Costs";
+"Lost Revenue" = "Lost Revenue";
+"Property Damage" = "Property Damage";
+"Forgot Password" = "Forgot Password";
+"PROPERTIES" = "PROPERTIES";
+"Log Out" = "Log Out";
+"Cancel" = "Cancel";
+"Exit" = "Exit";
+"Back" = "Back";
+"Next" = "Next";
+"Profit Protector" = "Profit Protector";
+"Cancel" = "Cancel";
+"Password reset" = "Password reset";
+"SAVE & FINISH" = "SAVE & FINISH";
 
 // form 1
-"Form1 Question1" = "Name this Property"
-"Form1 Question2" = "Choose a Property Type"
-"Full Service" = "Full Service"
-"Select Service" = "Select Service"
+"Form1 Question1" = "Name this Property";
+"Form1 Question2" = "Choose a Property Type";
+"Full Service" = "Full Service";
+"Select Service" = "Select Service";
 
 // form 2
-"Form2 Question1" = "How many rooms do you have\nin your property?"
-"Form2 Question2" = "How many beds do you have\nin your property?"
-"Form2 Question3" = "What is your typical\noccupancy rate?"
+"Form2 Question1" = "How many rooms do you have\nin your property?";
+"Form2 Question2" = "How many beds do you have\nin your property?";
+"Form2 Question3" = "What is your typical\noccupancy rate?";
 
 // form 3
-"Form3 Question1" = "What is your average\nroom revenue per night?"
-"Form3 Question2" = "What is your average food and beverage sales per room per night?"
-"Form3 Question3" = "What is your total ancillaries revenues per room per night?"
+"Form3 Question1" = "What is your average\nroom revenue per night?";
+"Form3 Question2" = "What is your average food and beverage sales per room per night?";
+"Form3 Question3" = "What is your total ancillaries revenues per room per night?";
 
 // form 4
-"Form4 Question1" = "What does your typical mattress and box spring cost to replace?"
-"Form4 Question2" = "During an infestation, hotel owners typically are forced to throw away other furnishings, according to property managers and pest control specialist the industry average is $500 per room per incident, adjust this value to best represent your property and experience."
+"Form4 Question1" = "What does your typical mattress and box spring cost to replace?";
+"Form4 Question2" = "During an infestation, hotel owners typically are forced to throw away other furnishings, according to property managers and pest control specialist the industry average is $500 per room per incident, adjust this value to best represent your property and experience.";
 
 // form 5
-"Form5 Question1" = "According to mattress manufacturers, most hotels lose 5% of their mattresses annually due to spoilage from spills and stains, adjust this value to best represent your property."
-"Form5 Fast Calculation" = "Total savings from spoilage alone:\n$%@\n\nLifetime savings from loss due\nto spoilage:\n$%@"
+"Form5 Question1" = "According to mattress manufacturers, most hotels lose 5% of their mattresses annually due to spoilage from spills and stains, adjust this value to best represent your property.";
+"Form5 Fast Calculation" = "Total savings from spoilage alone:\n$%@\n\nLifetime savings from loss due\nto spoilage:\n$%@";
 
 // form 6
-"Form6 Question1" = "CleanBrands estimates you will wash your encasements twice a year, adjust this value to represent your property's protocol."
-"Form6 Question2" = "CleanBrands estimates it will cost $1.50 to remove, launder and install the typical mattress encasement. Note it is not necessary to launder box spring encasements as they do not come in contact with the guest."
-"Form6 Question3" = "How many bed bugs incidents did you have this year?"
-"Form6 Question4" = "What are you customer grievance costs per infestation. Refunds, comps, lawsuits, laundering. We estimate customer grievance will cost you $1,000"
+"Form6 Question1" = "CleanBrands estimates you will wash your encasements twice a year, adjust this value to represent your property's protocol.";
+"Form6 Question2" = "CleanBrands estimates it will cost $1.50 to remove, launder and install the typical mattress encasement. Note it is not necessary to launder box spring encasements as they do not come in contact with the guest.";
+"Form6 Question3" = "How many bed bugs incidents did you have this year?";
+"Form6 Question4" = "What are you customer grievance costs per infestation. Refunds, comps, lawsuits, laundering. We estimate customer grievance will cost you $1,000";
 
 // form 7
-"Form7 Question1" = "How many future days will you lose based on negative reviews (Yelp, TripAdvisor, Bed Bug Registry etc) per Bed Bug incident?"
+"Form7 Question1" = "How many future days will you lose based on negative reviews (Yelp, TripAdvisor, Bed Bug Registry etc) per Bed Bug incident?";
 
 // form 8
-"Form8 Question1" = "The best bed bug protocol's include an educated housekeeping staff and a routine pest control service agreement.\nNational Pest control companies typically charge $400 per 100 rooms for routine inspections.\nWhat are you paying per 100 rooms?"
+"Form8 Question1" = "The best bed bug protocol's include an educated housekeeping staff and a routine pest control service agreement.\nNational Pest control companies typically charge $400 per 100 rooms for routine inspections.\nWhat are you paying per 100 rooms?";

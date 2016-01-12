@@ -346,22 +346,22 @@
     }
     
     if (indexPath.row == 0)
-      cell.textLabel.text = @"Property Type";
+      cell.textLabel.text = NSLocalizedString(@"Property Type", nil);
     
     if (indexPath.row == 1)
-      cell.textLabel.text = @"Rooms & Beds";
+      cell.textLabel.text = NSLocalizedString(@"Rooms & Beds", nil);
     
     if (indexPath.row == 2)
-      cell.textLabel.text = @"Revenues";
+      cell.textLabel.text = NSLocalizedString(@"Revenues", nil);
     
     if (indexPath.row == 3)
-      cell.textLabel.text = @"Costs";
+      cell.textLabel.text = NSLocalizedString(@"Costs", nil);
     
     if (indexPath.row == 4)
-      cell.textLabel.text = @"Spoilage";
+      cell.textLabel.text = NSLocalizedString(@"Spoilage", nil);
     
     if (indexPath.row == 5)
-      cell.textLabel.text = @"Infestations";
+      cell.textLabel.text = NSLocalizedString(@"Infestations", nil);
   }
   else
   {
@@ -374,14 +374,14 @@
       
       if (indexPath.row == 0)
       {
-        cell.textLabel.text = @"YOUR ANNUAL LOSES";
+        cell.textLabel.text = NSLocalizedString(@"YOUR ANNUAL LOSES", nil);
         cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
         cell.backgroundColor = [UIColor colorWithWhite:0.95f alpha:1.0f];
       }
       
       if (indexPath.row == 1)
       {
-        cell.textLabel.text = @"Without Encasements";
+        cell.textLabel.text = NSLocalizedString(@"Without Encasements", nil);
         UIImageView *newProperty = [[UIImageView alloc] initWithImage:[ProfitProtectorStyleKit imageOfBadgeWithSize:CGSizeMake(130.0f, 37.0f)
                                                                                                           fillColor:[UIColor whiteColor]
                                                                                                        cornerRadius:7.0f
@@ -401,7 +401,7 @@
       
       if (indexPath.row == 2)
       {
-        cell.textLabel.text = @"With Encasements";
+        cell.textLabel.text = NSLocalizedString(@"With Encasements", nil);
         
         UIImageView *newProperty = [[UIImageView alloc] initWithImage:[ProfitProtectorStyleKit imageOfBadgeWithSize:CGSizeMake(130.0f, 37.0f)
                                                                                                           fillColor:[UIColor whiteColor]
@@ -422,14 +422,14 @@
       
       if (indexPath.row == 3)
       {
-        cell.textLabel.text = @"YOUR ANNUAL SAVINGS";
+        cell.textLabel.text = NSLocalizedString(@"YOUR ANNUAL SAVINGS", nil);
         cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
         cell.backgroundColor = [UIColor colorWithWhite:0.95f alpha:1.0f];
       }
       
       if (indexPath.row == 4)
       {
-        cell.textLabel.text = @"Total Preemptive Savings";
+        cell.textLabel.text = NSLocalizedString(@"Total Preemptive Savings", nil);
         
         UIImageView *newProperty = [[UIImageView alloc] initWithImage:[ProfitProtectorStyleKit imageOfBadgeWithSize:CGSizeMake(130.0f, 37.0f)
                                                                                                           fillColor:[UIColor whiteColor]
@@ -450,13 +450,13 @@
       
       if (indexPath.row == 5)
       {
-        cell.textLabel.text = @"LIFETIME RETURN OF INVESTMENT";
+        cell.textLabel.text = NSLocalizedString(@"LIFETIME RETURN OF INVESTMENT", nil);
         cell.backgroundColor = [UIColor colorWithWhite:0.95f alpha:1.0f];
       }
       
       if (indexPath.row == 6)
       {
-        cell.textLabel.text = @"CleanRest Pro ROI";
+        cell.textLabel.text = NSLocalizedString(@"CleanRest Pro ROI", nil);
         
         UIImageView *newProperty = [[UIImageView alloc] initWithImage:[ProfitProtectorStyleKit imageOfBadgeWithSize:CGSizeMake(130.0f, 37.0f)
                                                                                                           fillColor:[UIColor whiteColor]

@@ -24,7 +24,7 @@
   float preemptivePestControlRetainer = [[obj valueForKey:@"preemptivePestControlRetainer"] floatValue];
   
   // constants
-  float encasementCommercialWarrantyLifeSavingsPeriod = 8.0f;
+  float encasementCommercialWarrantyLifeSavingsPeriod = 10.0f;
   float costOfCleanRestProQueenMattressAndBoxSpringEncasements = 80.0f;
   
   float roomsTreatedPerInfestationWithout = 3.75f;

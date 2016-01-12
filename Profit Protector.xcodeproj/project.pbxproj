@@ -48,8 +48,8 @@
 		B7A58F271B4DFC3800C408D8 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = B7A58F1D1B4DFC3800C408D8 /* LaunchScreen.xib */; };
 		B7A58F2A1B4DFC3800C408D8 /* Profit_Protector.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = B7A58F211B4DFC3800C408D8 /* Profit_Protector.xcdatamodeld */; };
 		B7A58F2B1B4DFC3800C408D8 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = B7A58F231B4DFC3800C408D8 /* main.m */; };
+		B7ABBEDA1C44DD3100F0373C /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = B7ABBED91C44DD3100F0373C /* Localizable.strings */; };
 		B7B4BEEB1BED6C9600C977FC /* NewPropertyForm8ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B7B4BEEA1BED6C9600C977FC /* NewPropertyForm8ViewController.m */; };
-		B7BBAB621C2D42EF00A99A93 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = B7BBAB611C2D42EF00A99A93 /* Localizable.strings */; };
 		B7C3F9AB1B6EE7CA00C252EE /* UserTypeTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B7C3F9AA1B6EE7CA00C252EE /* UserTypeTableViewController.m */; };
 		B7D8ACC81B5A3F3C00041ED1 /* CoreDataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = B7D8ACC31B5A3F3C00041ED1 /* CoreDataManager.m */; };
 		B7D8ACC91B5A3F3C00041ED1 /* CoreDataRetrieving.m in Sources */ = {isa = PBXBuildFile; fileRef = B7D8ACC51B5A3F3C00041ED1 /* CoreDataRetrieving.m */; };
@@ -147,9 +147,9 @@
 		B7A58F221B4DFC3800C408D8 /* Profit_Protector.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Profit_Protector.xcdatamodel; sourceTree = "<group>"; };
 		B7A58F231B4DFC3800C408D8 /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		B7AB0ECE1B4CE82E00AB6A3E /* Profit Protector.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Profit Protector.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		B7ABBED91C44DD3100F0373C /* Localizable.strings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; path = Localizable.strings; sourceTree = "<group>"; };
 		B7B4BEE91BED6C9600C977FC /* NewPropertyForm8ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewPropertyForm8ViewController.h; sourceTree = "<group>"; };
 		B7B4BEEA1BED6C9600C977FC /* NewPropertyForm8ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewPropertyForm8ViewController.m; sourceTree = "<group>"; };
-		B7BBAB611C2D42EF00A99A93 /* Localizable.strings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; name = Localizable.strings; path = "Profit Protector/Supporting Files/Localizable.strings"; sourceTree = SOURCE_ROOT; };
 		B7C3F9A91B6EE7CA00C252EE /* UserTypeTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserTypeTableViewController.h; sourceTree = "<group>"; };
 		B7C3F9AA1B6EE7CA00C252EE /* UserTypeTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserTypeTableViewController.m; sourceTree = "<group>"; };
 		B7D8ACC21B5A3F3C00041ED1 /* CoreDataManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CoreDataManager.h; sourceTree = "<group>"; };
@@ -361,8 +361,8 @@
 		B7A58F1F1B4DFC3800C408D8 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				B7ABBED91C44DD3100F0373C /* Localizable.strings */,
 				B7A58F201B4DFC3800C408D8 /* Info.plist */,
-				B7BBAB611C2D42EF00A99A93 /* Localizable.strings */,
 				B7A58F231B4DFC3800C408D8 /* main.m */,
 				B7A58F211B4DFC3800C408D8 /* Profit_Protector.xcdatamodeld */,
 			);
@@ -460,7 +460,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B7A58F271B4DFC3800C408D8 /* LaunchScreen.xib in Resources */,
-				B7BBAB621C2D42EF00A99A93 /* Localizable.strings in Resources */,
+				B7ABBEDA1C44DD3100F0373C /* Localizable.strings in Resources */,
 				B736BBF11B8A998400557C5A /* report_receipt.html in Resources */,
 				B7A58F261B4DFC3800C408D8 /* Images.xcassets in Resources */,
 			);
