@@ -37,6 +37,10 @@
 "Cancel" = "Cancel";
 "Password reset" = "Password reset";
 "SAVE & FINISH" = "SAVE & FINISH";
+"CleanRest Pro Savings Report" = "CleanRest Pro Savings Report";
+"Alert Report Email Title" = "Alert";
+"Alert Report Email Message" = "Device is unable to send email in its current state.";
+"Alert Report OK" = "OK";
 
 // form 1
 "Form1 Question1" = "Name this Property";
@@ -73,3 +77,38 @@
 
 // form 8
 "Form8 Question1" = "The best bed bug protocol's include an educated housekeeping staff and a routine pest control service agreement.\nNational Pest control companies typically charge $400 per 100 rooms for routine inspections.\nWhat are you paying per 100 rooms?";
+
+// report
+"Preemptive Encasement Savings Report" = "Preemptive Encasement Savings Report";
+"ANNUAL REPORT" = "ANNUAL REPORT";
+"Revenue Loses" = "Revenue Loses";
+"Preemptive" = "Preemptive";
+"without Encasements" = "without Encasements";
+"with Encasements" = "with Encasements";
+"Encasement Savings" = "Encasement Savings";
+"Bed Bug Infestation Losses" = "Bed Bug Infestation Losses";
+"Remediation Costs" = "Remediation Costs";
+"Lost Revenue" = "Lost Revenue";
+"Property Damage" = "Property Damage";
+"Customer Grievance Costs" = "Customer Grievance Costs";
+"Brand Damage (Lost Future Revenue)" = "Brand Damage (Lost Future Revenue)";
+"Total Loses per Bed Bug Infestation Incident" = "Total Loses per Bed Bug Infestation Incident";
+"Times Incidents per Year" = "Times Incidents per Year";
+"Total Annual Bed Bug Infestation Losses" = "Total Annual Bed Bug Infestation Losses";
+"Mattress Spoilage Costs per Year" = "Mattress Spoilage Costs per Year";
+"Preemptive Encasement Laundering Costs" = "Preemptive Encasement Laundering Costs";
+"Total Annual Costs/Loses" = "Total Annual Costs/Loses";
+"LIFETIME REPORT" = "LIFETIME REPORT";
+"Encasement Investment Return" = "Encasement Investment Return";
+"Encasement Commercial Warranty Life / Savings Period" = "Encasement Commercial Warranty Life / Savings Period";
+"10 Years" = "10 Years";
+"Total Lifetime Savings From Encasing w/ CleanRest Pro" = "Total Lifetime Savings From Encasing w/ CleanRest Pro";
+"Cost of CleanRest Pro Queen Mattress and Box Spring Encasements" = "Cost of CleanRest Pro Queen Mattress and Box Spring Encasements";
+"$80" = "$80";
+"Total Investment to Encase all Beds" = "Total Investment to Encase all Beds";
+"Lifetime Net Return on Encasement Investment" = "Lifetime Net Return on Encasement Investment";
+"Lifetime Savings | Encasement Investment" = "Lifetime Savings | Encasement Investment";
+"Encasement Investment Payback in Months" = "Encasement Investment Payback in Months";
+"Description Part I" = "1 A CleanRest Pro Mattress Encasement is warrantied for 15 years; however for conservative purposes, it is assumed the encasement is discarded after 8 years when";
+"Description Part II" = "a typical mattress is replaced.  Commercial warrantees for competing encasements are as low as one year and therefore, will need to be replaced";
+"Description Part III" = "multiple times during a mattress life.";

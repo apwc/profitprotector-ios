@@ -24,7 +24,7 @@
 - (NSInteger)tableView:(UITableView *)tableView
  numberOfRowsInSection:(NSInteger)section
 {
-  return 2;
+  return 4;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView
@@ -47,7 +47,22 @@
 
   if (indexPath.row == 1)
   {
+    cell.textLabel.text = @"Language";
+    cell.textLabel.textColor = [UIColor whiteColor];
+    cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+  }
+  
+  if (indexPath.row == 2)
+  {
+    cell.textLabel.text = @"Currency";
+    cell.textLabel.textColor = [UIColor whiteColor];
+    cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+  }
+  
+  if (indexPath.row == 3)
+  {
     cell.textLabel.text = @"Log Out";
+    cell.textLabel.font = [UIFont fontWithName:@"HelveticaNeue-Medium" size:16.0f];
     cell.textLabel.textColor = [UIColor whiteColor];
   }
   
@@ -63,6 +78,98 @@
   [tableView deselectRowAtIndexPath:indexPath animated:YES];
   
   if (indexPath.row == 1)
+  {
+    UIAlertController *alert = [UIAlertController alertControllerWithTitle:nil
+                                                                   message:nil
+                                                            preferredStyle:UIAlertControllerStyleActionSheet];
+    
+    UIAlertAction *english = [UIAlertAction actionWithTitle:@"English"
+                                                   style:UIAlertActionStyleDefault
+                                                 handler:^(UIAlertAction *action) {
+                                                 }];
+    
+    [alert addAction:english];
+    
+    UIAlertAction *french = [UIAlertAction actionWithTitle:@"Français"
+                                                  style:UIAlertActionStyleDefault
+                                                handler:^(UIAlertAction *action) {
+                                                }];
+    
+    [alert addAction:french];
+    
+    UIAlertAction *mandarin = [UIAlertAction actionWithTitle:@"普通话"
+                                                       style:UIAlertActionStyleDefault
+                                                     handler:^(UIAlertAction *action) {
+                                                     }];
+    
+    [alert addAction:mandarin];
+    
+    UIAlertAction *cancel = [UIAlertAction actionWithTitle:@"Cancel"
+                                                     style:UIAlertActionStyleCancel
+                                                   handler:nil];
+    
+    [alert addAction:cancel];
+    
+    // note: you can control the order buttons are shown, unlike UIActionSheet
+    [alert setModalPresentationStyle:UIModalPresentationPopover];
+    
+    UIPopoverPresentationController *popPresenter = [alert popoverPresentationController];
+    popPresenter.sourceView = self.view;
+    popPresenter.sourceRect = self.view.bounds;
+    
+    [self presentViewController:alert animated:YES completion:nil];
+  }
+  
+  if (indexPath.row == 2)
+  {
+    UIAlertController *alert = [UIAlertController alertControllerWithTitle:nil
+                                                                   message:nil
+                                                            preferredStyle:UIAlertControllerStyleActionSheet];
+    
+    UIAlertAction *usd = [UIAlertAction actionWithTitle:@"USD"
+                                                  style:UIAlertActionStyleDefault
+                                                handler:^(UIAlertAction *action) {
+                                                }];
+    
+    [alert addAction:usd];
+    
+    UIAlertAction *pounds = [UIAlertAction actionWithTitle:@"Pounds"
+                                                     style:UIAlertActionStyleDefault
+                                                   handler:^(UIAlertAction *action) {
+                                                   }];
+    
+    [alert addAction:pounds];
+    
+    UIAlertAction *euro = [UIAlertAction actionWithTitle:@"Euro"
+                                                   style:UIAlertActionStyleDefault
+                                                 handler:^(UIAlertAction *action) {
+                                                 }];
+    
+    [alert addAction:euro];
+    
+    UIAlertAction *rmb = [UIAlertAction actionWithTitle:@"RMB"
+                                                     style:UIAlertActionStyleDefault
+                                                   handler:nil];
+    
+    [alert addAction:rmb];
+    
+    UIAlertAction *cancel = [UIAlertAction actionWithTitle:@"Cancel"
+                                                     style:UIAlertActionStyleCancel
+                                                   handler:nil];
+    
+    [alert addAction:cancel];
+    
+    // note: you can control the order buttons are shown, unlike UIActionSheet
+    [alert setModalPresentationStyle:UIModalPresentationPopover];
+    
+    UIPopoverPresentationController *popPresenter = [alert popoverPresentationController];
+    popPresenter.sourceView = self.view;
+    popPresenter.sourceRect = self.view.bounds;
+    
+    [self presentViewController:alert animated:YES completion:nil];
+  }
+  
+  if (indexPath.row == 3)
   {
     [[NSNotificationCenter defaultCenter] postNotificationName:userDidLogoutNotification
                                                         object:nil];

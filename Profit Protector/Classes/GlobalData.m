@@ -71,4 +71,28 @@
   [nsud synchronize];
 }
 
++ (NSString *)languageID
+{
+  return [[NSUserDefaults standardUserDefaults] objectForKey:@"languageID"];
+}
+
++ (void)saveLanguage:(NSString *)languageID
+{
+  NSUserDefaults *nsud = [NSUserDefaults standardUserDefaults];
+  [nsud setObject:languageID forKey:@"languageID"];
+  [nsud synchronize];
+}
+
++ (NSString *)currencyID
+{
+  return [[NSUserDefaults standardUserDefaults] objectForKey:@"currencyID"];
+}
+
++ (void)saveCurrencyID:(NSString *)currencyID
+{
+  NSUserDefaults *nsud = [NSUserDefaults standardUserDefaults];
+  [nsud setObject:currencyID forKey:@"currencyID"];
+  [nsud synchronize];
+}
+
 @end

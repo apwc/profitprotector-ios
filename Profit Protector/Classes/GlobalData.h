@@ -30,4 +30,12 @@
 
 + (void)deleteAuthorID;
 
++ (NSString *)languageID;
+
++ (void)saveLanguageID:(NSString *)languageID;
+
++ (NSString *)currencyID;
+
++ (void)saveCurrencyID:(NSString *)currencyID;
+
 @end
