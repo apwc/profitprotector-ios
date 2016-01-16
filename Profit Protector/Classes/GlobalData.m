@@ -76,7 +76,7 @@
   return [[NSUserDefaults standardUserDefaults] objectForKey:@"languageID"];
 }
 
-+ (void)saveLanguage:(NSString *)languageID
++ (void)saveLanguageID:(NSString *)languageID
 {
   NSUserDefaults *nsud = [NSUserDefaults standardUserDefaults];
   [nsud setObject:languageID forKey:@"languageID"];

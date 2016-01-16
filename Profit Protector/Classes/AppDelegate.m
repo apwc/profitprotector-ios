@@ -14,6 +14,15 @@
   self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
   [self.window makeKeyAndVisible];
  
+  //
+  if (![GlobalData languageID])
+  {
+    NSString *localeIdentifier = [[NSLocale currentLocale] localeIdentifier];
+    [GlobalData saveLanguageID:[localeIdentifier substringWithRange:NSMakeRange(0, 2)]];
+  }
+  
+  //[GlobalData saveLanguageID:@"cz"];
+  
   if ([GlobalData username] && [GlobalData password])
     [self displayMainViewController:nil];
   else

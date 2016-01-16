@@ -13,7 +13,7 @@
                                                                      100.0f)];
   self.scvA.numericType = Currency;
   self.scvA.key = @"costOfReplaceMattressesAndBoxSpring";
-  self.scvA.title = NSLocalizedString(@"Form4 Question1", nil);
+  self.scvA.title = [GlobalMethods localizedStringWithKey:@"Form4 Question1"];
   [self.uisv addSubview:self.scvA];
   
   //
@@ -23,7 +23,7 @@
                                                                      245.0f)];
   self.scvB.numericType = Currency;
   self.scvB.key = @"costOfReplaceFurnishings";
-  self.scvB.title = NSLocalizedString(@"Form4 Question2", nil);
+  self.scvB.title = [GlobalMethods localizedStringWithKey:@"Form4 Question2"];
   self.scvB.value = @(500);
   [self.uisv addSubview:self.scvB];
   

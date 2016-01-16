@@ -2,6 +2,7 @@
 #import "API.h"
 #import "GlobalData.h"
 #import "UserTypeTableViewController.h"
+#import "GlobalMethods.h"
 
 @interface SignupViewController () <UITextFieldDelegate,
                                     UserTypeDelegate>
@@ -24,7 +25,7 @@
 {
   [super viewDidLoad];
   
-  self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Close"
+  self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:[GlobalMethods localizedStringWithKey:@"Close"]
                                                                            style:UIBarButtonItemStylePlain
                                                                           target:self
                                                                           action:@selector(close:)];
@@ -38,7 +39,7 @@
                                                              14.0f,
                                                              CGRectGetWidth(self.view.frame) - 15.0f,
                                                              48.0f)];
-  title.text = NSLocalizedString(@"Sign Up", nil);
+  title.text = [GlobalMethods localizedStringWithKey:@"Sign Up"];
   title.font = [UIFont fontWithName:@"HelveticaNeue" size:26.0f];
   title.textColor = [UIColor darkGrayColor];
   [uisv_ addSubview:title];
@@ -57,7 +58,7 @@
   email_.textColor = [UIColor blackColor];
   email_.autocorrectionType = UITextAutocorrectionTypeNo;
   email_.autocapitalizationType = UITextAutocapitalizationTypeNone;
-  email_.placeholder = NSLocalizedString(@"Email", nil);
+  email_.placeholder = [GlobalMethods localizedStringWithKey:@"Email"];
   [uisv_ addSubview:email_];
   
   UIImageView *emailIcon = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"email"]];
@@ -86,7 +87,7 @@
   password_.autocorrectionType = UITextAutocorrectionTypeNo;
   password_.autocapitalizationType = UITextAutocapitalizationTypeNone;
   password_.secureTextEntry = YES;
-  password_.placeholder = NSLocalizedString(@"Password", nil);
+  password_.placeholder = [GlobalMethods localizedStringWithKey:@"Password"];
   [uisv_ addSubview:password_];
   
   UIImageView *passwordIcon = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"password"]];
@@ -114,7 +115,7 @@
   name_.textColor = [UIColor blackColor];
   name_.autocorrectionType = UITextAutocorrectionTypeNo;
   name_.autocapitalizationType = UITextAutocapitalizationTypeNone;
-  name_.placeholder = NSLocalizedString(@"Full Name", nil);
+  name_.placeholder = [GlobalMethods localizedStringWithKey:@"Full Name"];
   [uisv_ addSubview:name_];
   
   UIImageView *nameIcon = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"username"]];
@@ -152,7 +153,7 @@
   phone_.textColor = [UIColor blackColor];
   phone_.autocorrectionType = UITextAutocorrectionTypeNo;
   phone_.autocapitalizationType = UITextAutocapitalizationTypeNone;
-  phone_.placeholder = NSLocalizedString(@"Phone", nil);
+  phone_.placeholder = [GlobalMethods localizedStringWithKey:@"Phone"];
   [uisv_ addSubview:phone_];
   
   UIImageView *phoneIcon = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"phone"]];
@@ -180,7 +181,7 @@
   company_.textColor = [UIColor blackColor];
   company_.autocorrectionType = UITextAutocorrectionTypeNo;
   company_.autocapitalizationType = UITextAutocapitalizationTypeNone;
-  company_.placeholder = NSLocalizedString(@"Company", nil);
+  company_.placeholder = [GlobalMethods localizedStringWithKey:@"Company"];
   [uisv_ addSubview:company_];
   
   UIImageView *companyIcon = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"company"]];
@@ -209,7 +210,7 @@
   type_.autocorrectionType = UITextAutocorrectionTypeNo;
   type_.autocapitalizationType = UITextAutocapitalizationTypeNone;
   type_.enabled = YES;
-  type_.placeholder = NSLocalizedString(@"Type", nil);
+  type_.placeholder = [GlobalMethods localizedStringWithKey:@"Type"];
   [uisv_ addSubview:type_];
   
   UIImageView *typeIcon = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"job"]];
@@ -234,7 +235,7 @@
                                                                 buttonHeight)];
   signup.backgroundColor = [UIColor colorWithRed:0 green:0.68 blue:0.95 alpha:1];
   signup.showsTouchWhenHighlighted = YES;
-  [signup setTitle:NSLocalizedString(@"Join", nil) forState:UIControlStateNormal];
+  [signup setTitle:[GlobalMethods localizedStringWithKey:@"Join"] forState:UIControlStateNormal];
   [signup addTarget:self
              action:@selector(join:)
    forControlEvents:UIControlEventTouchUpInside];
@@ -248,7 +249,7 @@
   signin.showsTouchWhenHighlighted = YES;
   signin.titleLabel.font = [UIFont fontWithName:@"HelveticaNeue" size:12.0f];
   [signin setTitleColor:[UIColor darkGrayColor] forState:UIControlStateNormal];
-  [signin setTitle:@"Already have an account? Sign In" forState:UIControlStateNormal];
+  [signin setTitle:[GlobalMethods localizedStringWithKey:@"Already have an account? Sign In"] forState:UIControlStateNormal];
   [signin addTarget:self
              action:@selector(signin:)
    forControlEvents:UIControlEventTouchUpInside];
@@ -310,13 +311,13 @@
   
   if (![type_.text isEqualToString:@""])
   {
-    if ([type_.text isEqualToString:NSLocalizedString(@"Distributor", nil)])
+    if ([type_.text isEqualToString:[GlobalMethods localizedStringWithKey:@"Distributor"]])
       type = @"distributor";
     
-    if ([type_.text isEqualToString:NSLocalizedString(@"Hotel Owner", nil)])
+    if ([type_.text isEqualToString:[GlobalMethods localizedStringWithKey:@"Hotel Owner"]])
       type = @"hotel_owner";
     
-    if ([type_.text isEqualToString:NSLocalizedString(@"PCO", nil)])
+    if ([type_.text isEqualToString:[GlobalMethods localizedStringWithKey:@"PCO"]])
       type = @"pco";
   }
   

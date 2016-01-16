@@ -373,7 +373,7 @@
   holder.font = [UIFont fontWithName:@"HelveticaNeue-Medium" size:18.0f];
   holder.textColor = [UIColor colorWithRed:0.28 green:0.69 blue:0.92 alpha:1];
   holder.backgroundColor = [UIColor colorWithWhite:0.95f alpha:1.0f];
-  holder.text = @"PROPERTIES";
+  holder.text = [GlobalMethods localizedStringWithKey:@"PROPERTIES"];
   return holder;
 }
 

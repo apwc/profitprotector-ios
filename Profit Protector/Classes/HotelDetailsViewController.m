@@ -6,6 +6,7 @@
 #import "AnnualSavingsTableViewController.h"
 #import "NDHTMLtoPDF.h"
 #import "HUD.h"
+#import "GlobalMethods.h"
 @import MessageUI;
 
 @interface HotelDetailsViewController () <UITableViewDataSource,
@@ -205,7 +206,7 @@
                                       picker.mailComposeDelegate = self;
                                       
                                       // body
-                                      [picker setSubject:@"CleanRest Pro Savings Report"];
+                                      [picker setSubject:[GlobalMethods localizedStringWithKey:@"CleanRest Pro Savings Report"]];
                                       
                                       NSFileManager *fileManager = [NSFileManager defaultManager];
                                       
@@ -220,8 +221,8 @@
                                     }
                                     else
                                     {
-                                      UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Alert"
-                                                                                      message:@"Device is unable to send email in its current state."
+                                      UIAlertView *alert = [[UIAlertView alloc] initWithTitle:[GlobalMethods localizedStringWithKey:@"Alert"]
+                                                                                      message:[GlobalMethods localizedStringWithKey:@"Device is unable to send email in its current state."]
                                                                                      delegate:self
                                                                             cancelButtonTitle:@"OK"
                                                                             otherButtonTitles:nil];
@@ -346,22 +347,22 @@
     }
     
     if (indexPath.row == 0)
-      cell.textLabel.text = NSLocalizedString(@"Property Type", nil);
+      cell.textLabel.text = [GlobalMethods localizedStringWithKey:@"Property Type"];
     
     if (indexPath.row == 1)
-      cell.textLabel.text = NSLocalizedString(@"Rooms & Beds", nil);
+      cell.textLabel.text = [GlobalMethods localizedStringWithKey:@"Rooms & Beds"];
     
     if (indexPath.row == 2)
-      cell.textLabel.text = NSLocalizedString(@"Revenues", nil);
+      cell.textLabel.text = [GlobalMethods localizedStringWithKey:@"Revenues"];
     
     if (indexPath.row == 3)
-      cell.textLabel.text = NSLocalizedString(@"Costs", nil);
+      cell.textLabel.text = [GlobalMethods localizedStringWithKey:@"Costs"];
     
     if (indexPath.row == 4)
-      cell.textLabel.text = NSLocalizedString(@"Spoilage", nil);
+      cell.textLabel.text = [GlobalMethods localizedStringWithKey:@"Spoilage"];
     
     if (indexPath.row == 5)
-      cell.textLabel.text = NSLocalizedString(@"Infestations", nil);
+      cell.textLabel.text = [GlobalMethods localizedStringWithKey:@"Infestations"];
   }
   else
   {
@@ -374,14 +375,14 @@
       
       if (indexPath.row == 0)
       {
-        cell.textLabel.text = NSLocalizedString(@"YOUR ANNUAL LOSES", nil);
+        cell.textLabel.text = [GlobalMethods localizedStringWithKey:@"YOUR ANNUAL LOSES"];
         cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
         cell.backgroundColor = [UIColor colorWithWhite:0.95f alpha:1.0f];
       }
       
       if (indexPath.row == 1)
       {
-        cell.textLabel.text = NSLocalizedString(@"Without Encasements", nil);
+        cell.textLabel.text = [GlobalMethods localizedStringWithKey:@"Without Encasements"];
         UIImageView *newProperty = [[UIImageView alloc] initWithImage:[ProfitProtectorStyleKit imageOfBadgeWithSize:CGSizeMake(130.0f, 37.0f)
                                                                                                           fillColor:[UIColor whiteColor]
                                                                                                        cornerRadius:7.0f
@@ -401,7 +402,7 @@
       
       if (indexPath.row == 2)
       {
-        cell.textLabel.text = NSLocalizedString(@"With Encasements", nil);
+        cell.textLabel.text = [GlobalMethods localizedStringWithKey:@"With Encasements"];
         
         UIImageView *newProperty = [[UIImageView alloc] initWithImage:[ProfitProtectorStyleKit imageOfBadgeWithSize:CGSizeMake(130.0f, 37.0f)
                                                                                                           fillColor:[UIColor whiteColor]
@@ -422,14 +423,14 @@
       
       if (indexPath.row == 3)
       {
-        cell.textLabel.text = NSLocalizedString(@"YOUR ANNUAL SAVINGS", nil);
+        cell.textLabel.text = [GlobalMethods localizedStringWithKey:@"YOUR ANNUAL SAVINGS"];
         cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
         cell.backgroundColor = [UIColor colorWithWhite:0.95f alpha:1.0f];
       }
       
       if (indexPath.row == 4)
       {
-        cell.textLabel.text = NSLocalizedString(@"Total Preemptive Savings", nil);
+        cell.textLabel.text = [GlobalMethods localizedStringWithKey:@"Total Preemptive Savings"];
         
         UIImageView *newProperty = [[UIImageView alloc] initWithImage:[ProfitProtectorStyleKit imageOfBadgeWithSize:CGSizeMake(130.0f, 37.0f)
                                                                                                           fillColor:[UIColor whiteColor]
@@ -450,13 +451,13 @@
       
       if (indexPath.row == 5)
       {
-        cell.textLabel.text = NSLocalizedString(@"LIFETIME RETURN OF INVESTMENT", nil);
+        cell.textLabel.text = [GlobalMethods localizedStringWithKey:@"LIFETIME RETURN OF INVESTMENT"];
         cell.backgroundColor = [UIColor colorWithWhite:0.95f alpha:1.0f];
       }
       
       if (indexPath.row == 6)
       {
-        cell.textLabel.text = NSLocalizedString(@"CleanRest Pro ROI", nil);
+        cell.textLabel.text = [GlobalMethods localizedStringWithKey:@"CleanRest Pro ROI"];
         
         UIImageView *newProperty = [[UIImageView alloc] initWithImage:[ProfitProtectorStyleKit imageOfBadgeWithSize:CGSizeMake(130.0f, 37.0f)
                                                                                                           fillColor:[UIColor whiteColor]

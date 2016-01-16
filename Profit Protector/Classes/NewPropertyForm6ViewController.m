@@ -13,7 +13,7 @@
                                                                      140.0f)];
   self.scvA.numericType = Numeric;
   self.scvA.key = @"timesPerYearBedClean";
-  self.scvA.title = NSLocalizedString(@"Form6 Question1", nil);
+  self.scvA.title = [GlobalMethods localizedStringWithKey:@"Form6 Question1"];
   self.scvA.value = @(2);
   [self.uisv addSubview:self.scvA];
   
@@ -24,7 +24,7 @@
                                                                      200.0f)];
   self.scvB.numericType = Currency;
   self.scvB.key = @"costToCleanAndReinstallEncasements";
-  self.scvB.title = NSLocalizedString(@"Form6 Question2", nil);
+  self.scvB.title = [GlobalMethods localizedStringWithKey:@"Form6 Question2"];
   self.scvB.value = @(1.50);
   [self.uisv addSubview:self.scvB];
   
@@ -35,7 +35,7 @@
                                                                      100.0f)];
   self.scvC.numericType = Numeric;
   self.scvC.key = @"bedBugIncidents";
-  self.scvC.title = NSLocalizedString(@"Form6 Question3", nil);
+  self.scvC.title = [GlobalMethods localizedStringWithKey:@"Form6 Question3"];
   self.scvC.value = @(8);
   [self.uisv addSubview:self.scvC];
   
@@ -46,7 +46,7 @@
                                                                      160.0f)];
   self.scvD.numericType = Currency;
   self.scvD.key = @"grievanceCosts";
-  self.scvD.title = NSLocalizedString(@"Form6 Question4", nil);
+  self.scvD.title = [GlobalMethods localizedStringWithKey:@"Form6 Question4"];
   self.scvD.value = @(1000);
   [self.uisv addSubview:self.scvD];
   

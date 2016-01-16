@@ -14,7 +14,7 @@
   self.scvA.numericType = Numeric;
   self.scvA.key = @"futureBookingDaysLost";
   self.scvA.url = [NSURL URLWithString:@"http://www.tripadvisor.com/Search?q=bed+bug&geo=60763&pid=3825&typeaheadRedirect=true&redirect=&startTime=1445881004305&uiOrigin=MASTHEAD&returnTo=__2F__"];
-  self.scvA.title = NSLocalizedString(@"Form7 Question1", nil);
+  self.scvA.title = [GlobalMethods localizedStringWithKey:@"Form7 Question1"];
   self.scvA.value = @(10);
   [self.uisv addSubview:self.scvA];
   

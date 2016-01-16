@@ -1,5 +1,6 @@
 #import "AnnualLosesTableViewController.h"
 #import "ProfitProtectorStyleKit.h"
+#import "GlobalMethods.h"
 
 @interface AnnualLosesTableViewController ()
 {
@@ -13,7 +14,7 @@
 {
   [super viewDidLoad];
   
-  self.title = @"ANNUAL LOSES";
+  self.title = [GlobalMethods localizedStringWithKey:@"ANNUAL LOSES"];
   
   formatter_ = [[NSNumberFormatter alloc] init];
   [formatter_ setNumberStyle:NSNumberFormatterCurrencyStyle];
@@ -47,13 +48,13 @@
                                   reuseIdentifier:cellIdentifier];
     if (indexPath.row == 0)
     {
-      cell.textLabel.text = @"WITHOUT ENCASEMENTS";
+      cell.textLabel.text = [GlobalMethods localizedStringWithKey:@"WITHOUT ENCASEMENTS"];
       cell.backgroundColor = [UIColor colorWithWhite:0.95f alpha:1.0f];
     }
     
     if (indexPath.row == 1)
     {
-      cell.textLabel.text = @"Remediation Costs";
+      cell.textLabel.text = [GlobalMethods localizedStringWithKey:@"Remediation Costs"];
       
       UIImageView *newProperty = [[UIImageView alloc] initWithImage:[ProfitProtectorStyleKit imageOfBadgeWithSize:CGSizeMake(130.0f, 37.0f)
                                                                                                         fillColor:[UIColor whiteColor]
@@ -74,7 +75,7 @@
     
     if (indexPath.row == 2)
     {
-      cell.textLabel.text = @"Lost Revenue";
+      cell.textLabel.text = [GlobalMethods localizedStringWithKey:@"Lost Revenue"];
       
       UIImageView *newProperty = [[UIImageView alloc] initWithImage:[ProfitProtectorStyleKit imageOfBadgeWithSize:CGSizeMake(130.0f, 37.0f)
                                                                                                         fillColor:[UIColor whiteColor]
@@ -95,7 +96,7 @@
     
     if (indexPath.row == 3)
     {
-      cell.textLabel.text = @"Property Damage";
+      cell.textLabel.text = [GlobalMethods localizedStringWithKey:@"Property Damage"];
       
       UIImageView *newProperty = [[UIImageView alloc] initWithImage:[ProfitProtectorStyleKit imageOfBadgeWithSize:CGSizeMake(130.0f, 37.0f)
                                                                                                         fillColor:[UIColor whiteColor]
@@ -116,7 +117,7 @@
     
     if (indexPath.row == 4)
     {
-      cell.textLabel.text = @"Brand Damage\n(Lost Future Revenue)";
+      cell.textLabel.text = [GlobalMethods localizedStringWithKey:@"Brand Damage\n(Lost Future Revenue)"];
       
       UIImageView *newProperty = [[UIImageView alloc] initWithImage:[ProfitProtectorStyleKit imageOfBadgeWithSize:CGSizeMake(130.0f, 37.0f)
                                                                                                         fillColor:[UIColor whiteColor]
@@ -137,7 +138,7 @@
     
     if (indexPath.row == 5)
     {
-      cell.textLabel.text = @"Total Loses/Bed\nBug Incident";
+      cell.textLabel.text = [GlobalMethods localizedStringWithKey:@"Total Loses/Bed\nBug Incident"];
       
       UIImageView *newProperty = [[UIImageView alloc] initWithImage:[ProfitProtectorStyleKit imageOfBadgeWithSize:CGSizeMake(130.0f, 37.0f)
                                                                                                         fillColor:[UIColor whiteColor]
@@ -158,7 +159,7 @@
     
     if (indexPath.row == 6)
     {
-      cell.textLabel.text = @"Total Annual\nInfestation Losses";
+      cell.textLabel.text = [GlobalMethods localizedStringWithKey:@"Total Annual\nInfestation Losses"];
       
       UIImageView *newProperty = [[UIImageView alloc] initWithImage:[ProfitProtectorStyleKit imageOfBadgeWithSize:CGSizeMake(130.0f, 37.0f)
                                                                                                         fillColor:[UIColor whiteColor]
@@ -179,7 +180,7 @@
     
     if (indexPath.row == 7)
     {
-      cell.textLabel.text = @"Mattress Spoilage\nPer Year";
+      cell.textLabel.text = [GlobalMethods localizedStringWithKey:@"Mattress Spoilage\nPer Year"];
       
       UIImageView *newProperty = [[UIImageView alloc] initWithImage:[ProfitProtectorStyleKit imageOfBadgeWithSize:CGSizeMake(130.0f, 37.0f)
                                                                                                         fillColor:[UIColor whiteColor]
@@ -200,7 +201,7 @@
     
     if (indexPath.row == 8)
     {
-      cell.textLabel.text = @"Preemptive Encasement\nLaundering Costs";
+      cell.textLabel.text = [GlobalMethods localizedStringWithKey:@"Preemptive Encasement\nLaundering Costs"];
       
       UIImageView *newProperty = [[UIImageView alloc] initWithImage:[ProfitProtectorStyleKit imageOfBadgeWithSize:CGSizeMake(130.0f, 37.0f)
                                                                                                         fillColor:[UIColor whiteColor]
@@ -221,7 +222,7 @@
     
     if (indexPath.row == 9)
     {
-      cell.textLabel.text = @"Total Annual Costs/Loses";
+      cell.textLabel.text = [GlobalMethods localizedStringWithKey:@"Total Annual Costs/Loses"];
       
       UIImageView *newProperty = [[UIImageView alloc] initWithImage:[ProfitProtectorStyleKit imageOfBadgeWithSize:CGSizeMake(130.0f, 37.0f)
                                                                                                         fillColor:[UIColor whiteColor]
@@ -242,13 +243,13 @@
     
     if (indexPath.row == 10)
     {
-      cell.textLabel.text = @"WITH ENCASEMENTS";
+      cell.textLabel.text = [GlobalMethods localizedStringWithKey:@"WITH ENCASEMENTS"];
       cell.backgroundColor = [UIColor colorWithWhite:0.95f alpha:1.0f];
     }
     
     if (indexPath.row == 11)
     {
-      cell.textLabel.text = @"Remediation Costs";
+      cell.textLabel.text = [GlobalMethods localizedStringWithKey:@"Remediation Costs"];
       
       UIImageView *newProperty = [[UIImageView alloc] initWithImage:[ProfitProtectorStyleKit imageOfBadgeWithSize:CGSizeMake(130.0f, 37.0f)
                                                                                                         fillColor:[UIColor whiteColor]
@@ -269,7 +270,7 @@
     
     if (indexPath.row == 12)
     {
-      cell.textLabel.text = @"Lost Revenue";
+      cell.textLabel.text = [GlobalMethods localizedStringWithKey:@"Lost Revenue"];
       
       UIImageView *newProperty = [[UIImageView alloc] initWithImage:[ProfitProtectorStyleKit imageOfBadgeWithSize:CGSizeMake(130.0f, 37.0f)
                                                                                                         fillColor:[UIColor whiteColor]
@@ -290,7 +291,7 @@
     
     if (indexPath.row == 13)
     {
-      cell.textLabel.text = @"Property Damage";
+      cell.textLabel.text = [GlobalMethods localizedStringWithKey:@"Property Damage"];
       
       UIImageView *newProperty = [[UIImageView alloc] initWithImage:[ProfitProtectorStyleKit imageOfBadgeWithSize:CGSizeMake(130.0f, 37.0f)
                                                                                                         fillColor:[UIColor whiteColor]
@@ -311,7 +312,7 @@
     
     if (indexPath.row == 14)
     {
-      cell.textLabel.text = @"Brand Damage\n(Lost Future Revenue)";
+      cell.textLabel.text = [GlobalMethods localizedStringWithKey:@"Brand Damage\n(Lost Future Revenue)"];
       
       UIImageView *newProperty = [[UIImageView alloc] initWithImage:[ProfitProtectorStyleKit imageOfBadgeWithSize:CGSizeMake(130.0f, 37.0f)
                                                                                                         fillColor:[UIColor whiteColor]
@@ -332,7 +333,7 @@
     
     if (indexPath.row == 15)
     {
-      cell.textLabel.text = @"Total Loses/Bed\nBug Incident";
+      cell.textLabel.text = [GlobalMethods localizedStringWithKey:@"Total Loses/Bed\nBug Incident"];
       
       UIImageView *newProperty = [[UIImageView alloc] initWithImage:[ProfitProtectorStyleKit imageOfBadgeWithSize:CGSizeMake(130.0f, 37.0f)
                                                                                                         fillColor:[UIColor whiteColor]
@@ -353,7 +354,7 @@
     
     if (indexPath.row == 16)
     {
-      cell.textLabel.text = @"Total Annual\nInfestation Losses";
+      cell.textLabel.text = [GlobalMethods localizedStringWithKey:@"Total Annual\nInfestation Losses"];
       
       UIImageView *newProperty = [[UIImageView alloc] initWithImage:[ProfitProtectorStyleKit imageOfBadgeWithSize:CGSizeMake(130.0f, 37.0f)
                                                                                                         fillColor:[UIColor whiteColor]
@@ -374,7 +375,7 @@
     
     if (indexPath.row == 17)
     {
-      cell.textLabel.text = @"Mattress Spoilage\nPer Year";
+      cell.textLabel.text = [GlobalMethods localizedStringWithKey:@"Mattress Spoilage\nPer Year"];
       
       UIImageView *newProperty = [[UIImageView alloc] initWithImage:[ProfitProtectorStyleKit imageOfBadgeWithSize:CGSizeMake(130.0f, 37.0f)
                                                                                                         fillColor:[UIColor whiteColor]
@@ -395,7 +396,7 @@
     
     if (indexPath.row == 18)
     {
-      cell.textLabel.text = @"Preemptive Encasement\nLaundering Costs";
+      cell.textLabel.text = [GlobalMethods localizedStringWithKey:@"Preemptive Encasement\nLaundering Costs"];
       
       UIImageView *newProperty = [[UIImageView alloc] initWithImage:[ProfitProtectorStyleKit imageOfBadgeWithSize:CGSizeMake(130.0f, 37.0f)
                                                                                                         fillColor:[UIColor whiteColor]
@@ -416,7 +417,7 @@
     
     if (indexPath.row == 19)
     {
-      cell.textLabel.text = @"Total Annual Costs/Loses";
+      cell.textLabel.text = [GlobalMethods localizedStringWithKey:@"Total Annual Costs/Loses"];
       
       UIImageView *newProperty = [[UIImageView alloc] initWithImage:[ProfitProtectorStyleKit imageOfBadgeWithSize:CGSizeMake(130.0f, 37.0f)
                                                                                                         fillColor:[UIColor whiteColor]

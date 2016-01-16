@@ -1,4 +1,5 @@
 #import "PropertyTypeTableViewController.h"
+#import "GlobalMethods.h"
 
 @implementation PropertyTypeTableViewController
 
@@ -32,10 +33,10 @@
                                   reuseIdentifier:reuseIdentifier];
   
   if (indexPath.row == 0)
-    cell.textLabel.text = NSLocalizedString(@"Full Service", nil);
+    cell.textLabel.text = [GlobalMethods localizedStringWithKey:@"Full Service"];
   
   if (indexPath.row == 1)
-    cell.textLabel.text = NSLocalizedString(@"Select Service", nil);
+    cell.textLabel.text = [GlobalMethods localizedStringWithKey:@"Select Service"];
   
   return cell;
 }

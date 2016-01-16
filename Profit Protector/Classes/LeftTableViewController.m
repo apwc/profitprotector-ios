@@ -1,6 +1,7 @@
 #import "LeftTableViewController.h"
 #import "Constants.h"
 #import "GlobalData.h"
+#import "GlobalMethods.h"
 
 @implementation LeftTableViewController
 
@@ -47,21 +48,21 @@
 
   if (indexPath.row == 1)
   {
-    cell.textLabel.text = @"Language";
+    cell.textLabel.text = [GlobalMethods localizedStringWithKey:@"Language"];
     cell.textLabel.textColor = [UIColor whiteColor];
     cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
   }
   
   if (indexPath.row == 2)
   {
-    cell.textLabel.text = @"Currency";
+    cell.textLabel.text = [GlobalMethods localizedStringWithKey:@"Currency"];
     cell.textLabel.textColor = [UIColor whiteColor];
     cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
   }
   
   if (indexPath.row == 3)
   {
-    cell.textLabel.text = @"Log Out";
+    cell.textLabel.text = [GlobalMethods localizedStringWithKey:@"Log Out"];
     cell.textLabel.font = [UIFont fontWithName:@"HelveticaNeue-Medium" size:16.0f];
     cell.textLabel.textColor = [UIColor whiteColor];
   }
@@ -86,6 +87,13 @@
     UIAlertAction *english = [UIAlertAction actionWithTitle:@"English"
                                                    style:UIAlertActionStyleDefault
                                                  handler:^(UIAlertAction *action) {
+                                                   [GlobalData saveLanguageID:@"en"];
+                                                   
+                                                   [self.tableView reloadData];
+                                                   
+                                                   // send the notification to update the user interface
+                                                   [[NSNotificationCenter defaultCenter] postNotificationName:didUpdateLanguageNotification
+                                                                                                       object:nil];
                                                  }];
     
     [alert addAction:english];
@@ -93,6 +101,13 @@
     UIAlertAction *french = [UIAlertAction actionWithTitle:@"Français"
                                                   style:UIAlertActionStyleDefault
                                                 handler:^(UIAlertAction *action) {
+                                                  [GlobalData saveLanguageID:@"fr"];
+                                                  
+                                                  [self.tableView reloadData];
+                                                  
+                                                  // send the notification to update the user interface
+                                                  [[NSNotificationCenter defaultCenter] postNotificationName:didUpdateLanguageNotification
+                                                                                                      object:nil];
                                                 }];
     
     [alert addAction:french];
@@ -100,6 +115,13 @@
     UIAlertAction *mandarin = [UIAlertAction actionWithTitle:@"普通话"
                                                        style:UIAlertActionStyleDefault
                                                      handler:^(UIAlertAction *action) {
+                                                       [GlobalData saveLanguageID:@"cz"];
+                                                       
+                                                       [self.tableView reloadData];
+                                                       
+                                                       // send the notification to update the user interface
+                                                       [[NSNotificationCenter defaultCenter] postNotificationName:didUpdateLanguageNotification
+                                                                                                           object:nil];
                                                      }];
     
     [alert addAction:mandarin];

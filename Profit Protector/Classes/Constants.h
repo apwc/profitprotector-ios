@@ -36,6 +36,7 @@
 #define userHasBeenRegisteredNotification @"userHasBeenRegisteredNotification"
 #define userDidLogoutNotification @"userDidLogoutNotification"
 #define displaySelectedPropertyNotification @"displaySelectedPropertyNotification"
+#define didUpdateLanguageNotification @"didUpdateLanguageNotification"
 
 #pragma mark - API
 

@@ -13,7 +13,7 @@
                                                                      245.0f)];
   self.scvA.numericType = Currency;
   self.scvA.key = @"preemptivePestControlRetainer";
-  self.scvA.title = NSLocalizedString(@"Form8 Question1", nil);
+  self.scvA.title = [GlobalMethods localizedStringWithKey:@"Form8 Question1"];
   self.scvA.value = @(400);
   [self.uisv addSubview:self.scvA];
   
@@ -26,7 +26,7 @@
                                  96.0f);
   self.finish.backgroundColor = [UIColor colorWithRed:0 green:0.68 blue:0.95 alpha:1];
   self.finish.titleLabel.font = [UIFont fontWithName:@"HelveticaNeue" size:32.0f];
-  [self.finish setTitle:NSLocalizedString(@"SAVE & FINISH", nil) forState:UIControlStateNormal];
+  [self.finish setTitle:[GlobalMethods localizedStringWithKey:@"SAVE & FINISH"] forState:UIControlStateNormal];
   [self.finish setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
   [self.uisv addSubview:self.finish];
   

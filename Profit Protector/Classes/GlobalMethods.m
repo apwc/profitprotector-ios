@@ -1,4 +1,5 @@
 #import "GlobalMethods.h"
+#import "GlobalData.h"
 
 @implementation GlobalMethods
 
@@ -137,6 +138,26 @@
            @"totalAnnualCostsLossesSavings": @(totalAnnualCostsLossesSavings),
            @"totalAnnualBedBugInfestationLossesSavings": @(totalAnnualBedBugInfestationLossesSavings),
            @"preemptiveEncasementLaunderingCostsSavings": @(preemptiveEncasementLaunderingCostsSavings)};
+}
+
++ (NSString *)localizedStringWithKey:(NSString *)key
+{
+  NSString *languageFilePath = [[NSBundle mainBundle] pathForResource:[GlobalData languageID]
+                                                               ofType:@"json"];
+  
+  NSData *languageData = [NSData dataWithContentsOfFile:languageFilePath];
+  
+  // we do not have even the language file
+  if (!languageData)
+    return nil;
+  
+  NSError *error;
+  
+  NSDictionary *dictionary = (NSDictionary *)[NSJSONSerialization JSONObjectWithData:languageData
+                                                                             options:0
+                                                                               error:&error];
+  
+  return dictionary[key];
 }
 
 @end

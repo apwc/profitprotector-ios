@@ -25,7 +25,7 @@
                                                                      180.0f)];
   self.scvA.numericType = Numeric;
   self.scvA.key = @"percentageOfMattressesReplaceEachYear";
-  self.scvA.title = NSLocalizedString(@"Form5 Question1", nil);
+  self.scvA.title = [GlobalMethods localizedStringWithKey:@"Form5 Question1"];
   self.scvA.value = @(5);
   [self.uisv addSubview:self.scvA];
   
@@ -77,7 +77,7 @@
     NSString *resLabel = [formatter stringForObjectValue:@(res)];
     NSString *res2Label = [formatter stringForObjectValue:@(res2)];
 
-    NSString *composedString = [NSString stringWithFormat:NSLocalizedString(@"Form5 Fast Calculation", nil),
+    NSString *composedString = [NSString stringWithFormat:[GlobalMethods localizedStringWithKey:@"Form5 Fast Calculation"],
                                 resLabel,
                                 res2Label];
     

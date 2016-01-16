@@ -13,7 +13,7 @@
                                                                      100.0f)];
   self.scvA.numericType = Numeric;
   self.scvA.key = @"roomsNumber";
-  self.scvA.title = @"How many rooms do you have\nin your property?";
+  self.scvA.title = [GlobalMethods localizedStringWithKey:@"How many rooms do you have\nin your property?"];
   [self.uisv addSubview:self.scvA];
   
   //
@@ -23,7 +23,7 @@
                                                                      100.0f)];
   self.scvB.numericType = Numeric;
   self.scvB.key = @"bedsNumber";
-  self.scvB.title = @"How many beds do you have\nin your property?";
+  self.scvB.title = [GlobalMethods localizedStringWithKey:@"How many beds do you have\nin your property?"];
   [self.uisv addSubview:self.scvB];
   
   self.uisv.contentSize = CGSizeMake(CGRectGetWidth(self.view.frame),
@@ -36,7 +36,7 @@
                                                                      100.0f)];
   self.scvC.numericType = Numeric;
   self.scvC.key = @"occupancyRate";
-  self.scvC.title = @"What is your typical\noccupancy rate?";
+  self.scvC.title = [GlobalMethods localizedStringWithKey:@"What is your typical\noccupancy rate?"];
   [self.uisv addSubview:self.scvC];
   
   self.uisv.contentSize = CGSizeMake(CGRectGetWidth(self.view.frame),

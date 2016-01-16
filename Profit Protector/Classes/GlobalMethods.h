@@ -5,4 +5,6 @@
 
 + (NSDictionary *)math:(NSManagedObject *)obj;
 
++ (NSString *)localizedStringWithKey:(NSString *)key;
+
 @end

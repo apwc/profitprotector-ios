@@ -17,7 +17,7 @@
   title.font = [UIFont fontWithName:@"HelveticaNeue" size:18.0f];
   title.textColor = [UIColor colorWithRed:0 green:0.68 blue:0.95 alpha:1];
   title.textAlignment = NSTextAlignmentCenter;
-  title.text = NSLocalizedString(@"Form1 Question1", nil);
+  title.text = [GlobalMethods localizedStringWithKey:@"Form1 Question1"];
   [self.uisv addSubview:title];
   
   //
@@ -46,7 +46,7 @@
   title2.font = [UIFont fontWithName:@"HelveticaNeue" size:18.0f];
   title2.textColor = [UIColor colorWithRed:0 green:0.68 blue:0.95 alpha:1];
   title2.textAlignment = NSTextAlignmentCenter;
-  title2.text = NSLocalizedString(@"Form1 Question2", nil);
+  title2.text = [GlobalMethods localizedStringWithKey:@"Form1 Question2"];
   [self.uisv addSubview:title2];
   
   self.propertyType = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -60,7 +60,7 @@
   self.propertyType.layer.masksToBounds = YES;
   self.propertyType.layer.borderWidth = 1.0f;
   self.propertyType.layer.borderColor = [[UIColor colorWithRed:0 green:0.68 blue:0.95 alpha:1] CGColor];
-  [self.propertyType setTitle:@"Property Type" forState:UIControlStateNormal];
+  [self.propertyType setTitle:[GlobalMethods localizedStringWithKey:@"Property Type"] forState:UIControlStateNormal];
   [self.propertyType setTitleColor:[UIColor darkGrayColor] forState:UIControlStateNormal];
   [self.view addSubview:self.propertyType];
   
