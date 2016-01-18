@@ -156,6 +156,8 @@
   NSDictionary *dictionary = (NSDictionary *)[NSJSONSerialization JSONObjectWithData:languageData
                                                                              options:0
                                                                                error:&error];
+
+  NSLog(@"%@ = %@", key, dictionary[key]);
   
   return dictionary[key];
 }

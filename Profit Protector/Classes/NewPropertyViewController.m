@@ -42,7 +42,7 @@
   self.view.backgroundColor = [UIColor whiteColor];
   
   if ([self.navigationController.viewControllers count] == 1)
-    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Cancel"
+    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:[GlobalMethods localizedStringWithKey:@"Cancel"]
                                                                              style:UIBarButtonItemStylePlain
                                                                             target:self
                                                                             action:@selector(cancel:)];
@@ -50,7 +50,7 @@
   {
     [self.navigationItem hidesBackButton];
     
-    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Exit"
+    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:[GlobalMethods localizedStringWithKey:@"Exit"]
                                                                              style:UIBarButtonItemStylePlain
                                                                             target:self
                                                                             action:@selector(exit:)];
@@ -211,7 +211,7 @@
                                                      buttonWidth,
                                                      CGRectGetHeight(bottomBand.frame))];
   back_.showsTouchWhenHighlighted = YES;
-  [back_ setTitle:@"Back" forState:UIControlStateNormal];
+  [back_ setTitle:[GlobalMethods localizedStringWithKey:@"Back"] forState:UIControlStateNormal];
   [back_ addTarget:self action:@selector(back:) forControlEvents:UIControlEventTouchUpInside];
   [back_ setTitleColor:[UIColor colorWithWhite:1.0f alpha:0.2f] forState:UIControlStateDisabled];
   [back_ setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
@@ -223,7 +223,7 @@
                                                      buttonWidth,
                                                      CGRectGetHeight(bottomBand.frame))];
   next_.showsTouchWhenHighlighted = YES;
-  [next_ setTitle:@"Next" forState:UIControlStateNormal];
+  [next_ setTitle:[GlobalMethods localizedStringWithKey:@"Next"] forState:UIControlStateNormal];
   [next_ addTarget:self action:@selector(next:) forControlEvents:UIControlEventTouchUpInside];
   [next_ setTitleColor:[UIColor colorWithWhite:1.0f alpha:0.2f] forState:UIControlStateDisabled];
   [next_ setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
@@ -296,7 +296,7 @@
                                                                  message:@"You cannot save because some fields are missing"
                                                           preferredStyle:UIAlertControllerStyleAlert];
   
-  UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"Cancel"
+  UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:[GlobalMethods localizedStringWithKey:@"Cancel"]
                                                          style:UIAlertActionStyleDestructive
                                                        handler:nil];
   

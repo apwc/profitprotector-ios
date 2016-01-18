@@ -102,6 +102,11 @@
                                                name:displaySelectedPropertyNotification
                                              object:nil];
   
+  [[NSNotificationCenter defaultCenter] addObserver:self
+                                           selector:@selector(didUpdateLanguage:)
+                                               name:didUpdateLanguageNotification
+                                             object:nil];
+  
   properties_ = [CoreDataRetrieving allProperties];
   
   [uitv_ reloadData];
@@ -121,6 +126,10 @@
   
   [[NSNotificationCenter defaultCenter] removeObserver:self
                                                   name:displaySelectedPropertyNotification
+                                                object:nil];
+  
+  [[NSNotificationCenter defaultCenter] removeObserver:self
+                                                  name:didUpdateLanguageNotification
                                                 object:nil];
 }
 
@@ -198,6 +207,11 @@
       *stop = YES;
     }
   }];
+}
+
+- (void)didUpdateLanguage:(NSNotification *)notification
+{
+  [uitv_ reloadData];
 }
 
 #pragma mark - API notifications callbacks
