@@ -126,7 +126,7 @@
     
     [alert addAction:mandarin];
     
-    UIAlertAction *cancel = [UIAlertAction actionWithTitle:@"Cancel"
+    UIAlertAction *cancel = [UIAlertAction actionWithTitle:[GlobalMethods localizedStringWithKey:@"Cancel"]
                                                      style:UIAlertActionStyleCancel
                                                    handler:nil];
     
@@ -148,34 +148,34 @@
                                                                    message:nil
                                                             preferredStyle:UIAlertControllerStyleActionSheet];
     
-    UIAlertAction *usd = [UIAlertAction actionWithTitle:@"USD"
+    UIAlertAction *usd = [UIAlertAction actionWithTitle:[GlobalMethods localizedStringWithKey:@"USD"]
                                                   style:UIAlertActionStyleDefault
                                                 handler:^(UIAlertAction *action) {
                                                 }];
     
     [alert addAction:usd];
     
-    UIAlertAction *pounds = [UIAlertAction actionWithTitle:@"Pounds"
+    UIAlertAction *pounds = [UIAlertAction actionWithTitle:[GlobalMethods localizedStringWithKey:@"Pounds"]
                                                      style:UIAlertActionStyleDefault
                                                    handler:^(UIAlertAction *action) {
                                                    }];
     
     [alert addAction:pounds];
     
-    UIAlertAction *euro = [UIAlertAction actionWithTitle:@"Euro"
+    UIAlertAction *euro = [UIAlertAction actionWithTitle:[GlobalMethods localizedStringWithKey:@"Euro"]
                                                    style:UIAlertActionStyleDefault
                                                  handler:^(UIAlertAction *action) {
                                                  }];
     
     [alert addAction:euro];
     
-    UIAlertAction *rmb = [UIAlertAction actionWithTitle:@"RMB"
+    UIAlertAction *rmb = [UIAlertAction actionWithTitle:[GlobalMethods localizedStringWithKey:@"RMB"]
                                                      style:UIAlertActionStyleDefault
                                                    handler:nil];
     
     [alert addAction:rmb];
     
-    UIAlertAction *cancel = [UIAlertAction actionWithTitle:@"Cancel"
+    UIAlertAction *cancel = [UIAlertAction actionWithTitle:[GlobalMethods localizedStringWithKey:@"Cancel"]
                                                      style:UIAlertActionStyleCancel
                                                    handler:nil];
     

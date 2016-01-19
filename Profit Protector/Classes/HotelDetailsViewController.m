@@ -186,6 +186,111 @@
   html = [html stringByReplacingOccurrencesOfString:@"[bedBugIncidents]"
                                          withString:[[property valueForKey:@"bedBugIncidents"] stringValue]];
   
+  // localize
+  html = [html stringByReplacingOccurrencesOfString:@"*Preemptive Encasement Savings Report*"
+                                         withString:[GlobalMethods localizedStringWithKey:@"Preemptive Encasement Savings Report"]];
+  
+  html = [html stringByReplacingOccurrencesOfString:@"*ANNUAL REPORT*"
+                                         withString:[GlobalMethods localizedStringWithKey:@"ANNUAL REPORT"]];
+  
+  html = [html stringByReplacingOccurrencesOfString:@"*Revenue Loses*"
+                                         withString:[GlobalMethods localizedStringWithKey:@"Revenue Loses"]];
+  
+  html = [html stringByReplacingOccurrencesOfString:@"*Preemptive*"
+                                         withString:[GlobalMethods localizedStringWithKey:@"Preemptive"]];
+  
+  html = [html stringByReplacingOccurrencesOfString:@"*Without Encasements*"
+                                         withString:[GlobalMethods localizedStringWithKey:@"Without Encasements"]];
+  
+  html = [html stringByReplacingOccurrencesOfString:@"*With Encasements*"
+                                         withString:[GlobalMethods localizedStringWithKey:@"With Encasements"]];
+  
+  html = [html stringByReplacingOccurrencesOfString:@"*Encasement Savings*"
+                                         withString:[GlobalMethods localizedStringWithKey:@"Encasement Savings"]];
+  
+  html = [html stringByReplacingOccurrencesOfString:@"*Bed Bug Infestation Losses*"
+                                         withString:[GlobalMethods localizedStringWithKey:@"Bed Bug Infestation Losses"]];
+  
+  html = [html stringByReplacingOccurrencesOfString:@"*Remediation Costs*"
+                                         withString:[GlobalMethods localizedStringWithKey:@"Remediation Costs"]];
+  
+  html = [html stringByReplacingOccurrencesOfString:@"*Lost Revenue*"
+                                         withString:[GlobalMethods localizedStringWithKey:@"Lost Revenue"]];
+  
+  html = [html stringByReplacingOccurrencesOfString:@"*Property Damage*"
+                                         withString:[GlobalMethods localizedStringWithKey:@"Property Damage"]];
+  
+  html = [html stringByReplacingOccurrencesOfString:@"*Customer Grievance Costs*"
+                                         withString:[GlobalMethods localizedStringWithKey:@"Customer Grievance Costs"]];
+  
+  html = [html stringByReplacingOccurrencesOfString:@"*Brand Damage (Lost Future Revenue)*"
+                                         withString:[GlobalMethods localizedStringWithKey:@"Brand Damage (Lost Future Revenue)"]];
+  
+  html = [html stringByReplacingOccurrencesOfString:@"*Total Loses per Bed Bug Infestation Incident*"
+                                         withString:[GlobalMethods localizedStringWithKey:@"Total Loses per Bed Bug Infestation Incident"]];
+  
+  html = [html stringByReplacingOccurrencesOfString:@"*Times Incidents per Year*"
+                                         withString:[GlobalMethods localizedStringWithKey:@"Times Incidents per Year"]];
+  
+  html = [html stringByReplacingOccurrencesOfString:@"*Total Annual Bed Bug Infestation Losses*"
+                                         withString:[GlobalMethods localizedStringWithKey:@"Total Annual Bed Bug Infestation Losses"]];
+  
+  html = [html stringByReplacingOccurrencesOfString:@"*Mattress Spoilage Costs per Year*"
+                                         withString:[GlobalMethods localizedStringWithKey:@"Mattress Spoilage Costs per Year"]];
+  
+  html = [html stringByReplacingOccurrencesOfString:@"*Preemptive Encasement Laundering Costs*"
+                                         withString:[GlobalMethods localizedStringWithKey:@"Preemptive Encasement Laundering Costs"]];
+  
+  html = [html stringByReplacingOccurrencesOfString:@"*Total Annual Costs/Loses*"
+                                         withString:[GlobalMethods localizedStringWithKey:@"Total Annual Costs/Loses"]];
+  
+  html = [html stringByReplacingOccurrencesOfString:@"*LIFETIME REPORT*"
+                                         withString:[GlobalMethods localizedStringWithKey:@"LIFETIME REPORT"]];
+  
+  html = [html stringByReplacingOccurrencesOfString:@"*Encasement Investment Return*"
+                                         withString:[GlobalMethods localizedStringWithKey:@"Encasement Investment Return"]];
+  
+  html = [html stringByReplacingOccurrencesOfString:@"*Encasement Commercial Warranty Life / Savings Period*"
+                                         withString:[GlobalMethods localizedStringWithKey:@"Encasement Commercial Warranty Life / Savings Period"]];
+  
+  html = [html stringByReplacingOccurrencesOfString:@"*10 Years*"
+                                         withString:[GlobalMethods localizedStringWithKey:@"10 Years"]];
+  
+  html = [html stringByReplacingOccurrencesOfString:@"*Total Lifetime Savings From Encasing w/ CleanRest Pro*"
+                                         withString:[GlobalMethods localizedStringWithKey:@"Total Lifetime Savings From Encasing w/ CleanRest Pro"]];
+  
+  html = [html stringByReplacingOccurrencesOfString:@"*Cost of CleanRest Pro Queen Mattress and Box Spring Encasements*"
+                                         withString:[GlobalMethods localizedStringWithKey:@"Cost of CleanRest Pro Queen Mattress and Box Spring Encasements"]];
+  
+  html = [html stringByReplacingOccurrencesOfString:@"*$80*"
+                                         withString:[GlobalMethods localizedStringWithKey:@"$80"]];
+  
+  html = [html stringByReplacingOccurrencesOfString:@"*Total Investment to Encase all Beds*"
+                                         withString:[GlobalMethods localizedStringWithKey:@"Total Investment to Encase all Beds"]];
+  
+  html = [html stringByReplacingOccurrencesOfString:@"*Lifetime Net Return on Encasement Investment*"
+                                         withString:[GlobalMethods localizedStringWithKey:@"Lifetime Net Return on Encasement Investment"]];
+  
+  html = [html stringByReplacingOccurrencesOfString:@"*Lifetime Savings | Encasement Investment*"
+                                         withString:[GlobalMethods localizedStringWithKey:@"Lifetime Savings | Encasement Investment"]];
+  
+  html = [html stringByReplacingOccurrencesOfString:@"*Encasement Investment Payback in Months*"
+                                         withString:[GlobalMethods localizedStringWithKey:@"Encasement Investment Payback in Months"]];
+  
+  html = [html stringByReplacingOccurrencesOfString:@"*Encasement Investment Payback in Months*"
+                                         withString:[GlobalMethods localizedStringWithKey:@"Encasement Investment Payback in Months"]];
+  
+  html = [html stringByReplacingOccurrencesOfString:@"*Description Part I*"
+                                         withString:[GlobalMethods localizedStringWithKey:@"Description Part I"]];
+
+  html = [html stringByReplacingOccurrencesOfString:@"*Description Part II*"
+                                         withString:[GlobalMethods localizedStringWithKey:@"Description Part II"]];
+  
+  html = [html stringByReplacingOccurrencesOfString:@"*Description Part III*"
+                                         withString:[GlobalMethods localizedStringWithKey:@"Description Part III"]];
+  
+  NSLog(@"%@", html);
+  //
   __block NSString *pdfFilename = [NSString stringWithFormat:@"CleanRest Pro Savings Report %@.pdf", [NSDate date]];
   __block NSString *pdfPath = [[NSString stringWithFormat:@"~/Documents/%@.pdf", pdfFilename] stringByExpandingTildeInPath];
   

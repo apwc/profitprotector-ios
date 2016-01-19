@@ -128,4 +128,9 @@
   "Mattress Spoilage\nPer Year" : "床垫腐坏\n每年",
   "Preemptive Encasement\nLaundering Costs" : "抢先装箱\n反洗钱成本",
   "Total Annual Costs/Loses" : "年总成本/失去",
+  
+  "USD" : "美元",
+  "Pounds" : "磅",
+  "Euro" : "欧元",
+  "RMB" : "人民币"
 }
