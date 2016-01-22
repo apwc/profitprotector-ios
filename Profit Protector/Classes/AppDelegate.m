@@ -16,12 +16,7 @@
  
   //
   if (![GlobalData languageID])
-  {
-    NSString *localeIdentifier = [[NSLocale currentLocale] localeIdentifier];
-    [GlobalData saveLanguageID:[localeIdentifier substringWithRange:NSMakeRange(0, 2)]];
-  }
-  
-  //[GlobalData saveLanguageID:@"cz"];
+    [GlobalData saveLanguageID:@"en"];
   
   if ([GlobalData username] && [GlobalData password])
     [self displayMainViewController:nil];
