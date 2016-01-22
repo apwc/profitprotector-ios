@@ -33,10 +33,16 @@
                                   reuseIdentifier:reuseIdentifier];
   
   if (indexPath.row == 0)
+  {
     cell.textLabel.text = [GlobalMethods localizedStringWithKey:@"Full Service"];
+    cell.tag = Full;
+  }
   
   if (indexPath.row == 1)
+  {
     cell.textLabel.text = [GlobalMethods localizedStringWithKey:@"Select Service"];
+    cell.tag = Select;
+  }
   
   return cell;
 }
@@ -50,7 +56,7 @@
   
   UITableViewCell *cell = (UITableViewCell *)[tableView cellForRowAtIndexPath:indexPath];
   
-  [self.delegate propertyTypeDidSelect:cell.textLabel.text];
+  [self.delegate propertyTypeDidSelect:(PropertyType)cell.tag];
   
   [self.navigationController popViewControllerAnimated:YES];
 }

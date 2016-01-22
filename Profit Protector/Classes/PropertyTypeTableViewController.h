@@ -1,8 +1,9 @@
 @import UIKit;
+#import "TypeDefEnumerators.h"
 
 @protocol PropertyTypeDelegate <NSObject>
 
-- (void)propertyTypeDidSelect:(NSString *)propertyType;
+- (void)propertyTypeDidSelect:(PropertyType)propertyType;
 
 @end
 

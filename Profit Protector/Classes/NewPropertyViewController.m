@@ -553,12 +553,13 @@
 
 #pragma mark - PropertyTypeDelegate delegate methods implementation
 
-- (void)propertyTypeDidSelect:(NSString *)propertyType
+- (void)propertyTypeDidSelect:(PropertyType)propertyType
 {
-  [npf1vc_.propertyType setTitle:propertyType forState:UIControlStateNormal];
+  [npf1vc_.propertyType setTitle:propertyType == Full ? [GlobalMethods localizedStringWithKey:@"Full Service"] : [GlobalMethods localizedStringWithKey:@"Select Service"]
+                        forState:UIControlStateNormal];
   
   GlobalData *gd = [GlobalData singleton];
-  gd.propertyType = [propertyType isEqualToString:@"Full Service"] ? Full : Select;
+  gd.propertyType = propertyType;
   
   if ([npf3vc_.scvA.value integerValue] == -1)
     npf3vc_.scvA.value = gd.propertyType == Full ? @(150) : @(66);
