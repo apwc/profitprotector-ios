@@ -80,7 +80,8 @@
   
   if (self.property)
   {
-    npf1vc_.textField.text = [self.property valueForKey:@"name"];
+    GlobalMethods *gm = [GlobalMethods singleton];
+    npf1vc_.textField.text = [gm stringByDecodingXMLEntities:[self.property valueForKey:@"name"]];
     [npf1vc_.propertyType setTitle:[self.property valueForKey:@"propertyType"] forState:UIControlStateNormal];
   }
   

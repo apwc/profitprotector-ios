@@ -301,7 +301,8 @@
   name_.autoresizingMask = UIViewAutoresizingFlexibleHeight;
   [cell.contentView addSubview:name_];
   
-  name_.text = [property valueForKey:@"name"];
+  GlobalMethods *gm = [GlobalMethods singleton];
+  name_.text = [gm stringByDecodingXMLEntities:[property valueForKey:@"name"]];
   
   if ([[property valueForKey:@"favorite"] boolValue])
   {

@@ -1,6 +1,12 @@
 #import "GlobalMethods.h"
 #import "GlobalData.h"
 
+@interface GlobalMethods () <NSXMLParserDelegate>
+{
+  NSMutableString *resultString_;
+}
+@end
+
 @implementation GlobalMethods
 
 + (NSDictionary *)math:(NSManagedObject *)obj
@@ -160,6 +166,27 @@
 //  NSLog(@"%@ = %@", key, dictionary[key]);
   
   return dictionary[key];
+}
+
+- (NSString *)stringByDecodingXMLEntities:(NSString *)string
+{
+  resultString_ = [NSMutableString stringWithCapacity:0];
+  
+  NSString *xmlStr = [NSString stringWithFormat:@"<d>%@</d>", string];
+  
+  NSData *data = [xmlStr dataUsingEncoding:NSUTF8StringEncoding
+                      allowLossyConversion:YES];
+  
+  NSXMLParser* xmlParse = [[NSXMLParser alloc] initWithData:data];
+  [xmlParse setDelegate:self];
+  [xmlParse parse];
+  
+  return [NSString stringWithFormat:@"%@", resultString_];
+}
+
+- (void)parser:(NSXMLParser *)parser foundCharacters:(NSString *)s
+{
+  [resultString_ appendString:s];
 }
 
 @end

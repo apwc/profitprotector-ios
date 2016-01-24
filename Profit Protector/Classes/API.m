@@ -201,11 +201,13 @@
   NSData *authData = [auth dataUsingEncoding:NSUTF8StringEncoding];
   NSString *base64 = [authData base64EncodedStringWithOptions:NSDataBase64Encoding64CharacterLineLength];
   
-  NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"%@%@?iam=%@&filter=%@&context=edit&type=property&filter[posts_per_page]=1000",
+  NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"%@%@?iam=%@&filter=%@&context=edit&type=property&filter[posts_per_page]=1000&author=%@",
                                      apiPrefix,
                                      properties,
                                      base64,
-                                     [GlobalData username]]];
+                                     [GlobalData username],
+                                     [GlobalData authorID]]];
+
   NSLog(@"%@", [url absoluteString]);
   // first we aleays clean the cache for every request
   [[NSURLCache sharedURLCache] removeAllCachedResponses];
@@ -277,6 +279,8 @@
   [parameters appendFormat:@"iam=%@", base64];
   
   [parameters appendFormat:@"&filter=%@", [GlobalData username]];
+  
+  [parameters appendFormat:@"&author=%@", [GlobalData authorID]];
   
   [parameters appendFormat:@"&filter[posts_per_page]=1000"];
   
@@ -427,6 +431,8 @@
   
   [parameters appendFormat:@"&filter=%@", [GlobalData username]];
   
+  [parameters appendFormat:@"&author=%@", [GlobalData authorID]];
+
   [parameters appendFormat:@"&filter[posts_per_page]=1000"];
   
   [parameters appendString:@"&context=edit"];
@@ -572,6 +578,8 @@
   
   [parameters appendFormat:@"&filter=%@", [GlobalData username]];
   
+  [parameters appendFormat:@"&author=%@", [GlobalData authorID]];
+
   [parameters appendFormat:@"&filter[posts_per_page]=1000"];
   
   [parameters appendString:@"&context=edit"];

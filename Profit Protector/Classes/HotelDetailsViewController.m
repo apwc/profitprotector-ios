@@ -38,7 +38,9 @@
   
   // UI customizations
   self.view.backgroundColor = [UIColor whiteColor];
-  self.title = [self.property valueForKey:@"name"];
+  
+  GlobalMethods *gm = [GlobalMethods singleton];
+  self.title = [gm stringByDecodingXMLEntities:[self.property valueForKey:@"name"]];
   
   self.navigationItem.rightBarButtonItems = @[[[UIBarButtonItem alloc] initWithTitle:@"Edit"
                                                                               style:UIBarButtonItemStylePlain
@@ -91,7 +93,10 @@
   NSDictionary *math = [GlobalMethods math:property];
   
   // replace the values
-  html = [html stringByReplacingOccurrencesOfString:@"[name]" withString:[property valueForKey:@"name"]];
+  GlobalMethods *gm = [GlobalMethods singleton];
+
+  html = [html stringByReplacingOccurrencesOfString:@"[name]"
+                                         withString:[gm stringByDecodingXMLEntities:[property valueForKey:@"name"]]];
   
   html = [html stringByReplacingOccurrencesOfString:@"[remediationCostsWithout]"
                                          withString:[formatter stringFromNumber:math[@"remediationCostsWithout"]]];
@@ -289,7 +294,6 @@
   html = [html stringByReplacingOccurrencesOfString:@"*Description Part III*"
                                          withString:[GlobalMethods localizedStringWithKey:@"Description Part III"]];
   
-  NSLog(@"%@", html);
   //
   __block NSString *pdfFilename = [NSString stringWithFormat:@"CleanRest Pro Savings Report %@.pdf", [NSDate date]];
   __block NSString *pdfPath = [[NSString stringWithFormat:@"~/Documents/%@.pdf", pdfFilename] stringByExpandingTildeInPath];

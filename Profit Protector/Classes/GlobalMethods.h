@@ -7,4 +7,6 @@
 
 + (NSString *)localizedStringWithKey:(NSString *)key;
 
+- (NSString *)stringByDecodingXMLEntities:(NSString *)string;
+
 @end
