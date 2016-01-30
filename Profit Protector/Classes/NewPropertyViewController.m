@@ -2,7 +2,6 @@
 #import "CoreDataStoring.h"
 #import "GlobalData.h"
 #import "API.h"
-#import "PropertyTypeTableViewController.h"
 #import "NewPropertyForm1ViewController.h"
 #import "NewPropertyForm2ViewController.h"
 #import "NewPropertyForm3ViewController.h"
@@ -12,8 +11,7 @@
 #import "NewPropertyForm7ViewController.h"
 #import "NewPropertyForm8ViewController.h"
 
-@interface NewPropertyViewController () <PropertyTypeDelegate,
-                                         UIScrollViewDelegate>
+@interface NewPropertyViewController () <UIScrollViewDelegate>
 {
   UIScrollView                    *uisv_;
   UIPageControl                   *uipc_;
@@ -401,10 +399,60 @@
 
  - (void)propertyType:(UIButton *)uib
 {
-  PropertyTypeTableViewController *ptvc = [[PropertyTypeTableViewController alloc] initWithStyle:UITableViewStylePlain];
-  ptvc.delegate = self;
+  UIAlertController *alert = [UIAlertController alertControllerWithTitle:nil
+                                                                 message:nil
+                                                          preferredStyle:UIAlertControllerStyleActionSheet];
   
-  [self.navigationController pushViewController:ptvc animated:YES];
+  //
+  UIAlertAction *full = [UIAlertAction actionWithTitle:[GlobalMethods localizedStringWithKey:@"Full Service"]
+                                                 style:UIAlertActionStyleDefault
+                                               handler:^(UIAlertAction *action) {
+                                                 [self propertyTypeDidSelect:Full];
+                                               }];
+  [alert addAction:full];
+  
+  //
+  UIAlertAction *select = [UIAlertAction actionWithTitle:[GlobalMethods localizedStringWithKey:@"Select Service"]
+                                                   style:UIAlertActionStyleDefault
+                                                 handler:^(UIAlertAction *action) {
+                                                   [self propertyTypeDidSelect:Select];
+                                                 }];
+  [alert addAction:select];
+  
+  // cancel
+  UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:[GlobalMethods localizedStringWithKey:@"Cancel"]
+                                                         style:UIAlertActionStyleCancel
+                                                       handler:nil];
+  [alert addAction:cancelAction];
+  
+  // note: you can control the order buttons are shown, unlike UIActionSheet
+  [alert setModalPresentationStyle:UIModalPresentationPopover];
+  
+  UIPopoverPresentationController *popPresenter = [alert popoverPresentationController];
+  popPresenter.sourceView = uib;
+  popPresenter.sourceRect = uib.bounds;
+  
+  [self presentViewController:alert animated:YES completion:nil];
+}
+
+#pragma mark - Property type selection
+
+- (void)propertyTypeDidSelect:(PropertyType)propertyType
+{
+  [npf1vc_.propertyType setTitle:propertyType == Full ? [GlobalMethods localizedStringWithKey:@"Full Service"] : [GlobalMethods localizedStringWithKey:@"Select Service"]
+                        forState:UIControlStateNormal];
+  
+  GlobalData *gd = [GlobalData singleton];
+  gd.propertyType = propertyType;
+  
+  if ([npf3vc_.scvA.value integerValue] == -1)
+    npf3vc_.scvA.value = gd.propertyType == Full ? @(150) : @(66);
+  
+  if ([npf3vc_.scvB.value integerValue] == -1)
+    npf3vc_.scvB.value = gd.propertyType == Full ? @(57) : @(10);
+  
+  if ([npf3vc_.scvC.value integerValue] == -1)
+    npf3vc_.scvC.value = gd.propertyType == Full ? @(17) : @(0);
 }
 
 #pragma mark - API notifications callbacks
@@ -550,26 +598,6 @@
   [cdm.managedObjectContext save:nil];
   
   [self.navigationController popToRootViewControllerAnimated:YES];
-}
-
-#pragma mark - PropertyTypeDelegate delegate methods implementation
-
-- (void)propertyTypeDidSelect:(PropertyType)propertyType
-{
-  [npf1vc_.propertyType setTitle:propertyType == Full ? [GlobalMethods localizedStringWithKey:@"Full Service"] : [GlobalMethods localizedStringWithKey:@"Select Service"]
-                        forState:UIControlStateNormal];
-  
-  GlobalData *gd = [GlobalData singleton];
-  gd.propertyType = propertyType;
-  
-  if ([npf3vc_.scvA.value integerValue] == -1)
-    npf3vc_.scvA.value = gd.propertyType == Full ? @(150) : @(66);
-  
-  if ([npf3vc_.scvB.value integerValue] == -1)
-    npf3vc_.scvB.value = gd.propertyType == Full ? @(57) : @(10);
-  
-  if ([npf3vc_.scvC.value integerValue] == -1)
-    npf3vc_.scvC.value = gd.propertyType == Full ? @(17) : @(0);
 }
 
 #pragma mark - UIScrollView delegate methods implementation

@@ -11,7 +11,6 @@
 		B72789171B65B991000AB281 /* GlobalData.m in Sources */ = {isa = PBXBuildFile; fileRef = B72789161B65B991000AB281 /* GlobalData.m */; };
 		B736BBF11B8A998400557C5A /* report_receipt.html in Resources */ = {isa = PBXBuildFile; fileRef = B736BBEF1B8A998400557C5A /* report_receipt.html */; };
 		B753ECE81B5B304200EFBD57 /* NewPropertyForm7ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B753ECE71B5B304200EFBD57 /* NewPropertyForm7ViewController.m */; };
-		B753ECEB1B5B410600EFBD57 /* PropertyTypeTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B753ECEA1B5B410600EFBD57 /* PropertyTypeTableViewController.m */; };
 		B75A187E1B8AACD400C37C48 /* NDHTMLtoPDF.m in Sources */ = {isa = PBXBuildFile; fileRef = B75A187D1B8AACD400C37C48 /* NDHTMLtoPDF.m */; };
 		B768D7FC1B50B41D00D2FEF7 /* SuperViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B768D7FB1B50B41D00D2FEF7 /* SuperViewController.m */; };
 		B768D7FF1B50C44200D2FEF7 /* SignupViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B768D7FE1B50C44200D2FEF7 /* SignupViewController.m */; };
@@ -75,8 +74,6 @@
 		B736BBEF1B8A998400557C5A /* report_receipt.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = report_receipt.html; sourceTree = "<group>"; };
 		B753ECE61B5B304200EFBD57 /* NewPropertyForm7ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewPropertyForm7ViewController.h; sourceTree = "<group>"; };
 		B753ECE71B5B304200EFBD57 /* NewPropertyForm7ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewPropertyForm7ViewController.m; sourceTree = "<group>"; };
-		B753ECE91B5B410600EFBD57 /* PropertyTypeTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PropertyTypeTableViewController.h; sourceTree = "<group>"; };
-		B753ECEA1B5B410600EFBD57 /* PropertyTypeTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PropertyTypeTableViewController.m; sourceTree = "<group>"; };
 		B75A187C1B8AACD400C37C48 /* NDHTMLtoPDF.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NDHTMLtoPDF.h; sourceTree = "<group>"; };
 		B75A187D1B8AACD400C37C48 /* NDHTMLtoPDF.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NDHTMLtoPDF.m; sourceTree = "<group>"; };
 		B768D7FA1B50B41D00D2FEF7 /* SuperViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SuperViewController.h; sourceTree = "<group>"; };
@@ -321,8 +318,6 @@
 				B768D8071B50E54B00D2FEF7 /* PKRevealController */,
 				B79F99551B52086E00BF945F /* ProfitProtectorStyleKit.h */,
 				B79F99561B52086E00BF945F /* ProfitProtectorStyleKit.m */,
-				B753ECE91B5B410600EFBD57 /* PropertyTypeTableViewController.h */,
-				B753ECEA1B5B410600EFBD57 /* PropertyTypeTableViewController.m */,
 				B768D7FD1B50C44200D2FEF7 /* SignupViewController.h */,
 				B768D7FE1B50C44200D2FEF7 /* SignupViewController.m */,
 				B7D8ACCB1B5A3F5200041ED1 /* Singleton.h */,
@@ -508,7 +503,6 @@
 				B7FEF8D81B548DC00018CB7D /* NewPropertyForm3ViewController.m in Sources */,
 				B768D82C1B50E54B00D2FEF7 /* PKRevealController.m in Sources */,
 				B768D8271B50E54B00D2FEF7 /* PKRevealControllerView.m in Sources */,
-				B753ECEB1B5B410600EFBD57 /* PropertyTypeTableViewController.m in Sources */,
 				B768D8231B50E54B00D2FEF7 /* CAAnimation+PKIdentifier.m in Sources */,
 				B768D82F1B50E5BB00D2FEF7 /* MainViewController.m in Sources */,
 				B7D8ACCA1B5A3F3C00041ED1 /* CoreDataStoring.m in Sources */,
