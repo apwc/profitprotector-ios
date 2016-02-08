@@ -16,6 +16,13 @@
               *phone_,
               *company_,
               *type_;
+  
+  UIImageView *emailAsterix_,
+              *passwordAsterix_,
+              *nameAsterix_,
+              *phoneAsterix_,
+              *companyAsterix_,
+              *typeAsterix_;
 }
 @end
 
@@ -44,6 +51,7 @@
   title.textColor = [UIColor darkGrayColor];
   [uisv_ addSubview:title];
   
+  CGFloat textFieldWidth = CGRectGetWidth(self.view.bounds) - 100.0f;
   CGFloat textFieldHeight = 37.0f;
   CGFloat textFieldFontsize = 16.0f;
   CGFloat buttonHeight = 60.0f;
@@ -51,7 +59,7 @@
   // email
   email_ = [[UITextField alloc] initWithFrame:CGRectMake(60.0f,
                                                          CGRectGetMaxY(title.frame),
-                                                         CGRectGetWidth(self.view.bounds) - 60.0f,
+                                                         textFieldWidth,
                                                          textFieldHeight)];
   email_.delegate = self;
   email_.font = [UIFont fontWithName:@"HelveticaNeue" size:textFieldFontsize];
@@ -59,6 +67,7 @@
   email_.autocorrectionType = UITextAutocorrectionTypeNo;
   email_.autocapitalizationType = UITextAutocapitalizationTypeNone;
   email_.placeholder = [GlobalMethods localizedStringWithKey:@"Email"];
+  email_.clipsToBounds = NO;
   [uisv_ addSubview:email_];
   
   UIImageView *emailIcon = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"email"]];
@@ -68,6 +77,10 @@
                                emailIcon.image.size.height);
   [uisv_ addSubview:emailIcon];
   
+  emailAsterix_ = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"asterix"]];
+  emailAsterix_.center = CGPointMake(CGRectGetWidth(email_.bounds) + 15.0f, CGRectGetMidY(email_.bounds));
+  [email_ addSubview:emailAsterix_];
+
   // division line
   UIView *divisionLine1 = [[UIView alloc] initWithFrame:CGRectMake(0.0f,
                                                                    CGRectGetMaxY(email_.frame),
@@ -79,7 +92,7 @@
   // password
   password_ = [[UITextField alloc] initWithFrame:CGRectMake(60.0f,
                                                             CGRectGetMaxY(email_.frame),
-                                                            CGRectGetWidth(self.view.bounds) - 60.0f,
+                                                            textFieldWidth,
                                                             textFieldHeight)];
   password_.delegate = self;
   password_.font = [UIFont fontWithName:@"HelveticaNeue" size:textFieldFontsize];
@@ -88,6 +101,7 @@
   password_.autocapitalizationType = UITextAutocapitalizationTypeNone;
   password_.secureTextEntry = YES;
   password_.placeholder = [GlobalMethods localizedStringWithKey:@"Password"];
+  password_.clipsToBounds = NO;
   [uisv_ addSubview:password_];
   
   UIImageView *passwordIcon = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"password"]];
@@ -96,6 +110,10 @@
                                   emailIcon.image.size.width,
                                   emailIcon.image.size.height);
   [uisv_ addSubview:passwordIcon];
+  
+  passwordAsterix_ = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"asterix"]];
+  passwordAsterix_.center = CGPointMake(CGRectGetWidth(password_.bounds) + 15.0f, CGRectGetMidY(password_.bounds));
+  [password_ addSubview:passwordAsterix_];
   
   // division line
   UIView *divisionLine2 = [[UIView alloc] initWithFrame:CGRectMake(0.0f,
@@ -108,7 +126,7 @@
   // name
   name_ = [[UITextField alloc] initWithFrame:CGRectMake(60.0f,
                                                         CGRectGetMaxY(password_.frame),
-                                                        CGRectGetWidth(self.view.bounds) - 60.0f,
+                                                        textFieldWidth,
                                                         textFieldHeight)];
   name_.delegate = self;
   name_.font = [UIFont fontWithName:@"HelveticaNeue" size:textFieldFontsize];
@@ -116,6 +134,7 @@
   name_.autocorrectionType = UITextAutocorrectionTypeNo;
   name_.autocapitalizationType = UITextAutocapitalizationTypeNone;
   name_.placeholder = [GlobalMethods localizedStringWithKey:@"Full Name"];
+  name_.clipsToBounds = NO;
   [uisv_ addSubview:name_];
   
   UIImageView *nameIcon = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"username"]];
@@ -125,6 +144,10 @@
                               emailIcon.image.size.height);
   [uisv_ addSubview:nameIcon];
   
+  nameAsterix_ = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"asterix"]];
+  nameAsterix_.center = CGPointMake(CGRectGetWidth(name_.bounds) + 15.0f, CGRectGetMidY(name_.bounds));
+  [name_ addSubview:nameAsterix_];
+  
   // division line
   UIView *divisionLine3 = [[UIView alloc] initWithFrame:CGRectMake(0.0f,
                                                                    CGRectGetMaxY(name_.frame),
@@ -133,20 +156,10 @@
   divisionLine3.backgroundColor = [UIColor colorWithWhite:0.7f alpha:1.0f];
   [uisv_ addSubview:divisionLine3];
 
-  
-  
-  // division line
-  UIView *divisionLine4 = [[UIView alloc] initWithFrame:CGRectMake(0.0f,
-                                                                   CGRectGetMaxY(name_.frame),
-                                                                   CGRectGetWidth(self.view.bounds),
-                                                                   1.0f)];
-  divisionLine4.backgroundColor = [UIColor colorWithWhite:0.7f alpha:1.0f];
-  [uisv_ addSubview:divisionLine4];
-  
   // phone
   phone_ = [[UITextField alloc] initWithFrame:CGRectMake(60.0f,
                                                          CGRectGetMaxY(name_.frame),
-                                                         CGRectGetWidth(self.view.bounds) - 60.0f,
+                                                         textFieldWidth,
                                                          textFieldHeight)];
   phone_.delegate = self;
   phone_.font = [UIFont fontWithName:@"HelveticaNeue" size:textFieldFontsize];
@@ -154,6 +167,7 @@
   phone_.autocorrectionType = UITextAutocorrectionTypeNo;
   phone_.autocapitalizationType = UITextAutocapitalizationTypeNone;
   phone_.placeholder = [GlobalMethods localizedStringWithKey:@"Phone"];
+  phone_.clipsToBounds = NO;
   [uisv_ addSubview:phone_];
   
   UIImageView *phoneIcon = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"phone"]];
@@ -162,6 +176,10 @@
                                phoneIcon.image.size.width,
                                phoneIcon.image.size.height);
   [uisv_ addSubview:phoneIcon];
+  
+  phoneAsterix_ = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"asterix"]];
+  phoneAsterix_.center = CGPointMake(CGRectGetWidth(phone_.bounds) + 15.0f, CGRectGetMidY(phone_.bounds));
+  [phone_ addSubview:phoneAsterix_];
   
   // division line
   UIView *divisionLine5 = [[UIView alloc] initWithFrame:CGRectMake(0.0f,
@@ -174,7 +192,7 @@
   // company
   company_ = [[UITextField alloc] initWithFrame:CGRectMake(60.0f,
                                                            CGRectGetMaxY(phone_.frame),
-                                                           CGRectGetWidth(self.view.bounds) - 60.0f,
+                                                           textFieldWidth,
                                                            textFieldHeight)];
   company_.delegate = self;
   company_.font = [UIFont fontWithName:@"HelveticaNeue" size:textFieldFontsize];
@@ -182,6 +200,7 @@
   company_.autocorrectionType = UITextAutocorrectionTypeNo;
   company_.autocapitalizationType = UITextAutocapitalizationTypeNone;
   company_.placeholder = [GlobalMethods localizedStringWithKey:@"Company"];
+  company_.clipsToBounds = NO;
   [uisv_ addSubview:company_];
   
   UIImageView *companyIcon = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"company"]];
@@ -190,6 +209,10 @@
                                  emailIcon.image.size.width,
                                  emailIcon.image.size.height);
   [uisv_ addSubview:companyIcon];
+  
+  companyAsterix_ = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"asterix"]];
+  companyAsterix_.center = CGPointMake(CGRectGetWidth(company_.bounds) + 15.0f, CGRectGetMidY(company_.bounds));
+  [company_ addSubview:companyAsterix_];
   
   // division line
   UIView *divisionLine6 = [[UIView alloc] initWithFrame:CGRectMake(0.0f,
@@ -202,7 +225,7 @@
   // username
   type_ = [[UITextField alloc] initWithFrame:CGRectMake(60.0f,
                                                         CGRectGetMaxY(company_.frame),
-                                                        CGRectGetWidth(self.view.bounds) - 60.0f,
+                                                        textFieldWidth,
                                                         textFieldHeight)];
   type_.delegate = self;
   type_.font = [UIFont fontWithName:@"HelveticaNeue" size:textFieldFontsize];
@@ -211,6 +234,7 @@
   type_.autocapitalizationType = UITextAutocapitalizationTypeNone;
   type_.enabled = YES;
   type_.placeholder = [GlobalMethods localizedStringWithKey:@"Type"];
+  type_.clipsToBounds = NO;
   [uisv_ addSubview:type_];
   
   UIImageView *typeIcon = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"job"]];
@@ -219,6 +243,10 @@
                               emailIcon.image.size.width,
                               emailIcon.image.size.height);
   [uisv_ addSubview:typeIcon];
+  
+  typeAsterix_ = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"asterix"]];
+  typeAsterix_.center = CGPointMake(CGRectGetWidth(type_.bounds) + 15.0f, CGRectGetMidY(type_.bounds));
+  [type_ addSubview:typeAsterix_];
   
   // division line
   UIView *divisionLine7 = [[UIView alloc] initWithFrame:CGRectMake(0.0f,
@@ -279,6 +307,8 @@
                                            selector:@selector(keyboardWillHide:)
                                                name:UIKeyboardWillHideNotification
                                              object:nil];
+  
+  [self disactivateAllAsterixes];
 }
 
 - (void)viewWillDisappear:(BOOL)animated
@@ -307,6 +337,23 @@
 
 - (void)join:(UIButton *)uib
 {
+  if ([self checkAndActivateAsterixesForMissingFields])
+  {
+    UIAlertController *alert = [UIAlertController alertControllerWithTitle:nil
+                                                                   message:@"Please fill all the missing fields"
+                                                            preferredStyle:UIAlertControllerStyleAlert];
+    
+    UIAlertAction *ok = [UIAlertAction actionWithTitle:@"Ok"
+                                                 style:UIAlertActionStyleCancel
+                                               handler:nil];
+    
+    [alert addAction:ok];
+    
+    [self presentViewController:alert animated:YES completion:nil];
+    
+    return;
+  }
+  
   NSString *type = @"";
   
   if (![type_.text isEqualToString:@""])
@@ -320,7 +367,7 @@
     if ([type_.text isEqualToString:[GlobalMethods localizedStringWithKey:@"PCO"]])
       type = @"pco";
   }
-  
+
   [API createUser:email_.text
          password:password_.text
              name:name_.text
@@ -343,6 +390,71 @@
 - (void)userTypeSelected:(NSString *)userType
 {
   type_.text = userType;
+}
+
+- (void)disactivateAllAsterixes
+{
+  emailAsterix_.hidden = YES;
+  passwordAsterix_.hidden = YES;
+  nameAsterix_.hidden = YES;
+  phoneAsterix_.hidden = YES;
+  companyAsterix_.hidden = YES;
+  typeAsterix_.hidden = YES;
+}
+
+- (BOOL)checkAndActivateAsterixesForMissingFields
+{
+  BOOL flag = NO;
+  
+  if ([email_.text isEqualToString:@""])
+  {
+    flag = YES;
+    emailAsterix_.hidden = NO;
+  }
+  else
+    emailAsterix_.hidden = YES;
+  
+  if ([password_.text isEqualToString:@""])
+  {
+    flag = YES;
+    passwordAsterix_.hidden = NO;
+  }
+  else
+    passwordAsterix_.hidden = YES;
+  
+  if ([name_.text isEqualToString:@""])
+  {
+    flag = YES;
+    nameAsterix_.hidden = NO;
+  }
+  else
+    nameAsterix_.hidden = YES;
+  
+  if ([phone_.text isEqualToString:@""])
+  {
+    flag = YES;
+    phoneAsterix_.hidden = NO;
+  }
+  else
+    phoneAsterix_.hidden = YES;
+  
+  if ([company_.text isEqualToString:@""])
+  {
+    flag = YES;
+    companyAsterix_.hidden = NO;
+  }
+  else
+    companyAsterix_.hidden = YES;
+  
+  if ([type_.text isEqualToString:@""])
+  {
+    flag = YES;
+    typeAsterix_.hidden = NO;
+  }
+  else
+    typeAsterix_.hidden = YES;
+  
+  return flag;
 }
 
 #pragma mark - API notifications callbacks
