@@ -15,6 +15,7 @@
   self.scvA.key = @"preemptivePestControlRetainer";
   self.scvA.title = [GlobalMethods localizedStringWithKey:@"Form8 Question1"];
   self.scvA.value = @(400);
+  self.scvA.industryStandardValue = 400;
   [self.uisv addSubview:self.scvA];
   
   //

@@ -446,13 +446,22 @@
   gd.propertyType = propertyType;
   
   if ([npf3vc_.scvA.value integerValue] == -1)
+  {
     npf3vc_.scvA.value = gd.propertyType == Full ? @(150) : @(66);
+    npf3vc_.scvA.industryStandardValue = [npf3vc_.scvA.value integerValue];
+  }
   
   if ([npf3vc_.scvB.value integerValue] == -1)
+  {
     npf3vc_.scvB.value = gd.propertyType == Full ? @(57) : @(10);
+    npf3vc_.scvB.industryStandardValue = [npf3vc_.scvB.value integerValue];
+  }
   
   if ([npf3vc_.scvC.value integerValue] == -1)
+  {
     npf3vc_.scvC.value = gd.propertyType == Full ? @(17) : @(0);
+    npf3vc_.scvC.industryStandardValue = [npf3vc_.scvC.value integerValue];
+  }
 }
 
 #pragma mark - API notifications callbacks

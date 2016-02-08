@@ -15,6 +15,7 @@
   self.scvA.key = @"timesPerYearBedClean";
   self.scvA.title = [GlobalMethods localizedStringWithKey:@"Form6 Question1"];
   self.scvA.value = @(2);
+  self.scvA.industryStandardValue = 2;
   [self.uisv addSubview:self.scvA];
   
   //
@@ -26,6 +27,7 @@
   self.scvB.key = @"costToCleanAndReinstallEncasements";
   self.scvB.title = [GlobalMethods localizedStringWithKey:@"Form6 Question2"];
   self.scvB.value = @(1.50);
+  self.scvB.industryStandardValue = 1.50;
   [self.uisv addSubview:self.scvB];
   
   //
@@ -37,6 +39,7 @@
   self.scvC.key = @"bedBugIncidents";
   self.scvC.title = [GlobalMethods localizedStringWithKey:@"Form6 Question3"];
   self.scvC.value = @(8);
+  self.scvC.industryStandardValue = 8;
   [self.uisv addSubview:self.scvC];
   
   //
@@ -48,6 +51,7 @@
   self.scvD.key = @"grievanceCosts";
   self.scvD.title = [GlobalMethods localizedStringWithKey:@"Form6 Question4"];
   self.scvD.value = @(1000);
+  self.scvD.industryStandardValue = 1000;
   [self.uisv addSubview:self.scvD];
   
   self.uisv.contentSize = CGSizeMake(CGRectGetWidth(self.view.frame),

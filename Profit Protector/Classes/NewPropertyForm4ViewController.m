@@ -25,6 +25,7 @@
   self.scvB.key = @"costOfReplaceFurnishings";
   self.scvB.title = [GlobalMethods localizedStringWithKey:@"Form4 Question2"];
   self.scvB.value = @(500);
+  self.scvB.industryStandardValue = 500;
   [self.uisv addSubview:self.scvB];
   
   self.uisv.contentSize = CGSizeMake(CGRectGetWidth(self.view.frame),

@@ -12,5 +12,6 @@
 @property (nonatomic, strong) NSNumber    *value;
 @property (nonatomic)         CGFloat     height;
 @property (nonatomic)         NSURL       *url;
+@property (nonatomic)         NSInteger   industryStandardValue;
 
 @end

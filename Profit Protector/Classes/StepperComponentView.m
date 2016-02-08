@@ -9,6 +9,8 @@
   NSNumberFormatter *formatter_;
   
   NSTimer           *timer_;
+  
+  UIImageView       *standard_;
 }
 @end
 
@@ -21,6 +23,7 @@
   {
     self.backgroundColor = [UIColor clearColor];
     self.value = @(-1);
+    self.industryStandardValue = -9999999999999999999;
     
     // Create formatter
     formatter_ = [[NSNumberFormatter alloc] init];
@@ -141,6 +144,12 @@
   textField_.clearsOnBeginEditing = YES;
   [self addSubview:textField_];
 
+  //
+  standard_ = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"standard"]];
+  standard_.center = CGPointMake(CGRectGetMinX(textField_.frame) + 15.0f, CGRectGetMinY(textField_.frame) + 15.0f);
+  standard_.hidden = YES;
+  [self addSubview:standard_];
+
   self.height = CGRectGetMaxY(bottomLine.frame);
 }
 
@@ -164,7 +173,16 @@
   
   textField_.text = [formatter_ stringFromNumber:_value];
   
+  [self checkForIndustryStandardValue];
+  
   [self updateGlobalValues];
+}
+
+- (void)setIndustryStandardValue:(NSInteger)industryStandardValue
+{
+  _industryStandardValue = industryStandardValue;
+  
+  [self checkForIndustryStandardValue];
 }
 
 - (void)minus:(UIButton *)uib
@@ -256,6 +274,14 @@
   
   [[NSNotificationCenter defaultCenter] postNotificationName:self.key
                                                       object:self.value];
+}
+
+- (void)checkForIndustryStandardValue
+{
+  if ([self.value integerValue] == self.industryStandardValue)
+    standard_.hidden = NO;
+  else
+    standard_.hidden = YES;
 }
 
 #pragma mark - UITextField delegate methods implementation

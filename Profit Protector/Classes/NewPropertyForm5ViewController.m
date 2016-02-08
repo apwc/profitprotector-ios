@@ -27,6 +27,7 @@
   self.scvA.key = @"percentageOfMattressesReplaceEachYear";
   self.scvA.title = [GlobalMethods localizedStringWithKey:@"Form5 Question1"];
   self.scvA.value = @(5);
+  self.scvA.industryStandardValue = 5;
   [self.uisv addSubview:self.scvA];
   
   //
