@@ -297,32 +297,7 @@
                                                name:apiUserSignupSuccessfulNotification
                                              object:nil];
   
-  // register the UIKeyboard notifications
-  [[NSNotificationCenter defaultCenter] addObserver:self
-                                           selector:@selector(keyboardWillShow:)
-                                               name:UIKeyboardWillShowNotification
-                                             object:nil];
-  
-  [[NSNotificationCenter defaultCenter] addObserver:self
-                                           selector:@selector(keyboardWillHide:)
-                                               name:UIKeyboardWillHideNotification
-                                             object:nil];
-  
   [self disactivateAllAsterixes];
-}
-
-- (void)viewWillDisappear:(BOOL)animated
-{
-  [super viewWillDisappear:animated];
-  
-  // register the UIKeyboard notifications
-  [[NSNotificationCenter defaultCenter] removeObserver:self
-                                                  name:UIKeyboardWillShowNotification
-                                                object:nil];
-  
-  [[NSNotificationCenter defaultCenter] removeObserver:self
-                                                  name:UIKeyboardWillHideNotification
-                                                object:nil];
 }
 
 - (void)handleSingleTap:(UITapGestureRecognizer *) sender
@@ -497,25 +472,6 @@
   [textField resignFirstResponder];
   
   return YES;
-}
-
-#pragma mark - UIKeyboard delegate methods implementation
-
-- (void)keyboardWillShow:(NSNotification *)notification
-{
-  NSDictionary *info = [notification userInfo];
-  
-  CGSize keyboardSize = [[info objectForKey:UIKeyboardFrameBeginUserInfoKey] CGRectValue].size;
-  
-  uisv_.contentInset = UIEdgeInsetsMake(0.0f,
-                                        0.0f,
-                                        keyboardSize.height,
-                                        0.0f);
-}
-
-- (void)keyboardWillHide:(NSNotification *)notification
-{
-  uisv_.contentInset = UIEdgeInsetsZero;
 }
 
 @end
