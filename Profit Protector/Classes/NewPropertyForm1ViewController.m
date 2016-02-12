@@ -64,6 +64,18 @@
   [self.propertyType setTitleColor:[UIColor darkGrayColor] forState:UIControlStateNormal];
   [self.view addSubview:self.propertyType];
   
+  //
+  UILabel *extra = [[UILabel alloc] initWithFrame:CGRectMake(0.0f,
+                                                             CGRectGetMaxY(self.propertyType.frame) + 100.f,
+                                                             CGRectGetWidth(self.view.frame),
+                                                             64)];
+  extra.font = [UIFont fontWithName:@"HelveticaNeue" size:18.0f];
+  extra.textColor = [UIColor darkGrayColor];
+  extra.textAlignment = NSTextAlignmentCenter;
+  extra.text = @"* this amount is the\nindustry average";
+  extra.numberOfLines = 0;
+  [self.uisv addSubview:extra];
+  
   self.uisv.contentSize = CGSizeMake(CGRectGetWidth(self.view.frame),
                                      CGRectGetMaxY(self.textField.frame));
 }

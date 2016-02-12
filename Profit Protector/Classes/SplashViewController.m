@@ -10,6 +10,9 @@
   UITextField *username_,
               *password_;
   
+  UIImageView *usernameAsterix_,
+              *passwordAsterix_;
+  
   BOOL        storeLogin_;
 }
 @end
@@ -46,7 +49,7 @@
   // username
   username_ = [[UITextField alloc] initWithFrame:CGRectMake(60.0f,
                                                             CGRectGetMaxY(copy.frame) + 20.0f,
-                                                            CGRectGetWidth(self.view.bounds) - 60.0f,
+                                                            CGRectGetWidth(self.view.bounds) - 100.0f,
                                                             textFieldHeight)];
   username_.delegate = self;
   username_.font = [UIFont fontWithName:@"HelveticaNeue" size:textFieldFontsize];
@@ -54,6 +57,7 @@
   username_.autocorrectionType = UITextAutocorrectionTypeNo;
   username_.autocapitalizationType = UITextAutocapitalizationTypeNone;
   username_.placeholder = [GlobalMethods localizedStringWithKey:@"Email"];
+  username_.clipsToBounds = NO;
   [self.view addSubview:username_];
   
   UIImageView *usernameIcon = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"email"]];
@@ -62,6 +66,10 @@
                                   usernameIcon.image.size.width,
                                   usernameIcon.image.size.height);
   [self.view addSubview:usernameIcon];
+  
+  usernameAsterix_ = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"asterix"]];
+  usernameAsterix_.center = CGPointMake(CGRectGetWidth(username_.bounds) + 15.0f, CGRectGetMidY(username_.bounds));
+  [username_ addSubview:usernameAsterix_];
   
   // division line
   UIView *divisionLine1 = [[UIView alloc] initWithFrame:CGRectMake(0.0f,
@@ -74,7 +82,7 @@
   // username
   password_ = [[UITextField alloc] initWithFrame:CGRectMake(60.0f,
                                                             CGRectGetMaxY(username_.frame),
-                                                            CGRectGetWidth(self.view.bounds) - 60.0f,
+                                                            CGRectGetWidth(username_.bounds),
                                                             textFieldHeight)];
   password_.delegate = self;
   password_.font = [UIFont fontWithName:@"HelveticaNeue" size:textFieldFontsize];
@@ -83,6 +91,7 @@
   password_.autocapitalizationType = UITextAutocapitalizationTypeNone;
   password_.secureTextEntry = YES;
   password_.placeholder = [GlobalMethods localizedStringWithKey:@"Password"];
+  password_.clipsToBounds = NO;
   [self.view addSubview:password_];
   
   UIImageView *passwordIcon = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"password"]];
@@ -91,6 +100,10 @@
                                   usernameIcon.image.size.width,
                                   usernameIcon.image.size.height);
   [self.view addSubview:passwordIcon];
+  
+  passwordAsterix_ = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"asterix"]];
+  passwordAsterix_.center = CGPointMake(CGRectGetWidth(password_.bounds) + 15.0f, CGRectGetMidY(password_.bounds));
+  [password_ addSubview:passwordAsterix_];
   
   // division line
   UIView *divisionLine2 = [[UIView alloc] initWithFrame:CGRectMake(0.0f,
@@ -140,6 +153,8 @@
              action:@selector(signup:)
    forControlEvents:UIControlEventTouchUpInside];
   [self.view addSubview:signup];
+  
+  [self disactivateAllAsterixes];
   
   //
   UITapGestureRecognizer *tapper = [[UITapGestureRecognizer alloc] initWithTarget:self
@@ -214,8 +229,54 @@
   [self presentViewController:alert animated:YES completion:nil];
 }
 
+- (void)disactivateAllAsterixes
+{
+  usernameAsterix_.hidden = YES;
+  passwordAsterix_.hidden = YES;
+}
+
+- (BOOL)checkAndActivateAsterixesForMissingFields
+{
+  BOOL flag = NO;
+  
+  if ([username_.text isEqualToString:@""])
+  {
+    flag = YES;
+    usernameAsterix_.hidden = NO;
+  }
+  else
+    usernameAsterix_.hidden = YES;
+  
+  if ([password_.text isEqualToString:@""])
+  {
+    flag = YES;
+    passwordAsterix_.hidden = NO;
+  }
+  else
+    passwordAsterix_.hidden = YES;
+  
+  return flag;
+}
+
 - (void)signin:(UIButton *)uib
 {
+  if ([self checkAndActivateAsterixesForMissingFields])
+  {
+    UIAlertController *alert = [UIAlertController alertControllerWithTitle:nil
+                                                                   message:@"Please fill all the missing fields"
+                                                            preferredStyle:UIAlertControllerStyleAlert];
+    
+    UIAlertAction *ok = [UIAlertAction actionWithTitle:@"Ok"
+                                                 style:UIAlertActionStyleCancel
+                                               handler:nil];
+    
+    [alert addAction:ok];
+    
+    [self presentViewController:alert animated:YES completion:nil];
+    
+    return;
+  }
+  
   storeLogin_ = YES;
   
   [API loginWithUsername:username_.text
