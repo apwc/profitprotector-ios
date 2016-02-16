@@ -330,8 +330,8 @@
                                     }
                                     else
                                     {
-                                      UIAlertView *alert = [[UIAlertView alloc] initWithTitle:[GlobalMethods localizedStringWithKey:@"Alert"]
-                                                                                      message:[GlobalMethods localizedStringWithKey:@"Device is unable to send email in its current state."]
+                                      UIAlertView *alert = [[UIAlertView alloc] initWithTitle:[GlobalMethods localizedStringWithKey:@"Alert Report Email Title"]
+                                                                                      message:[GlobalMethods localizedStringWithKey:@"Alert Report Email Message"]
                                                                                      delegate:self
                                                                             cancelButtonTitle:@"OK"
                                                                             otherButtonTitles:nil];
