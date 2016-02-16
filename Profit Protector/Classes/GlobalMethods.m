@@ -165,7 +165,7 @@
 
   NSLog(@"%@ = %@", key, dictionary[key]);
   
-  return dictionary[key];
+  return dictionary[key] ? dictionary[key] : @"|MISSING TRANSLATION|";
 }
 
 - (NSString *)stringByDecodingXMLEntities:(NSString *)string
