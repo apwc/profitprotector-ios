@@ -586,7 +586,7 @@
   
   [parameters appendString:@"&type=property"];
   
-  [parameters appendString:@"&status=draft"];
+  [parameters appendString:@"&status=trash"];
   
   [parameters appendFormat:@"&title=%@", [property valueForKey:@"name"]];
   
