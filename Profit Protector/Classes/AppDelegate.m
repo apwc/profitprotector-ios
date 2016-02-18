@@ -5,6 +5,8 @@
 #import "MainViewController.h"
 #import "FrontTableViewController.h"
 #import "LeftTableViewController.h"
+#import "PendingApprovalViewController.h"
+#import "DeniedAccessViewController.h"
 
 @implementation AppDelegate
 
@@ -38,6 +40,16 @@
   [[NSNotificationCenter defaultCenter] addObserver:self
                                            selector:@selector(userDidLogout:)
                                                name:userDidLogoutNotification
+                                             object:nil];
+  
+  [[NSNotificationCenter defaultCenter] addObserver:self
+                                           selector:@selector(accountPendingStatus:)
+                                               name:accountPendingStatusNotification
+                                             object:nil];
+  
+  [[NSNotificationCenter defaultCenter] addObserver:self
+                                           selector:@selector(accountDeniedStatus:)
+                                               name:accountDeniedStatusNotification
                                              object:nil];
  
   return YES;
@@ -73,6 +85,24 @@
   [uinc setNavigationBarHidden:YES animated:NO];
   
   self.window.rootViewController = uinc;
+}
+
+- (void)accountPendingStatus:(NSNotification *)notification
+{
+  [GlobalData deleteAuthorID];
+  [GlobalData deleteUsername];
+  [GlobalData deletePassword];
+  
+  self.window.rootViewController = [[PendingApprovalViewController alloc] init];
+}
+
+- (void)accountDeniedStatus:(NSNotification *)notification
+{
+  [GlobalData deleteAuthorID];
+  [GlobalData deleteUsername];
+  [GlobalData deletePassword];
+  
+  self.window.rootViewController = [[DeniedAccessViewController alloc] init];
 }
 
 @end

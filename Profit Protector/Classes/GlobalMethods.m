@@ -1,5 +1,6 @@
 #import "GlobalMethods.h"
 #import "GlobalData.h"
+#import "Constants.h"
 
 @interface GlobalMethods () <NSXMLParserDelegate>
 {
@@ -8,6 +9,17 @@
 @end
 
 @implementation GlobalMethods
+
++ (AccountStatus)accountStatus:(NSDictionary *)dictionary
+{
+  if ([dictionary[@"code"] isEqualToString:kPENDINGAPPROVAL])
+    return Pending;
+  
+  if ([dictionary[@"code"] isEqualToString:kDENIEDACCESS])
+    return Denied;
+  
+  return Approved;
+}
 
 + (NSDictionary *)math:(NSManagedObject *)obj
 {

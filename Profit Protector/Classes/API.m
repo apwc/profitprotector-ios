@@ -1,6 +1,7 @@
 #import "API.h"
 #import "HUD.h"
 #import "GlobalData.h"
+#import "GlobalMethods.h"
 
 @implementation API
 
@@ -67,6 +68,30 @@
                                                 
                                                 if ([json isKindOfClass:[NSArray class]])
                                                 {
+                                                  if ([GlobalMethods accountStatus:[json firstObject]] == Pending)
+                                                  {
+                                                    dispatch_async(dispatch_get_main_queue(), ^{
+                                                      [HUD removeHUD];
+                                                      
+                                                      [[NSNotificationCenter defaultCenter] postNotificationName:accountPendingStatusNotification
+                                                                                                          object:json];
+                                                    });
+                                                    
+                                                    return;
+                                                  }
+                                                  
+                                                  if ([GlobalMethods accountStatus:[json firstObject]] == Denied)
+                                                  {
+                                                    dispatch_async(dispatch_get_main_queue(), ^{
+                                                      [HUD removeHUD];
+                                                      
+                                                      [[NSNotificationCenter defaultCenter] postNotificationName:accountDeniedStatusNotification
+                                                                                                          object:json];
+                                                    });
+                                                    
+                                                    return;
+                                                  }
+
                                                   if ([[json firstObject][@"code"] isEqualToString:@"invalid_username"] ||
                                                       [[json firstObject][@"code"] isEqualToString:@"incorrect_password"] ||
                                                       [[json firstObject][@"code"] isEqualToString:@"empty_username"] ||

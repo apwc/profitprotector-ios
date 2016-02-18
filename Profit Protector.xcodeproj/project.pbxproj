@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B705F9001C754CDA009207FD /* PendingApprovalViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B705F8FF1C754CDA009207FD /* PendingApprovalViewController.m */; };
+		B705F9031C754CE7009207FD /* DeniedAccessViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B705F9021C754CE7009207FD /* DeniedAccessViewController.m */; };
 		B72789141B65A831000AB281 /* GlobalMethods.m in Sources */ = {isa = PBXBuildFile; fileRef = B72789131B65A831000AB281 /* GlobalMethods.m */; };
 		B72789171B65B991000AB281 /* GlobalData.m in Sources */ = {isa = PBXBuildFile; fileRef = B72789161B65B991000AB281 /* GlobalData.m */; };
 		B736BBF11B8A998400557C5A /* report_receipt.html in Resources */ = {isa = PBXBuildFile; fileRef = B736BBEF1B8A998400557C5A /* report_receipt.html */; };
@@ -66,6 +68,10 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		B705F8FE1C754CDA009207FD /* PendingApprovalViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PendingApprovalViewController.h; sourceTree = "<group>"; };
+		B705F8FF1C754CDA009207FD /* PendingApprovalViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PendingApprovalViewController.m; sourceTree = "<group>"; };
+		B705F9011C754CE7009207FD /* DeniedAccessViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DeniedAccessViewController.h; sourceTree = "<group>"; };
+		B705F9021C754CE7009207FD /* DeniedAccessViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DeniedAccessViewController.m; sourceTree = "<group>"; };
 		B71F34211B572B54000C7A1D /* TypeDefEnumerators.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TypeDefEnumerators.h; sourceTree = "<group>"; };
 		B72789121B65A831000AB281 /* GlobalMethods.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GlobalMethods.h; sourceTree = "<group>"; };
 		B72789131B65A831000AB281 /* GlobalMethods.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GlobalMethods.m; sourceTree = "<group>"; };
@@ -278,6 +284,8 @@
 				B7A58F181B4DFC3800C408D8 /* AppDelegate.m */,
 				B768D8031B50E29C00D2FEF7 /* Constants.h */,
 				B7D8ACC11B5A3F3C00041ED1 /* Core Data Manager */,
+				B705F9011C754CE7009207FD /* DeniedAccessViewController.h */,
+				B705F9021C754CE7009207FD /* DeniedAccessViewController.m */,
 				B768D8331B50F22F00D2FEF7 /* FrontTableViewController.h */,
 				B768D8341B50F22F00D2FEF7 /* FrontTableViewController.m */,
 				B72789151B65B991000AB281 /* GlobalData.h */,
@@ -315,6 +323,8 @@
 				B7FEF8C81B548CC10018CB7D /* NewPropertyFormSuperViewController.m */,
 				B77368091B5481A200D8140E /* NewPropertyViewController.h */,
 				B773680A1B5481A200D8140E /* NewPropertyViewController.m */,
+				B705F8FE1C754CDA009207FD /* PendingApprovalViewController.h */,
+				B705F8FF1C754CDA009207FD /* PendingApprovalViewController.m */,
 				B768D8071B50E54B00D2FEF7 /* PKRevealController */,
 				B79F99551B52086E00BF945F /* ProfitProtectorStyleKit.h */,
 				B79F99561B52086E00BF945F /* ProfitProtectorStyleKit.m */,
@@ -505,6 +515,7 @@
 				B768D8271B50E54B00D2FEF7 /* PKRevealControllerView.m in Sources */,
 				B768D8231B50E54B00D2FEF7 /* CAAnimation+PKIdentifier.m in Sources */,
 				B768D82F1B50E5BB00D2FEF7 /* MainViewController.m in Sources */,
+				B705F9001C754CDA009207FD /* PendingApprovalViewController.m in Sources */,
 				B7D8ACCA1B5A3F3C00041ED1 /* CoreDataStoring.m in Sources */,
 				B7C3F9AB1B6EE7CA00C252EE /* UserTypeTableViewController.m in Sources */,
 				B72789141B65A831000AB281 /* GlobalMethods.m in Sources */,
@@ -532,6 +543,7 @@
 				B7B4BEEB1BED6C9600C977FC /* NewPropertyForm8ViewController.m in Sources */,
 				B768D8221B50E54B00D2FEF7 /* MBProgressHUD.m in Sources */,
 				B77ED0871B87257800275A1A /* AnnualSavingsTableViewController.m in Sources */,
+				B705F9031C754CE7009207FD /* DeniedAccessViewController.m in Sources */,
 				B75A187E1B8AACD400C37C48 /* NDHTMLtoPDF.m in Sources */,
 				B7D8ACCD1B5A3F5200041ED1 /* Singleton.m in Sources */,
 				B79F99571B52086E00BF945F /* ProfitProtectorStyleKit.m in Sources */,

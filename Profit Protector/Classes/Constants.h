@@ -3,13 +3,17 @@
 #define persistenceDBName @"Profit_Protector"
 #define persistenceDBNameSuffix @"sqlite"
 
-#define apiPrefix @"http://cleanrestapp.com/wp-json/"
+//#define apiPrefix @"http://cleanrestapp.com/wp-json/"
+#define apiPrefix @"http://dev.cleanrestapp.com/wp-json/"
 #define adminUsername @"cleanrestadmin"
 #define adminPassword @"vRjycfxrLcmo"
 #define user @"login"
 #define users @"users"
 #define properties @"posts"
 #define recoverPassword @"password"
+
+#define kPENDINGAPPROVAL @"pending_approval"
+#define kDENIEDACCESS @"denied_access"
 
 #pragma mark - Core Data SQLite database reset
 
@@ -39,6 +43,9 @@
 #define didUpdateLanguageNotification @"didUpdateLanguageNotification"
 
 #pragma mark - API
+
+#define accountPendingStatusNotification @"accountPendingStatusNotification"
+#define accountDeniedStatusNotification @"accountDeniedStatusNotification"
 
 #define apiUserLoginSuccessfulNotification @"apiUserLoginSuccessfulNotification"
 #define apiUserLoginErrorNotification @"apiUserLoginErrorNotification"
