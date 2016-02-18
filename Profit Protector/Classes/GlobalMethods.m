@@ -18,6 +18,9 @@
   if ([dictionary[@"code"] isEqualToString:kDENIEDACCESS])
     return Denied;
   
+  if ([dictionary[@"code"] isEqualToString:kINCORRECTPASSWORD])
+    return IncorrectPassword;
+  
   return Approved;
 }
 

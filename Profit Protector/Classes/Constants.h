@@ -14,6 +14,7 @@
 
 #define kPENDINGAPPROVAL @"pending_approval"
 #define kDENIEDACCESS @"denied_access"
+#define kINCORRECTPASSWORD @"incorrect_password"
 
 #pragma mark - Core Data SQLite database reset
 
@@ -46,6 +47,7 @@
 
 #define accountPendingStatusNotification @"accountPendingStatusNotification"
 #define accountDeniedStatusNotification @"accountDeniedStatusNotification"
+#define accountIncorrectPasswordStatusNotification @"accountIncorrectPasswordStatusNotification"
 
 #define apiUserLoginSuccessfulNotification @"apiUserLoginSuccessfulNotification"
 #define apiUserLoginErrorNotification @"apiUserLoginErrorNotification"

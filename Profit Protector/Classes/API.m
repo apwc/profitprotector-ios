@@ -5,6 +5,35 @@
 
 @implementation API
 
++ (BOOL)isAccountActive:(NSDictionary *)dictionary
+{
+  if ([GlobalMethods accountStatus:dictionary] == Pending)
+  {
+    dispatch_async(dispatch_get_main_queue(), ^{
+      [HUD removeHUD];
+      
+      [[NSNotificationCenter defaultCenter] postNotificationName:accountPendingStatusNotification
+                                                          object:nil];
+    });
+    
+    return NO;
+  }
+  
+  if ([GlobalMethods accountStatus:dictionary] == Denied)
+  {
+    dispatch_async(dispatch_get_main_queue(), ^{
+      [HUD removeHUD];
+      
+      [[NSNotificationCenter defaultCenter] postNotificationName:accountDeniedStatusNotification
+                                                          object:nil];
+    });
+    
+    return NO;
+  }
+  
+  return YES;
+}
+
 + (void)loginWithUsername:(NSString *)username
                  password:(NSString *)password
 {
@@ -68,29 +97,8 @@
                                                 
                                                 if ([json isKindOfClass:[NSArray class]])
                                                 {
-                                                  if ([GlobalMethods accountStatus:[json firstObject]] == Pending)
-                                                  {
-                                                    dispatch_async(dispatch_get_main_queue(), ^{
-                                                      [HUD removeHUD];
-                                                      
-                                                      [[NSNotificationCenter defaultCenter] postNotificationName:accountPendingStatusNotification
-                                                                                                          object:json];
-                                                    });
-                                                    
+                                                  if (![API isAccountActive:[json firstObject]])
                                                     return;
-                                                  }
-                                                  
-                                                  if ([GlobalMethods accountStatus:[json firstObject]] == Denied)
-                                                  {
-                                                    dispatch_async(dispatch_get_main_queue(), ^{
-                                                      [HUD removeHUD];
-                                                      
-                                                      [[NSNotificationCenter defaultCenter] postNotificationName:accountDeniedStatusNotification
-                                                                                                          object:json];
-                                                    });
-                                                    
-                                                    return;
-                                                  }
 
                                                   if ([[json firstObject][@"code"] isEqualToString:@"invalid_username"] ||
                                                       [[json firstObject][@"code"] isEqualToString:@"incorrect_password"] ||
@@ -189,7 +197,12 @@
                                                                                                   error:nil];
                                                 NSLog(@"%@", json);
                                                 if ([json isKindOfClass:[NSArray class]])
+                                                {
                                                   json = [json firstObject];
+                                                  
+                                                  if (![API isAccountActive:json])
+                                                    return;
+                                                }
                                                 
                                                 if ([json[@"code"] isEqualToString:@"json_missing_callback_param"])
                                                 {
@@ -267,6 +280,10 @@
                                                                                                 options:NSJSONReadingMutableContainers
                                                                                                   error:nil];
                                                 NSLog(@"%@", json);
+                                                
+                                                if (![API isAccountActive:[json firstObject]])
+                                                  return;
+                                                
                                                 dispatch_async(dispatch_get_main_queue(), ^{
                                                   [HUD removeHUD];
                                                   
@@ -399,6 +416,12 @@
                                                 }
                                                 else
                                                 {
+                                                  if ([json isKindOfClass:[NSArray class]])
+                                                  {
+                                                    if (![API isAccountActive:[json firstObject]])
+                                                      return;
+                                                  }
+                                                  
                                                   if ([json isKindOfClass:[NSArray class]] &&
                                                       [[json firstObject][@"code"] isEqualToString:@"json_cannot_create"])
                                                   {
@@ -550,6 +573,12 @@
                                                 }
                                                 else
                                                 {
+                                                  if ([json isKindOfClass:[NSArray class]])
+                                                  {
+                                                    if (![API isAccountActive:[json firstObject]])
+                                                      return;
+                                                  }
+                                                  
                                                   if ([json isKindOfClass:[NSArray class]] &&
                                                       [[json firstObject][@"code"] isEqualToString:@"json_cannot_edit"])
                                                   {
@@ -697,6 +726,12 @@
                                                 }
                                                 else
                                                 {
+                                                  if ([json isKindOfClass:[NSArray class]])
+                                                  {
+                                                    if (![API isAccountActive:[json firstObject]])
+                                                      return;
+                                                  }
+                                                  
                                                   if ([json isKindOfClass:[NSArray class]] &&
                                                       [[json firstObject][@"code"] isEqualToString:@"json_cannot_edit"])
                                                   {
@@ -756,6 +791,12 @@
                                                 NSLog(@"%@", json);
                                                 HUD *hud = [HUD singleton];
                                                 hud.hud.mode = MBProgressHUDModeText;
+                                                
+                                                if ([json isKindOfClass:[NSArray class]])
+                                                {
+                                                  if (![API isAccountActive:[json firstObject]])
+                                                    return;
+                                                }
                                                 
                                                 if ([[json firstObject][@"code"] isEqualToString:@"invalid_username"])
                                                   hud.hud.detailsLabelText = @"Invalid Email";

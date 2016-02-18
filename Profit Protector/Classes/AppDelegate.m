@@ -24,8 +24,7 @@
     [self displayMainViewController:nil];
   else
   {
-    UINavigationController *uinc = [[UINavigationController alloc] initWithRootViewController:[[SplashViewController alloc] initWithNibName:nil
-                                                                                                                                     bundle:nil]];
+    UINavigationController *uinc = [[UINavigationController alloc] initWithRootViewController:[[SplashViewController alloc] init]];
     [uinc setNavigationBarHidden:YES animated:NO];
     
     self.window.rootViewController = uinc;
@@ -51,7 +50,21 @@
                                            selector:@selector(accountDeniedStatus:)
                                                name:accountDeniedStatusNotification
                                              object:nil];
+  
+  [[NSNotificationCenter defaultCenter] addObserver:self
+                                           selector:@selector(accountIncorrectPasswordStatus:)
+                                               name:accountIncorrectPasswordStatusNotification
+                                             object:nil];
  
+  return YES;
+}
+
+- (BOOL)application:(UIApplication *)application
+            openURL:(NSURL *)url
+  sourceApplication:(NSString *)sourceApplication
+         annotation:(id)annotation
+{
+  
   return YES;
 }
 
@@ -64,11 +77,18 @@
   self.backgroundSynchSessionCompletionHandler = completionHandler;
 }
 
+- (void)removeUserData
+{
+  [GlobalData deleteAuthorID];
+  [GlobalData deleteUsername];
+  [GlobalData deletePassword];
+}
+
 #pragma mark - UI notifications callbacks
 
 - (void)displayMainViewController:(NSNotification *)notification
 {
-  MainViewController *mvc = [MainViewController revealControllerWithFrontViewController:[[UINavigationController alloc] initWithRootViewController:[[FrontTableViewController alloc] initWithNibName:nil bundle:nil]]
+  MainViewController *mvc = [MainViewController revealControllerWithFrontViewController:[[UINavigationController alloc] initWithRootViewController:[[FrontTableViewController alloc] init]]
                                                                      leftViewController:[[LeftTableViewController alloc] initWithStyle:UITableViewStylePlain]];
   
   self.window.rootViewController = mvc;
@@ -76,12 +96,9 @@
 
 - (void)userDidLogout:(NSNotification *)notification
 {
-  [GlobalData deleteAuthorID];
-  [GlobalData deleteUsername];
-  [GlobalData deletePassword];
+  [self removeUserData];
   
-  UINavigationController *uinc = [[UINavigationController alloc] initWithRootViewController:[[SplashViewController alloc] initWithNibName:nil
-                                                                                                                                   bundle:nil]];
+  UINavigationController *uinc = [[UINavigationController alloc] initWithRootViewController:[[SplashViewController alloc] init]];
   [uinc setNavigationBarHidden:YES animated:NO];
   
   self.window.rootViewController = uinc;
@@ -89,20 +106,38 @@
 
 - (void)accountPendingStatus:(NSNotification *)notification
 {
-  [GlobalData deleteAuthorID];
-  [GlobalData deleteUsername];
-  [GlobalData deletePassword];
+  [self removeUserData];
   
   self.window.rootViewController = [[PendingApprovalViewController alloc] init];
 }
 
 - (void)accountDeniedStatus:(NSNotification *)notification
 {
-  [GlobalData deleteAuthorID];
-  [GlobalData deleteUsername];
-  [GlobalData deletePassword];
+  [self removeUserData];
   
   self.window.rootViewController = [[DeniedAccessViewController alloc] init];
+}
+
+- (void)accountIncorrectPasswordStatus:(NSNotification *)notification
+{
+  [self removeUserData];
+  
+  UINavigationController *uinc = [[UINavigationController alloc] initWithRootViewController:[[SplashViewController alloc] init]];
+  [uinc setNavigationBarHidden:YES animated:NO];
+  
+  self.window.rootViewController = uinc;
+  
+  UIAlertController *alert = [UIAlertController alertControllerWithTitle:nil
+                                                                 message:@"Incorrect Password - Your password has changed. Please log-in again with your new password"
+                                                          preferredStyle:UIAlertControllerStyleAlert];
+  
+  UIAlertAction *ok = [UIAlertAction actionWithTitle:@"Ok"
+                                               style:UIAlertActionStyleCancel
+                                             handler:nil];
+  
+  [alert addAction:ok];
+  
+  [self.window.rootViewController presentViewController:alert animated:YES completion:nil];
 }
 
 @end
