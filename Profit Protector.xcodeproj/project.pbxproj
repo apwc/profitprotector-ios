@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		B705F9001C754CDA009207FD /* PendingApprovalViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B705F8FF1C754CDA009207FD /* PendingApprovalViewController.m */; };
 		B705F9031C754CE7009207FD /* DeniedAccessViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B705F9021C754CE7009207FD /* DeniedAccessViewController.m */; };
+		B71BFBC41C76ADAB00C7B3EB /* LicenseActivationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B71BFBC31C76ADAB00C7B3EB /* LicenseActivationViewController.m */; };
 		B72789141B65A831000AB281 /* GlobalMethods.m in Sources */ = {isa = PBXBuildFile; fileRef = B72789131B65A831000AB281 /* GlobalMethods.m */; };
 		B72789171B65B991000AB281 /* GlobalData.m in Sources */ = {isa = PBXBuildFile; fileRef = B72789161B65B991000AB281 /* GlobalData.m */; };
 		B736BBF11B8A998400557C5A /* report_receipt.html in Resources */ = {isa = PBXBuildFile; fileRef = B736BBEF1B8A998400557C5A /* report_receipt.html */; };
@@ -72,6 +73,8 @@
 		B705F8FF1C754CDA009207FD /* PendingApprovalViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PendingApprovalViewController.m; sourceTree = "<group>"; };
 		B705F9011C754CE7009207FD /* DeniedAccessViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DeniedAccessViewController.h; sourceTree = "<group>"; };
 		B705F9021C754CE7009207FD /* DeniedAccessViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DeniedAccessViewController.m; sourceTree = "<group>"; };
+		B71BFBC21C76ADAB00C7B3EB /* LicenseActivationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LicenseActivationViewController.h; sourceTree = "<group>"; };
+		B71BFBC31C76ADAB00C7B3EB /* LicenseActivationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LicenseActivationViewController.m; sourceTree = "<group>"; };
 		B71F34211B572B54000C7A1D /* TypeDefEnumerators.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TypeDefEnumerators.h; sourceTree = "<group>"; };
 		B72789121B65A831000AB281 /* GlobalMethods.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GlobalMethods.h; sourceTree = "<group>"; };
 		B72789131B65A831000AB281 /* GlobalMethods.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GlobalMethods.m; sourceTree = "<group>"; };
@@ -298,6 +301,8 @@
 				B78D68A31B6C834C00092349 /* HUD.m */,
 				B768D8301B50EFA100D2FEF7 /* LeftTableViewController.h */,
 				B768D8311B50EFA100D2FEF7 /* LeftTableViewController.m */,
+				B71BFBC21C76ADAB00C7B3EB /* LicenseActivationViewController.h */,
+				B71BFBC31C76ADAB00C7B3EB /* LicenseActivationViewController.m */,
 				B768D82D1B50E5BB00D2FEF7 /* MainViewController.h */,
 				B768D82E1B50E5BB00D2FEF7 /* MainViewController.m */,
 				B768D8041B50E54B00D2FEF7 /* MBProgressHUD */,
@@ -503,6 +508,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B7D8ACC81B5A3F3C00041ED1 /* CoreDataManager.m in Sources */,
+				B71BFBC41C76ADAB00C7B3EB /* LicenseActivationViewController.m in Sources */,
 				B7FEF8DB1B548DC00018CB7D /* NewPropertyForm6ViewController.m in Sources */,
 				B768D8321B50EFA100D2FEF7 /* LeftTableViewController.m in Sources */,
 				B72789171B65B991000AB281 /* GlobalData.m in Sources */,

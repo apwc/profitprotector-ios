@@ -6,6 +6,7 @@
 #import "FrontTableViewController.h"
 #import "LeftTableViewController.h"
 #import "PendingApprovalViewController.h"
+#import "LicenseActivationViewController.h"
 #import "DeniedAccessViewController.h"
 
 @implementation AppDelegate
@@ -108,6 +109,10 @@
 {
   [self removeUserData];
   
+  LicenseActivationViewController *lavc = [[LicenseActivationViewController alloc] init];
+  [self.window.rootViewController presentViewController:lavc animated:YES completion:nil];
+
+  return;
   PendingApprovalViewController *pavc = [[PendingApprovalViewController alloc] init];
   
   [self.window.rootViewController.view addSubview:pavc.view];
@@ -128,7 +133,20 @@
 {
   [self userDidLogout:nil];
   
-  [self.window.rootViewController.view addSubview:[[DeniedAccessViewController alloc] init].view];
+  DeniedAccessViewController *davc = [[DeniedAccessViewController alloc] init];
+  
+  [self.window.rootViewController.view addSubview:davc.view];
+  
+  [UIView animateWithDuration:0.25f
+                        delay:4.0f
+                      options:UIViewAnimationOptionCurveEaseOut
+                   animations:^{
+                     davc.view.alpha = 0.0f;
+                   }
+                   completion:^(BOOL finished) {
+                     [davc.view removeFromSuperview];
+                     davc.view = nil;
+                   }];
 }
 
 - (void)accountIncorrectPasswordStatus:(NSNotification *)notification
@@ -141,7 +159,7 @@
   self.window.rootViewController = uinc;
   
   UIAlertController *alert = [UIAlertController alertControllerWithTitle:nil
-                                                                 message:@"Incorrect Password - Your password has changed. Please log-in again with your new password"
+                                                                 message:@"Incorrect Password - Your password is misstyped or has changed. Please check and try to log-in again"
                                                           preferredStyle:UIAlertControllerStyleAlert];
   
   UIAlertAction *ok = [UIAlertAction actionWithTitle:@"Ok"

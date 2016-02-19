@@ -31,6 +31,18 @@
     return NO;
   }
   
+  if ([GlobalMethods accountStatus:dictionary] == IncorrectPassword)
+  {
+    dispatch_async(dispatch_get_main_queue(), ^{
+      [HUD removeHUD];
+      
+      [[NSNotificationCenter defaultCenter] postNotificationName:accountIncorrectPasswordStatusNotification
+                                                          object:nil];
+    });
+    
+    return NO;
+  }
+  
   return YES;
 }
 
