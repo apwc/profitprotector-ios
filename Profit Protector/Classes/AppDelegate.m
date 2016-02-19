@@ -1,6 +1,7 @@
 #import "AppDelegate.h"
 #import "Constants.h"
 #import "GlobalData.h"
+#import "GlobalMethods.h"
 #import "SplashViewController.h"
 #import "MainViewController.h"
 #import "FrontTableViewController.h"
@@ -109,10 +110,6 @@
 {
   [self removeUserData];
   
-  LicenseActivationViewController *lavc = [[LicenseActivationViewController alloc] init];
-  [self.window.rootViewController presentViewController:lavc animated:YES completion:nil];
-
-  return;
   PendingApprovalViewController *pavc = [[PendingApprovalViewController alloc] init];
   
   [self.window.rootViewController.view addSubview:pavc.view];
@@ -159,7 +156,7 @@
   self.window.rootViewController = uinc;
   
   UIAlertController *alert = [UIAlertController alertControllerWithTitle:nil
-                                                                 message:@"Incorrect Password - Your password is misstyped or has changed. Please check and try to log-in again"
+                                                                 message:[GlobalMethods localizedStringWithKey:@"Incorrect Password"]
                                                           preferredStyle:UIAlertControllerStyleAlert];
   
   UIAlertAction *ok = [UIAlertAction actionWithTitle:@"Ok"

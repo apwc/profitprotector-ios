@@ -1,7 +1,5 @@
 #import "LicenseActivationViewController.h"
-
-@interface LicenseActivationViewController ()
-@end
+#import "GlobalMethods.h"
 
 @implementation LicenseActivationViewController
 
@@ -18,7 +16,7 @@
   label.textColor = [UIColor darkTextColor];
   label.textAlignment = NSTextAlignmentCenter;
   label.font = [UIFont fontWithName:@"HelveticaNeue" size:19.0f];
-  label.text = @"Please enter the activation code";
+  label.text = [GlobalMethods localizedStringWithKey:@"Activation Code"];
   [self.view addSubview:label];
   
   UITextField *serial = [[UITextField alloc] initWithFrame:CGRectMake(20.0f,

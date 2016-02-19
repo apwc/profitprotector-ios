@@ -1,7 +1,5 @@
 #import "DeniedAccessViewController.h"
-
-@interface DeniedAccessViewController ()
-@end
+#import "GlobalMethods.h"
 
 @implementation DeniedAccessViewController
 
@@ -16,7 +14,7 @@
   label.textColor = [UIColor whiteColor];
   label.textAlignment = NSTextAlignmentCenter;
   label.font = [UIFont fontWithName:@"HelveticaNeue" size:21.0f];
-  label.text = @"Thank you for your interest in the CleanRest ROI Profit Protector App. Unfortunately your account was denied access.";
+  label.text = [GlobalMethods localizedStringWithKey:@"Denied Access"];
   [self.view addSubview:label];
 }
 

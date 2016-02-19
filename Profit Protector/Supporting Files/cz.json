@@ -36,7 +36,6 @@
   "Cancel" : "取消",
   "Exit" : "出口",
   "Profit Protector" : "利润保护",
-  "Cancel" : "取消 ",
   "Password reset" : "密码重置",
   "SAVE & FINISH" : "保存 完",
   "CleanRest Pro Savings Report" : "CleanRest临储蓄报告",
@@ -137,5 +136,10 @@
   "USD" : "美元",
   "Pounds" : "磅",
   "Euro" : "欧元",
-  "RMB" : "人民币"
+  "RMB" : "人民币",
+  
+  "Denied Access" : "Thank you for your interest in the CleanRest ROI Profit Protector App. Unfortunately your account was denied access.",
+  "Activation Code" : "Please enter the activation code",
+  "Pending Approval" : "Thank you for your interest in the CleanRest ROI Profit Protector App. We will reach out to you shortly with an activation link.",
+  "Incorrect Password" : "Incorrect Password - Your password is misstyped or has changed. Please check and try to log-in again"
 }
