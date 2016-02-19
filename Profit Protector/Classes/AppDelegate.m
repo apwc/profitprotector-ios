@@ -16,7 +16,7 @@
   self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
   [self.window makeKeyAndVisible];
  
-  //
+  // set the default language if the app is in its first run
   if (![GlobalData languageID])
     [GlobalData saveLanguageID:@"en"];
   
@@ -108,14 +108,27 @@
 {
   [self removeUserData];
   
-  self.window.rootViewController = [[PendingApprovalViewController alloc] init];
+  PendingApprovalViewController *pavc = [[PendingApprovalViewController alloc] init];
+  
+  [self.window.rootViewController.view addSubview:pavc.view];
+  
+  [UIView animateWithDuration:0.25f
+                        delay:4.0f
+                      options:UIViewAnimationOptionCurveEaseOut
+                   animations:^{
+                     pavc.view.alpha = 0.0f;
+                   }
+                   completion:^(BOOL finished) {
+                     [pavc.view removeFromSuperview];
+                     pavc.view = nil;
+                   }];
 }
 
 - (void)accountDeniedStatus:(NSNotification *)notification
 {
-  [self removeUserData];
+  [self userDidLogout:nil];
   
-  self.window.rootViewController = [[DeniedAccessViewController alloc] init];
+  [self.window.rootViewController.view addSubview:[[DeniedAccessViewController alloc] init].view];
 }
 
 - (void)accountIncorrectPasswordStatus:(NSNotification *)notification
