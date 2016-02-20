@@ -46,6 +46,66 @@
   return YES;
 }
 
++ (void)activateLicense:(NSString *)code
+{
+  NSLog(@"%s", __PRETTY_FUNCTION__);
+  [HUD addHUD];
+  
+  NSString *auth = [NSString stringWithFormat:@"%@fjir50e%@",
+                    [GlobalData username],
+                    [GlobalData password]];
+  
+  NSData *authData = [auth dataUsingEncoding:NSUTF8StringEncoding];
+  NSString *base64 = [authData base64EncodedStringWithOptions:NSDataBase64Encoding64CharacterLineLength];
+  
+  NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"%@%@?iam=%@",
+                                     apiPrefix,
+                                     user,
+                                     base64]];
+  NSLog(@"%@", [url absoluteString]);
+  // first we always clean the cache for every request
+  [[NSURLCache sharedURLCache] removeAllCachedResponses];
+  
+  NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
+  [request addValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-type"];
+  
+  NSURLSession *session = [NSURLSession sharedSession];
+  
+  NSURLSessionDataTask *dataTask = [session dataTaskWithRequest:request
+                                              completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
+                                                
+                                                NSLog(@"Response:%@\nError: %@", response, error);
+                                                
+                                                id json = [NSJSONSerialization JSONObjectWithData:data
+                                                                                          options:NSJSONReadingMutableContainers
+                                                                                            error:nil];
+                                                NSLog(@"%@", json);
+                                                if (error)
+                                                {
+                                                  HUD *hud = [HUD singleton];
+                                                  hud.hud.mode = MBProgressHUDModeText;
+                                                  hud.hud.detailsLabelText = @"Network error, please try again.";
+                                                  
+                                                  dispatch_async(dispatch_get_main_queue(), ^{
+                                                    [HUD removeHUDAfterDelay:1.5f];
+                                                    
+                                                    [[NSNotificationCenter defaultCenter] postNotificationName:apiLicenseActivationErrorNotification
+                                                                                                        object:nil];
+                                                  });
+                                                  
+                                                  return;
+                                                }
+                                                
+                                                dispatch_async(dispatch_get_main_queue(), ^{
+                                                  [HUD removeHUD];
+                                                  
+                                                  [[NSNotificationCenter defaultCenter] postNotificationName:apiLicenseActivationSuccessfulNotification
+                                                                                                      object:nil];
+                                                });
+                                              }];
+  [dataTask resume];
+}
+
 + (void)loginWithUsername:(NSString *)username
                  password:(NSString *)password
 {

@@ -66,6 +66,13 @@
   sourceApplication:(NSString *)sourceApplication
          annotation:(id)annotation
 {
+  //profitprotector://cleanrestapp.com?license=[CODICE]
+
+  NSArray *arr = [url.query componentsSeparatedByString:@"="];
+  
+  NSLog(@"arr %@", arr);
+  
+  [self manuallyActivateLicense];
   
   return YES;
 }
@@ -77,6 +84,13 @@
   completionHandler:(void (^)())completionHandler
 {
   self.backgroundSynchSessionCompletionHandler = completionHandler;
+}
+
+- (void)manuallyActivateLicense
+{
+  LicenseActivationViewController *lavc = [[LicenseActivationViewController alloc] init];
+  
+  [self.window.rootViewController presentViewController:lavc animated:YES completion:nil];
 }
 
 - (void)removeUserData

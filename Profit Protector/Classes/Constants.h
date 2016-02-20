@@ -49,6 +49,9 @@
 #define accountDeniedStatusNotification @"accountDeniedStatusNotification"
 #define accountIncorrectPasswordStatusNotification @"accountIncorrectPasswordStatusNotification"
 
+#define apiLicenseActivationSuccessfulNotification @"apiLicenseActivationSuccessfulNotification"
+#define apiLicenseActivationErrorNotification @"apiLicenseActivationErrorNotification"
+
 #define apiUserLoginSuccessfulNotification @"apiUserLoginSuccessfulNotification"
 #define apiUserLoginErrorNotification @"apiUserLoginErrorNotification"
 
