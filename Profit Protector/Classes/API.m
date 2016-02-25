@@ -70,10 +70,11 @@
   NSData *authData = [auth dataUsingEncoding:NSUTF8StringEncoding];
   NSString *base64 = [authData base64EncodedStringWithOptions:NSDataBase64Encoding64CharacterLineLength];
   
-  NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"%@%@?iam=%@",
+  NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"%@%@?iam=%@&license=%@",
                                      apiPrefix,
                                      user,
-                                     base64]];
+                                     base64,
+                                     code]];
   NSLog(@"%@", [url absoluteString]);
   // first we always clean the cache for every request
   [[NSURLCache sharedURLCache] removeAllCachedResponses];

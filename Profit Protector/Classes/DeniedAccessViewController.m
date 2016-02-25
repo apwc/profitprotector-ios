@@ -16,6 +16,21 @@
   label.font = [UIFont fontWithName:@"HelveticaNeue" size:21.0f];
   label.text = [GlobalMethods localizedStringWithKey:@"Denied Access"];
   [self.view addSubview:label];
+  
+  UIButton *close = [[UIButton alloc] initWithFrame:CGRectMake(CGRectGetMidX(self.view.frame) - 50.0f,
+                                                               CGRectGetHeight(label.frame) - 120.0f,
+                                                               100.0f,
+                                                               37.0f)];
+  close.showsTouchWhenHighlighted = YES;
+  close.titleLabel.font = [UIFont boldSystemFontOfSize:21.0f];
+  [close setTitle:@"CLOSE" forState:UIControlStateNormal];
+  [close addTarget:self action:@selector(close:) forControlEvents:UIControlEventTouchUpInside];
+  [self.view addSubview:close];
+}
+
+- (void)close:(id)sender
+{
+  [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 @end

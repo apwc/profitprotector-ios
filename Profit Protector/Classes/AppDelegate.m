@@ -148,18 +148,7 @@
 {
   PendingApprovalViewController *pavc = [[PendingApprovalViewController alloc] init];
   
-  [self.window.rootViewController.view addSubview:pavc.view];
-  
-  [UIView animateWithDuration:0.25f
-                        delay:4.0f
-                      options:UIViewAnimationOptionCurveEaseOut
-                   animations:^{
-                     pavc.view.alpha = 0.0f;
-                   }
-                   completion:^(BOOL finished) {
-                     [pavc.view removeFromSuperview];
-                     pavc.view = nil;
-                   }];
+  [self.window.rootViewController presentViewController:pavc animated:YES completion:nil];
 }
 
 - (void)accountDeniedStatus:(NSNotification *)notification
@@ -168,18 +157,7 @@
   
   DeniedAccessViewController *davc = [[DeniedAccessViewController alloc] init];
   
-  [self.window.rootViewController.view addSubview:davc.view];
-  
-  [UIView animateWithDuration:0.25f
-                        delay:4.0f
-                      options:UIViewAnimationOptionCurveEaseOut
-                   animations:^{
-                     davc.view.alpha = 0.0f;
-                   }
-                   completion:^(BOOL finished) {
-                     [davc.view removeFromSuperview];
-                     davc.view = nil;
-                   }];
+  [self.window.rootViewController presentViewController:davc animated:YES completion:nil];
 }
 
 - (void)accountIncorrectPasswordStatus:(NSNotification *)notification
