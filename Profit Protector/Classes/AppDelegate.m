@@ -23,7 +23,9 @@
   if (![GlobalData languageID])
     [GlobalData saveLanguageID:@"en"];
   
-  if ([GlobalData username] && [GlobalData password])
+  AccountStatus accountStatus = [GlobalData accountStatus];
+  
+  if (accountStatus == Approved)
     [self displayMainViewController:nil];
   else
   {
@@ -71,10 +73,19 @@
 
 - (void)applicationDidBecomeActive:(UIApplication *)application
 {
-  NSLog(@"[GlobalData username] %@", [GlobalData username]);
-  NSLog(@"[GlobalData password] %@", [GlobalData password]);
-  [API loginWithUsername:[GlobalData username]
-                password:[GlobalData password]];
+  AccountStatus accountStatus = [GlobalData accountStatus];
+  
+  if (accountStatus == Pending)
+  {
+    if ([GlobalData username] && [GlobalData password])
+      [API loginWithUsername:[GlobalData username]
+                    password:[GlobalData password]];
+  }
+  
+  if (accountStatus == LicenseDisabled)
+  {
+    [self manuallyActivateLicense:nil];
+  }
 }
 
 - (BOOL)application:(UIApplication *)application
@@ -82,11 +93,7 @@
   sourceApplication:(NSString *)sourceApplication
          annotation:(id)annotation
 {
-  //profitprotector://cleanrestapp.com?license=[CODICE]
-
   NSArray *arr = [url.query componentsSeparatedByString:@"="];
-  
-  NSLog(@"arr %@", arr);
   
   [self manuallyActivateLicense:[arr lastObject]];
   
@@ -111,9 +118,10 @@
 
 - (void)removeUserData
 {
-  [GlobalData deleteAuthorID];
   [GlobalData deleteUsername];
   [GlobalData deletePassword];
+  [GlobalData deleteAuthorID];
+  [GlobalData deleteLicenseID];
 }
 
 #pragma mark - UI notifications callbacks
@@ -138,8 +146,6 @@
 
 - (void)accountPendingStatus:(NSNotification *)notification
 {
-  [self removeUserData];
-  
   PendingApprovalViewController *pavc = [[PendingApprovalViewController alloc] init];
   
   [self.window.rootViewController.view addSubview:pavc.view];
@@ -178,12 +184,7 @@
 
 - (void)accountIncorrectPasswordStatus:(NSNotification *)notification
 {
-  [self removeUserData];
-  
-  UINavigationController *uinc = [[UINavigationController alloc] initWithRootViewController:[[SplashViewController alloc] init]];
-  [uinc setNavigationBarHidden:YES animated:NO];
-  
-  self.window.rootViewController = uinc;
+  [self userDidLogout:nil];
   
   UIAlertController *alert = [UIAlertController alertControllerWithTitle:nil
                                                                  message:[GlobalMethods localizedStringWithKey:@"Incorrect Password"]

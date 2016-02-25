@@ -1,10 +1,10 @@
 typedef NS_ENUM(NSInteger, AccountStatus)
 {
-  Pending = 0,
+  Approved = 0,
+  Pending,
   Denied,
   IncorrectPassword,
-  LicenseDisabled,
-  Approved
+  LicenseDisabled
 };
 
 typedef NS_ENUM(NSInteger, NumericType)

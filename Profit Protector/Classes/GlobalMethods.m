@@ -12,18 +12,40 @@
 
 + (AccountStatus)accountStatus:(NSDictionary *)dictionary
 {
+  // pending
   if ([dictionary[@"code"] isEqualToString:kPENDINGAPPROVAL])
+  {
+    [GlobalData saveAccountStatus:Pending];
+    
     return Pending;
+  }
   
+  // denied access
   if ([dictionary[@"code"] isEqualToString:kDENIEDACCESS])
+  {
+    [GlobalData saveAccountStatus:Denied];
+    
     return Denied;
+  }
   
+  // incorrect password
   if ([dictionary[@"code"] isEqualToString:kINCORRECTPASSWORD])
+  {
+    [GlobalData saveAccountStatus:IncorrectPassword];
+    
     return IncorrectPassword;
+  }
   
+  // license disabled
   if ([dictionary[@"code"] isEqualToString:kLICENSEDISABLED])
+  {
+    [GlobalData saveAccountStatus:LicenseDisabled];
+    
     return LicenseDisabled;
-  
+  }
+    
+  [GlobalData saveAccountStatus:Approved];
+      
   return Approved;
 }
 

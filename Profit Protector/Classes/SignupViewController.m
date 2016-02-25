@@ -438,11 +438,10 @@
 {
   NSDictionary *json = (NSDictionary *)notification.object;
   
-  [GlobalData saveAuthorID:json[@"ID"]];
-  [GlobalData saveLicenseID:json[@"license"][@"code"]];
-  
   [GlobalData saveUsername:email_.text];
   [GlobalData savePassword:password_.text];
+  [GlobalData saveAuthorID:json[@"ID"]];
+  [GlobalData saveLicenseID:json[@"license"][@"code"]];
   
   [self dismissViewControllerAnimated:YES
                            completion:^{
