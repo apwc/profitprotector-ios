@@ -3,6 +3,7 @@ typedef NS_ENUM(NSInteger, AccountStatus)
   Pending = 0,
   Denied,
   IncorrectPassword,
+  LicenseDisabled,
   Approved
 };
 

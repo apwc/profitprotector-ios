@@ -30,6 +30,12 @@
 
 + (void)deleteAuthorID;
 
++ (NSString *)licenseID;
+
++ (void)saveLicenseID:(NSString *)licenseID;
+
++ (void)deleteLicenseID;
+
 + (NSString *)languageID;
 
 + (void)saveLanguageID:(NSString *)languageID;

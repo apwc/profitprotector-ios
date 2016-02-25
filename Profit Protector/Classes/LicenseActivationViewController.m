@@ -47,6 +47,7 @@
   serial_.textColor = [UIColor darkTextColor];
   serial_.autocorrectionType = UITextAutocorrectionTypeNo;
   serial_.autocapitalizationType = UITextAutocapitalizationTypeNone;
+  serial_.text = self.code ?: @"";
   [self.view addSubview:serial_];
   
   UIButton *cancel = [[UIButton alloc] initWithFrame:CGRectMake(CGRectGetMinX(serial_.frame),

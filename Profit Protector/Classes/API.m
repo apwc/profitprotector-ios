@@ -43,6 +43,18 @@
     return NO;
   }
   
+  if ([GlobalMethods accountStatus:dictionary] == LicenseDisabled)
+  {
+    dispatch_async(dispatch_get_main_queue(), ^{
+      [HUD removeHUD];
+      
+      [[NSNotificationCenter defaultCenter] postNotificationName:accountLicenseDisabledStatusNotification
+                                                          object:nil];
+    });
+    
+    return NO;
+  }
+  
   return YES;
 }
 

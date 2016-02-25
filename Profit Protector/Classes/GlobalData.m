@@ -71,6 +71,25 @@
   [nsud synchronize];
 }
 
++ (NSString *)licenseID
+{
+  return [[NSUserDefaults standardUserDefaults] objectForKey:@"licenseID"];
+}
+
++ (void)saveLicenseID:(NSString *)licenseID
+{
+  NSUserDefaults *nsud = [NSUserDefaults standardUserDefaults];
+  [nsud setObject:licenseID forKey:@"licenseID"];
+  [nsud synchronize];
+}
+
++ (void)deleteLicenseID
+{
+  NSUserDefaults *nsud = [NSUserDefaults standardUserDefaults];
+  [nsud removeObjectForKey:@"licenseID"];
+  [nsud synchronize];
+}
+
 + (NSString *)languageID
 {
   return [[NSUserDefaults standardUserDefaults] objectForKey:@"languageID"];

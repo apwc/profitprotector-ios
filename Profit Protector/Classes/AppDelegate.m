@@ -1,4 +1,5 @@
 #import "AppDelegate.h"
+#import "API.h"
 #import "Constants.h"
 #import "GlobalData.h"
 #import "GlobalMethods.h"
@@ -38,11 +39,13 @@
                                                name:displayMainViewControllerNotification
                                              object:nil];
   
+  // usr logout notification
   [[NSNotificationCenter defaultCenter] addObserver:self
                                            selector:@selector(userDidLogout:)
                                                name:userDidLogoutNotification
                                              object:nil];
   
+  // account and license status notifications
   [[NSNotificationCenter defaultCenter] addObserver:self
                                            selector:@selector(accountPendingStatus:)
                                                name:accountPendingStatusNotification
@@ -57,8 +60,21 @@
                                            selector:@selector(accountIncorrectPasswordStatus:)
                                                name:accountIncorrectPasswordStatusNotification
                                              object:nil];
- 
+  
+  [[NSNotificationCenter defaultCenter] addObserver:self
+                                           selector:@selector(accountLicenseDisabledStatus:)
+                                               name:accountLicenseDisabledStatusNotification
+                                             object:nil];
+
   return YES;
+}
+
+- (void)applicationDidBecomeActive:(UIApplication *)application
+{
+  NSLog(@"[GlobalData username] %@", [GlobalData username]);
+  NSLog(@"[GlobalData password] %@", [GlobalData password]);
+  [API loginWithUsername:[GlobalData username]
+                password:[GlobalData password]];
 }
 
 - (BOOL)application:(UIApplication *)application
@@ -72,7 +88,7 @@
   
   NSLog(@"arr %@", arr);
   
-  [self manuallyActivateLicense];
+  [self manuallyActivateLicense:[arr lastObject]];
   
   return YES;
 }
@@ -86,7 +102,7 @@
   self.backgroundSynchSessionCompletionHandler = completionHandler;
 }
 
-- (void)manuallyActivateLicense
+- (void)manuallyActivateLicense:(NSString *)code
 {
   LicenseActivationViewController *lavc = [[LicenseActivationViewController alloc] init];
   
@@ -180,6 +196,13 @@
   [alert addAction:ok];
   
   [self.window.rootViewController presentViewController:alert animated:YES completion:nil];
+}
+
+- (void)accountLicenseDisabledStatus:(NSNotification *)notification
+{
+  [self userDidLogout:nil];
+  
+  [self manuallyActivateLicense:nil];
 }
 
 @end
