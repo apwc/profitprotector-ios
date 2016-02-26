@@ -1,6 +1,7 @@
 typedef NS_ENUM(NSInteger, AccountStatus)
 {
-  Approved = 0,
+  Unknown = 0,
+  Approved,
   Pending,
   Denied,
   IncorrectPassword,
