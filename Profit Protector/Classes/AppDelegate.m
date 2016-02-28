@@ -28,12 +28,7 @@
   if (accountStatus == Approved)
     [self displayMainViewController:nil];
   else
-  {
-    UINavigationController *uinc = [[UINavigationController alloc] initWithRootViewController:[[SplashViewController alloc] init]];
-    [uinc setNavigationBarHidden:YES animated:NO];
-    
-    self.window.rootViewController = uinc;
-  }
+    [self displaySplashViewController];
   
   // register the UI notifications
   [[NSNotificationCenter defaultCenter] addObserver:self
@@ -83,9 +78,7 @@
   }
   
   if (accountStatus == LicenseDisabled)
-  {
     [self manuallyActivateLicense:nil];
-  }
 }
 
 - (BOOL)application:(UIApplication *)application
@@ -107,6 +100,16 @@
   completionHandler:(void (^)())completionHandler
 {
   self.backgroundSynchSessionCompletionHandler = completionHandler;
+}
+
+#pragma mark -
+
+- (void)displaySplashViewController
+{
+  UINavigationController *uinc = [[UINavigationController alloc] initWithRootViewController:[[SplashViewController alloc] init]];
+  [uinc setNavigationBarHidden:YES animated:NO];
+  
+  self.window.rootViewController = uinc;
 }
 
 - (void)manuallyActivateLicense:(NSString *)code
@@ -153,7 +156,7 @@
 
 - (void)accountDeniedStatus:(NSNotification *)notification
 {
-  [self userDidLogout:nil];
+  [self displaySplashViewController];
   
   DeniedAccessViewController *davc = [[DeniedAccessViewController alloc] init];
   
@@ -162,7 +165,7 @@
 
 - (void)accountIncorrectPasswordStatus:(NSNotification *)notification
 {
-  [self userDidLogout:nil];
+  [self displaySplashViewController];
   
   UIAlertController *alert = [UIAlertController alertControllerWithTitle:nil
                                                                  message:[GlobalMethods localizedStringWithKey:@"Incorrect Password"]
@@ -179,7 +182,7 @@
 
 - (void)accountLicenseDisabledStatus:(NSNotification *)notification
 {
-  [self userDidLogout:nil];
+  [self displaySplashViewController];
   
   [self manuallyActivateLicense:nil];
 }
