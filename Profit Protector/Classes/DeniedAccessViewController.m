@@ -18,7 +18,7 @@
   [self.view addSubview:label];
   
   UIButton *close = [[UIButton alloc] initWithFrame:CGRectMake(CGRectGetMidX(self.view.frame) - 50.0f,
-                                                               CGRectGetHeight(label.frame) - 120.0f,
+                                                               CGRectGetHeight(label.frame) - 80.0f,
                                                                100.0f,
                                                                37.0f)];
   close.showsTouchWhenHighlighted = YES;
@@ -26,11 +26,25 @@
   [close setTitle:@"CLOSE" forState:UIControlStateNormal];
   [close addTarget:self action:@selector(close:) forControlEvents:UIControlEventTouchUpInside];
   [self.view addSubview:close];
+  
+  UIButton *support = [[UIButton alloc] initWithFrame:CGRectMake(0.0f,
+                                                                 CGRectGetMinY(close.frame) - 100.0f,
+                                                                 320.0f,
+                                                                 37.0f)];
+  support.showsTouchWhenHighlighted = YES;
+  support.titleLabel.font = [UIFont systemFontOfSize:18.0f];
+  [support setTitle:@"Contact Support Center" forState:UIControlStateNormal];
+  [support addTarget:self action:@selector(support:) forControlEvents:UIControlEventTouchUpInside];
+  [self.view addSubview:support];
 }
 
 - (void)close:(id)sender
 {
   [self dismissViewControllerAnimated:YES completion:nil];
+}
+
+- (void)support:(id)sender
+{
 }
 
 @end
