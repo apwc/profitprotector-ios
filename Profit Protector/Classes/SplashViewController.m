@@ -7,9 +7,6 @@
 
 @interface SplashViewController () <UITextFieldDelegate>
 {
-  UITextField *username_,
-              *password_;
-  
   UIImageView *usernameAsterix_,
               *passwordAsterix_;
   
@@ -47,67 +44,67 @@
   CGFloat buttonHeight = 60.0f;
   
   // username
-  username_ = [[UITextField alloc] initWithFrame:CGRectMake(60.0f,
-                                                            CGRectGetMaxY(copy.frame) + 20.0f,
-                                                            CGRectGetWidth(self.view.bounds) - 100.0f,
-                                                            textFieldHeight)];
-  username_.delegate = self;
-  username_.font = [UIFont fontWithName:@"HelveticaNeue" size:textFieldFontsize];
-  username_.textColor = [UIColor blackColor];
-  username_.autocorrectionType = UITextAutocorrectionTypeNo;
-  username_.autocapitalizationType = UITextAutocapitalizationTypeNone;
-  username_.placeholder = [GlobalMethods localizedStringWithKey:@"Email"];
-  username_.clipsToBounds = NO;
-  [self.view addSubview:username_];
+  self.username = [[UITextField alloc] initWithFrame:CGRectMake(60.0f,
+                                                                CGRectGetMaxY(copy.frame) + 20.0f,
+                                                                CGRectGetWidth(self.view.bounds) - 100.0f,
+                                                                textFieldHeight)];
+  self.username.delegate = self;
+  self.username.font = [UIFont fontWithName:@"HelveticaNeue" size:textFieldFontsize];
+  self.username.textColor = [UIColor blackColor];
+  self.username.autocorrectionType = UITextAutocorrectionTypeNo;
+  self.username.autocapitalizationType = UITextAutocapitalizationTypeNone;
+  self.username.placeholder = [GlobalMethods localizedStringWithKey:@"Email"];
+  self.username.clipsToBounds = NO;
+  [self.view addSubview:self.username];
   
   UIImageView *usernameIcon = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"email"]];
   usernameIcon.frame = CGRectMake(20.0f,
-                                  CGRectGetMinY(username_.frame) + 10.0f,
+                                  CGRectGetMinY(self.username.frame) + 10.0f,
                                   usernameIcon.image.size.width,
                                   usernameIcon.image.size.height);
   [self.view addSubview:usernameIcon];
   
   usernameAsterix_ = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"asterix"]];
-  usernameAsterix_.center = CGPointMake(CGRectGetWidth(username_.bounds) + 15.0f, CGRectGetMidY(username_.bounds));
-  [username_ addSubview:usernameAsterix_];
+  usernameAsterix_.center = CGPointMake(CGRectGetWidth(self.username.bounds) + 15.0f, CGRectGetMidY(self.username.bounds));
+  [self.username addSubview:usernameAsterix_];
   
   // division line
   UIView *divisionLine1 = [[UIView alloc] initWithFrame:CGRectMake(0.0f,
-                                                                   CGRectGetMaxY(username_.frame),
+                                                                   CGRectGetMaxY(self.username.frame),
                                                                    CGRectGetWidth(self.view.bounds),
                                                                    1.0f)];
   divisionLine1.backgroundColor = [UIColor colorWithWhite:0.7f alpha:1.0f];
   [self.view addSubview:divisionLine1];
   
   // username
-  password_ = [[UITextField alloc] initWithFrame:CGRectMake(60.0f,
-                                                            CGRectGetMaxY(username_.frame),
-                                                            CGRectGetWidth(username_.bounds),
-                                                            textFieldHeight)];
-  password_.delegate = self;
-  password_.font = [UIFont fontWithName:@"HelveticaNeue" size:textFieldFontsize];
-  password_.textColor = [UIColor blackColor];
-  password_.autocorrectionType = UITextAutocorrectionTypeNo;
-  password_.autocapitalizationType = UITextAutocapitalizationTypeNone;
-  password_.secureTextEntry = YES;
-  password_.placeholder = [GlobalMethods localizedStringWithKey:@"Password"];
-  password_.clipsToBounds = NO;
-  [self.view addSubview:password_];
+  self.password = [[UITextField alloc] initWithFrame:CGRectMake(60.0f,
+                                                                CGRectGetMaxY(self.username.frame),
+                                                                CGRectGetWidth(self.username.bounds),
+                                                                textFieldHeight)];
+  self.password.delegate = self;
+  self.password.font = [UIFont fontWithName:@"HelveticaNeue" size:textFieldFontsize];
+  self.password.textColor = [UIColor blackColor];
+  self.password.autocorrectionType = UITextAutocorrectionTypeNo;
+  self.password.autocapitalizationType = UITextAutocapitalizationTypeNone;
+  self.password.secureTextEntry = YES;
+  self.password.placeholder = [GlobalMethods localizedStringWithKey:@"Password"];
+  self.password.clipsToBounds = NO;
+  [self.view addSubview:self.password];
   
   UIImageView *passwordIcon = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"password"]];
   passwordIcon.frame = CGRectMake(20.0f,
-                                  CGRectGetMinY(password_.frame) + 10.0f,
+                                  CGRectGetMinY(self.password.frame) + 10.0f,
                                   usernameIcon.image.size.width,
                                   usernameIcon.image.size.height);
   [self.view addSubview:passwordIcon];
   
   passwordAsterix_ = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"asterix"]];
-  passwordAsterix_.center = CGPointMake(CGRectGetWidth(password_.bounds) + 15.0f, CGRectGetMidY(password_.bounds));
-  [password_ addSubview:passwordAsterix_];
+  passwordAsterix_.center = CGPointMake(CGRectGetWidth(self.password.bounds) + 15.0f, CGRectGetMidY(self.password.bounds));
+  [self.password addSubview:passwordAsterix_];
   
   // division line
   UIView *divisionLine2 = [[UIView alloc] initWithFrame:CGRectMake(0.0f,
-                                                                   CGRectGetMaxY(password_.frame),
+                                                                   CGRectGetMaxY(self.password.frame),
                                                                    CGRectGetWidth(self.view.bounds),
                                                                    1.0f)];
   divisionLine2.backgroundColor = [UIColor colorWithWhite:0.7f alpha:1.0f];
@@ -115,7 +112,7 @@
   
   // signup
   UIButton *forgotPassword = [[UIButton alloc] initWithFrame:CGRectMake(CGRectGetWidth(self.view.bounds) / 2.0f,
-                                                                        CGRectGetMaxY(password_.frame),
+                                                                        CGRectGetMaxY(self.password.frame),
                                                                         CGRectGetWidth(self.view.bounds) / 2.0f,
                                                                         buttonHeight / 2.0f)];
   forgotPassword.showsTouchWhenHighlighted = YES;
@@ -177,6 +174,11 @@
                                            selector:@selector(userHasBeenRegistered:)
                                                name:userHasBeenRegisteredNotification
                                              object:nil];
+  
+  [[NSNotificationCenter defaultCenter] addObserver:self
+                                           selector:@selector(accountLicenseDisabledStatus:)
+                                               name:accountLicenseDisabledStatusNotification
+                                             object:nil];
 }
 
 - (void)viewWillDisappear:(BOOL)animated
@@ -189,6 +191,10 @@
   
   [[NSNotificationCenter defaultCenter] removeObserver:self
                                                   name:userHasBeenRegisteredNotification
+                                                object:nil];
+  
+  [[NSNotificationCenter defaultCenter] removeObserver:self
+                                                  name:accountLicenseDisabledStatusNotification
                                                 object:nil];
 }
 
@@ -239,7 +245,7 @@
 {
   BOOL flag = NO;
   
-  if ([username_.text isEqualToString:@""])
+  if ([self.username.text isEqualToString:@""])
   {
     flag = YES;
     usernameAsterix_.hidden = NO;
@@ -247,7 +253,7 @@
   else
     usernameAsterix_.hidden = YES;
   
-  if ([password_.text isEqualToString:@""])
+  if ([self.password.text isEqualToString:@""])
   {
     flag = YES;
     passwordAsterix_.hidden = NO;
@@ -279,8 +285,8 @@
   
   storeLogin_ = YES;
   
-  [API loginWithUsername:username_.text
-                password:password_.text];
+  [API loginWithUsername:self.username.text
+                password:self.password.text];
 }
 
 - (void)signup:(UIButton *)uib
@@ -303,8 +309,8 @@
   
   if (storeLogin_)
   {
-    [GlobalData saveUsername:username_.text];
-    [GlobalData savePassword:password_.text];
+    [GlobalData saveUsername:self.username.text];
+    [GlobalData savePassword:self.password.text];
   }
   
   if (![GlobalData walkthrough])
@@ -324,6 +330,13 @@
 {
   [API loginWithUsername:[GlobalData username]
                 password:[GlobalData password]];
+}
+
+- (void)accountLicenseDisabledStatus:(NSNotification *)notification
+{
+  NSLog(@"%s", __PRETTY_FUNCTION__);
+  [GlobalData saveUsername:self.username.text];
+  [GlobalData savePassword:self.password.text];
 }
 
 #pragma mark - UITextField delegate methods implementation

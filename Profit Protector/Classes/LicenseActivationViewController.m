@@ -25,7 +25,7 @@
 - (void)viewDidLoad
 {
   [super viewDidLoad];
-  
+  self.code = @"B2TA-56C50E9F58968";
   self.view.backgroundColor = [UIColor colorWithWhite:0.9f alpha:1.0f];
   
   UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(10.0f,

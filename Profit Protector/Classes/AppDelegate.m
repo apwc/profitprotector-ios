@@ -180,9 +180,12 @@
 
 - (void)accountLicenseDisabledStatus:(NSNotification *)notification
 {
-  [self displaySplashViewController];
-  
-  [self manuallyActivateLicense:nil];
+  NSLog(@"%s", __PRETTY_FUNCTION__);
+  dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.25f * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+    [self displaySplashViewController];
+    
+    [self manuallyActivateLicense:nil];
+  });
 }
 
 @end

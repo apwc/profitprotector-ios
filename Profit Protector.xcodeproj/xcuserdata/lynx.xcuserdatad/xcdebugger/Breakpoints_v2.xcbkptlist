@@ -9,13 +9,29 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Profit Protector/Classes/LicenseActivationViewController.m"
-            timestampString = "478599344.58487"
+            filePath = "Profit Protector/Classes/AppDelegate.m"
+            timestampString = "478606217.993388"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "50"
-            endingLineNumber = "50"
-            landmarkName = "-viewDidLoad"
+            startingLineNumber = "184"
+            endingLineNumber = "184"
+            landmarkName = "-accountLicenseDisabledStatus:"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Profit Protector/Classes/SplashViewController.m"
+            timestampString = "478606229.468091"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "338"
+            endingLineNumber = "338"
+            landmarkName = "-accountLicenseDisabledStatus:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
