@@ -29,7 +29,7 @@
   
   UIButton *support = [[UIButton alloc] initWithFrame:CGRectMake(0.0f,
                                                                  CGRectGetMinY(close.frame) - 100.0f,
-                                                                 320.0f,
+                                                                 CGRectGetWidth(self.view.bounds),
                                                                  37.0f)];
   support.showsTouchWhenHighlighted = YES;
   support.titleLabel.font = [UIFont systemFontOfSize:18.0f];

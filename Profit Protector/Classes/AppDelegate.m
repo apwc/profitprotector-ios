@@ -70,15 +70,12 @@
 {
   AccountStatus accountStatus = [GlobalData accountStatus];
   
-  if (accountStatus == Pending)
+  if (accountStatus != Approved)
   {
     if ([GlobalData username] && [GlobalData password])
       [API loginWithUsername:[GlobalData username]
                     password:[GlobalData password]];
   }
-  
-  if (accountStatus == LicenseDisabled)
-    [self manuallyActivateLicense:nil];
 }
 
 - (BOOL)application:(UIApplication *)application
@@ -88,7 +85,8 @@
 {
   NSArray *arr = [url.query componentsSeparatedByString:@"="];
   
-  [self manuallyActivateLicense:[arr lastObject]];
+  [self manuallyActivateLicense:@"B2TA-56C50E9F58968"];
+   //[arr lastObject]];
   
   return YES;
 }
@@ -115,7 +113,7 @@
 - (void)manuallyActivateLicense:(NSString *)code
 {
   LicenseActivationViewController *lavc = [[LicenseActivationViewController alloc] init];
-  
+  lavc.code = code;
   [self.window.rootViewController presentViewController:lavc animated:YES completion:nil];
 }
 

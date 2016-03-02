@@ -47,7 +47,7 @@
   serial_.textColor = [UIColor darkTextColor];
   serial_.autocorrectionType = UITextAutocorrectionTypeNo;
   serial_.autocapitalizationType = UITextAutocapitalizationTypeNone;
-  serial_.text = self.code ?: @"";
+  serial_.text = self.code ? self.code : @"";
   [self.view addSubview:serial_];
   
   UIButton *cancel = [[UIButton alloc] initWithFrame:CGRectMake(CGRectGetMinX(serial_.frame),
@@ -82,6 +82,9 @@
                                            selector:@selector(apiLicenseActivationSuccessful:)
                                                name:apiLicenseActivationSuccessfulNotification
                                              object:nil];
+  NSLog(@"self.code %@", self.code);
+  if (self.code)
+    [self submit:nil];
 }
 
 - (void)cancel:(id)sender
