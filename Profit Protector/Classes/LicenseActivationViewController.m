@@ -28,8 +28,6 @@
 {
   [super viewDidLoad];
   
-  self.code = @"B2TA-56C50E9F58968";
-  
   self.view.backgroundColor = [UIColor colorWithWhite:0.9f alpha:1.0f];
   
   CGFloat textFieldHeight = 37.0f;

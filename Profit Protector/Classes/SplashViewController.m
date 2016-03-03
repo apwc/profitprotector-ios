@@ -306,8 +306,13 @@
 {
   NSDictionary *json = (NSDictionary *)notification.object;
 
-  [GlobalData saveUsername:username_.text];
-  [GlobalData savePassword:password_.text];
+  if (![username_.text isEqualToString:@""] &&
+      ![password_.text isEqualToString:@""])
+  {
+    [GlobalData saveUsername:username_.text];
+    [GlobalData savePassword:password_.text];
+  }
+
   [GlobalData saveAuthorID:json[@"ID"]];
   [GlobalData saveLicenseID:json[@"license"][@"code"]];
   
