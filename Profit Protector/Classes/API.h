@@ -4,7 +4,9 @@
 
 @interface API : Singleton
 
-+ (void)activateLicense:(NSString *)code;
++ (void)activateLicense:(NSString *)code
+               username:(NSString *)username
+               password:(NSString *)password;
 
 + (void)loginWithUsername:(NSString *)username
                  password:(NSString *)password;

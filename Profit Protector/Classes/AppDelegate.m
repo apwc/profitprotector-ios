@@ -85,8 +85,7 @@
 {
   NSArray *arr = [url.query componentsSeparatedByString:@"="];
   
-  [self manuallyActivateLicense:@"B2TA-56C50E9F58968"];
-   //[arr lastObject]];
+  [self manuallyActivateLicense:[arr lastObject]];
   
   return YES;
 }
@@ -123,6 +122,8 @@
   [GlobalData deletePassword];
   [GlobalData deleteAuthorID];
   [GlobalData deleteLicenseID];
+  
+  [GlobalData saveAccountStatus:Unknown];
 }
 
 #pragma mark - UI notifications callbacks
@@ -180,12 +181,9 @@
 
 - (void)accountLicenseDisabledStatus:(NSNotification *)notification
 {
-  NSLog(@"%s", __PRETTY_FUNCTION__);
-  dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.25f * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-    [self displaySplashViewController];
-    
-    [self manuallyActivateLicense:nil];
-  });
+  [self displaySplashViewController];
+  
+  [self manuallyActivateLicense:nil];
 }
 
 @end

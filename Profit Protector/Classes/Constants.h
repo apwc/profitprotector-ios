@@ -40,6 +40,7 @@
 #define displayMainViewControllerNotification @"displayMainViewControllerNotification"
 #define updateUserInterfaceNotification @"updateUserInterfaceNotification"
 #define userHasBeenRegisteredNotification @"userHasBeenRegisteredNotification"
+#define licenseHasBeenActivatedNotification @"licenseHasBeenActivatedNotification"
 #define userDidLogoutNotification @"userDidLogoutNotification"
 #define displaySelectedPropertyNotification @"displaySelectedPropertyNotification"
 #define didUpdateLanguageNotification @"didUpdateLanguageNotification"

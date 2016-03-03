@@ -55,17 +55,21 @@
     return NO;
   }
   
+  [GlobalData saveAccountStatus:Approved];
+  
   return YES;
 }
 
 + (void)activateLicense:(NSString *)code
+               username:(NSString *)username
+               password:(NSString *)password;
 {
   NSLog(@"%s", __PRETTY_FUNCTION__);
   [HUD addHUD];
   
   NSString *auth = [NSString stringWithFormat:@"%@fjir50e%@",
-                    [GlobalData username],
-                    [GlobalData password]];
+                    username,
+                    password];
   
   NSData *authData = [auth dataUsingEncoding:NSUTF8StringEncoding];
   NSString *base64 = [authData base64EncodedStringWithOptions:NSDataBase64Encoding64CharacterLineLength];
@@ -109,12 +113,49 @@
                                                   return;
                                                 }
                                                 
-                                                dispatch_async(dispatch_get_main_queue(), ^{
-                                                  [HUD removeHUD];
-                                                  
-                                                  [[NSNotificationCenter defaultCenter] postNotificationName:apiLicenseActivationSuccessfulNotification
-                                                                                                      object:nil];
-                                                });
+                                                if ([json isKindOfClass:[NSDictionary class]])
+                                                {
+                                                  dispatch_async(dispatch_get_main_queue(), ^{
+                                                    [HUD removeHUD];
+                                                    
+                                                    [[NSNotificationCenter defaultCenter] postNotificationName:apiLicenseActivationSuccessfulNotification
+                                                                                                        object:json];
+                                                  });
+                                                }
+
+                                                if ([json isKindOfClass:[NSArray class]])
+                                                {
+                                                  if ([[json firstObject][@"code"] isEqualToString:@"invalid_username"] ||
+                                                      [[json firstObject][@"code"] isEqualToString:@"incorrect_password"] ||
+                                                      [[json firstObject][@"code"] isEqualToString:@"empty_username"] ||
+                                                      [[json firstObject][@"code"] isEqualToString:@"empty_password"] ||
+                                                      [[json firstObject][@"code"] isEqualToString:@"incorrect_license"])
+                                                  {
+                                                    HUD *hud = [HUD singleton];
+                                                    hud.hud.mode = MBProgressHUDModeText;
+                                                    
+                                                    if ([[json firstObject][@"code"] isEqualToString:@"invalid_username"])
+                                                      hud.hud.detailsLabelText = @"Invalid username";
+                                                    
+                                                    if ([[json firstObject][@"code"] isEqualToString:@"incorrect_password"])
+                                                      hud.hud.detailsLabelText = @"Incorrect password";
+                                                    
+                                                    if ([[json firstObject][@"code"] isEqualToString:@"empty_username"])
+                                                      hud.hud.detailsLabelText = @"Empty username";
+                                                    
+                                                    if ([[json firstObject][@"code"] isEqualToString:@"empty_password"])
+                                                      hud.hud.detailsLabelText = @"Empty password";
+                                                    
+                                                    if ([[json firstObject][@"code"] isEqualToString:@"incorrect_license"])
+                                                      hud.hud.detailsLabelText = @"Wrong License Code";
+                                                    
+                                                    dispatch_async(dispatch_get_main_queue(), ^{
+                                                      [HUD removeHUDAfterDelay:1.5f];
+                                                    });
+                                                    
+                                                    return;
+                                                  }
+                                                }
                                               }];
   [dataTask resume];
 }
@@ -208,8 +249,6 @@
                                                     dispatch_async(dispatch_get_main_queue(), ^{
                                                       [HUD removeHUDAfterDelay:1.5f];
                                                     });
-                                                    
-                                                    return;
                                                   }
                                                 }
                                               }];
