@@ -78,19 +78,24 @@
     NSString *resLabel = [formatter stringForObjectValue:@(res)];
     NSString *res2Label = [formatter stringForObjectValue:@(res2)];
 
-    NSString *composedString = [NSString stringWithFormat:[GlobalMethods localizedStringWithKey:@"Form5 Fast Calculation"],
+    NSString *line1 = [GlobalMethods localizedStringWithKey:@"Form5 Fast Calculation Line 1"];
+    NSString *line2 = [GlobalMethods localizedStringWithKey:@"Form5 Fast Calculation Line 2"];
+
+    NSString *composedString = [NSString stringWithFormat:@"%@\n$%@\n\n%@\n$%@",
+                                line1,
                                 resLabel,
+                                line2,
                                 res2Label];
-    
+
     NSMutableAttributedString *attributedText = [[NSMutableAttributedString alloc] initWithString:composedString];
     
     int startRange = 0;
     
     [attributedText setAttributes:@{NSForegroundColorAttributeName: [UIColor darkGrayColor],
                                     NSFontAttributeName: [UIFont fontWithName:@"HelveticaNeue" size:16.0f]}
-                            range:NSMakeRange(startRange, 35)];
+                            range:NSMakeRange(startRange, [line1 length] + 1)];
     
-    startRange += 35;
+    startRange += [line1 length] + 1;
     
     [attributedText setAttributes:@{NSForegroundColorAttributeName: [UIColor colorWithRed:0 green:0.68 blue:0.95 alpha:1],
                                     NSFontAttributeName: [UIFont fontWithName:@"HelveticaNeue" size:16.0f]}
@@ -100,9 +105,9 @@
     
     [attributedText setAttributes:@{NSForegroundColorAttributeName: [UIColor darkGrayColor],
                                     NSFontAttributeName: [UIFont fontWithName:@"HelveticaNeue" size:16.0f]}
-                            range:NSMakeRange(startRange, 45)];
+                            range:NSMakeRange(startRange, [line2 length] + 1)];
     
-    startRange += 45;
+    startRange += [line2 length] + 1;
     
     [attributedText setAttributes:@{NSForegroundColorAttributeName: [UIColor colorWithRed:0 green:0.68 blue:0.95 alpha:1],
                                     NSFontAttributeName: [UIFont fontWithName:@"HelveticaNeue" size:16.0f]}

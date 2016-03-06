@@ -72,8 +72,9 @@
   "Form4 Question2" : "During an infestation, hotel owners typically are forced to throw away other furnishings, according to property managers and pest control specialist the industry average is $500 per room per incident, adjust this value to best represent your property and experience.",
 
   "Form5 Question1" : "According to mattress manufacturers, most hotels lose 5% of their mattresses annually due to spoilage from spills and stains, adjust this value to best represent your property.",
-  "Form5 Fast Calculation" : "Total savings from spoilage alone:\n$%@\n\nLifetime savings from loss due\nto spoilage:\n$%@",
-
+  "Form5 Fast Calculation Line 1" : "Total savings from spoilage alone:",
+  "Form5 Fast Calculation Line 2" : "Lifetime savings from loss due\nto spoilage:",
+  
   "Form6 Question1" : "CleanBrands estimates you will wash your encasements twice a year, adjust this value to represent your property's protocol.",
   "Form6 Question2" : "CleanBrands estimates it will cost $1.50 to remove, launder and install the typical mattress encasement. Note it is not necessary to launder box spring encasements as they do not come in contact with the guest.",
   "Form6 Question3" : "How many bed bugs incidents did you have this year?",
