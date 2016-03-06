@@ -85,7 +85,7 @@
 {
   NSArray *arr = [url.query componentsSeparatedByString:@"="];
   
-  if ([[arr firstObject] isEqualToString:@"password_updated"])
+  if ([url.host isEqualToString:@"password_updated"])
   {
     [self userDidLogout:nil];
   }

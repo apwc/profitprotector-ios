@@ -25,7 +25,6 @@
 
 + (void)saveUsername:(NSString *)username
 {
-  NSLog(@"saveUsername %@", username);
   NSUserDefaults *nsud = [NSUserDefaults standardUserDefaults];
   [nsud setObject:username forKey:@"username"];
   [nsud synchronize];
@@ -47,7 +46,6 @@
 
 + (void)savePassword:(NSString *)password
 {
-  NSLog(@"savePassword %@", password);
   NSUserDefaults *nsud = [NSUserDefaults standardUserDefaults];
   [nsud setObject:password forKey:@"password"];
   [nsud synchronize];
