@@ -85,7 +85,12 @@
 {
   NSArray *arr = [url.query componentsSeparatedByString:@"="];
   
-  [self manuallyActivateLicense:[arr lastObject]];
+  if ([[arr firstObject] isEqualToString:@"password_updated"])
+  {
+    [self userDidLogout:nil];
+  }
+  else
+    [self manuallyActivateLicense:[arr lastObject]];
   
   return YES;
 }
