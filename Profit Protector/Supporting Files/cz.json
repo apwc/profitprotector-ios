@@ -127,5 +127,8 @@
   "Denied Access" : "感谢您对CleanRest ROI 利润保护器应用程序感兴趣。遗憾的是，您的账户访问是被拒绝的。",
   "Activation Code" :"请输入激活码",
   "Pending Approval" : "感谢您对CleanRest ROI 利润保护器应用程序感兴趣。我们将很快为您提供激活链接。",
-  "Incorrect Password" : "密码错误 - 您输入了错误的密码或密码已更改。请检查并尝试再次登录。"
+  "Incorrect Password" : "密码错误 - 您输入了错误的密码或密码已更改。请检查并尝试再次登录。",
+  
+  "industry average" : "* this amount is the\nindustry average",
+  "ancillaries revenues examples" :  "(i.e. parking, gift shop purchases, salon and spa service, etc)"
 }

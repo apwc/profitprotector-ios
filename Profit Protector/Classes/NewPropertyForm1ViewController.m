@@ -72,7 +72,7 @@
   extra.font = [UIFont fontWithName:@"HelveticaNeue" size:18.0f];
   extra.textColor = [UIColor darkGrayColor];
   extra.textAlignment = NSTextAlignmentCenter;
-  extra.text = @"* this amount is the\nindustry average";
+  extra.text = [GlobalMethods localizedStringWithKey:@"industry average"];
   extra.numberOfLines = 0;
   [self.uisv addSubview:extra];
   

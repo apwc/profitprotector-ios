@@ -44,9 +44,9 @@
                                                              100.0f)];
   label.numberOfLines = 0;
   label.font = [UIFont fontWithName:@"HelveticaNeue" size:16.0f];
-  label.textColor = [UIColor darkGrayColor];// [UIColor colorWithRed:0 green:0.68 blue:0.95 alpha:1];
+  label.textColor = [UIColor darkGrayColor];
   label.textAlignment = NSTextAlignmentCenter;
-  label.text = @"(i.e. parking, gift shop purchases, salon and spa service, etc)";
+  label.text = [GlobalMethods localizedStringWithKey:@"ancillaries revenues examples"];
   [self.uisv addSubview:label];
   
   self.uisv.contentSize = CGSizeMake(CGRectGetWidth(self.view.frame),

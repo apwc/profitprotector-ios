@@ -203,7 +203,7 @@
                                                                              options:0
                                                                                error:&error];
 
-  NSLog(@"%@ = %@", key, dictionary[key]);
+//  NSLog(@"%@ = %@", key, dictionary[key]);
   
   return dictionary[key] ? dictionary[key] : @"|MISSING TRANSLATION|";
 }

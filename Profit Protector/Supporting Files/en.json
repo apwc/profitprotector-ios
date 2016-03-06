@@ -136,5 +136,8 @@
   "Denied Access" : "Thank you for your interest in the CleanRest ROI Profit Protector App. Unfortunately your account was denied access.",
   "Activation Code" : "Please enter the activation code",
   "Pending Approval" : "Thank you for your interest in the CleanRest ROI Profit Protector App. We will reach out to you shortly with an activation link.",
-  "Incorrect Password" : "Incorrect Password - Your password is misstyped or has changed. Please check and try to log-in again"
+  "Incorrect Password" : "Incorrect Password - Your password is misstyped or has changed. Please check and try to log-in again",
+  
+  "industry average" : "* this amount is the\nindustry average",
+  "ancillaries revenues examples" :  "(i.e. parking, gift shop purchases, salon and spa service, etc)"
 }
