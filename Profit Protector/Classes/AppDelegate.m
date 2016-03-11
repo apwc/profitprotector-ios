@@ -21,7 +21,12 @@
  
   // set the default language if the app is in its first run
   if (![GlobalData languageID])
-    [GlobalData saveLanguageID:@"en"];
+  {
+    if ([GlobalMethods isTheChineseVersion])
+      [GlobalData saveLanguageID:@"cz"];
+    else
+      [GlobalData saveLanguageID:@"en"];
+  }
   
   AccountStatus accountStatus = [GlobalData accountStatus];
   

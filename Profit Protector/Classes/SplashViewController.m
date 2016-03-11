@@ -21,7 +21,7 @@
 {
   [super viewDidLoad];
   
-  UIImageView *logo = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"logo"]];
+  UIImageView *logo = [[UIImageView alloc] initWithImage:[UIImage imageNamed:[GlobalMethods isTheChineseVersion] ? @"logo_ch" : @"logo"]];
   logo.frame = CGRectMake((CGRectGetWidth(self.view.bounds) - logo.image.size.width / 1.5f) / 2.0f,
                           60.0f,
                           logo.image.size.width / 1.5f,

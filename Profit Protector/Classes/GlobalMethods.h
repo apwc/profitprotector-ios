@@ -10,6 +10,8 @@
 
 + (NSString *)localizedStringWithKey:(NSString *)key;
 
++ (BOOL)isTheChineseVersion;
+
 - (NSString *)stringByDecodingXMLEntities:(NSString *)string;
 
 @end

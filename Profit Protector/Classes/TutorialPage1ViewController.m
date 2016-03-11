@@ -1,4 +1,5 @@
 #import "TutorialPage1ViewController.h"
+#import "GlobalMethods.h"
 
 @implementation TutorialPage1ViewController
 
@@ -6,7 +7,7 @@
 {
   [super viewDidLoad];
   
-  UIImageView *calendar = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"walkthroughPage1"]];
+  UIImageView *calendar = [[UIImageView alloc] initWithImage:[UIImage imageNamed:[GlobalMethods isTheChineseVersion] ? @"walkthroughPage1_ch" : @"walkthroughPage1"]];
   calendar.center = CGPointMake(CGRectGetWidth(self.view.bounds) / 2.0f + 10.0f, 200.0f);
   [self.view addSubview:calendar];
   

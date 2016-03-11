@@ -208,6 +208,13 @@
   return dictionary[key] ? dictionary[key] : @"|MISSING TRANSLATION|";
 }
 
++ (BOOL)isTheChineseVersion
+{
+  NSDictionary *info = [[NSBundle mainBundle] infoDictionary];
+  NSLog(@"isTheChineseVersion = %@", info[@"isTheChineseVersion"]);
+  return info[@"isTheChineseVersion"];
+}
+
 - (NSString *)stringByDecodingXMLEntities:(NSString *)string
 {
   resultString_ = [NSMutableString stringWithCapacity:0];
