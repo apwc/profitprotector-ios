@@ -211,7 +211,7 @@
 + (BOOL)isTheChineseVersion
 {
   NSDictionary *info = [[NSBundle mainBundle] infoDictionary];
-  NSLog(@"isTheChineseVersion = %@", info[@"isTheChineseVersion"]);
+
   return info[@"isTheChineseVersion"];
 }
 

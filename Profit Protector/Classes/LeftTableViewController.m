@@ -53,14 +53,14 @@
     cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
   }
   
-  if (indexPath.row == 2)
+  /*if (indexPath.row == 2)
   {
     cell.textLabel.text = [GlobalMethods localizedStringWithKey:@"Currency"];
     cell.textLabel.textColor = [UIColor whiteColor];
     cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-  }
+  }*/
   
-  if (indexPath.row == 3)
+  if (indexPath.row == 2)
   {
     cell.textLabel.text = [GlobalMethods localizedStringWithKey:@"Log Out"];
     cell.textLabel.font = [UIFont fontWithName:@"HelveticaNeue-Medium" size:16.0f];
@@ -141,7 +141,7 @@
     
     [self presentViewController:alert animated:YES completion:nil];
   }
-  
+  /*
   if (indexPath.row == 2)
   {
     UIAlertController *alert = [UIAlertController alertControllerWithTitle:nil
@@ -189,9 +189,9 @@
     popPresenter.sourceRect = self.view.bounds;
     
     [self presentViewController:alert animated:YES completion:nil];
-  }
+  }*/
   
-  if (indexPath.row == 3)
+  if (indexPath.row == 2)
   {
     [[NSNotificationCenter defaultCenter] postNotificationName:userDidLogoutNotification
                                                         object:nil];
