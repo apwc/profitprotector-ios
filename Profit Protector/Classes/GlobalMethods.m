@@ -29,6 +29,14 @@
   }
   
   // incorrect password
+  if ([dictionary[@"code"] isEqualToString:kINVALIDEMAIL])
+  {
+    [GlobalData saveAccountStatus:InvalidEmail];
+    
+    return InvalidEmail;
+  }
+
+  // incorrect password
   if ([dictionary[@"code"] isEqualToString:kINCORRECTPASSWORD])
   {
     [GlobalData saveAccountStatus:IncorrectPassword];

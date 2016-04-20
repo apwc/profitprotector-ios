@@ -4,6 +4,7 @@ typedef NS_ENUM(NSInteger, AccountStatus)
   Approved,
   Pending,
   Denied,
+  InvalidEmail,
   IncorrectPassword,
   LicenseDisabled
 };

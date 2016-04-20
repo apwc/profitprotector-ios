@@ -114,12 +114,16 @@
     {
       cell.textLabel.text = [GlobalMethods localizedStringWithKey:@"Lifetime Savings\nEncasement Investment"];
       
+      NSNumberFormatter *formatter = [[NSNumberFormatter alloc] init];
+      [formatter setNumberStyle:NSNumberFormatterDecimalStyle];
+      formatter.maximumFractionDigits = 1;
+      
       UIImageView *newProperty = [[UIImageView alloc] initWithImage:[ProfitProtectorStyleKit imageOfBadgeWithSize:CGSizeMake(130.0f, 37.0f)
                                                                                                         fillColor:[UIColor whiteColor]
                                                                                                      cornerRadius:7.0f
                                                                                                       strokeColor:[UIColor colorWithRed:0.0f green:0.68f blue:0.94f alpha:1.0f]
                                                                                                       strokeWidth:1.0f
-                                                                                                             text:[formatter_ stringFromNumber:self.math[@"lifetimeSavingsEncasementInvestment"]]
+                                                                                                             text:[formatter stringFromNumber:self.math[@"lifetimeSavingsEncasementInvestment"]]
                                                                                                         textColor:[UIColor colorWithRed:0.0f green:0.68f blue:0.94f alpha:1.0f]
                                                                                                          textFont:[UIFont fontWithName:@"HelveticaNeue" size:14.0f]]];
       [newProperty sizeToFit];
@@ -135,12 +139,16 @@
     {
       cell.textLabel.text = [GlobalMethods localizedStringWithKey:@"Encasement Investment\nPayback in Months"];
       
+      NSNumberFormatter *formatter = [[NSNumberFormatter alloc] init];
+      [formatter setNumberStyle:NSNumberFormatterDecimalStyle];
+      formatter.maximumFractionDigits = 1;
+      
       UIImageView *newProperty = [[UIImageView alloc] initWithImage:[ProfitProtectorStyleKit imageOfBadgeWithSize:CGSizeMake(130.0f, 37.0f)
                                                                                                         fillColor:[UIColor whiteColor]
                                                                                                      cornerRadius:7.0f
                                                                                                       strokeColor:[UIColor colorWithRed:0.0f green:0.68f blue:0.94f alpha:1.0f]
                                                                                                       strokeWidth:1.0f
-                                                                                                             text:[formatter_ stringFromNumber:self.math[@"encasementInvestmentPaybackInMonths"]]
+                                                                                                             text:[formatter stringFromNumber:self.math[@"encasementInvestmentPaybackInMonths"]]
                                                                                                         textColor:[UIColor colorWithRed:0.0f green:0.68f blue:0.94f alpha:1.0f]
                                                                                                          textFont:[UIFont fontWithName:@"HelveticaNeue" size:14.0f]]];
       [newProperty sizeToFit];

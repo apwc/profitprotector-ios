@@ -15,6 +15,7 @@
 
 #define kPENDINGAPPROVAL @"pending_approval"
 #define kDENIEDACCESS @"denied_access"
+#define kINVALIDEMAIL @"invalid_email"
 #define kINCORRECTPASSWORD @"incorrect_password"
 #define kLICENSEDISABLED @"license_disabled"
 
@@ -50,6 +51,7 @@
 
 #define accountPendingStatusNotification @"accountPendingStatusNotification"
 #define accountDeniedStatusNotification @"accountDeniedStatusNotification"
+#define accountInvalidEmailStatusNotification @"accountInvalidEmailStatusNotification"
 #define accountIncorrectPasswordStatusNotification @"accountIncorrectPasswordStatusNotification"
 #define accountLicenseDisabledStatusNotification @"accountLicenseDisabledStatusNotification"
 
