@@ -123,7 +123,7 @@
                                                                                                      cornerRadius:7.0f
                                                                                                       strokeColor:[UIColor colorWithRed:0.0f green:0.68f blue:0.94f alpha:1.0f]
                                                                                                       strokeWidth:1.0f
-                                                                                                             text:[formatter stringFromNumber:self.math[@"lifetimeSavingsEncasementInvestment"]]
+                                                                                                             text:[NSString stringWithFormat:@"%@x", [formatter stringFromNumber:self.math[@"lifetimeSavingsEncasementInvestment"]]]
                                                                                                         textColor:[UIColor colorWithRed:0.0f green:0.68f blue:0.94f alpha:1.0f]
                                                                                                          textFont:[UIFont fontWithName:@"HelveticaNeue" size:14.0f]]];
       [newProperty sizeToFit];
