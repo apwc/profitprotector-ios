@@ -218,19 +218,20 @@
     textField.font = [UIFont fontWithName:@"helveticaNeue" size:16.0f];
   }];
   
-  UIAlertAction *ok = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault
-                                             handler:^(UIAlertAction * action) {
-                                               
-                                               UITextField *info = [alert textFields][0];
-                                               
-                                               if (![info.text isEqualToString:@""])
-                                                 [API profilePasswordRecover:info.text];
-                                             }];
+  UIAlertAction *ok = [UIAlertAction actionWithTitle:@"OK"
+                                               style:UIAlertActionStyleDefault
+                                             handler:^(UIAlertAction * action)
+                       {
+                         UITextField *info = [alert textFields][0];
+                         
+                         if (![info.text isEqualToString:@""])
+                           [API profilePasswordRecover:info.text];
+                       }];
   
   [alert addAction:ok];
   
   UIAlertAction *cancel = [UIAlertAction actionWithTitle:[GlobalMethods localizedStringWithKey:@"Cancel"]
-                                                   style:UIAlertActionStyleCancel
+                                                   style:UIAlertActionStyleDestructive
                                                  handler:nil];
   
   [alert addAction:cancel];

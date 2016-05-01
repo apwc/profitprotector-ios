@@ -88,6 +88,8 @@
   
   NSNumberFormatter *formatter = [[NSNumberFormatter alloc] init];
   [formatter setNumberStyle:NSNumberFormatterCurrencyStyle];
+  [formatter setGeneratesDecimalNumbers:NO];
+  [formatter setMaximumFractionDigits:0];
   
   // get the math results
   NSDictionary *math = [GlobalMethods math:property];
@@ -182,12 +184,19 @@
   html = [html stringByReplacingOccurrencesOfString:@"[roi]"
                                          withString:[formatter stringFromNumber:math[@"roi"]]];
   
+  //
+  NSNumberFormatter *formatter2 = [[NSNumberFormatter alloc] init];
+  [formatter2 setNumberStyle:NSNumberFormatterDecimalStyle];
+//  [formatter2 setGeneratesDecimalNumbers:NO];
+  [formatter2 setMaximumFractionDigits:1];
+  
   html = [html stringByReplacingOccurrencesOfString:@"[lifetimeSavingsEncasementInvestment]"
-                                         withString:[NSString stringWithFormat:@"%@x", [math[@"lifetimeSavingsEncasementInvestment"] stringValue]]];
+                                         withString:[formatter2 stringFromNumber:math[@"lifetimeSavingsEncasementInvestment"]]];
   
   html = [html stringByReplacingOccurrencesOfString:@"[encasementInvestmentPaybackInMonths]"
-                                         withString:[math[@"encasementInvestmentPaybackInMonths"] stringValue]];
+                                         withString:[formatter2 stringFromNumber:math[@"encasementInvestmentPaybackInMonths"]]];
   
+  //
   html = [html stringByReplacingOccurrencesOfString:@"[bedBugIncidents]"
                                          withString:[[property valueForKey:@"bedBugIncidents"] stringValue]];
   

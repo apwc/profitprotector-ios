@@ -421,7 +421,7 @@
   
   // cancel
   UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:[GlobalMethods localizedStringWithKey:@"Cancel"]
-                                                         style:UIAlertActionStyleCancel
+                                                         style:UIAlertActionStyleDestructive
                                                        handler:nil];
   [alert addAction:cancelAction];
   

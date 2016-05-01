@@ -82,7 +82,7 @@
   {
     UIAlertController *alert = [UIAlertController alertControllerWithTitle:nil
                                                                    message:nil
-                                                            preferredStyle:UIAlertControllerStyleActionSheet];
+                                                            preferredStyle:UIAlertControllerStyleAlert];
     
     UIAlertAction *english = [UIAlertAction actionWithTitle:@"English"
                                                    style:UIAlertActionStyleDefault
@@ -127,17 +127,10 @@
     [alert addAction:mandarin];
     
     UIAlertAction *cancel = [UIAlertAction actionWithTitle:[GlobalMethods localizedStringWithKey:@"Cancel"]
-                                                     style:UIAlertActionStyleCancel
+                                                     style:UIAlertActionStyleDestructive
                                                    handler:nil];
     
     [alert addAction:cancel];
-    
-    // note: you can control the order buttons are shown, unlike UIActionSheet
-    [alert setModalPresentationStyle:UIModalPresentationPopover];
-    
-    UIPopoverPresentationController *popPresenter = [alert popoverPresentationController];
-    popPresenter.sourceView = self.view;
-    popPresenter.sourceRect = self.view.bounds;
     
     [self presentViewController:alert animated:YES completion:nil];
   }
