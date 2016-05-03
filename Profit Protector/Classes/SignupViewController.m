@@ -486,6 +486,9 @@
   //
   [CoreDataStoring storeUser:@{@"company": company_.text,
                                @"email": email_.text,
+                               @"password": password_.text,
+                               @"authorID": json[@"ID"],
+                               @"licenseID": json[@"license"][@"code"],
                                @"firstname": firstname_.text,
                                @"lastname": lastname_.text,
                                @"phone": (NSString *)CFBridgingRelease(CFURLCreateStringByAddingPercentEscapes(

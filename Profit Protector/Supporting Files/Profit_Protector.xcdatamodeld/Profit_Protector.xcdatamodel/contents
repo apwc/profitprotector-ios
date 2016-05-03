@@ -24,15 +24,18 @@
         <attribute name="timesPerYearBedClean" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
     </entity>
     <entity name="User" syncable="YES">
+        <attribute name="authorID" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="company" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="email" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="firstname" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="lastname" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="licenseID" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="password" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="phone" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="role" optional="YES" attributeType="String" syncable="YES"/>
     </entity>
     <elements>
         <element name="Property" positionX="-63" positionY="-18" width="128" height="360"/>
-        <element name="User" positionX="-54" positionY="144" width="128" height="135"/>
+        <element name="User" positionX="-54" positionY="144" width="128" height="180"/>
     </elements>
 </model>

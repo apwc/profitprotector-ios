@@ -17,6 +17,6 @@
 
 - (void)saveData;
 
-- (void)deleteObject:(id) objectToDelete;
+- (void)deleteObject:(id)objectToDelete;
 
 @end
