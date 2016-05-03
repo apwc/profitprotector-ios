@@ -54,7 +54,6 @@
 		B7A58F2B1B4DFC3800C408D8 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = B7A58F231B4DFC3800C408D8 /* main.m */; };
 		B7ABBEDA1C44DD3100F0373C /* en.json in Resources */ = {isa = PBXBuildFile; fileRef = B7ABBED91C44DD3100F0373C /* en.json */; };
 		B7B4BEEB1BED6C9600C977FC /* NewPropertyForm8ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B7B4BEEA1BED6C9600C977FC /* NewPropertyForm8ViewController.m */; };
-		B7C3F9AB1B6EE7CA00C252EE /* UserTypeTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B7C3F9AA1B6EE7CA00C252EE /* UserTypeTableViewController.m */; };
 		B7D8ACC81B5A3F3C00041ED1 /* CoreDataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = B7D8ACC31B5A3F3C00041ED1 /* CoreDataManager.m */; };
 		B7D8ACC91B5A3F3C00041ED1 /* CoreDataRetrieving.m in Sources */ = {isa = PBXBuildFile; fileRef = B7D8ACC51B5A3F3C00041ED1 /* CoreDataRetrieving.m */; };
 		B7D8ACCA1B5A3F3C00041ED1 /* CoreDataStoring.m in Sources */ = {isa = PBXBuildFile; fileRef = B7D8ACC71B5A3F3C00041ED1 /* CoreDataStoring.m */; };
@@ -75,7 +74,6 @@
 		B7F4E59B1C8D844E00DA767B /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B768D82E1B50E5BB00D2FEF7 /* MainViewController.m */; };
 		B7F4E59C1C8D844E00DA767B /* PendingApprovalViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B705F8FF1C754CDA009207FD /* PendingApprovalViewController.m */; };
 		B7F4E59D1C8D844E00DA767B /* CoreDataStoring.m in Sources */ = {isa = PBXBuildFile; fileRef = B7D8ACC71B5A3F3C00041ED1 /* CoreDataStoring.m */; };
-		B7F4E59E1C8D844E00DA767B /* UserTypeTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B7C3F9AA1B6EE7CA00C252EE /* UserTypeTableViewController.m */; };
 		B7F4E59F1C8D844E00DA767B /* GlobalMethods.m in Sources */ = {isa = PBXBuildFile; fileRef = B72789131B65A831000AB281 /* GlobalMethods.m */; };
 		B7F4E5A01C8D844E00DA767B /* NSObject+PKBlocks.m in Sources */ = {isa = PBXBuildFile; fileRef = B768D80E1B50E54B00D2FEF7 /* NSObject+PKBlocks.m */; };
 		B7F4E5A11C8D844E00DA767B /* NewPropertyForm4ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B7FEF8D21B548DC00018CB7D /* NewPropertyForm4ViewController.m */; };
@@ -220,8 +218,6 @@
 		B7AC44B51C8EADED0013E9A5 /* King Koil Profit Protector-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "King Koil Profit Protector-Info.plist"; sourceTree = "<group>"; };
 		B7B4BEE91BED6C9600C977FC /* NewPropertyForm8ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewPropertyForm8ViewController.h; sourceTree = "<group>"; };
 		B7B4BEEA1BED6C9600C977FC /* NewPropertyForm8ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewPropertyForm8ViewController.m; sourceTree = "<group>"; };
-		B7C3F9A91B6EE7CA00C252EE /* UserTypeTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserTypeTableViewController.h; sourceTree = "<group>"; };
-		B7C3F9AA1B6EE7CA00C252EE /* UserTypeTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserTypeTableViewController.m; sourceTree = "<group>"; };
 		B7D8ACC21B5A3F3C00041ED1 /* CoreDataManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CoreDataManager.h; sourceTree = "<group>"; };
 		B7D8ACC31B5A3F3C00041ED1 /* CoreDataManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CoreDataManager.m; sourceTree = "<group>"; };
 		B7D8ACC41B5A3F3C00041ED1 /* CoreDataRetrieving.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CoreDataRetrieving.h; sourceTree = "<group>"; };
@@ -422,8 +418,6 @@
 				B768D8001B50D36D00D2FEF7 /* TutorialViewController.h */,
 				B768D8011B50D36D00D2FEF7 /* TutorialViewController.m */,
 				B71F34211B572B54000C7A1D /* TypeDefEnumerators.h */,
-				B7C3F9A91B6EE7CA00C252EE /* UserTypeTableViewController.h */,
-				B7C3F9AA1B6EE7CA00C252EE /* UserTypeTableViewController.m */,
 			);
 			name = Classes;
 			path = "Profit Protector/Classes";
@@ -638,7 +632,6 @@
 				B768D82F1B50E5BB00D2FEF7 /* MainViewController.m in Sources */,
 				B705F9001C754CDA009207FD /* PendingApprovalViewController.m in Sources */,
 				B7D8ACCA1B5A3F3C00041ED1 /* CoreDataStoring.m in Sources */,
-				B7C3F9AB1B6EE7CA00C252EE /* UserTypeTableViewController.m in Sources */,
 				B72789141B65A831000AB281 /* GlobalMethods.m in Sources */,
 				B768D8251B50E54B00D2FEF7 /* NSObject+PKBlocks.m in Sources */,
 				B7FEF8D91B548DC00018CB7D /* NewPropertyForm4ViewController.m in Sources */,
@@ -698,7 +691,6 @@
 				B7F4E59B1C8D844E00DA767B /* MainViewController.m in Sources */,
 				B7F4E59C1C8D844E00DA767B /* PendingApprovalViewController.m in Sources */,
 				B7F4E59D1C8D844E00DA767B /* CoreDataStoring.m in Sources */,
-				B7F4E59E1C8D844E00DA767B /* UserTypeTableViewController.m in Sources */,
 				B7F4E59F1C8D844E00DA767B /* GlobalMethods.m in Sources */,
 				B7F4E5A01C8D844E00DA767B /* NSObject+PKBlocks.m in Sources */,
 				B7F4E5A11C8D844E00DA767B /* NewPropertyForm4ViewController.m in Sources */,

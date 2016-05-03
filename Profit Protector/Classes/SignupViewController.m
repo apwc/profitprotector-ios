@@ -2,11 +2,9 @@
 #import "API.h"
 #import "GlobalData.h"
 #import "GlobalMethods.h"
-#import "UserTypeTableViewController.h"
 #import "CoreDataStoring.h"
 
-@interface SignupViewController () <UITextFieldDelegate,
-                                    UserTypeDelegate>
+@interface SignupViewController () <UITextFieldDelegate>
 {
   UIScrollView *uisv_;
   
@@ -17,7 +15,7 @@
               *email_,
               *phone_,
               *company_,
-              *type_;
+              *role_;
   
   UIImageView *emailAsterix_,
               *passwordAsterix_,
@@ -25,7 +23,7 @@
               *lastnameAsterix_,
               *phoneAsterix_,
               *companyAsterix_,
-              *typeAsterix_;
+              *roleAsterix_;
 }
 @end
 
@@ -259,34 +257,34 @@
   [uisv_ addSubview:divisionLine6];
   
   // username
-  type_ = [[UITextField alloc] initWithFrame:CGRectMake(60.0f,
+  role_ = [[UITextField alloc] initWithFrame:CGRectMake(60.0f,
                                                         CGRectGetMaxY(company_.frame),
                                                         textFieldWidth,
                                                         textFieldHeight)];
-  type_.delegate = self;
-  type_.font = [UIFont fontWithName:@"HelveticaNeue" size:textFieldFontsize];
-  type_.textColor = [UIColor blackColor];
-  type_.autocorrectionType = UITextAutocorrectionTypeNo;
-  type_.autocapitalizationType = UITextAutocapitalizationTypeNone;
-  type_.enabled = YES;
-  type_.placeholder = [GlobalMethods localizedStringWithKey:@"Type"];
-  type_.clipsToBounds = NO;
-  [uisv_ addSubview:type_];
+  role_.delegate = self;
+  role_.font = [UIFont fontWithName:@"HelveticaNeue" size:textFieldFontsize];
+  role_.textColor = [UIColor blackColor];
+  role_.autocorrectionType = UITextAutocorrectionTypeNo;
+  role_.autocapitalizationType = UITextAutocapitalizationTypeNone;
+  role_.enabled = YES;
+  role_.placeholder = [GlobalMethods localizedStringWithKey:@"Type"];
+  role_.clipsToBounds = NO;
+  [uisv_ addSubview:role_];
   
   UIImageView *typeIcon = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"job"]];
   typeIcon.frame = CGRectMake(20.0f,
-                              CGRectGetMinY(type_.frame) + 10.0f,
+                              CGRectGetMinY(role_.frame) + 10.0f,
                               emailIcon.image.size.width,
                               emailIcon.image.size.height);
   [uisv_ addSubview:typeIcon];
   
-  typeAsterix_ = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"asterix"]];
-  typeAsterix_.center = CGPointMake(CGRectGetWidth(type_.bounds) + 15.0f, CGRectGetMidY(type_.bounds));
-  [type_ addSubview:typeAsterix_];
+  roleAsterix_ = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"asterix"]];
+  roleAsterix_.center = CGPointMake(CGRectGetWidth(role_.bounds) + 15.0f, CGRectGetMidY(role_.bounds));
+  [role_ addSubview:roleAsterix_];
   
   // division line
   UIView *divisionLine7 = [[UIView alloc] initWithFrame:CGRectMake(0.0f,
-                                                                   CGRectGetMaxY(type_.frame),
+                                                                   CGRectGetMaxY(role_.frame),
                                                                    CGRectGetWidth(self.view.bounds),
                                                                    1.0f)];
   divisionLine7.backgroundColor = [UIColor colorWithWhite:0.7f alpha:1.0f];
@@ -294,7 +292,7 @@
   
   // signup
   UIButton *signup = [[UIButton alloc] initWithFrame:CGRectMake(0.0f,
-                                                                CGRectGetMaxY(type_.frame) + 40.0f,
+                                                                CGRectGetMaxY(role_.frame) + 40.0f,
                                                                 CGRectGetWidth(self.view.bounds),
                                                                 buttonHeight)];
   signup.backgroundColor = [UIColor colorWithRed:0 green:0.68 blue:0.95 alpha:1];
@@ -365,18 +363,18 @@
     return;
   }
   
-  NSString *type = @"";
+  NSString *role = @"";
   
-  if (![type_.text isEqualToString:@""])
+  if (![role_.text isEqualToString:@""])
   {
-    if ([type_.text isEqualToString:[GlobalMethods localizedStringWithKey:@"Distributor"]])
-      type = @"distributor";
+    if ([role_.text isEqualToString:[GlobalMethods localizedStringWithKey:@"Distributor"]])
+      role = @"distributor";
     
-    if ([type_.text isEqualToString:[GlobalMethods localizedStringWithKey:@"Hotel Owner"]])
-      type = @"hotel_owner";
+    if ([role_.text isEqualToString:[GlobalMethods localizedStringWithKey:@"Hotel Owner"]])
+      role = @"hotel_owner";
     
-    if ([type_.text isEqualToString:[GlobalMethods localizedStringWithKey:@"PCO"]])
-      type = @"pco";
+    if ([role_.text isEqualToString:[GlobalMethods localizedStringWithKey:@"PCO"]])
+      role = @"pco";
   }
   
   [API createUser:email_.text
@@ -391,17 +389,12 @@
                                                                                         CFSTR("!*'();:@&=+$,/?%#[]\" "),
                                                                                         kCFStringEncodingUTF8))
           company:company_.text
-             role:type];
+             role:role];
 }
 
 - (void)signin:(UIButton *)uib
 {
   [self dismissViewControllerAnimated:YES completion:nil];
-}
-
-- (void)userTypeSelected:(NSString *)userType
-{
-  type_.text = userType;
 }
 
 - (void)disactivateAllAsterixes
@@ -412,7 +405,7 @@
   lastnameAsterix_.hidden = YES;
   phoneAsterix_.hidden = YES;
   companyAsterix_.hidden = YES;
-  typeAsterix_.hidden = YES;
+  roleAsterix_.hidden = YES;
 }
 
 - (BOOL)checkAndActivateAsterixesForMissingFields
@@ -467,13 +460,13 @@
   else
     companyAsterix_.hidden = YES;
   
-  if ([type_.text isEqualToString:@""])
+  if ([role_.text isEqualToString:@""])
   {
     flag = YES;
-    typeAsterix_.hidden = NO;
+    roleAsterix_.hidden = NO;
   }
   else
-    typeAsterix_.hidden = YES;
+    roleAsterix_.hidden = YES;
   
   return flag;
 }
@@ -501,7 +494,7 @@
                                                                                                                NULL,
                                                                                                                CFSTR("!*'();:@&=+$,/?%#[]\" "),
                                                                                                                kCFStringEncodingUTF8)),
-                               @"role": type_.text}];
+                               @"role": role_.text}];
   
   //
   [self dismissViewControllerAnimated:YES
@@ -515,11 +508,43 @@
 
 - (BOOL)textFieldShouldBeginEditing:(UITextField *)textField
 {
-  if (textField == type_)
+  if (textField == role_)
   {
-    UserTypeTableViewController *uttvc = [[UserTypeTableViewController alloc] initWithStyle:UITableViewStylePlain];
-    uttvc.delegate = self;
-    [self.navigationController pushViewController:uttvc animated:YES];
+    UIAlertController *alert = [UIAlertController alertControllerWithTitle:nil
+                                                                   message:nil
+                                                            preferredStyle:UIAlertControllerStyleAlert];
+    
+    UIAlertAction *english = [UIAlertAction actionWithTitle:@"Distributor"
+                                                      style:UIAlertActionStyleDefault
+                                                    handler:^(UIAlertAction *action) {
+                                                      role_.text = @"Distributor";
+                                                    }];
+    
+    [alert addAction:english];
+    
+    UIAlertAction *french = [UIAlertAction actionWithTitle:@"Hotel Owner"
+                                                     style:UIAlertActionStyleDefault
+                                                   handler:^(UIAlertAction *action) {
+                                                     role_.text = @"Hotel Owner";
+                                                   }];
+    
+    [alert addAction:french];
+    
+    UIAlertAction *mandarin = [UIAlertAction actionWithTitle:@"PCO"
+                                                       style:UIAlertActionStyleDefault
+                                                     handler:^(UIAlertAction *action) {
+                                                       role_.text = @"PCO";
+                                                     }];
+    
+    [alert addAction:mandarin];
+    
+    UIAlertAction *cancel = [UIAlertAction actionWithTitle:[GlobalMethods localizedStringWithKey:@"Cancel"]
+                                                     style:UIAlertActionStyleDestructive
+                                                   handler:nil];
+    
+    [alert addAction:cancel];
+    
+    [self presentViewController:alert animated:YES completion:nil];
     
     return NO;
   }
