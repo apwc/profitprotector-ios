@@ -187,7 +187,7 @@
   //
   NSNumberFormatter *formatter2 = [[NSNumberFormatter alloc] init];
   [formatter2 setNumberStyle:NSNumberFormatterDecimalStyle];
-//  [formatter2 setGeneratesDecimalNumbers:NO];
+
   [formatter2 setMaximumFractionDigits:1];
   
   html = [html stringByReplacingOccurrencesOfString:@"[lifetimeSavingsEncasementInvestment]"

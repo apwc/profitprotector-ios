@@ -1,15 +1,17 @@
 #import "SignupViewController.h"
 #import "API.h"
 #import "GlobalData.h"
-#import "UserTypeTableViewController.h"
 #import "GlobalMethods.h"
+#import "UserTypeTableViewController.h"
+#import "CoreDataStoring.h"
 
 @interface SignupViewController () <UITextFieldDelegate,
                                     UserTypeDelegate>
 {
   UIScrollView *uisv_;
   
-  UITextField *name_,
+  UITextField *firstname_,
+              *lastname_,
               *username_,
               *password_,
               *email_,
@@ -19,7 +21,8 @@
   
   UIImageView *emailAsterix_,
               *passwordAsterix_,
-              *nameAsterix_,
+              *firstnameAsterix_,
+              *lastnameAsterix_,
               *phoneAsterix_,
               *companyAsterix_,
               *typeAsterix_;
@@ -123,42 +126,75 @@
   divisionLine2.backgroundColor = [UIColor colorWithWhite:0.7f alpha:1.0f];
   [uisv_ addSubview:divisionLine2];
   
-  // name
-  name_ = [[UITextField alloc] initWithFrame:CGRectMake(60.0f,
-                                                        CGRectGetMaxY(password_.frame),
-                                                        textFieldWidth,
-                                                        textFieldHeight)];
-  name_.delegate = self;
-  name_.font = [UIFont fontWithName:@"HelveticaNeue" size:textFieldFontsize];
-  name_.textColor = [UIColor blackColor];
-  name_.autocorrectionType = UITextAutocorrectionTypeNo;
-  name_.autocapitalizationType = UITextAutocapitalizationTypeNone;
-  name_.placeholder = [GlobalMethods localizedStringWithKey:@"Full Name"];
-  name_.clipsToBounds = NO;
-  [uisv_ addSubview:name_];
+  // firstname
+  firstname_ = [[UITextField alloc] initWithFrame:CGRectMake(60.0f,
+                                                             CGRectGetMaxY(password_.frame),
+                                                             textFieldWidth,
+                                                             textFieldHeight)];
+  firstname_.delegate = self;
+  firstname_.font = [UIFont fontWithName:@"HelveticaNeue" size:textFieldFontsize];
+  firstname_.textColor = [UIColor blackColor];
+  firstname_.autocorrectionType = UITextAutocorrectionTypeNo;
+  firstname_.autocapitalizationType = UITextAutocapitalizationTypeNone;
+  firstname_.placeholder = [GlobalMethods localizedStringWithKey:@"First Name"];
+  firstname_.clipsToBounds = NO;
+  [uisv_ addSubview:firstname_];
   
-  UIImageView *nameIcon = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"username"]];
-  nameIcon.frame = CGRectMake(20.0f,
-                              CGRectGetMinY(name_.frame) + 10.0f,
-                              emailIcon.image.size.width,
-                              emailIcon.image.size.height);
-  [uisv_ addSubview:nameIcon];
+  UIImageView *firstnameIcon = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"username"]];
+  firstnameIcon.frame = CGRectMake(20.0f,
+                                   CGRectGetMinY(firstname_.frame) + 10.0f,
+                                   emailIcon.image.size.width,
+                                   emailIcon.image.size.height);
+  [uisv_ addSubview:firstnameIcon];
   
-  nameAsterix_ = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"asterix"]];
-  nameAsterix_.center = CGPointMake(CGRectGetWidth(name_.bounds) + 15.0f, CGRectGetMidY(name_.bounds));
-  [name_ addSubview:nameAsterix_];
+  firstnameAsterix_ = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"asterix"]];
+  firstnameAsterix_.center = CGPointMake(CGRectGetWidth(firstname_.bounds) + 15.0f, CGRectGetMidY(firstname_.bounds));
+  [firstname_ addSubview:firstnameAsterix_];
   
   // division line
   UIView *divisionLine3 = [[UIView alloc] initWithFrame:CGRectMake(0.0f,
-                                                                   CGRectGetMaxY(name_.frame),
+                                                                   CGRectGetMaxY(firstname_.frame),
                                                                    CGRectGetWidth(self.view.bounds),
                                                                    1.0f)];
   divisionLine3.backgroundColor = [UIColor colorWithWhite:0.7f alpha:1.0f];
   [uisv_ addSubview:divisionLine3];
 
+  // lastname
+  lastname_ = [[UITextField alloc] initWithFrame:CGRectMake(60.0f,
+                                                             CGRectGetMaxY(firstname_.frame),
+                                                             textFieldWidth,
+                                                             textFieldHeight)];
+  lastname_.delegate = self;
+  lastname_.font = [UIFont fontWithName:@"HelveticaNeue" size:textFieldFontsize];
+  lastname_.textColor = [UIColor blackColor];
+  lastname_.autocorrectionType = UITextAutocorrectionTypeNo;
+  lastname_.autocapitalizationType = UITextAutocapitalizationTypeNone;
+  lastname_.placeholder = [GlobalMethods localizedStringWithKey:@"Last Name"];
+  lastname_.clipsToBounds = NO;
+  [uisv_ addSubview:lastname_];
+  
+  UIImageView *lastnameIcon = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"username"]];
+  lastnameIcon.frame = CGRectMake(20.0f,
+                              CGRectGetMinY(lastname_.frame) + 10.0f,
+                              emailIcon.image.size.width,
+                              emailIcon.image.size.height);
+  [uisv_ addSubview:lastnameIcon];
+  
+  lastnameAsterix_ = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"asterix"]];
+  lastnameAsterix_.center = CGPointMake(CGRectGetWidth(lastname_.bounds) + 15.0f, CGRectGetMidY(lastname_.bounds));
+  [lastname_ addSubview:lastnameAsterix_];
+  
+  // division line
+  UIView *divisionLine4 = [[UIView alloc] initWithFrame:CGRectMake(0.0f,
+                                                                   CGRectGetMaxY(lastname_.frame),
+                                                                   CGRectGetWidth(self.view.bounds),
+                                                                   1.0f)];
+  divisionLine4.backgroundColor = [UIColor colorWithWhite:0.7f alpha:1.0f];
+  [uisv_ addSubview:divisionLine4];
+  
   // phone
   phone_ = [[UITextField alloc] initWithFrame:CGRectMake(60.0f,
-                                                         CGRectGetMaxY(name_.frame),
+                                                         CGRectGetMaxY(lastname_.frame),
                                                          textFieldWidth,
                                                          textFieldHeight)];
   phone_.delegate = self;
@@ -342,10 +378,11 @@
     if ([type_.text isEqualToString:[GlobalMethods localizedStringWithKey:@"PCO"]])
       type = @"pco";
   }
-
+  
   [API createUser:email_.text
          password:password_.text
-             name:name_.text
+        firstname:firstname_.text
+         lastname:lastname_.text
             email:email_.text
             phone:(NSString *)CFBridgingRelease(CFURLCreateStringByAddingPercentEscapes(
                                                                                         NULL,
@@ -371,7 +408,8 @@
 {
   emailAsterix_.hidden = YES;
   passwordAsterix_.hidden = YES;
-  nameAsterix_.hidden = YES;
+  firstnameAsterix_.hidden = YES;
+  lastnameAsterix_.hidden = YES;
   phoneAsterix_.hidden = YES;
   companyAsterix_.hidden = YES;
   typeAsterix_.hidden = YES;
@@ -397,13 +435,21 @@
   else
     passwordAsterix_.hidden = YES;
   
-  if ([name_.text isEqualToString:@""])
+  if ([firstname_.text isEqualToString:@""])
   {
     flag = YES;
-    nameAsterix_.hidden = NO;
+    firstnameAsterix_.hidden = NO;
   }
   else
-    nameAsterix_.hidden = YES;
+    firstnameAsterix_.hidden = YES;
+  
+  if ([lastname_.text isEqualToString:@""])
+  {
+    flag = YES;
+    lastnameAsterix_.hidden = NO;
+  }
+  else
+    lastnameAsterix_.hidden = YES;
   
   if ([phone_.text isEqualToString:@""])
   {
@@ -438,11 +484,26 @@
 {
   NSDictionary *json = (NSDictionary *)notification.object;
   
+  //
   [GlobalData saveUsername:email_.text];
   [GlobalData savePassword:password_.text];
   [GlobalData saveAuthorID:json[@"ID"]];
   [GlobalData saveLicenseID:json[@"license"][@"code"]];
   
+  //
+  [CoreDataStoring storeUser:@{@"company": company_.text,
+                               @"email": email_.text,
+                               @"firstname": firstname_.text,
+                               @"lastname": lastname_.text,
+                               @"phone": (NSString *)CFBridgingRelease(CFURLCreateStringByAddingPercentEscapes(
+                                                                                                               NULL,
+                                                                                                               (CFStringRef)phone_.text,
+                                                                                                               NULL,
+                                                                                                               CFSTR("!*'();:@&=+$,/?%#[]\" "),
+                                                                                                               kCFStringEncodingUTF8)),
+                               @"role": type_.text}];
+  
+  //
   [self dismissViewControllerAnimated:YES
                            completion:^{
                              [[NSNotificationCenter defaultCenter] postNotificationName:userHasBeenRegisteredNotification

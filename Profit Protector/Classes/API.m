@@ -269,7 +269,8 @@
 
 + (void)createUser:(NSString *)username
           password:(NSString *)password
-              name:(NSString *)name
+         firstname:(NSString *)firstname
+          lastname:(NSString *)lastname
              email:(NSString *)email
              phone:(NSString *)phone
            company:(NSString *)company
@@ -292,11 +293,12 @@
   NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
   [request addValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-type"];
   [request setHTTPMethod:@"POST"];
-  
-  NSString *parameters = [NSString stringWithFormat:@"iam=%@&username=%@&name=%@&password=%@&email=%@&role=%@&description=%@|%@",
+
+  NSString *parameters = [NSString stringWithFormat:@"iam=%@&username=%@&first_name=%@&last_name=%@&password=%@&email=%@&role=%@&phone=%@&company=%@",
                           base64,
                           username,
-                          name,
+                          firstname,
+                          lastname,
                           password,
                           email,
                           role,

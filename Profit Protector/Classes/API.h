@@ -13,7 +13,8 @@
 
 + (void)createUser:(NSString *)username
           password:(NSString *)password
-              name:(NSString *)name
+         firstname:(NSString *)firstname
+          lastname:(NSString *)lastname
              email:(NSString *)email
              phone:(NSString *)phone
            company:(NSString *)company

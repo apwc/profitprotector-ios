@@ -347,27 +347,29 @@
   
   UITableViewRowAction *fav = [UITableViewRowAction rowActionWithStyle:UITableViewRowActionStyleNormal
                                                                  title:isFavorited ? @"UNFAV" : @"FAV"
-                                                               handler:^(UITableViewRowAction *action, NSIndexPath *indexPath) {
-                                                                 
-                                                                 if (isFavorited)
-                                                                   [property setValue:@(NO) forKey:@"favorite"];
-                                                                 else
-                                                                   [property setValue:@(YES) forKey:@"favorite"];
-                                                                 
-                                                                 CoreDataManager *cdm = [CoreDataManager singleton];
-                                                                 [cdm saveData];
-                                                                 
-                                                                 properties_ = [CoreDataRetrieving allProperties];
-                                                                 
-                                                                 [uitv_ reloadData];
-                                                               }];
+                                                               handler:^(UITableViewRowAction *action, NSIndexPath *indexPath)
+                               {
+                                 if (isFavorited)
+                                   [property setValue:@(NO) forKey:@"favorite"];
+                                 else
+                                   [property setValue:@(YES) forKey:@"favorite"];
+                                 
+                                 CoreDataManager *cdm = [CoreDataManager singleton];
+                                 [cdm saveData];
+                                 
+                                 properties_ = [CoreDataRetrieving allProperties];
+                                 
+                                 [uitv_ reloadData];
+                               }];
+  
   fav.backgroundColor = [UIColor colorWithRed:0.89 green:0.88 blue:0.13 alpha:1];
   
   UITableViewRowAction *trsh = [UITableViewRowAction rowActionWithStyle:UITableViewRowActionStyleDestructive
                                                                   title:@"TRSH"
-                                                                handler:^(UITableViewRowAction *action, NSIndexPath *indexPath) {
-                                                                  [API deleteProperty:properties_[indexPath.row]];
-                                                                }];
+                                                                handler:^(UITableViewRowAction *action, NSIndexPath *indexPath)
+                                {
+                                  [API deleteProperty:properties_[indexPath.row]];
+                                }];
   
   return @[trsh, fav];
 }

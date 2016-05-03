@@ -3,6 +3,20 @@
 
 @implementation CoreDataStoring
 
++ (void)storeUser:(NSDictionary *)dictionary
+{
+  CoreDataManager *cdm = [CoreDataManager singleton];
+  
+  // create the entity object
+  NSManagedObject *property = (NSManagedObject *)[NSEntityDescription insertNewObjectForEntityForName:@"User"
+                                                                               inManagedObjectContext:cdm.managedObjectContext];
+  
+  [property setValuesForKeysWithDictionary:dictionary];
+  [cdm.managedObjectContext performBlockAndWait:^{
+    [cdm.managedObjectContext save:nil];
+  }];
+}
+
 + (void)storeProperty:(NSDictionary *)dictionary
 {
   CoreDataManager *cdm = [CoreDataManager singleton];
