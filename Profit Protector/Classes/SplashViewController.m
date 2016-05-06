@@ -1,9 +1,10 @@
 #import "SplashViewController.h"
-#import "SignupViewController.h"
-#import "TutorialViewController.h"
 #import "API.h"
 #import "GlobalData.h"
 #import "GlobalMethods.h"
+#import "SignupViewController.h"
+#import "TutorialViewController.h"
+#import "CoreDataStoring.h"
 
 @interface SplashViewController () <UITextFieldDelegate>
 {
@@ -316,6 +317,17 @@
 
   [GlobalData saveAuthorID:json[@"ID"]];
   [GlobalData saveLicenseID:json[@"license"][@"code"]];
+  
+  //
+  [CoreDataStoring storeAuthor:@{@"company": json[@"company"],
+                                 @"email": json[@"username"],
+                                 @"password": [GlobalData password],
+                                 @"authorID": json[@"ID"],
+                                 @"licenseID": json[@"license"][@"code"],
+                                 @"firstname": json[@"first_name"],
+                                 @"lastname": json[@"last_name"],
+                                 @"phone": json[@"phone"],
+                                 @"role": [json[@"roles"] firstObject]}];
   
   if (![GlobalData walkthrough])
   {

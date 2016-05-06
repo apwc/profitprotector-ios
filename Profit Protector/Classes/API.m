@@ -365,6 +365,16 @@
   [dataTask resume];
 }
 
++ (void)updateUser:(NSString *)username
+         firstname:(NSString *)firstname
+          lastname:(NSString *)lastname
+             phone:(NSString *)phone
+           company:(NSString *)company
+              role:(NSString *)role
+{
+  NSLog(@"%s", __PRETTY_FUNCTION__);
+}
+
 + (void)getProperties
 {
   NSLog(@"%s", __PRETTY_FUNCTION__);
@@ -742,6 +752,12 @@
                                                 }
                                               }];
   [dataTask resume];
+}
+
++ (void)updateUploadedProperty:(NSString *)postID
+                      favorite:(BOOL)favorite
+{
+  NSLog(@"%s", __PRETTY_FUNCTION__);
 }
 
 + (void)deleteProperty:(NSManagedObject *)property

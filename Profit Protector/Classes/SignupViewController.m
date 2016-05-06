@@ -484,20 +484,15 @@
   [GlobalData saveLicenseID:json[@"license"][@"code"]];
   
   //
-  [CoreDataStoring storeUser:@{@"company": company_.text,
-                               @"email": email_.text,
-                               @"password": password_.text,
-                               @"authorID": json[@"ID"],
-                               @"licenseID": json[@"license"][@"code"],
-                               @"firstname": firstname_.text,
-                               @"lastname": lastname_.text,
-                               @"phone": (NSString *)CFBridgingRelease(CFURLCreateStringByAddingPercentEscapes(
-                                                                                                               NULL,
-                                                                                                               (CFStringRef)phone_.text,
-                                                                                                               NULL,
-                                                                                                               CFSTR("!*'();:@&=+$,/?%#[]\" "),
-                                                                                                               kCFStringEncodingUTF8)),
-                               @"role": role_.text}];
+  [CoreDataStoring storeAuthor:@{@"company": company_.text,
+                                 @"email": email_.text,
+                                 @"password": password_.text,
+                                 @"authorID": json[@"ID"],
+                                 @"licenseID": json[@"license"][@"code"],
+                                 @"firstname": firstname_.text,
+                                 @"lastname": lastname_.text,
+                                 @"phone": phone_.text,
+                                 @"role": role_.text}];
   
   //
   [self dismissViewControllerAnimated:YES
@@ -517,29 +512,29 @@
                                                                    message:nil
                                                             preferredStyle:UIAlertControllerStyleAlert];
     
-    UIAlertAction *english = [UIAlertAction actionWithTitle:@"Distributor"
-                                                      style:UIAlertActionStyleDefault
-                                                    handler:^(UIAlertAction *action) {
-                                                      role_.text = @"Distributor";
-                                                    }];
+    UIAlertAction *distributor = [UIAlertAction actionWithTitle:@"Distributor"
+                                                          style:UIAlertActionStyleDefault
+                                                        handler:^(UIAlertAction *action) {
+                                                          role_.text = @"Distributor";
+                                                        }];
     
-    [alert addAction:english];
+    [alert addAction:distributor];
     
-    UIAlertAction *french = [UIAlertAction actionWithTitle:@"Hotel Owner"
-                                                     style:UIAlertActionStyleDefault
-                                                   handler:^(UIAlertAction *action) {
-                                                     role_.text = @"Hotel Owner";
-                                                   }];
+    UIAlertAction *hotelOwner = [UIAlertAction actionWithTitle:@"Hotel Owner"
+                                                         style:UIAlertActionStyleDefault
+                                                       handler:^(UIAlertAction *action) {
+                                                         role_.text = @"Hotel Owner";
+                                                       }];
     
-    [alert addAction:french];
+    [alert addAction:hotelOwner];
     
-    UIAlertAction *mandarin = [UIAlertAction actionWithTitle:@"PCO"
-                                                       style:UIAlertActionStyleDefault
-                                                     handler:^(UIAlertAction *action) {
-                                                       role_.text = @"PCO";
-                                                     }];
+    UIAlertAction *pco = [UIAlertAction actionWithTitle:@"PCO"
+                                                  style:UIAlertActionStyleDefault
+                                                handler:^(UIAlertAction *action) {
+                                                  role_.text = @"PCO";
+                                                }];
     
-    [alert addAction:mandarin];
+    [alert addAction:pco];
     
     UIAlertAction *cancel = [UIAlertAction actionWithTitle:[GlobalMethods localizedStringWithKey:@"Cancel"]
                                                      style:UIAlertActionStyleDestructive

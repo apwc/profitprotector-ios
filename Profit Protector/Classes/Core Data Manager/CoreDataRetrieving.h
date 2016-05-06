@@ -5,6 +5,8 @@
 
 + (NSArray *)allProperties;
 
++ (NSManagedObject *)authorWithID:(NSString *)userID;
+
 + (NSManagedObject *)propertyWithID:(NSString *)propertyID;
 
 @end

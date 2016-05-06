@@ -20,6 +20,13 @@
            company:(NSString *)company
               role:(NSString *)role;
 
++ (void)updateUser:(NSString *)username
+         firstname:(NSString *)firstname
+          lastname:(NSString *)lastname
+             phone:(NSString *)phone
+           company:(NSString *)company
+              role:(NSString *)role;
+
 + (void)getProperties;
 
 + (void)uploadPropertyWithTitle:(NSString *)title
@@ -32,6 +39,9 @@
                     contentRaw:(NSString *)contentRaw
                         author:(NSString *)author
                       postMeta:(NSDictionary *)postMeta;
+
++ (void)updateUploadedProperty:(NSString *)postID
+                      favorite:(BOOL)favorite;
 
 + (void)deleteProperty:(NSManagedObject *)property;
 

@@ -3,7 +3,9 @@
 #define persistenceDBName @"Profit_Protector"
 #define persistenceDBNameSuffix @"sqlite"
 
-#define apiPrefix @"http://cleanrestapp.com/wp-json/"
+//#define apiPrefix @"http://cleanrestapp.com/wp-json/"
+#define apiPrefix @"http://dev.cleanrestapp.com/wp-json/"
+
 //#define apiPrefix [GlobalMethods isTheChineseVersion] ? @"http://dev.cleanrestapp.com/wp-json/" : @"http://dev.cleanrestapp.com/wp-json/"
 #define adminUsername @"cleanrestadmin"
 #define adminPassword @"vRjycfxrLcmo"

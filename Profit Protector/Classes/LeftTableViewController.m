@@ -2,6 +2,7 @@
 #import "Constants.h"
 #import "GlobalData.h"
 #import "GlobalMethods.h"
+#import "CoreDataRetrieving.h"
 
 @implementation LeftTableViewController
 
@@ -42,8 +43,21 @@
   
   if (indexPath.row == 0)
   {
-    cell.textLabel.text = [GlobalData username];
-    cell.textLabel.textColor = [UIColor blackColor];
+    NSManagedObject *authorMO = [CoreDataRetrieving authorWithID:[GlobalData authorID]];
+
+    NSString *str = [NSString stringWithFormat:@"%@ %@\n%@\n%@\n%@\n%@\n%@",
+                     [authorMO valueForKey:@"firstname"],
+                     [authorMO valueForKey:@"lastname"],
+                     [authorMO valueForKey:@"company"],
+                     [authorMO valueForKey:@"role"],
+                     [authorMO valueForKey:@"email"],
+                     [authorMO valueForKey:@"phone"],
+                     [authorMO valueForKey:@"licenseID"]];
+    
+//    cell.contentView.backgroundColor = [UIColor purpleColor];
+    cell.textLabel.textColor = [UIColor whiteColor];
+    cell.textLabel.numberOfLines = 0;
+    cell.textLabel.text = str;
   }
 
   if (indexPath.row == 1)
@@ -73,6 +87,11 @@
 }
 
 #pragma mark - UITableView delegate methods implementation
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+  return (indexPath.row == 0) ? 160.0f : 44.0f;
+}
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {

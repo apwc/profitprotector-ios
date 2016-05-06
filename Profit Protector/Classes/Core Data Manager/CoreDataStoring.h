@@ -4,7 +4,7 @@
 
 @interface CoreDataStoring : Singleton
 
-+ (void)storeUser:(NSDictionary *)dictionary;
++ (void)storeAuthor:(NSDictionary *)dictionary;
 
 + (void)storeProperty:(NSDictionary *)dictionary;
 

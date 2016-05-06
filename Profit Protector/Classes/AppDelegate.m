@@ -10,6 +10,7 @@
 #import "PendingApprovalViewController.h"
 #import "LicenseActivationViewController.h"
 #import "DeniedAccessViewController.h"
+#import "CoreDataRetrieving.h"
 
 @implementation AppDelegate
 
@@ -132,6 +133,12 @@
   [GlobalData deletePassword];
   [GlobalData deleteAuthorID];
   [GlobalData deleteLicenseID];
+  
+  
+  CoreDataManager *cdm = [CoreDataManager singleton];
+  
+  NSManagedObject *authorMO = [CoreDataRetrieving authorWithID:[GlobalData authorID]];
+  [cdm deleteObject:authorMO];
   
   [GlobalData saveAccountStatus:Unknown];
 }

@@ -3,15 +3,19 @@
 
 @implementation CoreDataStoring
 
-+ (void)storeUser:(NSDictionary *)dictionary
++ (void)storeAuthor:(NSDictionary *)dictionary
 {
   CoreDataManager *cdm = [CoreDataManager singleton];
   
   // create the entity object
-  NSManagedObject *property = (NSManagedObject *)[NSEntityDescription insertNewObjectForEntityForName:@"User"
-                                                                               inManagedObjectContext:cdm.managedObjectContext];
+  NSManagedObject *author = [CoreDataRetrieving authorWithID:dictionary[@"authorID"]];
   
-  [property setValuesForKeysWithDictionary:dictionary];
+  if (!author)
+    author = (NSManagedObject *)[NSEntityDescription insertNewObjectForEntityForName:@"Author"
+                                                              inManagedObjectContext:cdm.managedObjectContext];
+  
+  [author setValuesForKeysWithDictionary:dictionary];
+  
   [cdm.managedObjectContext performBlockAndWait:^{
     [cdm.managedObjectContext save:nil];
   }];

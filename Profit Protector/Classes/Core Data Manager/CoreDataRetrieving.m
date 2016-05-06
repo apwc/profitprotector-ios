@@ -20,6 +20,22 @@
   return result;
 }
 
++ (NSManagedObject *)authorWithID:(NSString *)userID
+{
+  NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:@"Author"];
+  
+  request.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:@"authorID"
+                                                            ascending:YES]];
+  
+  request.predicate = [NSPredicate predicateWithFormat:@"authorID = %@", userID];
+  request.fetchLimit = 1;
+  
+  NSArray *result = [[CoreDataManager managedObjectContext] executeFetchRequest:request
+                                                                          error:nil];
+  
+  return [result firstObject];
+}
+
 + (NSManagedObject *)propertyWithID:(NSString *)propertyID
 {
   NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:@"Property"];
