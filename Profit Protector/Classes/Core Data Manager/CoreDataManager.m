@@ -50,8 +50,8 @@
 	
   _persistentStoreCoordinator = [[NSPersistentStoreCoordinator alloc] initWithManagedObjectModel:[self managedObjectModel]];
   
-  NSDictionary *options = @{[NSNumber numberWithBool:YES]:NSMigratePersistentStoresAutomaticallyOption,
-                            [NSNumber numberWithBool:YES]:NSInferMappingModelAutomaticallyOption};
+  NSDictionary *options = @{NSMigratePersistentStoresAutomaticallyOption: @(YES),
+                            NSInferMappingModelAutomaticallyOption: @(YES)};
   
   NSError *err;
   
@@ -64,7 +64,7 @@
     NSLog(@"%@", [err localizedDescription]);
     abort();
   }
-  
+
   return _persistentStoreCoordinator;
 }
 

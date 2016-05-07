@@ -46,4 +46,6 @@
 
 + (void)profilePasswordRecover:(NSString *)email;
 
++ (void)networkError;
+
 @end

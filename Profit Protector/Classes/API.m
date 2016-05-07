@@ -111,9 +111,10 @@
                                                 NSLog(@"%@", json);
                                                 if (error)
                                                 {
-                                                  HUD *hud = [HUD singleton];
-                                                  hud.hud.mode = MBProgressHUDModeText;
-                                                  hud.hud.detailsLabelText = @"Network error, please try again.";
+                                                  [API networkError];
+//                                                  HUD *hud = [HUD singleton];
+//                                                  hud.hud.mode = MBProgressHUDModeText;
+//                                                  hud.hud.detailsLabelText = @"Network error, please try again.";
                                                   
                                                   dispatch_async(dispatch_get_main_queue(), ^{
                                                     [HUD removeHUDAfterDelay:1.5f];
@@ -209,9 +210,10 @@
                                                 NSLog(@"%@", json);
                                                 if (error)
                                                 {
-                                                  HUD *hud = [HUD singleton];
-                                                  hud.hud.mode = MBProgressHUDModeText;
-                                                  hud.hud.detailsLabelText = @"Network error, please try again.";
+                                                  [API networkError];
+//                                                  HUD *hud = [HUD singleton];
+//                                                  hud.hud.mode = MBProgressHUDModeText;
+//                                                  hud.hud.detailsLabelText = @"Network error, please try again.";
                                                   
                                                   dispatch_async(dispatch_get_main_queue(), ^{
                                                     [HUD removeHUDAfterDelay:1.5f];
@@ -316,9 +318,10 @@
                                                 
                                                 if (error)
                                                 {
-                                                  HUD *hud = [HUD singleton];
-                                                  hud.hud.mode = MBProgressHUDModeText;
-                                                  hud.hud.detailsLabelText = @"Network error, please try again.";
+                                                  [API networkError];
+//                                                  HUD *hud = [HUD singleton];
+//                                                  hud.hud.mode = MBProgressHUDModeText;
+//                                                  hud.hud.detailsLabelText = @"Network error, please try again.";
                                                   
                                                   dispatch_async(dispatch_get_main_queue(), ^{
                                                     [HUD removeHUDAfterDelay:1.5f];
@@ -408,9 +411,10 @@
                                                 
                                                 if (error)
                                                 {
-                                                  HUD *hud = [HUD singleton];
-                                                  hud.hud.mode = MBProgressHUDModeText;
-                                                  hud.hud.detailsLabelText = @"Network error, please try again.";
+                                                  [API networkError];
+//                                                  HUD *hud = [HUD singleton];
+//                                                  hud.hud.mode = MBProgressHUDModeText;
+//                                                  hud.hud.detailsLabelText = @"Network error, please try again.";
                                                   
                                                   dispatch_async(dispatch_get_main_queue(), ^{
                                                     [HUD removeHUDAfterDelay:1.5f];
@@ -492,9 +496,10 @@
                                                 
                                                 if (error)
                                                 {
-                                                  HUD *hud = [HUD singleton];
-                                                  hud.hud.mode = MBProgressHUDModeText;
-                                                  hud.hud.detailsLabelText = @"Network error, please try again.";
+                                                  [API networkError];
+//                                                  HUD *hud = [HUD singleton];
+//                                                  hud.hud.mode = MBProgressHUDModeText;
+//                                                  hud.hud.detailsLabelText = @"Network error, please try again.";
                                                   
                                                   dispatch_async(dispatch_get_main_queue(), ^{
                                                     [HUD removeHUDAfterDelay:1.5f];
@@ -635,7 +640,8 @@
                                                 
                                                 if (error)
                                                 {
-                                                  hud.hud.detailsLabelText = @"Network error, please try again.";
+                                                  [API networkError];
+//                                                  hud.hud.detailsLabelText = @"Network error, please try again.";
                                                   
                                                   dispatch_async(dispatch_get_main_queue(), ^{
                                                     [HUD removeHUDAfterDelay:1.5f];
@@ -792,7 +798,8 @@
                                                 
                                                 if (error)
                                                 {
-                                                  hud.hud.detailsLabelText = @"Network error, please try again.";
+                                                  [API networkError];
+//                                                  hud.hud.detailsLabelText = @"Network error, please try again.";
                                                   
                                                   dispatch_async(dispatch_get_main_queue(), ^{
                                                     [HUD removeHUDAfterDelay:1.5f];
@@ -951,7 +958,8 @@
                                                 
                                                 if (error)
                                                 {
-                                                  hud.hud.detailsLabelText = @"Network error, please try again.";
+                                                  [API networkError];
+//                                                  hud.hud.detailsLabelText = @"Network error, please try again.";
                                                   
                                                   dispatch_async(dispatch_get_main_queue(), ^{
                                                     [HUD removeHUDAfterDelay:1.5f];
@@ -1028,6 +1036,17 @@
                                                 HUD *hud = [HUD singleton];
                                                 hud.hud.mode = MBProgressHUDModeText;
                                                 
+                                                if (error)
+                                                {
+                                                  [API networkError];
+                                                 
+                                                  dispatch_async(dispatch_get_main_queue(), ^{
+                                                    [HUD removeHUDAfterDelay:1.5f];
+                                                  });
+                                                  
+                                                  return;
+                                                }
+                                                
                                                 if ([json isKindOfClass:[NSArray class]])
                                                 {
                                                   if (![API isAccountActive:[json firstObject]])
@@ -1040,13 +1059,17 @@
                                                   hud.hud.detailsLabelText = @"Check your e-mail for the confirmation link.";
                                                 
                                                 dispatch_async(dispatch_get_main_queue(), ^{
-                                                  [HUD removeHUDAfterDelay:1.5f];
-                                                  
-                                                  [[NSNotificationCenter defaultCenter] postNotificationName:apiUserLoginErrorNotification
-                                                                                                      object:json];
+                                                  [HUD removeHUDAfterDelay:2.5f];
                                                 });
                                               }];
   [dataTask resume];
+}
+
++ (void)networkError
+{
+  HUD *hud = [HUD singleton];
+  hud.hud.mode = MBProgressHUDModeText;
+  hud.hud.detailsLabelText = @"Network error, please try again.";
 }
 
 @end

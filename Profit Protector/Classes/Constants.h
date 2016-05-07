@@ -4,7 +4,7 @@
 #define persistenceDBNameSuffix @"sqlite"
 
 //#define apiPrefix @"http://cleanrestapp.com/wp-json/"
-#define apiPrefix @"http://dev.cleanrestapp.com/wp-json/"
+#define apiPrefix @"http://devs.cleanrestapp.com/wp-json/"
 
 //#define apiPrefix [GlobalMethods isTheChineseVersion] ? @"http://dev.cleanrestapp.com/wp-json/" : @"http://dev.cleanrestapp.com/wp-json/"
 #define adminUsername @"cleanrestadmin"
@@ -59,6 +59,9 @@
 
 #define apiLicenseActivationSuccessfulNotification @"apiLicenseActivationSuccessfulNotification"
 #define apiLicenseActivationErrorNotification @"apiLicenseActivationErrorNotification"
+
+#define apiUserPasswordRecoverySuccessfulNotification @"apiUserPasswordRecoverySuccessfulNotification"
+#define apiUserPasswordRecoveryErrorNotification @"apiUserPasswordRecoveryErrorNotification"
 
 #define apiUserLoginSuccessfulNotification @"apiUserLoginSuccessfulNotification"
 #define apiUserLoginErrorNotification @"apiUserLoginErrorNotification"

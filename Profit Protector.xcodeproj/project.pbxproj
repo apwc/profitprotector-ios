@@ -142,6 +142,7 @@
 		B736BBEF1B8A998400557C5A /* report_receipt.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = report_receipt.html; sourceTree = "<group>"; };
 		B73F4A4E1CDD6CBC00F22CB5 /* AuthorEditProfileViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AuthorEditProfileViewController.h; sourceTree = "<group>"; };
 		B73F4A4F1CDD6CBC00F22CB5 /* AuthorEditProfileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AuthorEditProfileViewController.m; sourceTree = "<group>"; };
+		B73F4A521CDD816B00F22CB5 /* Profit_Protector 1.0.4.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Profit_Protector 1.0.4.xcdatamodel"; sourceTree = "<group>"; };
 		B753ECE61B5B304200EFBD57 /* NewPropertyForm7ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewPropertyForm7ViewController.h; sourceTree = "<group>"; };
 		B753ECE71B5B304200EFBD57 /* NewPropertyForm7ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewPropertyForm7ViewController.m; sourceTree = "<group>"; };
 		B75A187C1B8AACD400C37C48 /* NDHTMLtoPDF.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NDHTMLtoPDF.h; sourceTree = "<group>"; };
@@ -916,9 +917,10 @@
 		B7A58F211B4DFC3800C408D8 /* Profit_Protector.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
+				B73F4A521CDD816B00F22CB5 /* Profit_Protector 1.0.4.xcdatamodel */,
 				B7A58F221B4DFC3800C408D8 /* Profit_Protector.xcdatamodel */,
 			);
-			currentVersion = B7A58F221B4DFC3800C408D8 /* Profit_Protector.xcdatamodel */;
+			currentVersion = B73F4A521CDD816B00F22CB5 /* Profit_Protector 1.0.4.xcdatamodel */;
 			path = Profit_Protector.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;
