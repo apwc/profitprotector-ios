@@ -1,24 +1,20 @@
-#import "SignupViewController.h"
+#import "AuthorEditProfileViewController.h"
 #import "API.h"
 #import "GlobalData.h"
 #import "GlobalMethods.h"
 #import "CoreDataStoring.h"
 
-@interface SignupViewController () <UITextFieldDelegate>
+@interface AuthorEditProfileViewController () <UITextFieldDelegate>
 {
   UIScrollView *uisv_;
   
   UITextField *firstname_,
               *lastname_,
-              *password_,
-              *email_,
               *phone_,
               *company_,
               *role_;
   
-  UIImageView *emailAsterix_,
-              *passwordAsterix_,
-              *firstnameAsterix_,
+  UIImageView *firstnameAsterix_,
               *lastnameAsterix_,
               *phoneAsterix_,
               *companyAsterix_,
@@ -26,7 +22,7 @@
 }
 @end
 
-@implementation SignupViewController
+@implementation AuthorEditProfileViewController
 
 - (void)viewDidLoad
 {
@@ -41,91 +37,17 @@
   uisv_.autoresizingMask = (UIViewAutoresizingFlexibleWidth |
                             UIViewAutoresizingFlexibleHeight);
   [self.view addSubview:uisv_];
-  
-  UILabel *title = [[UILabel alloc] initWithFrame:CGRectMake(15.0f,
-                                                             14.0f,
-                                                             CGRectGetWidth(self.view.frame) - 15.0f,
-                                                             48.0f)];
-  title.text = [GlobalMethods localizedStringWithKey:@"Sign Up"];
-  title.font = [UIFont fontWithName:@"HelveticaNeue" size:26.0f];
-  title.textColor = [UIColor darkGrayColor];
-  [uisv_ addSubview:title];
-  
+
   CGFloat textFieldWidth = CGRectGetWidth(self.view.bounds) - 100.0f;
   CGFloat textFieldHeight = 37.0f;
   CGFloat textFieldFontsize = 16.0f;
   CGFloat buttonHeight = 60.0f;
   
-  // email
-  email_ = [[UITextField alloc] initWithFrame:CGRectMake(60.0f,
-                                                         CGRectGetMaxY(title.frame),
-                                                         textFieldWidth,
-                                                         textFieldHeight)];
-  email_.delegate = self;
-  email_.font = [UIFont fontWithName:@"HelveticaNeue" size:textFieldFontsize];
-  email_.textColor = [UIColor blackColor];
-  email_.autocorrectionType = UITextAutocorrectionTypeNo;
-  email_.autocapitalizationType = UITextAutocapitalizationTypeNone;
-  email_.placeholder = [GlobalMethods localizedStringWithKey:@"Email"];
-  email_.clipsToBounds = NO;
-  [uisv_ addSubview:email_];
-  
-  UIImageView *emailIcon = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"email"]];
-  emailIcon.frame = CGRectMake(20.0f,
-                               CGRectGetMinY(email_.frame) + 10.0f,
-                               emailIcon.image.size.width,
-                               emailIcon.image.size.height);
-  [uisv_ addSubview:emailIcon];
-  
-  emailAsterix_ = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"asterix"]];
-  emailAsterix_.center = CGPointMake(CGRectGetWidth(email_.bounds) + 15.0f, CGRectGetMidY(email_.bounds));
-  [email_ addSubview:emailAsterix_];
-
-  // division line
-  UIView *divisionLine1 = [[UIView alloc] initWithFrame:CGRectMake(0.0f,
-                                                                   CGRectGetMaxY(email_.frame),
-                                                                   CGRectGetWidth(self.view.bounds),
-                                                                   1.0f)];
-  divisionLine1.backgroundColor = [UIColor colorWithWhite:0.7f alpha:1.0f];
-  [uisv_ addSubview:divisionLine1];
-  
-  // password
-  password_ = [[UITextField alloc] initWithFrame:CGRectMake(60.0f,
-                                                            CGRectGetMaxY(email_.frame),
-                                                            textFieldWidth,
-                                                            textFieldHeight)];
-  password_.delegate = self;
-  password_.font = [UIFont fontWithName:@"HelveticaNeue" size:textFieldFontsize];
-  password_.textColor = [UIColor blackColor];
-  password_.autocorrectionType = UITextAutocorrectionTypeNo;
-  password_.autocapitalizationType = UITextAutocapitalizationTypeNone;
-  password_.secureTextEntry = YES;
-  password_.placeholder = [GlobalMethods localizedStringWithKey:@"Password"];
-  password_.clipsToBounds = NO;
-  [uisv_ addSubview:password_];
-  
-  UIImageView *passwordIcon = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"password"]];
-  passwordIcon.frame = CGRectMake(20.0f,
-                                  CGRectGetMinY(password_.frame) + 10.0f,
-                                  emailIcon.image.size.width,
-                                  emailIcon.image.size.height);
-  [uisv_ addSubview:passwordIcon];
-  
-  passwordAsterix_ = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"asterix"]];
-  passwordAsterix_.center = CGPointMake(CGRectGetWidth(password_.bounds) + 15.0f, CGRectGetMidY(password_.bounds));
-  [password_ addSubview:passwordAsterix_];
-  
-  // division line
-  UIView *divisionLine2 = [[UIView alloc] initWithFrame:CGRectMake(0.0f,
-                                                                   CGRectGetMaxY(password_.frame),
-                                                                   CGRectGetWidth(self.view.bounds),
-                                                                   1.0f)];
-  divisionLine2.backgroundColor = [UIColor colorWithWhite:0.7f alpha:1.0f];
-  [uisv_ addSubview:divisionLine2];
+  NSManagedObject *authorMO = [CoreDataRetrieving authorWithID:[GlobalData authorID]];
   
   // firstname
   firstname_ = [[UITextField alloc] initWithFrame:CGRectMake(60.0f,
-                                                             CGRectGetMaxY(password_.frame),
+                                                             14.0f,
                                                              textFieldWidth,
                                                              textFieldHeight)];
   firstname_.delegate = self;
@@ -135,13 +57,14 @@
   firstname_.autocapitalizationType = UITextAutocapitalizationTypeNone;
   firstname_.placeholder = [GlobalMethods localizedStringWithKey:@"First Name"];
   firstname_.clipsToBounds = NO;
+  firstname_.text = [authorMO valueForKey:@"firstname"];
   [uisv_ addSubview:firstname_];
   
   UIImageView *firstnameIcon = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"username"]];
   firstnameIcon.frame = CGRectMake(20.0f,
                                    CGRectGetMinY(firstname_.frame) + 10.0f,
-                                   emailIcon.image.size.width,
-                                   emailIcon.image.size.height);
+                                   firstnameIcon.image.size.width,
+                                   firstnameIcon.image.size.height);
   [uisv_ addSubview:firstnameIcon];
   
   firstnameAsterix_ = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"asterix"]];
@@ -155,12 +78,12 @@
                                                                    1.0f)];
   divisionLine3.backgroundColor = [UIColor colorWithWhite:0.7f alpha:1.0f];
   [uisv_ addSubview:divisionLine3];
-
+  
   // lastname
   lastname_ = [[UITextField alloc] initWithFrame:CGRectMake(60.0f,
-                                                             CGRectGetMaxY(firstname_.frame),
-                                                             textFieldWidth,
-                                                             textFieldHeight)];
+                                                            CGRectGetMaxY(firstname_.frame),
+                                                            textFieldWidth,
+                                                            textFieldHeight)];
   lastname_.delegate = self;
   lastname_.font = [UIFont fontWithName:@"HelveticaNeue" size:textFieldFontsize];
   lastname_.textColor = [UIColor blackColor];
@@ -168,13 +91,14 @@
   lastname_.autocapitalizationType = UITextAutocapitalizationTypeNone;
   lastname_.placeholder = [GlobalMethods localizedStringWithKey:@"Last Name"];
   lastname_.clipsToBounds = NO;
+  lastname_.text = [authorMO valueForKey:@"lastname"];
   [uisv_ addSubview:lastname_];
   
   UIImageView *lastnameIcon = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"username"]];
   lastnameIcon.frame = CGRectMake(20.0f,
-                              CGRectGetMinY(lastname_.frame) + 10.0f,
-                              emailIcon.image.size.width,
-                              emailIcon.image.size.height);
+                                  CGRectGetMinY(lastname_.frame) + 10.0f,
+                                  firstnameIcon.image.size.width,
+                                  firstnameIcon.image.size.height);
   [uisv_ addSubview:lastnameIcon];
   
   lastnameAsterix_ = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"asterix"]];
@@ -201,6 +125,7 @@
   phone_.autocapitalizationType = UITextAutocapitalizationTypeNone;
   phone_.placeholder = [GlobalMethods localizedStringWithKey:@"Phone"];
   phone_.clipsToBounds = NO;
+  phone_.text = [authorMO valueForKey:@"phone"];
   [uisv_ addSubview:phone_];
   
   UIImageView *phoneIcon = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"phone"]];
@@ -234,13 +159,14 @@
   company_.autocapitalizationType = UITextAutocapitalizationTypeNone;
   company_.placeholder = [GlobalMethods localizedStringWithKey:@"Company"];
   company_.clipsToBounds = NO;
+  company_.text = [authorMO valueForKey:@"company"];
   [uisv_ addSubview:company_];
   
   UIImageView *companyIcon = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"company"]];
   companyIcon.frame = CGRectMake(20.0f,
                                  CGRectGetMinY(company_.frame) + 10.0f,
-                                 emailIcon.image.size.width,
-                                 emailIcon.image.size.height);
+                                 firstnameIcon.image.size.width,
+                                 firstnameIcon.image.size.height);
   [uisv_ addSubview:companyIcon];
   
   companyAsterix_ = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"asterix"]];
@@ -268,13 +194,14 @@
   role_.enabled = YES;
   role_.placeholder = [GlobalMethods localizedStringWithKey:@"Type"];
   role_.clipsToBounds = NO;
+  role_.text = [authorMO valueForKey:@"role"];
   [uisv_ addSubview:role_];
   
   UIImageView *typeIcon = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"job"]];
   typeIcon.frame = CGRectMake(20.0f,
                               CGRectGetMinY(role_.frame) + 10.0f,
-                              emailIcon.image.size.width,
-                              emailIcon.image.size.height);
+                              firstnameIcon.image.size.width,
+                              firstnameIcon.image.size.height);
   [uisv_ addSubview:typeIcon];
   
   roleAsterix_ = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"asterix"]];
@@ -290,33 +217,19 @@
   [uisv_ addSubview:divisionLine7];
   
   // signup
-  UIButton *signup = [[UIButton alloc] initWithFrame:CGRectMake(0.0f,
+  UIButton *update = [[UIButton alloc] initWithFrame:CGRectMake(0.0f,
                                                                 CGRectGetMaxY(role_.frame) + 40.0f,
                                                                 CGRectGetWidth(self.view.bounds),
                                                                 buttonHeight)];
-  signup.backgroundColor = [UIColor colorWithRed:0 green:0.68 blue:0.95 alpha:1];
-  signup.showsTouchWhenHighlighted = YES;
-  [signup setTitle:[GlobalMethods localizedStringWithKey:@"Join"] forState:UIControlStateNormal];
-  [signup addTarget:self
-             action:@selector(join:)
+  update.backgroundColor = [UIColor colorWithRed:0 green:0.68 blue:0.95 alpha:1];
+  update.showsTouchWhenHighlighted = YES;
+  [update setTitle:[GlobalMethods localizedStringWithKey:@"Update"] forState:UIControlStateNormal];
+  [update addTarget:self
+             action:@selector(update:)
    forControlEvents:UIControlEventTouchUpInside];
-  [uisv_ addSubview:signup];
+  [uisv_ addSubview:update];
   
-  // signup
-  UIButton *signin = [[UIButton alloc] initWithFrame:CGRectMake(0.0f,
-                                                                CGRectGetMaxY(signup.frame) + 20.0f,
-                                                                CGRectGetWidth(self.view.bounds),
-                                                                buttonHeight / 2.0f)];
-  signin.showsTouchWhenHighlighted = YES;
-  signin.titleLabel.font = [UIFont fontWithName:@"HelveticaNeue" size:12.0f];
-  [signin setTitleColor:[UIColor darkGrayColor] forState:UIControlStateNormal];
-  [signin setTitle:[GlobalMethods localizedStringWithKey:@"Already have an account? Sign In"] forState:UIControlStateNormal];
-  [signin addTarget:self
-             action:@selector(signin:)
-   forControlEvents:UIControlEventTouchUpInside];
-  [uisv_ addSubview:signin];
-  
-  uisv_.contentSize = CGSizeMake(0.0f, CGRectGetMaxY(signin.frame) + 10.0f);
+  uisv_.contentSize = CGSizeMake(0.0f, CGRectGetMaxY(update.frame) + 10.0f);
   
   //
   UITapGestureRecognizer *tapper = [[UITapGestureRecognizer alloc] initWithTarget:self
@@ -334,8 +247,8 @@
   
   //
   [[NSNotificationCenter defaultCenter] addObserver:self
-                                           selector:@selector(apiUserSignupSuccessful:)
-                                               name:apiUserSignupSuccessfulNotification
+                                           selector:@selector(apiUserUpdateSuccessful:)
+                                               name:apiUserUpdateSuccessfulNotification
                                              object:nil];
 }
 
@@ -343,8 +256,9 @@
 {
   [super viewWillDisappear:animated];
   
+  //
   [[NSNotificationCenter defaultCenter] removeObserver:self
-                                                  name:apiUserSignupSuccessfulNotification
+                                                  name:apiUserUpdateSuccessfulNotification
                                                 object:nil];
 }
 
@@ -353,12 +267,12 @@
   [self.view endEditing:YES];
 }
 
-- (void)close:(UIBarButtonItem *)uibbi
+- (void)close:(id)sender
 {
   [self dismissViewControllerAnimated:YES completion:nil];
 }
 
-- (void)join:(UIButton *)uib
+- (void)update:(id)sender
 {
   if ([self checkAndActivateAsterixesForMissingFields])
   {
@@ -391,30 +305,19 @@
       role = @"pco";
   }
   
-  [API createUser:email_.text
-         password:password_.text
-        firstname:firstname_.text
-         lastname:lastname_.text
-            email:email_.text
-            phone:(NSString *)CFBridgingRelease(CFURLCreateStringByAddingPercentEscapes(
-                                                                                        NULL,
-                                                                                        (CFStringRef)phone_.text,
-                                                                                        NULL,
-                                                                                        CFSTR("!*'();:@&=+$,/?%#[]\" "),
-                                                                                        kCFStringEncodingUTF8))
-          company:company_.text
-             role:role];
-}
-
-- (void)signin:(UIButton *)uib
-{
-  [self dismissViewControllerAnimated:YES completion:nil];
+  [API updateUserWithFirstname:firstname_.text
+                      lastname:lastname_.text
+                         phone:(NSString *)CFBridgingRelease(CFURLCreateStringByAddingPercentEscapes(NULL,
+                                                                                                     (CFStringRef)phone_.text,
+                                                                                                     NULL,
+                                                                                                     CFSTR("!*'();:@&=+$,/?%#[]\" "),
+                                                                                                     kCFStringEncodingUTF8))
+                       company:company_.text
+                          role:role];
 }
 
 - (void)disactivateAllAsterixes
 {
-  emailAsterix_.hidden = YES;
-  passwordAsterix_.hidden = YES;
   firstnameAsterix_.hidden = YES;
   lastnameAsterix_.hidden = YES;
   phoneAsterix_.hidden = YES;
@@ -425,23 +328,7 @@
 - (BOOL)checkAndActivateAsterixesForMissingFields
 {
   BOOL flag = NO;
-  
-  if ([email_.text isEqualToString:@""])
-  {
-    flag = YES;
-    emailAsterix_.hidden = NO;
-  }
-  else
-    emailAsterix_.hidden = YES;
-  
-  if ([password_.text isEqualToString:@""])
-  {
-    flag = YES;
-    passwordAsterix_.hidden = NO;
-  }
-  else
-    passwordAsterix_.hidden = YES;
-  
+
   if ([firstname_.text isEqualToString:@""])
   {
     flag = YES;
@@ -487,33 +374,20 @@
 
 #pragma mark - API notifications callbacks
 
-- (void)apiUserSignupSuccessful:(NSNotification *)notification
+- (void)apiUserUpdateSuccessful:(NSNotification *)notification
 {
   NSDictionary *json = (NSDictionary *)notification.object;
   
   //
-  [GlobalData saveUsername:email_.text];
-  [GlobalData savePassword:password_.text];
-  [GlobalData saveAuthorID:json[@"ID"]];
-  [GlobalData saveLicenseID:json[@"license"][@"code"]];
-  
-  //
-  [CoreDataStoring storeAuthor:@{@"company": company_.text,
-                                 @"email": email_.text,
-                                 @"password": password_.text,
-                                 @"authorID": json[@"ID"],
-                                 @"licenseID": json[@"license"][@"code"],
+  [CoreDataStoring storeAuthor:@{@"authorID": [GlobalData authorID],//json[@"ID"],
+                                 @"company": company_.text,
                                  @"firstname": firstname_.text,
                                  @"lastname": lastname_.text,
                                  @"phone": phone_.text,
                                  @"role": role_.text}];
   
   //
-  [self dismissViewControllerAnimated:YES
-                           completion:^{
-                             [[NSNotificationCenter defaultCenter] postNotificationName:userHasBeenRegisteredNotification
-                                                                                 object:nil];
-                           }];
+  [self close:nil];
 }
 
 #pragma mark - UITextField delegate methods implementation

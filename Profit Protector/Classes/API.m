@@ -365,14 +365,96 @@
   [dataTask resume];
 }
 
-+ (void)updateUser:(NSString *)username
-         firstname:(NSString *)firstname
-          lastname:(NSString *)lastname
-             phone:(NSString *)phone
-           company:(NSString *)company
-              role:(NSString *)role
++ (void)updateUserWithFirstname:(NSString *)firstname
+                       lastname:(NSString *)lastname
+                          phone:(NSString *)phone
+                        company:(NSString *)company
+                           role:(NSString *)role
 {
   NSLog(@"%s", __PRETTY_FUNCTION__);
+  [HUD addHUD];
+  
+  NSString *auth = [NSString stringWithFormat:@"%@fjir50e%@",
+                    adminUsername,
+                    adminPassword];
+  
+  NSData *authData = [auth dataUsingEncoding:NSUTF8StringEncoding];
+  NSString *base64 = [authData base64EncodedStringWithOptions:NSDataBase64Encoding64CharacterLineLength];
+  
+  NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"%@%@",
+                                     apiPrefix,
+                                     user]];
+  
+  NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
+  [request addValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-type"];
+  [request setHTTPMethod:@"POST"];
+  
+  NSString *parameters = [NSString stringWithFormat:@"iam=%@&first_name=%@&last_name=%@&role=%@&phone=%@&company=%@",
+                          base64,
+                          firstname,
+                          lastname,
+                          role,
+                          phone,
+                          company];
+  
+  [request setHTTPBody:[parameters dataUsingEncoding:NSUTF8StringEncoding]];
+  
+  NSURLSession *session = [NSURLSession sharedSession];
+  
+  NSURLSessionDataTask *dataTask = [session dataTaskWithRequest:request
+                                              completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
+                                                
+                                                NSLog(@"Response:%@\nError: %@", response, error);
+                                                
+                                                if (error)
+                                                {
+                                                  HUD *hud = [HUD singleton];
+                                                  hud.hud.mode = MBProgressHUDModeText;
+                                                  hud.hud.detailsLabelText = @"Network error, please try again.";
+                                                  
+                                                  dispatch_async(dispatch_get_main_queue(), ^{
+                                                    [HUD removeHUDAfterDelay:1.5f];
+                                                    
+                                                    [[NSNotificationCenter defaultCenter] postNotificationName:apiUserUpdateErrorNotification
+                                                                                                        object:nil];
+                                                  });
+                                                  
+                                                  return;
+                                                }
+                                                
+                                                id json = [NSJSONSerialization JSONObjectWithData:data
+                                                                                          options:NSJSONReadingMutableContainers
+                                                                                            error:nil];
+                                                NSLog(@"%@", json);
+                                                if ([json isKindOfClass:[NSArray class]])
+                                                {
+                                                  json = [json firstObject];
+                                                  
+                                                  if (![API isAccountActive:json])
+                                                    return;
+                                                }
+                                                
+                                                if ([json[@"code"] isEqualToString:@"json_missing_callback_param"])
+                                                {
+                                                  HUD *hud = [HUD singleton];
+                                                  hud.hud.mode = MBProgressHUDModeText;
+                                                  hud.hud.detailsLabelText = json[@"message"];
+                                                  
+                                                  dispatch_async(dispatch_get_main_queue(), ^{
+                                                    [HUD removeHUDAfterDelay:1.5f];
+                                                  });
+                                                  
+                                                  return;
+                                                }
+                                                
+                                                dispatch_async(dispatch_get_main_queue(), ^{
+                                                  [HUD removeHUD];
+                                                  
+                                                  [[NSNotificationCenter defaultCenter] postNotificationName:apiUserUpdateSuccessfulNotification
+                                                                                                      object:json];
+                                                });
+                                              }];
+  [dataTask resume];
 }
 
 + (void)getProperties

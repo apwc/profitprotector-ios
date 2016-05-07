@@ -20,12 +20,11 @@
            company:(NSString *)company
               role:(NSString *)role;
 
-+ (void)updateUser:(NSString *)username
-         firstname:(NSString *)firstname
-          lastname:(NSString *)lastname
-             phone:(NSString *)phone
-           company:(NSString *)company
-              role:(NSString *)role;
++ (void)updateUserWithFirstname:(NSString *)firstname
+                       lastname:(NSString *)lastname
+                          phone:(NSString *)phone
+                        company:(NSString *)company
+                           role:(NSString *)role;
 
 + (void)getProperties;
 

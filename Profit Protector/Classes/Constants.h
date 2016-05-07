@@ -66,6 +66,9 @@
 #define apiUserSignupSuccessfulNotification @"apiUserSignupSuccessfulNotification"
 #define apiUserSignupErrorNotification @"apiUserSignupErrorNotification"
 
+#define apiUserUpdateSuccessfulNotification @"apiUserUpdateSuccessfulNotification"
+#define apiUserUpdateErrorNotification @"apiUserUpdateErrorNotification"
+
 #define apiUserPropertiesSuccessfulNotification @"apiUserPropertiesSuccessfulNotification"
 #define apiUserPropertiesErrorNotification @"apiUserPropertiesErrorNotification"
 

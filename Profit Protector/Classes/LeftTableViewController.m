@@ -3,8 +3,11 @@
 #import "GlobalData.h"
 #import "GlobalMethods.h"
 #import "CoreDataRetrieving.h"
+#import "AuthorEditProfileViewController.h"
 
 @implementation LeftTableViewController
+
+#pragma mark - View's life cycle
 
 - (void)viewDidLoad
 {
@@ -14,6 +17,23 @@
   self.tableView.backgroundColor = [UIColor colorWithRed:0 green:0.68 blue:0.95 alpha:1];
   self.tableView.contentInset = UIEdgeInsetsMake(60.0f, 0.0f, 0.0f, 0.0f);
   self.tableView.separatorColor = [UIColor clearColor];
+}
+
+- (void)viewDidAppear:(BOOL)animated
+{
+  [super viewDidAppear:animated];
+  
+  [self.tableView reloadData];
+}
+
+#pragma mark - 
+
+- (void)authorEditProfile:(id)sender
+{
+  AuthorEditProfileViewController *aepvc = [[AuthorEditProfileViewController alloc] init];
+  [self presentViewController:[[UINavigationController alloc] initWithRootViewController:aepvc]
+                     animated:YES
+                   completion:nil];
 }
 
 #pragma mark - UITableView datasource methods implementation
@@ -38,8 +58,20 @@
   
 
   if (!cell)
+  {
     cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault
                                   reuseIdentifier:cellReusableIdentifier];
+    
+    if (indexPath.row == 0)
+    {
+      UIButton *edit = [UIButton buttonWithType:UIButtonTypeCustom];
+      edit.frame = CGRectMake(173.0f, 0.0f, 37.0f, 37.0f);
+      edit.showsTouchWhenHighlighted = YES;
+      [edit setImage:[UIImage imageNamed:@"edit"] forState:UIControlStateNormal];
+      [edit addTarget:self action:@selector(authorEditProfile:) forControlEvents:UIControlEventTouchUpInside];
+      [cell.contentView addSubview:edit];
+    }
+  }
   
   if (indexPath.row == 0)
   {
@@ -54,7 +86,6 @@
                      [authorMO valueForKey:@"phone"],
                      [authorMO valueForKey:@"licenseID"]];
     
-//    cell.contentView.backgroundColor = [UIColor purpleColor];
     cell.textLabel.textColor = [UIColor whiteColor];
     cell.textLabel.numberOfLines = 0;
     cell.textLabel.text = str;
@@ -90,7 +121,7 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-  return (indexPath.row == 0) ? 160.0f : 44.0f;
+  return (indexPath.row == 0) ? 200.0f : 44.0f;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath

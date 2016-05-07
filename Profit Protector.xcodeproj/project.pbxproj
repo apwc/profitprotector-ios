@@ -13,6 +13,8 @@
 		B72789141B65A831000AB281 /* GlobalMethods.m in Sources */ = {isa = PBXBuildFile; fileRef = B72789131B65A831000AB281 /* GlobalMethods.m */; };
 		B72789171B65B991000AB281 /* GlobalData.m in Sources */ = {isa = PBXBuildFile; fileRef = B72789161B65B991000AB281 /* GlobalData.m */; };
 		B736BBF11B8A998400557C5A /* report_receipt.html in Resources */ = {isa = PBXBuildFile; fileRef = B736BBEF1B8A998400557C5A /* report_receipt.html */; };
+		B73F4A501CDD6CBC00F22CB5 /* AuthorEditProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B73F4A4F1CDD6CBC00F22CB5 /* AuthorEditProfileViewController.m */; };
+		B73F4A511CDD6CCF00F22CB5 /* AuthorEditProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B73F4A4F1CDD6CBC00F22CB5 /* AuthorEditProfileViewController.m */; };
 		B753ECE81B5B304200EFBD57 /* NewPropertyForm7ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B753ECE71B5B304200EFBD57 /* NewPropertyForm7ViewController.m */; };
 		B75A187E1B8AACD400C37C48 /* NDHTMLtoPDF.m in Sources */ = {isa = PBXBuildFile; fileRef = B75A187D1B8AACD400C37C48 /* NDHTMLtoPDF.m */; };
 		B768D7FC1B50B41D00D2FEF7 /* SuperViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B768D7FB1B50B41D00D2FEF7 /* SuperViewController.m */; };
@@ -138,6 +140,8 @@
 		B72789151B65B991000AB281 /* GlobalData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GlobalData.h; sourceTree = "<group>"; };
 		B72789161B65B991000AB281 /* GlobalData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GlobalData.m; sourceTree = "<group>"; };
 		B736BBEF1B8A998400557C5A /* report_receipt.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = report_receipt.html; sourceTree = "<group>"; };
+		B73F4A4E1CDD6CBC00F22CB5 /* AuthorEditProfileViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AuthorEditProfileViewController.h; sourceTree = "<group>"; };
+		B73F4A4F1CDD6CBC00F22CB5 /* AuthorEditProfileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AuthorEditProfileViewController.m; sourceTree = "<group>"; };
 		B753ECE61B5B304200EFBD57 /* NewPropertyForm7ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewPropertyForm7ViewController.h; sourceTree = "<group>"; };
 		B753ECE71B5B304200EFBD57 /* NewPropertyForm7ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewPropertyForm7ViewController.m; sourceTree = "<group>"; };
 		B75A187C1B8AACD400C37C48 /* NDHTMLtoPDF.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NDHTMLtoPDF.h; sourceTree = "<group>"; };
@@ -349,6 +353,8 @@
 				B78D68A01B6C830700092349 /* API.m */,
 				B7A58F171B4DFC3800C408D8 /* AppDelegate.h */,
 				B7A58F181B4DFC3800C408D8 /* AppDelegate.m */,
+				B73F4A4E1CDD6CBC00F22CB5 /* AuthorEditProfileViewController.h */,
+				B73F4A4F1CDD6CBC00F22CB5 /* AuthorEditProfileViewController.m */,
 				B768D8031B50E29C00D2FEF7 /* Constants.h */,
 				B7D8ACC11B5A3F3C00041ED1 /* Core Data Manager */,
 				B705F9011C754CE7009207FD /* DeniedAccessViewController.h */,
@@ -635,6 +641,7 @@
 				B72789141B65A831000AB281 /* GlobalMethods.m in Sources */,
 				B768D8251B50E54B00D2FEF7 /* NSObject+PKBlocks.m in Sources */,
 				B7FEF8D91B548DC00018CB7D /* NewPropertyForm4ViewController.m in Sources */,
+				B73F4A501CDD6CBC00F22CB5 /* AuthorEditProfileViewController.m in Sources */,
 				B7A58F251B4DFC3800C408D8 /* SplashViewController.m in Sources */,
 				B768D7FC1B50B41D00D2FEF7 /* SuperViewController.m in Sources */,
 				B768D82A1B50E54B00D2FEF7 /* PKSequentialAnimation.m in Sources */,
@@ -678,6 +685,7 @@
 				B7F4E58E1C8D844E00DA767B /* CoreDataManager.m in Sources */,
 				B7F4E58F1C8D844E00DA767B /* LicenseActivationViewController.m in Sources */,
 				B7F4E5901C8D844E00DA767B /* NewPropertyForm6ViewController.m in Sources */,
+				B73F4A511CDD6CCF00F22CB5 /* AuthorEditProfileViewController.m in Sources */,
 				B7F4E5911C8D844E00DA767B /* LeftTableViewController.m in Sources */,
 				B7F4E5921C8D844E00DA767B /* GlobalData.m in Sources */,
 				B7F4E5931C8D844E00DA767B /* StepperComponentView.m in Sources */,

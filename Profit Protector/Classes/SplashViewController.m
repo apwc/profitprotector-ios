@@ -319,6 +319,18 @@
   [GlobalData saveLicenseID:json[@"license"][@"code"]];
   
   //
+  NSString *role = [json[@"roles"] firstObject];
+  
+  if ([role isEqualToString:@"distributor"])
+    role = @"Distributor";
+  
+  if ([role isEqualToString:@"hotel_owner"])
+    role = @"Hotel Owner";
+  
+  if ([role isEqualToString:@"pco"])
+    role = @"PCO";
+  
+  //
   [CoreDataStoring storeAuthor:@{@"company": json[@"company"],
                                  @"email": json[@"username"],
                                  @"password": [GlobalData password],
@@ -327,7 +339,7 @@
                                  @"firstname": json[@"first_name"],
                                  @"lastname": json[@"last_name"],
                                  @"phone": json[@"phone"],
-                                 @"role": [json[@"roles"] firstObject]}];
+                                 @"role": role}];
   
   if (![GlobalData walkthrough])
   {
