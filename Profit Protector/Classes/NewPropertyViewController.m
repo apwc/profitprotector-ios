@@ -401,7 +401,7 @@
 {
   UIAlertController *alert = [UIAlertController alertControllerWithTitle:nil
                                                                  message:nil
-                                                          preferredStyle:UIAlertControllerStyleActionSheet];
+                                                          preferredStyle:UIAlertControllerStyleAlert];
   
   //
   UIAlertAction *full = [UIAlertAction actionWithTitle:[GlobalMethods localizedStringWithKey:@"Full Service"]

@@ -39,7 +39,7 @@
                         author:(NSString *)author
                       postMeta:(NSDictionary *)postMeta;
 
-+ (void)updateUploadedProperty:(NSString *)postID
++ (void)updateUploadedProperty:(NSManagedObject *)property
                       favorite:(BOOL)favorite;
 
 + (void)deleteProperty:(NSManagedObject *)property;

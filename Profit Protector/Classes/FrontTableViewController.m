@@ -349,10 +349,10 @@
                                                                  title:isFavorited ? @"UNFAV" : @"FAV"
                                                                handler:^(UITableViewRowAction *action, NSIndexPath *indexPath)
                                {
-                                 if (isFavorited)
-                                   [property setValue:@(NO) forKey:@"favorite"];
-                                 else
-                                   [property setValue:@(YES) forKey:@"favorite"];
+                                 [property setValue:isFavorited ? @(NO) : @(YES) forKey:@"favorite"];
+
+                                 [API updateUploadedProperty:properties_[indexPath.row]
+                                                    favorite:isFavorited ? NO : YES];
                                  
                                  CoreDataManager *cdm = [CoreDataManager singleton];
                                  [cdm saveData];

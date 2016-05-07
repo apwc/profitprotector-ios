@@ -799,7 +799,6 @@
                                                 if (error)
                                                 {
                                                   [API networkError];
-//                                                  hud.hud.detailsLabelText = @"Network error, please try again.";
                                                   
                                                   dispatch_async(dispatch_get_main_queue(), ^{
                                                     [HUD removeHUDAfterDelay:1.5f];
@@ -843,10 +842,100 @@
   [dataTask resume];
 }
 
-+ (void)updateUploadedProperty:(NSString *)postID
++ (void)updateUploadedProperty:(NSManagedObject *)property
                       favorite:(BOOL)favorite
 {
   NSLog(@"%s", __PRETTY_FUNCTION__);
+  [HUD addHUD];
+  
+  NSString *auth = [NSString stringWithFormat:@"%@fjir50e%@",
+                    [GlobalData username],
+                    [GlobalData password]];
+  
+  NSData *authData = [auth dataUsingEncoding:NSUTF8StringEncoding];
+  NSString *base64 = [authData base64EncodedStringWithOptions:NSDataBase64Encoding64CharacterLineLength];
+  
+  NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"%@%@/%@",
+                                     apiPrefix,
+                                     properties,
+                                     [property valueForKey:@"propertyID"]]];
+
+  NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
+  [request addValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-type"];
+  [request setHTTPMethod:@"POST"];
+  
+  NSMutableString *parameters = [NSMutableString stringWithCapacity:0];
+  
+  [parameters appendFormat:@"iam=%@", base64];
+  
+  [parameters appendFormat:@"&filter=%@", [GlobalData username]];
+  
+  [parameters appendFormat:@"&author=%@", [GlobalData authorID]];
+  
+  [parameters appendFormat:@"&filter[posts_per_page]=1000"];
+  
+  [parameters appendString:@"&context=edit"];
+  
+  [parameters appendString:@"&type=property"];
+  
+  [parameters appendString:@"&status=publish"];
+  
+  [parameters appendFormat:@"&favorite=%d", favorite];
+
+  [request setHTTPBody:[parameters dataUsingEncoding:NSUTF8StringEncoding]];
+  
+  NSURLSession *session = [NSURLSession sharedSession];
+  
+  NSURLSessionDataTask *dataTask = [session dataTaskWithRequest:request
+                                              completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
+                                                
+                                                NSLog(@"Response:%@\nError: %@", response, error);
+                                                
+                                                id json = [NSJSONSerialization JSONObjectWithData:data
+                                                                                          options:NSJSONReadingMutableContainers
+                                                                                            error:nil];
+                                                NSLog(@"%@", json);
+                                                HUD *hud = [HUD singleton];
+                                                hud.hud.mode = MBProgressHUDModeText;
+                                                
+                                                if (error)
+                                                {
+                                                  [API networkError];
+                                                  
+                                                  dispatch_async(dispatch_get_main_queue(), ^{
+                                                    [HUD removeHUDAfterDelay:1.5f];
+                                                  });
+                                                }
+                                                else
+                                                {
+                                                  if ([json isKindOfClass:[NSArray class]])
+                                                  {
+                                                    if (![API isAccountActive:[json firstObject]])
+                                                      return;
+                                                  }
+                                                  
+                                                  if ([json isKindOfClass:[NSArray class]] &&
+                                                      [[json firstObject][@"code"] isEqualToString:@"json_cannot_edit"])
+                                                  {
+                                                    HUD *hud = [HUD singleton];
+                                                    hud.hud.mode = MBProgressHUDModeText;
+                                                    hud.hud.detailsLabelText = [json firstObject][@"message"];
+                                                    
+                                                    dispatch_async(dispatch_get_main_queue(), ^{
+                                                      [HUD removeHUDAfterDelay:1.5f];
+                                                    });
+                                                    
+                                                    return;
+                                                  }
+                                                  
+                                                  hud.hud.detailsLabelText = @"Property successfully updated";
+                                                  
+                                                  dispatch_async(dispatch_get_main_queue(), ^{
+                                                    [HUD removeHUDAfterDelay:1.5f];
+                                                  });
+                                                }
+                                              }];
+  [dataTask resume];
 }
 
 + (void)deleteProperty:(NSManagedObject *)property
